@@ -1,6 +1,6 @@
 <?php
 /**
- * Glamping club functions and definitions.
+ * Glamping club functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
