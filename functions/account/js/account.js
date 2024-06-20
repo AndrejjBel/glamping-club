@@ -62,13 +62,29 @@ const regUser = () => {
                         console.dir(data);
                         var data_json = JSON.parse(data);
                         if (data_json.class == 'errors') {
+                            if (document.querySelector('.toast-container')) {
+                                document.querySelector('.toast-container').innerHTML = ''
+                            }
+                            contentWarnings.insertAdjacentHTML(
+                                'beforeEnd',
+                                `<p class="color-red">Заполните все обязательные поля</p>`
+                            );
+                            contentWarnings.style.display = 'block';
                             for (var variable in data_json) {
                                 if (variable != 'class') {
-                                    contentWarnings.insertAdjacentHTML(
-                                        'beforeEnd',
-                                        `<p class="color-red">${data_json[variable]}</p>`
-                                    );
-                                    contentWarnings.style.display = 'block';
+                                    // contentWarnings.insertAdjacentHTML(
+                                    //     'beforeEnd',
+                                    //     `<p class="color-red">${data_json[variable]}</p>`
+                                    // );
+                                    // contentWarnings.style.display = 'block';
+
+                                    new Toast({
+                                        title: false,
+                                        text: data_json[variable],
+                                        theme: 'danger',
+                                        autohide: true,
+                                        interval: 10000
+                                    });
                                 }
                             }
                         } else {
@@ -117,13 +133,29 @@ const emailForgotActions = () => {
                         console.dir(data);
                         var data_json = JSON.parse(data);
                         if (data_json.class == 'errors') {
+                            if (document.querySelector('.toast-container')) {
+                                document.querySelector('.toast-container').innerHTML = ''
+                            }
+                            contentWarnings.insertAdjacentHTML(
+                                'beforeEnd',
+                                `<p class="color-red">Заполните все обязательные поля</p>`
+                            );
+                            contentWarnings.style.display = 'block';
                             for (var variable in data_json) {
                                 if (variable != 'class') {
-                                    contentWarnings.insertAdjacentHTML(
-                                        'beforeEnd',
-                                        `<p class="color-red">${data_json[variable]}</p>`
-                                    );
-                                    contentWarnings.style.display = 'block';
+                                    // contentWarnings.insertAdjacentHTML(
+                                    //     'beforeEnd',
+                                    //     `<p class="color-red">${data_json[variable]}</p>`
+                                    // );
+                                    // contentWarnings.style.display = 'block';
+
+                                    new Toast({
+                                        title: false,
+                                        text: data_json[variable],
+                                        theme: 'danger',
+                                        autohide: true,
+                                        interval: 10000
+                                    });
                                 }
                             }
                         }
@@ -149,7 +181,7 @@ emailForgotActions();
 const userRecoveryPass = () => {
     const forgotForm = document.querySelector('#new-password-form');
     const forgotFormBtn = document.querySelector('#forgot-send');
-    if ( forgotFormBtn ) {
+    if ( forgotForm ) {
         const contentWarnings = document.querySelector('.auth-reg__content__warnings')
         forgotFormBtn.addEventListener('click', (e) => {
             e.preventDefault();
@@ -173,13 +205,29 @@ const userRecoveryPass = () => {
                         console.dir(data);
                         var data_json = JSON.parse(data);
                         if (data_json.class == 'errors') {
+                            if (document.querySelector('.toast-container')) {
+                                document.querySelector('.toast-container').innerHTML = ''
+                            }
+                            contentWarnings.insertAdjacentHTML(
+                                'beforeEnd',
+                                `<p class="color-red">Заполните все обязательные поля</p>`
+                            );
+                            contentWarnings.style.display = 'block';
                             for (var variable in data_json) {
                                 if (variable != 'class') {
-                                    contentWarnings.insertAdjacentHTML(
-                                        'beforeEnd',
-                                        `<p class="color-red">${data_json[variable]}</p>`
-                                    );
-                                    contentWarnings.style.display = 'block';
+                                    // contentWarnings.insertAdjacentHTML(
+                                    //     'beforeEnd',
+                                    //     `<p class="color-red">${data_json[variable]}</p>`
+                                    // );
+                                    // contentWarnings.style.display = 'block';
+
+                                    new Toast({
+                                        title: false,
+                                        text: data_json[variable],
+                                        theme: 'danger',
+                                        autohide: true,
+                                        interval: 10000
+                                    });
                                 }
                             }
                         }

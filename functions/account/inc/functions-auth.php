@@ -151,13 +151,17 @@ function glamping_club_reg_user() {
         $error['empty_nonce'] = __( 'Problems encountered, try again later.', 'tripinglamp' );
     }
     if ( !$_POST['user_name'] ) {
-        $error['user_name'] = __( 'No name.', 'tripinglamp' );
+        $error['user_name'] = __( 'Заполните поле Имя', 'tripinglamp' );
     }
     // if ( email_exists( $_POST['user_email'] ) ) {
     //     $error['yes_email'] = __( 'The user with the specified E-mail is already registered.', 'strojdo' );
     // }
-    if ( !is_email( $_POST['user_email'] ) ) {
-        $error['email_error'] = __( 'Указан некорректный E-mail.', 'tripinglamp' );
+	if ( !$_POST['user_email'] ) {
+        $error['email_error'] = __( 'Заполните поле E-mail', 'tripinglamp' );
+    } elseif ( !is_email( $_POST['user_email'] ) ) {
+    	$error['email_error'] = __( 'Указан некорректный E-mail', 'tripinglamp' );
+    } elseif ( email_exists( $_POST['user_email']) ) {
+    	$error['yes_email'] = __( 'Пользователь с указанным E-mail уже зарегистрирован', 'strojdo' );
     }
     if ( !$_POST['pwd'] ) {
         $error['password_error'] = __( 'Нет пароля.', 'tripinglamp' );
