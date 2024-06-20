@@ -44,11 +44,11 @@ const regUser = () => {
             e.preventDefault();
             let formData = new FormData(registerform);
             formData.append('action', 'reg_user');
-            formData.append('nonce', tripinglamp_ajax.nonce);
+            formData.append('nonce', glamping_club_ajax.nonce);
 
             jQuery(document).ready( function($){
                 $.ajax({
-                    url: tripinglamp_ajax.ajaxUrl,
+                    url: glamping_club_ajax.ajaxUrl,
                     method: 'post',
                     processData: false,
                     contentType: false,
@@ -99,11 +99,11 @@ const emailForgotActions = () => {
             e.preventDefault();
             let formData = new FormData(forgotForm);
             formData.append('action', 'emailverifi');
-            formData.append('nonce', tripinglamp_ajax.nonce);
+            formData.append('nonce', glamping_club_ajax.nonce);
 
             jQuery(document).ready( function($){
                 $.ajax({
-                    url: tripinglamp_ajax.ajaxUrl,
+                    url: glamping_club_ajax.ajaxUrl,
                     method: 'post',
                     processData: false,
                     contentType: false,
@@ -149,17 +149,17 @@ emailForgotActions();
 const userRecoveryPass = () => {
     const forgotForm = document.querySelector('#new-password-form');
     const forgotFormBtn = document.querySelector('#forgot-send');
-    if ( forgotFormBtn ) {        
+    if ( forgotFormBtn ) {
         const contentWarnings = document.querySelector('.auth-reg__content__warnings')
         forgotFormBtn.addEventListener('click', (e) => {
             e.preventDefault();
             let formData = new FormData(forgotForm);
             formData.append('action', 'new_user_pass');
-            formData.append('nonce', tripinglamp_ajax.nonce);
+            formData.append('nonce', glamping_club_ajax.nonce);
 
             jQuery(document).ready( function($){
                 $.ajax({
-                    url: tripinglamp_ajax.ajaxUrl,
+                    url: glamping_club_ajax.ajaxUrl,
                     method: 'post',
                     processData: false,
                     contentType: false,
