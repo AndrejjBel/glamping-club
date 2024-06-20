@@ -1,0 +1,23 @@
+.hystmodal__wrap {
+    @media (max-width: 620px) {
+        margin: 0 10px;
+    }
+}
+
+.hystmodal__window {
+    border-radius: 4px;
+}
+
+.hystmodal__close {
+    background-size: 50%;
+}
+
+.hystmodal__close:focus {
+    outline: none;
+    outline-offset: 0;
+}
+
+.hystmodal-content {
+    min-height: 200px;
+    padding: 20px;
+}

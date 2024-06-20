@@ -1,0 +1,31 @@
+:root {
+    --color-primary: #00A0FF;
+    --color-primary-dark: #0068A6;
+    --color-primary-hover: #40B8FF;
+    --color-primary-hover-dark: #308ABF;
+    --color-primary-white: #73CBFF;
+    --chalk: #f5f5f5;
+    --text-color: #161616;
+    --color-bg: #FFFFFF;
+    --white: #FFFFFF;
+    --text-color-light: #555555;
+    --chalk: #f5f5f5;
+    --primary-bshadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.1);
+    --primary-tshadow: 2px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="dark"] {
+    --color-primary: #00A0FF;
+    --color-primary-dark: #0068A6;
+    --color-primary-hover: #40B8FF;
+    --color-primary-hover-dark: #308ABF;
+    --color-primary-white: #73CBFF;
+    --chalk: #f5f5f5;
+    --text-color: #FFFFFF;
+    --color-bg: #161616;
+    --white: #FFFFFF;
+    --text-color-light: #555555;
+    --chalk: #f5f5f5;
+    --primary-bshadow: 0px 15px 35px 0px rgba(0, 0, 0, 0.1);
+    --primary-tshadow: 2px 3px 8px rgba(0, 0, 0, 0.1);
+}

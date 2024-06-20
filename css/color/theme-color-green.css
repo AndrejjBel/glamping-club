@@ -1,0 +1,97 @@
+:root {
+    --color-primary: #00B945;
+    --color-primary-dark: #00782D;
+    --color-primary-hover: #37DC74;
+    --color-primary-hover-dark: #238B49;
+    --color-primary-white: #63DC90;
+
+    --footer-color: #0c2300;
+    --footer-end-color: #092d00;
+
+    --text-color: #161616;
+    --text-color-light: #555555;
+    --text-color-footer-title: #bbbbbb;
+    --text-color-footer-border: #333333;
+    --text-color-label:  #777777;
+    --text-color-file-help: #9f9f9f;
+    --color-bg: #FFFFFF;
+
+    --white: #FFFFFF;
+    --gray: #777777;
+    --red: red;
+
+    --sidebar-color-bg: #fbfbfb;
+
+    --color-border-white: #FFFFFF;
+    --color-border: #e8e8e8;
+    --color-sidebar-border: #e8e8e8;
+    --color-border-input: #b9b9b9;
+
+    --link-color: #00B945;
+    --link-color-hover: #37DC74;
+    --chalk: #f5f5f5;
+
+    --color-primary-shadow: rgba(0, 0, 0, 0.1);
+    --color-header-shadow: rgba(34, 60, 80, 0.12);
+    --color-header-fixed-shadow: rgba(0, 0, 0, 0.5);
+    --color-input-shadow: rgba(0, 0, 0, 0.15);
+
+    --primary-bshadow: 0px 15px 35px 0px var(--color-primary-shadow);
+    --primary-tshadow: 2px 3px 8px var(--color-primary-shadow);
+    --primary-lshadow: 0px 3px 10px 1px var(--color-primary-shadow);
+    --header-shadow: 4px 4px 8px -2px var(--color-header-shadow);
+    --header-fixed-shadow: 0px 5px 15px 0px var(--color-header-fixed-shadow);
+    --input-shadow: 0px 10px 30px 0px var(--color-input-shadow);
+    --mobile-nav-shadow: 0px -5px 15px 0px var(--color-primary-shadow);
+
+    --color-svg-input: #b9b9b9;
+}
+
+[data-theme="dark"] {
+    --color-primary: #00B945;
+    --color-primary-dark: #00782D;
+    --color-primary-hover: #37DC74;
+    --color-primary-hover-dark: #238B49;
+    --color-primary-white: #63DC90;
+
+    --footer-color: #0c2300;
+    --footer-end-color: #092d00;
+
+    --text-color: #161616;
+    --text-color-light: #555555;
+    --text-color-footer-title: #bbbbbb;
+    --text-color-footer-border: #333333;
+    --text-color-label:  #777777;
+    --text-color-file-help: #9f9f9f;
+    --color-bg: #FFFFFF;
+
+    --white: #FFFFFF;
+    --gray: #777777;
+    --red: red;
+
+    --sidebar-color-bg: #fbfbfb;
+
+    --color-border-white: #FFFFFF;
+    --color-border: #e8e8e8;
+    --color-sidebar-border: #e8e8e8;
+    --color-border-input: #b9b9b9;
+
+    --link-color: #00B945;
+    --link-color-hover: #37DC74;
+    --chalk: #f5f5f5;
+
+    --color-primary-shadow: rgba(0, 0, 0, 0.1);
+    --color-header-shadow: rgba(34, 60, 80, 0.12);
+    --color-header-fixed-shadow: rgba(0, 0, 0, 0.5);
+    --color-input-shadow: rgba(0, 0, 0, 0.15);
+
+    --primary-bshadow: 0px 15px 35px 0px var(--color-primary-shadow);
+    --primary-tshadow: 2px 3px 8px var(--color-primary-shadow);
+    --primary-lshadow: 0px 3px 10px 1px var(--color-primary-shadow);
+    --header-shadow: 4px 4px 8px -2px var(--color-header-shadow);
+    --header-fixed-shadow: 0px 5px 15px 0px var(--color-header-fixed-shadow);
+    --input-shadow: 0px 10px 30px 0px var(--color-input-shadow);
+    --mobile-nav-shadow: 0px -5px 15px 0px var(--color-primary-shadow);
+
+    --color-svg-input: #b9b9b9;
+}

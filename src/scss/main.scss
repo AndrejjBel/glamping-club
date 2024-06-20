@@ -1,0 +1,19 @@
+// Base
+@import "./src/scss/base/variables";
+@import "./src/scss/base/base";
+@import "./src/scss/base/typography";
+@import "./src/scss/base/header";
+@import "./src/scss/base/footer";
+
+// Elements
+@import "./src/scss/elements/buttons";
+
+// Popup
+@import "./src/scss/popup/popup";
+@import "./src/scss/popup/modal";
+
+// Login-reg
+// @import "./src/scss/login-reg/all";
+
+// Form
+@import "./src/scss/form/elements";

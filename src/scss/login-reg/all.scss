@@ -1,0 +1,152 @@
+.lr-page {
+    background: url("/img/backgrounds/bacgr2.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+.pa-login-reg {
+    max-width: 500px;
+    margin-top: auto;
+    margin-bottom: auto;
+
+    @media (max-width: 576px) {
+        max-width: 100%;
+    }
+
+    &__back-to-home {
+        position: absolute;
+        top: 4%;
+        right: 2%;
+
+        @media (max-width: 576px) {
+            top: 10px;
+            right: 10px;
+        }
+    }
+
+    &__content {
+        // margin: 40px 0;
+        padding: 40px 24px;
+        border-radius: 8px;
+        background: var(--color-bg);
+
+        @media (max-width: 499px) {
+            padding: 20px 16px;
+        }
+
+        &.reg-content {
+            margin: 80px 0 40px;
+
+            @media (max-width: 499px) {
+                margin: 40px 0 20px;
+            }
+        }
+
+        &__title {
+            text-align: center;
+            font-weight: 400;
+            margin-top: 0;
+            margin-bottom: 40px;
+
+            @media (max-width: 499px) {
+                margin-bottom: 20px;
+            }
+        }
+
+        &__warnings {
+            color: var(--red);
+            text-align: center;
+            padding-bottom: 40px;
+        }
+
+        & form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+
+            @media (max-width: 499px) {
+                gap: 8px;
+            }
+
+            & label {
+                font-size: 14px;
+                font-weight: 400;
+                color: var(--text-color-label);
+
+                & .color-red {
+                    color: var(--red);
+                }
+            }
+
+            & input[type="text"],
+            input[type="email"],
+            input[type="password"] {
+                height: 40px;
+                margin-top: 4px;
+                border: 1px solid var(--color-border-input);
+
+                &.input-password {
+                    margin-top: 0;
+                }
+            }
+
+            & button.btn-primary {
+                width: 100%;
+                height: 40px;
+                justify-content: center;
+            }
+
+            & .file-help {
+                display: block;
+                font-size: 12px;
+                color: var(--text-color-file-help);
+                line-height: 1.3;
+                margin-top: 4px;
+            }
+
+            & .register-passmail {
+                font-size: 14px;
+            }
+
+            & .register-submit button {
+                text-transform: uppercase;
+            }
+
+            & .login-remember-forgot {
+                display: flex;
+                justify-content: space-between;
+
+                & a {
+                    font-weight: 500;
+                }
+            }
+
+            & .generate-password {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 4px;
+
+                & .password-complexity {
+                    font-size: 12px;
+                }
+
+                & a {
+                    font-size: 14px;
+                    text-decoration: none;
+                }
+            }
+        }
+
+        &__signupin {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            justify-content: center;
+
+            & a {
+                font-weight: 500;
+            }
+        }
+    }
+}

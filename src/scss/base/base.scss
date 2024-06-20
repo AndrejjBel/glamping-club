@@ -1,0 +1,141 @@
+html {
+    height: 100%;
+    font-size: 62.5%;
+}
+@media (max-width: 1499px) {
+    html {
+        font-size: 56.25%;
+    }
+}
+@media (max-width: 1199px) {
+    html {
+        font-size: 50%;
+    }
+}
+@media (max-width: 991px) {
+    html {
+        font-size: 43.75%;
+    }
+}
+@media (max-width: 767px) {
+    html {
+        font-size: 37.5%;
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    position: relative;
+    font-family: "Roboto", sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--text-color, #161616);
+    background: var(--color-bg, #FFFFFF);
+
+    &.js-overlay {
+        overflow: hidden;
+    }
+}
+
+.container {
+    max-width: 80%;
+    width: 100%;
+    margin: 0 auto;
+
+    @media (min-width: 2500px) {
+        max-width: 70%;
+    }
+
+    @media (max-width: 1349px) {
+        max-width: 90%;
+    }
+
+    @media (max-width: 991px) {
+        max-width: 93%;
+    }
+
+    @media (max-width: 576px) {
+        max-width: 100%;
+        width: auto;
+        margin: 0 15px;
+    }
+}
+
+.site {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+
+    &__header {
+        padding: 18px 0;
+
+        @media (max-width: 767px) {
+            padding: 10px 0;
+        }
+
+        & .container {
+            @media (max-width: 1349px) {
+                max-width: 100%;
+                padding: 0 25px;
+            }
+
+            @media (max-width: 576px) {
+                padding: 0;
+            }
+        }
+    }
+
+    &__footer {
+        margin-top: auto;
+    }
+}
+
+.site-main {
+    margin-bottom: 60px;
+}
+
+a {
+    color: inherit;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+figure {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+}
+
+a, button {
+    cursor: pointer;
+}
+
+a:hover {
+    color: var(--link-color-hover);
+    text-decoration: none;
+}
+
+button {
+    border: none;
+    background: none;
+}
+
+a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .slick-slide {
+    outline: none;
+}
+
+@each $name, $width_size in $width_sizes {
+  .width-#{$name} {
+    width: $width_size;
+  }
+}
