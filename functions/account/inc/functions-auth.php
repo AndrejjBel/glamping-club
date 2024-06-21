@@ -174,7 +174,7 @@ function glamping_club_reg_user() {
         echo $error_fin;
         wp_die();
     } else {
-		// $login = '';
+		$login = '';
         if ( $_POST['user_name'] ) {
 			$login = translit($_POST['user_name']);
             if ( username_exists( $login ) ) {
