@@ -174,14 +174,13 @@ function glamping_club_reg_user() {
         echo $error_fin;
         wp_die();
     } else {
-        if ( $_POST['user_nicename'] ) {
+		$login = '';
+        if ( $_POST['user_name'] ) {
+			$login = translit($value);
             if ( username_exists( $login ) ) {
-                $login = '';
-            } else {
-                $login = $_POST['user_nicename'];
+                $login = preg_replace("/^(.+?)@.+$/", '\\1', $_POST['user_email']);
             }
         } else {
-            // $login = '';
             $login = preg_replace("/^(.+?)@.+$/", '\\1', $_POST['user_email']);
         }
         if ( $_POST['pwd'] ) {
@@ -191,7 +190,7 @@ function glamping_club_reg_user() {
         }
 
         $userdata = array(
-            'user_login' => $_POST['user_name'],
+            'user_login' => $login,
             'user_pass' => $password,
             'user_email' => $_POST['user_email'],
             // 'nickname' => $login,
@@ -317,6 +316,28 @@ function glamping_club_recovery_pass () {
         echo $error_fin;
         wp_die();
     }
+}
+
+function translit($value) {
+	$converter = array(
+		'а' => 'a',    'б' => 'b',    'в' => 'v',    'г' => 'g',    'д' => 'd',
+		'е' => 'e',    'ё' => 'e',    'ж' => 'zh',   'з' => 'z',    'и' => 'i',
+		'й' => 'y',    'к' => 'k',    'л' => 'l',    'м' => 'm',    'н' => 'n',
+		'о' => 'o',    'п' => 'p',    'р' => 'r',    'с' => 's',    'т' => 't',
+		'у' => 'u',    'ф' => 'f',    'х' => 'h',    'ц' => 'c',    'ч' => 'ch',
+		'ш' => 'sh',   'щ' => 'sch',  'ь' => '',     'ы' => 'y',    'ъ' => '',
+		'э' => 'e',    'ю' => 'yu',   'я' => 'ya',
+
+		'А' => 'A',    'Б' => 'B',    'В' => 'V',    'Г' => 'G',    'Д' => 'D',
+		'Е' => 'E',    'Ё' => 'E',    'Ж' => 'Zh',   'З' => 'Z',    'И' => 'I',
+		'Й' => 'Y',    'К' => 'K',    'Л' => 'L',    'М' => 'M',    'Н' => 'N',
+		'О' => 'O',    'П' => 'P',    'Р' => 'R',    'С' => 'S',    'Т' => 'T',
+		'У' => 'U',    'Ф' => 'F',    'Х' => 'H',    'Ц' => 'C',    'Ч' => 'Ch',
+		'Ш' => 'Sh',   'Щ' => 'Sch',  'Ь' => '',     'Ы' => 'Y',    'Ъ' => '',
+		'Э' => 'E',    'Ю' => 'Yu',   'Я' => 'Ya',
+	);
+	$value = strtr($value, $converter);
+	return $value;
 }
 
 // add_filter( 'avatar_defaults', 'add_default_avatar_option' );
