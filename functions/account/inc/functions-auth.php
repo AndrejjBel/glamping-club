@@ -176,7 +176,7 @@ function glamping_club_reg_user() {
     } else {
 		// $login = '';
         if ( $_POST['user_name'] ) {
-			$login = translit($value);
+			$login = translit($_POST['user_name']);
             if ( username_exists( $login ) ) {
                 $login = preg_replace("/^(.+?)@.+$/", '\\1', $_POST['user_email']);
             }
