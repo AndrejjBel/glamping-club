@@ -8,7 +8,7 @@ define( 'PAGE_REGISTRATION_N', 'Create an account' );
 define( 'PAGE_FORGOT_PASSWORD_N', 'Reset password' );
 define( 'PAGE_DASHBOARD_N', 'Dashboard' );
 
-// require get_template_directory() . '/functions/account/inc/functions-inc.php';
+require get_template_directory() . '/functions/account/inc/functions-inc.php';
 require get_template_directory() . '/functions/account/inc/functions-auth.php';
 // require get_template_directory() . '/functions/account/inc/dashboard.php';
 

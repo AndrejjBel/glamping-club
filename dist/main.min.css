@@ -259,6 +259,7 @@ strong, b {
             height: 20px; } }
     .header-generale__left__user {
       display: flex;
+      gap: 8px;
       align-items: center;
       justify-content: center;
       text-decoration: none;
@@ -279,8 +280,16 @@ strong, b {
           transition: 0.3s all; }
       .header-generale__left__user span {
         font-weight: 500;
-        margin-left: 8px;
         white-space: nowrap; }
+        .header-generale__left__user span.avatar {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 50%;
+          background: var(--chalk);
+          width: 40px;
+          height: 40px;
+          transition: all linear .3s; }
       .header-generale__left__user:hover {
         color: var(--color-primary); }
         .header-generale__left__user:hover .fa-secondary {

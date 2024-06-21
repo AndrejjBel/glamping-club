@@ -82,10 +82,10 @@ require get_template_directory() . '/functions/cmb2/init.php';
 require get_template_directory() . '/functions/cmb-settings.php';
 require get_template_directory() . '/functions/cmb-post-meta.php';
 require get_template_directory() . '/functions/glampings-options.php';
-
-require get_template_directory() . '/functions/account/inc/shortcodes.php';
+require get_template_directory() . '/functions/template-functions.php';
 
 require get_template_directory() . '/functions/account/functions-acc.php';
+require get_template_directory() . '/functions/account/inc/shortcodes.php';
 
 require get_template_directory() . '/functions/admin/inc/functions-admin.php';
 
