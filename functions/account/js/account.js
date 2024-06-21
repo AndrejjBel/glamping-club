@@ -237,6 +237,7 @@ const userRecoveryPass = () => {
                         else {
                             contentWarnings.innerHTML = `<p class="color-success">${data_json.notise}</p>`;
                             contentWarnings.style.display = 'block';
+                            forgotForm.reset();
                             setTimeout(() => {
                                 window.location.href = "/login/";
                             }, 3000);
