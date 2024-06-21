@@ -6,7 +6,8 @@
             </span>
         <?php else : ?>
             <a href="/" class="sidebar-nav__header__logo">
-                <img src="<?php echo get_template_directory_uri(); ?>/img/logo-def.png" alt="">
+                Glamping club
+                <!-- <img src="<?php //echo get_template_directory_uri(); ?>/img/logo-def.png" alt=""> -->
             </a>
         <?php endif; ?>
         <button id="js-close" class="sidebar-nav__header__btn">

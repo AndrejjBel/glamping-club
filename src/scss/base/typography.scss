@@ -88,3 +88,7 @@ blockquote:only-child {
 strong, b {
     font-weight: bold;
 }
+
+.rotate90 {
+    transform: rotate(90deg);
+}

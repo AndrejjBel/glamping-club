@@ -123,6 +123,7 @@
                     background: var(--chalk);
                     width: 40px;
                     height: 40px;
+                    font-weight: 600;
                     transition: all linear .3s;
                 }
             }
@@ -204,7 +205,7 @@
 
             & input {
                 width: 100%;
-                height: 100%;
+                height: 40px;
                 background: transparent;
                 padding: 8px;
             }
@@ -447,6 +448,8 @@
     }
 
     &__content {
+        display: flex;
+        flex-direction: column;
         overflow-y: auto;
         height: 100vh;
 
@@ -509,10 +512,11 @@
         }
 
         &__menu {
-            margin-bottom: 30px;
+            margin: 0 15px 30px 15px;
         }
 
         &__footer {
+            margin-top: auto;
             padding-left: 10px;
             padding-right: 10px;
             padding-bottom: 120px;
@@ -543,6 +547,11 @@
         justify-content: space-between;
         align-items: center;
 
+        @media (max-width: 476px) {
+            margin-right: 16px;
+            margin-bottom: 6px;
+        }
+
         &__widget {
             position: relative;
             display: flex;
@@ -553,17 +562,30 @@
             text-transform: uppercase;
             text-decoration: none;
 
+            &:nth-child(2) {
+                margin-left: -20px;
+            }
+
+            &__icon {
+                position: relative;
+                display: flex;
+            }
+
             & svg {
                 fill: var(--text-color-light);
             }
 
-            &__text {}
+            &__text {
+                @media (max-width: 476px) {
+                    display: none;
+                }
+            }
 
             &__count {
                 position: absolute;
                 display: flex;align-items: center;
                 top: -14px;
-                right: -14px;
+                right: -20px;
                 width: 20px;
                 height: 20px;
                 justify-content: center;
@@ -607,6 +629,10 @@
 
             &__text {
                 margin-top: 20px;
+
+                @media (max-width: 476px) {
+                    display: none;
+                }
             }
         }
 

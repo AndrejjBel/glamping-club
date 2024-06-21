@@ -147,24 +147,24 @@ add_action('wp_ajax_nopriv_reg_user', 'glamping_club_reg_user');
 function glamping_club_reg_user() {
     $error = array();
 
-    if ( !wp_verify_nonce( $_POST['nonce'], 'tripinglamp-nonce' ) ) {
-        $error['empty_nonce'] = __( 'Problems encountered, try again later.', 'tripinglamp' );
+    if ( !wp_verify_nonce( $_POST['nonce'], 'glamping_club' ) ) {
+        $error['empty_nonce'] = __( 'Problems encountered, try again later.', 'glamping-club' );
     }
     if ( !$_POST['user_name'] ) {
-        $error['user_name'] = __( 'Заполните поле Имя', 'tripinglamp' );
+        $error['user_name'] = __( 'Заполните поле Имя', 'glamping-club' );
     }
     // if ( email_exists( $_POST['user_email'] ) ) {
     //     $error['yes_email'] = __( 'The user with the specified E-mail is already registered.', 'strojdo' );
     // }
 	if ( !$_POST['user_email'] ) {
-        $error['email_error'] = __( 'Заполните поле E-mail', 'tripinglamp' );
+        $error['email_error'] = __( 'Заполните поле E-mail', 'glamping-club' );
     } elseif ( !is_email( $_POST['user_email'] ) ) {
-    	$error['email_error'] = __( 'Указан некорректный E-mail', 'tripinglamp' );
+    	$error['email_error'] = __( 'Указан некорректный E-mail', 'glamping-club' );
     } elseif ( email_exists( $_POST['user_email']) ) {
-    	$error['yes_email'] = __( 'Пользователь с указанным E-mail уже зарегистрирован', 'strojdo' );
+    	$error['yes_email'] = __( 'Пользователь с указанным E-mail уже зарегистрирован', 'glamping-club' );
     }
     if ( !$_POST['pwd'] ) {
-        $error['password_error'] = __( 'Нет пароля.', 'tripinglamp' );
+        $error['password_error'] = __( 'Заполните поле пароль', 'glamping-club' );
     }
 
 
@@ -247,15 +247,15 @@ function glamping_club_email_verifi() {
     $error = array();
     $user_email = esc_sql( $_POST['email_forgot'] );
     $nonce = esc_sql( $_POST['nonce'] );
-    if ( !wp_verify_nonce( $nonce, 'tripinglamp-nonce' ) ) {
-        $error['empty_nonce'] = __('Ошибка запроса', 'tripinglamp');
+    if ( !wp_verify_nonce( $nonce, 'glamping_club' ) ) {
+        $error['empty_nonce'] = __('Ошибка запроса', 'glamping-club');
     }
     if ( !$user_email ) {
-        $error['no_user_email'] = __('Заполните поле E-mail', 'tripinglamp');
+        $error['no_user_email'] = __('Заполните поле E-mail', 'glamping-club');
     }
     $user = get_user_by( 'email', $user_email );
     if ( $user_email && !$user ) {
-        $error['no_user'] = __('Пользователь с указанными данными не зарегистрирован', 'tripinglamp');
+        $error['no_user'] = __('Пользователь с указанными данными не зарегистрирован', 'glamping-club');
     }
     if ( count( $error ) > 0 ) {
         $error['class'] = 'errors';
@@ -276,7 +276,7 @@ function glamping_club_email_verifi() {
         $message .= "<p>Это письмо было создано автоматически. Вам не нужно на него отвечать.</p>";
         $message .= '<p>Thank you.</p>';
         wp_mail( $user_email, $subject, $message, $headers );
-        $error['success_send_mail'] = __('На ваш адрес электронной почты было отправлено письмо с инструкциями..', 'tripinglamp');
+        $error['success_send_mail'] = __('На ваш адрес электронной почты было отправлено письмо с инструкциями..', 'glamping-club');
         $error['class'] = 'success_plus';
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
         echo $error_fin;
@@ -294,15 +294,15 @@ function glamping_club_recovery_pass () {
     $user_pass = $_POST['user_pass'];
     $user = check_password_reset_key( $key, $login );
     if ( is_wp_error($user) ) {
-        $error['empty_user'] = __('Ошибка идентификации', 'tripinglamp');
+        $error['empty_user'] = __('Ошибка идентификации', 'glamping-club');
     } else {
         if ( !$user_pass ) {
-            $error['user_pass_no'] = __('Новый пароль не указан', 'tripinglamp');
+            $error['user_pass_no'] = __('Новый пароль не указан', 'glamping-club');
         }
     }
     $nonce = $_POST['nonce'];
-    if ( !wp_verify_nonce( $nonce, 'tripinglamp-nonce' ) ) {
-        $error['empty_nonce'] = __('Ошибка. Повторите попытку позже.', 'tripinglamp');
+    if ( !wp_verify_nonce( $nonce, 'glamping_club' ) ) {
+        $error['empty_nonce'] = __('Ошибка. Повторите попытку позже.', 'glamping-club');
     }
     if ( count( $error ) > 0 ) {
         $error['class'] = 'errors';
@@ -312,7 +312,7 @@ function glamping_club_recovery_pass () {
     } else {
         reset_password( $user, $user_pass );
         $error['class'] = 'success';
-        $error['notise'] = __('Пароль успешно изменен', 'tripinglamp');
+        $error['notise'] = __('Пароль успешно изменен', 'glamping-club');
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
         echo $error_fin;
         wp_die();

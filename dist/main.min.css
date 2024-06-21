@@ -196,6 +196,9 @@ blockquote:only-child {
 strong, b {
   font-weight: bold; }
 
+.rotate90 {
+  transform: rotate(90deg); }
+
 .site__header {
   position: fixed;
   top: 0;
@@ -289,6 +292,7 @@ strong, b {
           background: var(--chalk);
           width: 40px;
           height: 40px;
+          font-weight: 600;
           transition: all linear .3s; }
       .header-generale__left__user:hover {
         color: var(--color-primary); }
@@ -340,7 +344,7 @@ strong, b {
           fill: var(--color-primary); }
       .header-generale__form__search input {
         width: 100%;
-        height: 100%;
+        height: 40px;
         background: transparent;
         padding: 8px; }
       .header-generale__form__search__options-btn {
@@ -503,6 +507,8 @@ strong, b {
         .sidebar-nav__header__btn:hover svg path {
           fill: var(--white); }
   .sidebar-nav__content {
+    display: flex;
+    flex-direction: column;
     overflow-y: auto;
     height: 100vh; }
     .sidebar-nav__content__profile {
@@ -545,8 +551,9 @@ strong, b {
           .sidebar-nav__content__profile .header-generale__right__add-btn {
             display: flex; } }
     .sidebar-nav__content__menu {
-      margin-bottom: 30px; }
+      margin: 0 15px 30px 15px; }
     .sidebar-nav__content__footer {
+      margin-top: auto;
       padding-left: 10px;
       padding-right: 10px;
       padding-bottom: 120px;
@@ -570,6 +577,10 @@ strong, b {
     display: flex;
     justify-content: space-between;
     align-items: center; }
+    @media (max-width: 476px) {
+      .mobile-nav__group {
+        margin-right: 16px;
+        margin-bottom: 6px; } }
     .mobile-nav__group__widget {
       position: relative;
       display: flex;
@@ -579,14 +590,22 @@ strong, b {
       font-size: 10px;
       text-transform: uppercase;
       text-decoration: none; }
+      .mobile-nav__group__widget:nth-child(2) {
+        margin-left: -20px; }
+      .mobile-nav__group__widget__icon {
+        position: relative;
+        display: flex; }
       .mobile-nav__group__widget svg {
         fill: var(--text-color-light); }
+      @media (max-width: 476px) {
+        .mobile-nav__group__widget__text {
+          display: none; } }
       .mobile-nav__group__widget__count {
         position: absolute;
         display: flex;
         align-items: center;
         top: -14px;
-        right: -14px;
+        right: -20px;
         width: 20px;
         height: 20px;
         justify-content: center;
@@ -624,6 +643,9 @@ strong, b {
         fill: var(--color-primary); }
       .mobile-nav__group__widget-add__text {
         margin-top: 20px; }
+        @media (max-width: 476px) {
+          .mobile-nav__group__widget-add__text {
+            display: none; } }
 
 .page-title-area {
   margin: 1rem 0 2rem; }

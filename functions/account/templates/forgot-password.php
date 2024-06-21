@@ -14,7 +14,7 @@ if ( isset( $_GET["new-pass"] ) ) {
 			$user_email = $_GET["email"];
 		}
 ?>
-<div class="container">
+<div class="container-account">
 	<div class="auth-reg__content">
 		<h1 class="auth-reg__content__title"><?php the_title();?></h1>
 		<div class="auth-reg__content__warnings"<?php echo $style_warn;?>></div>
@@ -79,7 +79,7 @@ if ( isset( $_GET["new-pass"] ) ) {
 	}
 } else {
 ?>
-<div class="container">
+<div class="container-account">
 	<div class="auth-reg__content">
 		<h1 class="auth-reg__content__title"><?php the_title();?></h1>
 		<div class="auth-reg__content__warnings"<?php echo $style_warn;?>></div>

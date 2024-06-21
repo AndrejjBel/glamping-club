@@ -41,9 +41,9 @@ function glamping_club_main_scripts_old() {
     // $yand_zoom = get_option( '_yandex_zoom' );
     $bundle_obj = [
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
-        'nonce' => wp_create_nonce('tripinglamp-nonce'),
-        'action' => 'tripinglamp_form',
-        'marker' => bin2hex('tripinglamp_current_user-' . $user_ID),
+        'nonce' => wp_create_nonce('glamping_club'),
+        'action' => 'glamping_club',
+        'marker' => bin2hex('current_user-' . $user_ID),
         // 'yand_zoom' => $yand_zoom,
         // 'glAll' => $glempings
     ];
@@ -61,6 +61,9 @@ function glamping_club_main_scripts_old() {
     );
     wp_enqueue_style('main', get_stylesheet_directory_uri() . '/dist/main.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/dist/main.min.css' )
+    );
+    wp_enqueue_style('custom', get_stylesheet_directory_uri() . '/css/custom.css', array(),
+        filemtime( get_stylesheet_directory() . '/css/custom.css' )
     );
 
     // js
