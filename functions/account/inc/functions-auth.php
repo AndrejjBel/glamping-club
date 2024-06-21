@@ -203,6 +203,9 @@ function glamping_club_reg_user() {
             update_user_meta( $user_id, 'user_identified', 'no' );
             wp_new_user_notification( $user_id, '' );
 
+			// $site_options = get_option( 'glc_options' );
+			// $from_email = $site_options['from_email'];
+
             $user = get_user_by( 'email', $_POST['user_email'] );
             $key = get_password_reset_key( $user );
             $url = get_site_url( null, 'login/?verifi=1&key=' . $key . '&email=' . $_POST['user_email'] . '&user_login=' . $user->data->user_login );

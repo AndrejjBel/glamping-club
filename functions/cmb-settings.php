@@ -59,6 +59,13 @@ function glamping_club_register_main_options_metabox() {
 		'type'    => 'text'
 	) );
 
+    $main_options->add_field( array(
+		'name'    => esc_html__( 'E-mail от которого отправлять письма пользователям', 'glamping-club' ),
+		'desc'    => esc_html__( 'например admin@site.ru', 'glamping-club' ),
+		'id'      => 'from_email',
+		'type'    => 'text'
+	) );
+
 	// $main_options->add_field( array(
 	// 	'name'    => esc_html__( 'Основной цвет', 'glamping-club' ),
 	// 	// 'desc'    => esc_html__( 'выбор основного цвета сайта', 'glamping-club' ),
