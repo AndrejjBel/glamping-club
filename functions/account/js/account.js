@@ -88,11 +88,12 @@ const regUser = () => {
                                 }
                             }
                         } else {
-                            contentWarnings.innerHTML = `<p class="color-success">Регистрация на сайте прошла успешно</p>`;
+                            contentWarnings.innerHTML = `<p class="color-success">Регистрация на сайте прошла успешно, необходимо подтвердить E-mail, Вам отправлено письмо с инструкциями для подтверждения, если письма нет, проверьте папку спам</p>`;
                             contentWarnings.style.display = 'block';
-                            setTimeout(() => {
-                                window.location.href = "/login/";
-                            }, 3000);
+                            registerform.reset();
+                            // setTimeout(() => {
+                            //     window.location.href = "/login/";
+                            // }, 3000);
                         }
                     },
                     error: function (jqXHR, text, error) {
