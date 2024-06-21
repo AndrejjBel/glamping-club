@@ -275,7 +275,7 @@ function glamping_club_email_verifi() {
         $message .= "<p>Это письмо было создано автоматически. Вам не нужно на него отвечать.</p>";
         $message .= '<p>Thank you.</p>';
         wp_mail( $user_email, $subject, $message, $headers );
-        $error['success_send_mail'] = __('На ваш адрес электронной почты было отправлено письмо с инструкциями..', 'glamping-club');
+        $error['success_send_mail'] = __('На ваш адрес электронной почты было отправлено письмо с инструкциями.', 'glamping-club');
         $error['class'] = 'success_plus';
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
         echo $error_fin;

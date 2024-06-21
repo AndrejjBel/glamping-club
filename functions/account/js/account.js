@@ -163,6 +163,7 @@ const emailForgotActions = () => {
                         }
                         else {
                             contentInfo.innerHTML = `<p class="color-success">${data_json.success_send_mail}</p>`;
+                            forgotForm.reset();
                             // contentWarnings.style.display = 'block';
                             // setTimeout(() => {
                             //     window.location.href = "/login/";
