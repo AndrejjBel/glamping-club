@@ -112,6 +112,7 @@ const emailForgotActions = () => {
     if ( forgotForm ) {
         const forgotFormBtn = document.querySelector('#forgot-send');
         const contentWarnings = document.querySelector('.auth-reg__content__warnings')
+        const contentInfo = document.querySelector('.auth-reg__content__info')
         forgotFormBtn.addEventListener('click', (e) => {
             e.preventDefault();
             let formData = new FormData(forgotForm);
@@ -161,8 +162,8 @@ const emailForgotActions = () => {
                             }
                         }
                         else {
-                            contentWarnings.innerHTML = `<p class="color-success">${data_json.success_send_mail}</p>`;
-                            contentWarnings.style.display = 'block';
+                            contentInfo.innerHTML = `<p class="color-success">${data_json.success_send_mail}</p>`;
+                            // contentWarnings.style.display = 'block';
                             // setTimeout(() => {
                             //     window.location.href = "/login/";
                             // }, 3000);
