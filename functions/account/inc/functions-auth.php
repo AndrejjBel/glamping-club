@@ -203,8 +203,7 @@ function glamping_club_reg_user() {
             update_user_meta( $user_id, 'user_identified', 'no' );
             wp_new_user_notification( $user_id, '' );
 
-			// $site_options = get_option( 'glc_options' );
-			// $from_email = $site_options['from_email'];
+			$from_email = get_glc_option('glc_options', 'from_email');
 
             $user = get_user_by( 'email', $_POST['user_email'] );
             $key = get_password_reset_key( $user );
@@ -215,7 +214,7 @@ function glamping_club_reg_user() {
             $subject = 'Регистрация на сайте ' . $site_name;
             $headers = "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=utf-8\r\n";
-            $headers .= "From: admin@dinskinform.ru <admin@dinskinform.ru>\r\n";
+            $headers .= "From: ' . $from_email . ' <' . $from_email . '>\r\n";
             $email = 'E-mail: ' . $_POST['user_email'] . ' ';
             $login_user = 'Login: ' . $login . ' ';
             $pass = 'Пароль: ' . $password . ' ';
@@ -264,12 +263,14 @@ function glamping_club_email_verifi() {
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
         echo $error_fin;
     } else {
+		$from_email = get_glc_option('glc_options', 'from_email');
+
         $key = get_password_reset_key( $user );
         $url = get_site_url( null, 'forgot/?new-pass=yes&key=' . $key . '&email=' . $user_email . '&login=' . $user->data->user_login );
         $subject = 'Запрос на сброс пароля: ';
         $headers= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=utf-8\r\n";
-        $headers .= "From: admin@dinskinform.ru <admin@dinskinform.ru>\r\n";
+        $headers .= "From: ' . $from_email . ' <' . $from_email . '>\r\n";
         $message = '<p>Кто-то запросил сброс пароля для следующей учетной записи:</p>';
         $message .= '<p>Название сайта: ' . get_bloginfo( 'name' ) . '</p>';
         $message .= '<p>Login: ' . $user->data->user_login . '</p>';
