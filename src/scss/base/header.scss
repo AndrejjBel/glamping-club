@@ -8,6 +8,10 @@
     z-index: 9;
     transition: all linear .3s;
 
+    &.dashboard {
+        position: static;
+    }
+
     &.header-fixed {
         position: fixed;
         top: 0px;
@@ -37,6 +41,11 @@
 
         @media (max-width: 1199px) {
             width: 100%;
+
+            &.dashboard {
+                flex: 1;
+                width: auto;
+            }
         }
 
         &__slider-btn {
@@ -55,6 +64,14 @@
 
                 & svg path {
                     fill: var(--white);
+                }
+            }
+
+            &.dashboard {
+                display: none;
+
+                @media (max-width: 1199px) {
+                    display: flex;
                 }
             }
 
@@ -81,6 +98,14 @@
                 }
             }
 
+            &.dashboard {
+                margin: 0 45px 0 0;
+
+                @media (max-width: 1199px) {
+                    margin: 0 auto;
+                }
+            }
+
     	}
 
     	&__user {
@@ -92,8 +117,17 @@
             color: var(--text-color-light);
             transition: all linear .3s;
 
+            &.dashboard {
+                margin-left: 20px;
+            }
+
             @media (max-width: 1199px) {
                 display: none;
+
+                &.dashboard {
+                    display: flex;
+                    margin-left: 0;
+                }
             }
 
             & svg {
@@ -368,6 +402,10 @@
                 background: var(--color-primary-dark);
                 color: var(--white);
             }
+        }
+
+        &.dashboard {
+            margin-left: auto;
         }
 	}
 }

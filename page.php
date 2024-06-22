@@ -13,9 +13,13 @@
  */
 
 get_header();
+$class = '';
+if (!is_page([PAGE_DASHBOARD])) {
+	$class = ' container';
+}
 ?>
 
-	<main id="primary" class="site-main container">
+	<main id="primary" class="site-main<?php echo $class; ?>">
 
 		<?php
 		while ( have_posts() ) :

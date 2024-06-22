@@ -208,6 +208,8 @@ strong, b {
   box-shadow: var(--header-shadow);
   z-index: 9;
   transition: all linear .3s; }
+  .site__header.dashboard {
+    position: static; }
   .site__header.header-fixed {
     position: fixed;
     top: 0px;
@@ -230,7 +232,10 @@ strong, b {
     flex: none; }
     @media (max-width: 1199px) {
       .header-generale__left {
-        width: 100%; } }
+        width: 100%; }
+        .header-generale__left.dashboard {
+          flex: 1;
+          width: auto; } }
     .header-generale__left__slider-btn {
       display: flex;
       align-items: center;
@@ -245,6 +250,11 @@ strong, b {
         background: var(--color-primary); }
         .header-generale__left__slider-btn:hover svg path {
           fill: var(--white); }
+      .header-generale__left__slider-btn.dashboard {
+        display: none; }
+        @media (max-width: 1199px) {
+          .header-generale__left__slider-btn.dashboard {
+            display: flex; } }
     .header-generale__left__logo {
       display: flex;
       margin: 0 45px; }
@@ -260,6 +270,11 @@ strong, b {
         @media (max-width: 567px) {
           .header-generale__left__logo img {
             height: 20px; } }
+      .header-generale__left__logo.dashboard {
+        margin: 0 45px 0 0; }
+        @media (max-width: 1199px) {
+          .header-generale__left__logo.dashboard {
+            margin: 0 auto; } }
     .header-generale__left__user {
       display: flex;
       gap: 8px;
@@ -268,9 +283,14 @@ strong, b {
       text-decoration: none;
       color: var(--text-color-light);
       transition: all linear .3s; }
+      .header-generale__left__user.dashboard {
+        margin-left: 20px; }
       @media (max-width: 1199px) {
         .header-generale__left__user {
-          display: none; } }
+          display: none; }
+          .header-generale__left__user.dashboard {
+            display: flex;
+            margin-left: 0; } }
       .header-generale__left__user svg {
         background: var(--white);
         border-radius: 50%;
@@ -459,6 +479,8 @@ strong, b {
       .header-generale__right__add-btn:hover {
         background: var(--color-primary-dark);
         color: var(--white); }
+    .header-generale__right.dashboard {
+      margin-left: auto; }
 
 .header-fixed-height {
   height: 96px; }

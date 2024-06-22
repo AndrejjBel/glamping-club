@@ -2,7 +2,11 @@
 function glamping_club_user_dname() {
 	if( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();
-		echo '<a href="/dashboard/" class="header-generale__left__user" title="В личный кабинет ' . $current_user->display_name . '">
+        $class = '';
+        if (is_page([PAGE_DASHBOARD])) {
+            $class = ' dashboard';
+        }
+		echo '<a href="/dashboard/" class="header-generale__left__user' . $class . '" title="В личный кабинет ' . $current_user->display_name . '">
 				<span class="avatar">' . user_initials($current_user->display_name) . '</span>
 				<span>' . wp_html_excerpt( $current_user->display_name, 10, '...' ) . '</span>
 			</a>';
