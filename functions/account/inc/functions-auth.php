@@ -214,7 +214,7 @@ function glamping_club_reg_user() {
             $subject = 'Регистрация на сайте ' . $site_name;
             $headers = "MIME-Version: 1.0\r\n";
             $headers .= "Content-type: text/html; charset=utf-8\r\n";
-            $headers .= "From: ' . $from_email . ' <' . $from_email . '>\r\n";
+            $headers .= "From: " . $from_email . " <" . $from_email . ">\r\n";
             $email = 'E-mail: ' . $_POST['user_email'] . ' ';
             $login_user = 'Login: ' . $login . ' ';
             $pass = 'Пароль: ' . $password . ' ';
@@ -270,7 +270,7 @@ function glamping_club_email_verifi() {
         $subject = 'Запрос на сброс пароля: ';
         $headers= "MIME-Version: 1.0\r\n";
         $headers .= "Content-type: text/html; charset=utf-8\r\n";
-        $headers .= "From: ' . $from_email . ' <' . $from_email . '>\r\n";
+        $headers .= "From: " . $from_email . " <" . $from_email . ">\r\n";
         $message = '<p>Кто-то запросил сброс пароля для следующей учетной записи:</p>';
         $message .= '<p>Название сайта: ' . get_bloginfo( 'name' ) . '</p>';
         $message .= '<p>Login: ' . $user->data->user_login . '</p>';
