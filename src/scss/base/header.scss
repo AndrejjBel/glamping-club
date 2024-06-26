@@ -120,6 +120,10 @@
             color: var(--text-color-light);
             transition: all linear .3s;
 
+            &.user-aside {
+                justify-content: flex-start;
+            }
+
             &.dashboard {
                 margin-left: 20px;
             }
@@ -129,7 +133,7 @@
 
                 &.dashboard {
                     display: flex;
-                    margin-left: 0;
+                    // margin-left: 0;
                 }
             }
 
@@ -531,15 +535,18 @@
         height: 100vh;
 
         &__profile {
-            padding: 18px 0;
+            display: flex;
+            gap: 20px;
+            flex-direction: column;
+            padding: 18px 15px;
 
             & .avatar {
                 width: fit-content;
                 border-radius: 50%;
-                border: 3px solid var(--color-primary);
-                margin-bottom: 10px;
-                margin-left: auto;
-                margin-right: auto;
+                // border: 3px solid var(--color-primary);
+                // margin-bottom: 10px;
+                // margin-left: auto;
+                // margin-right: auto;
 
                 & svg {
                     // width: 120px;
@@ -569,6 +576,12 @@
                 margin-right: auto;
                 font-size: 12px;
                 padding: 8px 18px;
+
+                &.add-btn-aside {
+                    width: 100%;
+                    justify-content: center;
+                    margin: 0;
+                }
             }
 
             & .header-generale__left__user {
@@ -589,7 +602,7 @@
         }
 
         &__menu {
-            margin: 0 15px 30px 15px;
+            margin: 30px 15px 30px 15px;
         }
 
         &__footer {

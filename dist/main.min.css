@@ -308,14 +308,15 @@ strong, b {
       text-decoration: none;
       color: var(--text-color-light);
       transition: all linear .3s; }
+      .header-generale__left__user.user-aside {
+        justify-content: flex-start; }
       .header-generale__left__user.dashboard {
         margin-left: 20px; }
       @media (max-width: 1199px) {
         .header-generale__left__user {
           display: none; }
           .header-generale__left__user.dashboard {
-            display: flex;
-            margin-left: 0; } }
+            display: flex; } }
       .header-generale__left__user svg {
         background: var(--white);
         border-radius: 50%;
@@ -582,15 +583,14 @@ strong, b {
     overflow-y: auto;
     height: 100vh; }
     .sidebar-nav__content__profile {
-      padding: 18px 0; }
+      display: flex;
+      gap: 20px;
+      flex-direction: column;
+      padding: 18px 15px; }
       .sidebar-nav__content__profile .avatar {
         width: -moz-fit-content;
         width: fit-content;
-        border-radius: 50%;
-        border: 3px solid var(--color-primary);
-        margin-bottom: 10px;
-        margin-left: auto;
-        margin-right: auto; }
+        border-radius: 50%; }
         .sidebar-nav__content__profile .avatar svg {
           border-radius: 50%;
           border: 3px solid var(--color-sidebar-border); }
@@ -610,6 +610,10 @@ strong, b {
         margin-right: auto;
         font-size: 12px;
         padding: 8px 18px; }
+        .sidebar-nav__content__profile .header-generale__right__add-btn.add-btn-aside {
+          width: 100%;
+          justify-content: center;
+          margin: 0; }
       .sidebar-nav__content__profile .header-generale__left__user {
         display: none; }
         @media (max-width: 1199px) {
@@ -621,7 +625,7 @@ strong, b {
           .sidebar-nav__content__profile .header-generale__right__add-btn {
             display: flex; } }
     .sidebar-nav__content__menu {
-      margin: 0 15px 30px 15px; }
+      margin: 30px 15px 30px 15px; }
     .sidebar-nav__content__footer {
       margin-top: auto;
       padding-left: 10px;
