@@ -10,7 +10,7 @@ define( 'PAGE_DASHBOARD_N', 'Dashboard' );
 
 require get_template_directory() . '/functions/account/inc/functions-inc.php';
 require get_template_directory() . '/functions/account/inc/functions-auth.php';
-// require get_template_directory() . '/functions/account/inc/dashboard.php';
+require get_template_directory() . '/functions/account/inc/dashboard.php';
 
 add_action('wp', 'add_script_where_account');
 function add_script_where_account(){
@@ -41,7 +41,7 @@ function glamping_club_auth_reg_script() {
         'mismatch' => __( 'Mismatch', 'tripinglamp' )
     ];
     wp_enqueue_script( 'password-strength-meter' );
-    wp_add_inline_script( 'zxcvbn-async', 'var tripinglamp_pwsl = ' . wp_json_encode( $pwsl_obj ), 'before' );
+    wp_add_inline_script( 'zxcvbn-async', 'var glamping_club_pwsl = ' . wp_json_encode( $pwsl_obj ), 'before' );
 }
 
 add_action( 'init', function(){

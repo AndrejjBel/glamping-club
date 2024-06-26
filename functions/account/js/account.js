@@ -357,13 +357,13 @@ function checkPasswordStrength( pass, result, blacklistArray ) {
     var strength = wp.passwordStrength.meter( pass, blacklistArray );
     result.innerText = ''
     if ( strength <= 1 ) {
-        result.innerText = tripinglamp_pwsl.bad
+        result.innerText = glamping_club_pwsl.bad
         result.parentElement.style.color = 'red'
     } else if ( strength == 2 || strength == 3 ) {
-        result.innerText = tripinglamp_pwsl.good
+        result.innerText = glamping_club_pwsl.good
         result.parentElement.style.color = 'orange'
     } else if ( strength >= 4 ) {
-        result.innerText = tripinglamp_pwsl.strong
+        result.innerText = glamping_club_pwsl.strong
         result.parentElement.style.color = 'green'
     }
 }

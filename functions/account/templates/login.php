@@ -1,4 +1,4 @@
-<div class="container-account">
+<div class="auth-reg container-account">
     <div class="auth-reg__content">
         <h1 class="auth-reg__content__title"><?php the_title();?></h1>
 

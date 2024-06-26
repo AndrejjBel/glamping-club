@@ -53,6 +53,9 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_style('theme-color', get_stylesheet_directory_uri() . '/css/color/' . $color . '.css', array(),
         filemtime( get_stylesheet_directory() . '/css/color/' . $color . '.css' )
     );
+    wp_enqueue_style('theme-all-color', get_stylesheet_directory_uri() . '/css/color/all.css', array(),
+        filemtime( get_stylesheet_directory() . '/css/color/all.css' )
+    );
     wp_enqueue_style('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal.min.css' )
     );

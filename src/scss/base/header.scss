@@ -10,6 +10,8 @@
 
     &.dashboard {
         position: static;
+        border-bottom: 1px solid #f3f5f9;
+        box-shadow: 0 1px 1px rgba(33, 40, 48, 0.01), 0 4px 4px rgba(33, 40, 48, 0.01), 0 16px 16px rgba(33, 40, 48, 0.01);
     }
 
     &.header-fixed {
@@ -57,6 +59,7 @@
             padding: 14px;
             border-radius: 50%;
             background: var(--chalk);
+            z-index: 9;
             transition: all linear .3s;
 
             &:hover {
@@ -181,6 +184,7 @@
             padding: 13px;
             border-radius: 50%;
             background: var(--chalk);
+            z-index: 9;
             transition: all linear .3s;
 
             &:hover {
@@ -194,6 +198,21 @@
             @media (max-width: 1199px) {
                 display: flex;
             }
+
+            & svg.svg-close {
+                display: none;
+            }
+
+            &.active {
+
+                & svg.svg-close {
+                    display: block;
+                }
+
+                & svg.svg-search {
+                    display: none;
+                }
+            }
     	}
 
 	}
@@ -202,9 +221,22 @@
         width: 100%;
         margin: 0px 50px;
         position: relative;
+        transition: all linear .3s;
 
         @media (max-width: 1199px) {
             display: none;
+            opacity: 0;
+            visibility: hidden;
+
+            &.active {
+                position: absolute;
+                display: block;
+                opacity: 1;
+                visibility: visible;
+                left: 0;
+                margin: 0;
+                padding: 0 20%;
+            }
         }
 
         &__search {
@@ -271,7 +303,6 @@
     	&__options {
 
     	}
-
 	}
 
 	&__right {
@@ -470,6 +501,14 @@
             text-shadow: var(--primary-tshadow);
             box-shadow: var(--primary-lshadow);
             transition: all linear .3s;
+
+            &.dashboard-close {
+                display: none;
+
+                @media (max-width: 1199px) {
+                    display: flex;
+                }
+            }
 
             & svg path {
                 fill: var(--gray);

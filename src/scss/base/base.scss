@@ -65,6 +65,15 @@ body {
     }
 }
 
+.container-dashboard {
+    width: 100%;
+    margin: 0 20px;
+
+    @media (max-width: 576px) {
+        margin: 0 15px;
+    }
+}
+
 .site {
     display: flex;
     flex-direction: column;
@@ -138,4 +147,24 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   .width-#{$name} {
     width: $width_size;
   }
+}
+
+.custom-scroll {
+	scrollbar-color: var(--Gray-200, #E4E7EC) var(--Gray-50, #F9FAFB); /* “slider color” “scrollbar color” */
+	scrollbar-width: thin;
+
+	&::-webkit-scrollbar {
+		width: 8px;
+		height: 4px;
+		background-color: var(--Gray-50, #F9FAFB);
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: var(--Gray-200, #E4E7EC);
+		border-radius: 8px;
+	}
+
+	&::-webkit-scrollbar-thumb:hover {
+		background-color: var(--Gray-300, #D0D5DD);
+	}
 }

@@ -23,6 +23,7 @@ function glamping_club_shortcode_page_forgot_password() {
 add_shortcode( 'glc-dashboard-page', 'glamping_club_shortcode_page_dashboard' );
 function glamping_club_shortcode_page_dashboard() {
     ob_start();
+    get_template_part( 'functions/account/templates/dashboard-sidebar' );
     get_template_part( 'functions/account/templates/dashboard' );
 	return ob_get_clean();
 }

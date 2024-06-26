@@ -22,15 +22,18 @@
 
 <body <?php body_class(); ?>>
 <?php wp_body_open(); ?>
-<div id="page" class="site">
+<div id="page" class="site<?php echo glamping_club_page_class(); ?>">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'glamping-club' ); ?></a>
 
 <?php
 if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 	get_template_part( 'template-parts/head-footer/header-login' );
-} elseif (is_page([PAGE_DASHBOARD])) {
-	get_template_part( 'template-parts/head-footer/header-dashboard' );
-} else {
+} elseif (!is_page([PAGE_DASHBOARD])) {
 	get_template_part( 'template-parts/head-footer/header' );
+	get_template_part( 'template-parts/head-footer/filtr-items' );
+}
+// get_template_part( 'template-parts/head-footer/filtr-items' );
+if (is_post_type_archive('glampings')) {
+	// get_template_part( 'template-parts/head-footer/filtr-items' );
 }
 ?>

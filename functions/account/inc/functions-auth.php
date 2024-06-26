@@ -69,7 +69,7 @@ function glamping_club_verifi_email() {
         		$text_warn = __( 'Указан неверный логин или пароль', 'tripinglamp' );
             } elseif ( $_GET["login"] == 'empty' ) {
                 $style_warn = ' login-error';
-        		$text_warn = __( 'Введите логин и пароль', 'tripinglamp' );
+        		$text_warn = __( 'Введите логин и пароль', 'glamping-club' );
             }
     	} elseif ( isset( $_GET['verifi'] ) ) {
     		if ( $_GET["verifi"] == '1' && isset( $_REQUEST['email'] ) && isset( $_REQUEST['user_login'] ) && isset( $_REQUEST['key'] ) ) {
@@ -81,7 +81,7 @@ function glamping_club_verifi_email() {
     	} elseif ( isset( $_GET["user_identified"] ) ) {
             if ( $_GET["user_identified"] == 'failed' ) {
                 $style_warn = ' login-error';
-        		$text_warn = __( 'Подтвердите весь свой E-mail, перейдя по ссылке из письма.', 'tripinglamp' );
+        		$text_warn = __( 'Подтвердите весь свой E-mail, перейдя по ссылке из письма.', 'glamping-club' );
             }
     	}
     }
@@ -224,7 +224,7 @@ function glamping_club_reg_user() {
             $msgotprav = $message ."<br>" . $email . "<br>" . $login_user . "<br>" . $pass . "<br>";
             wp_mail($mailTo, $subject, $msgotprav, $headers);
 
-            $error['success_send_mail'] = __( 'На указанный адрес электронной почты отправлено письмо с инструкциями.', 'tripinglamp' );
+            $error['success_send_mail'] = __( 'На указанный адрес электронной почты отправлено письмо с инструкциями.', 'glamping-club' );
             $error['class'] = 'success';
             // $error['post'] = $_POST;
             $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);

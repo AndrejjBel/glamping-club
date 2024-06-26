@@ -13,13 +13,12 @@
  */
 
 get_header();
-$class = '';
-if (!is_page([PAGE_DASHBOARD])) {
-	$class = ' container';
-}
+if (is_page([PAGE_DASHBOARD])) {
+	the_content();
+} else {
 ?>
 
-	<main id="primary" class="site-main<?php echo $class; ?>">
+	<main id="primary" class="site-main container">
 
 		<?php
 		while ( have_posts() ) :
@@ -38,5 +37,6 @@ if (!is_page([PAGE_DASHBOARD])) {
 	</main><!-- #main -->
 
 <?php
+}
 get_sidebar();
 get_footer();

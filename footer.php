@@ -12,8 +12,8 @@
 if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 	get_template_part( 'template-parts/head-footer/footer-login' );
 } elseif (is_page([PAGE_DASHBOARD])) {
-	get_template_part( 'template-parts/head-footer/footer-dashboard' );
-	get_template_part( 'template-parts/head-footer/nav-mobile' );
+	// get_template_part( 'template-parts/dashboard/footer-dashboard' );
+	// get_template_part( 'template-parts/head-footer/nav-mobile' );
 } else {
 	get_template_part( 'template-parts/head-footer/footer' );
 	get_template_part( 'template-parts/head-footer/aside-header' );

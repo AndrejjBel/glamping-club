@@ -111,7 +111,7 @@
     position: absolute;
     top: 14px;
     right: 14px;
-    /* visibility: hidden; */
+    visibility: hidden;
     opacity: 0;
     cursor: pointer;
     display: none;
@@ -229,28 +229,28 @@
     padding: 20px 16px 16px; }
 }
 
-.tripinglamp-modal {
+.glc-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
 }
   @media (max-width: 432px) {
-    .tripinglamp-modal {
+    .glc-modal {
       gap: 24px; }
   }
-.tripinglamp-modal__content {
+.glc-modal__content {
     width: 100%;
 }
-.tripinglamp-modal__content__icon {
+.glc-modal__content__icon {
     margin-bottom: 20px;
 }
 @media (max-width: 432px) {
-    .tripinglamp-modal__content__icon {
+    .glc-modal__content__icon {
         margin-bottom: 16px;
     }
 }
-.tripinglamp-modal__content__text__title {
+.glc-modal__content__text__title {
     color: var(--text-color);
     font-size: 24px;
     font-weight: 700;
@@ -258,39 +258,39 @@
     margin-top: 0;
     margin-bottom: 24px;
 }
-.tripinglamp-modal__content__text__warning {
+.glc-modal__content__text__warning {
     display: none;
     /* font-size: 14px;
     font-weight: 500; */
 }
-.tripinglamp-modal__content__text__warning.active {
+.glc-modal__content__text__warning.active {
     display: block;
     margin-bottom: 1rem;
 }
-.tripinglamp-modal__content__text.transaction-completed {
+.glc-modal__content__text.transaction-completed {
     text-align: center;
 }
-.tripinglamp-modal__content__text .transaction-completed-title {
+.glc-modal__content__text .transaction-completed-title {
     margin-bottom: 4px;
     font-size: 16px;
     font-weight: 600;
     line-height: 24px;
     color: var(--Gray-900, #101828);
 }
-.tripinglamp-modal__content__text .transaction-completed-summ {
+.glc-modal__content__text .transaction-completed-summ {
     margin-bottom: 8px;
     font-size: 18px;
     font-weight: 700;
     line-height: 28px;
     color: var(--Gray-900, #101828);
 }
-.tripinglamp-modal__content__text .transaction-completed-text {
+.glc-modal__content__text .transaction-completed-text {
     font-size: 12px;
     font-weight: 600;
     line-height: 16px;
     color: var(--Gray-600, #475467);
 }
-.tripinglamp-modal__buttons {
+.glc-modal__buttons {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -298,23 +298,23 @@
     width: 100%;
 }
 @media (max-width: 432px) {
-    .tripinglamp-modal__buttons {
+    .glc-modal__buttons {
         gap: 12px;
     }
 }
-.tripinglamp-modal__buttons button {
+.glc-modal__buttons button {
     width: calc((100% - 16px)/2);
     order: 1;
 }
 @media (max-width: 432px) {
-    .tripinglamp-modal__buttons button {
+    .glc-modal__buttons button {
         width: 100%;
     }
-    .tripinglamp-modal__buttons button:nth-child(2) {
+    .glc-modal__buttons button:nth-child(2) {
         order: 0;
     }
 }
-.tripinglamp-modal__buttons button.w100 {
+.glc-modal__buttons button.w100 {
     width: 100%;
 }
 
@@ -325,6 +325,14 @@ button.hystmodal__close {
 }
 button.hystmodal__close:focus {
     outline: none;
+}
+
+.hystmodal--active .form-group .input-with-icon .pass-eye.active {
+    visibility: visible;
+}
+
+.auth-reg .form-group .input-with-icon .pass-eye.active {
+    visibility: visible;
 }
 
 .home-link {

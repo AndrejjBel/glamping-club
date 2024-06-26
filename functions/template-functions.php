@@ -1,14 +1,22 @@
 <?php
-function glamping_club_user_dname() {
+function glamping_club_user_dname($name=true) {
 	if( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();
+        $url = '/dashboard/';
         $class = '';
+        $user_name = '';
+        $title = 'В личный кабинет ' . $current_user->display_name . '';
         if (is_page([PAGE_DASHBOARD])) {
+            $url = '#';
             $class = ' dashboard';
+            $title = 'Личный кабинет ' . $current_user->display_name . '';
         }
-		echo '<a href="/dashboard/" class="header-generale__left__user' . $class . '" title="В личный кабинет ' . $current_user->display_name . '">
+        if ($name) {
+            $user_name = '<span>' . wp_html_excerpt( $current_user->display_name, 10, '...' ) . '</span>';
+        }
+		echo '<a href="' . $url . '" class="header-generale__left__user' . $class . '" title="' . $title . '">
 				<span class="avatar">' . user_initials($current_user->display_name) . '</span>
-				<span>' . wp_html_excerpt( $current_user->display_name, 10, '...' ) . '</span>
+				' . $user_name . '
 			</a>';
 	} else {
 		echo '<a href="/login/" class="header-generale__left__user" title="Авторизоваться">

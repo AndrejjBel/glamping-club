@@ -1,22 +1,44 @@
 <?php
-function tripinglamp_dashboard_tabs() {
+function glamping_club_page_class() {
+    $class = '';
+    if (is_page([PAGE_DASHBOARD])) {
+        $class = ' dashboard';
+    }
+    return $class;
+}
+
+function glamping_club_dashboard_tabs() {
     if ( $_GET ) {
-    	if ( isset( $_GET["tab"] ) ) {
-            $filename = get_parent_theme_file_path( '/template-parts/page/dashboard/' . PAGE_DASHBOARD . '-' . $_GET["tab"] . '.php' );
+        if ( isset( $_GET["tab"] ) ) {
+            $filename = get_parent_theme_file_path( '/functions/account/templates/tabs/tab-' . $_GET["tab"] . '.php' );
             if (file_exists($filename)) {
-                get_template_part( 'template-parts/page/dashboard/' . PAGE_DASHBOARD . '-' . $_GET["tab"]);
+                get_template_part( 'functions/account/templates/tabs/tab-' . $_GET["tab"]);
             } else {
-                get_template_part( 'template-parts/page/dashboard/' . PAGE_DASHBOARD );
+                get_template_part( 'functions/account/templates/tabs/tab-info');
             }
         } else {
-            get_template_part( 'template-parts/page/dashboard/' . PAGE_DASHBOARD );
+            get_template_part( 'functions/account/templates/tabs/tab-info');
         }
     } else {
-        get_template_part( 'template-parts/page/dashboard/' . PAGE_DASHBOARD );
+        get_template_part( 'functions/account/templates/tabs/tab-info');
     }
 }
 
-add_filter( 'nav_menu_css_class', 'tripinglamp_add_menu_item_css_classes', 10, 4 );
+function glamping_club_dashboard_nav($item_id) {
+    $class = '';
+    if ( $_GET ) {
+    	if ( isset( $_GET["tab"] ) ) {
+            if( $item_id === $_GET["tab"] ){
+        		$class = ' current-menu-item';
+        	}
+        }
+    } elseif ($item_id === 'info') {
+        $class = ' current-menu-item';
+    }
+    echo $class;
+}
+
+// add_filter( 'nav_menu_css_class', 'tripinglamp_add_menu_item_css_classes', 10, 4 );
 function tripinglamp_add_menu_item_css_classes( $classes, $item, $args, $depth ) {
     if ( $_GET ) {
     	if ( isset( $_GET["tab"] ) ) {
@@ -28,7 +50,7 @@ function tripinglamp_add_menu_item_css_classes( $classes, $item, $args, $depth )
 	return $classes;
 }
 
-add_filter( 'wp_nav_menu_objects', 'tripinglamp_filter_wp_nav_menu_objects', 10, 2 );
+// add_filter( 'wp_nav_menu_objects', 'tripinglamp_filter_wp_nav_menu_objects', 10, 2 );
 function tripinglamp_filter_wp_nav_menu_objects( $items, $args ) {
     $icon_lk = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path d="M18 20V10M12 20V4M6 20V14" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>

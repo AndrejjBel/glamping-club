@@ -1,19 +1,19 @@
 <?php
 // Edit settings
-add_action('wp_ajax_edit_settings', 'tripinglamp_edit_settings');
-add_action('wp_ajax_nopriv_edit_settings', 'tripinglamp_edit_settings');
-function tripinglamp_edit_settings () {
+add_action('wp_ajax_edit_settings', 'glamping_club_edit_settings');
+add_action('wp_ajax_nopriv_edit_settings', 'glamping_club_edit_settings');
+function glamping_club_edit_settings () {
     $error = array();
 
     $cur_user = hex2bin($_POST['user_id']);
     $user_id = explode("-", $cur_user)[1];
 
-    if ( !wp_verify_nonce( $_POST['nonce'], 'tripinglamp-nonce' ) ) {
-        $error['empty_nonce'] = __('Error, please try again later', 'tripinglamp');
+    if ( !wp_verify_nonce( $_POST['nonce'], 'glamping_club' ) ) {
+        $error['empty_nonce'] = __('Error, please try again later', 'glamping-club');
     }
 
     if ( !$user_id ) {
-        $error['user_id'] = __('Error, please try again later', 'tripinglamp');
+        $error['user_id'] = __('Error, please try again later', 'glamping-club');
     }
 
     if ( count( $error ) > 0 ) {
@@ -31,10 +31,10 @@ function tripinglamp_edit_settings () {
                 wp_update_user($userdata);
                 $error['class'] = 'success';
                 $error['value'] = $_POST['user_new_name'];
-                $error['notise'] = __('Name changed successfully', 'tripinglamp');
+                $error['notise'] = __('Name changed successfully', 'glamping-club');
             } else {
                 $error['class'] = 'error';
-                $error['notise'] = __('Fill in the field', 'tripinglamp');
+                $error['notise'] = __('Fill in the field', 'glamping-club');
             }
         }
 
@@ -48,18 +48,18 @@ function tripinglamp_edit_settings () {
                         );
                         wp_update_user($userdata);
                         $error['class'] = 'success';
-                        $error['notise'] = __('E-mail changed successfully', 'tripinglamp');
+                        $error['notise'] = __('E-mail changed successfully', 'glamping-club');
                     } else {
                         $error['class'] = 'error';
-                        $error['notise'] = __('There is already a user on the site with this E-mail', 'tripinglamp');
+                        $error['notise'] = __('There is already a user on the site with this E-mail', 'glamping-club');
                     }
                 } else {
                     $error['class'] = 'error';
-                    $error['notise'] = __('Please enter correct E-mail', 'tripinglamp');
+                    $error['notise'] = __('Please enter correct E-mail', 'glamping-club');
                 }
             } else {
                 $error['class'] = 'error';
-                $error['notise'] = __('Fill in the field', 'tripinglamp');
+                $error['notise'] = __('Fill in the field', 'glamping-club');
             }
         }
 
@@ -74,11 +74,11 @@ function tripinglamp_edit_settings () {
                     $error['verifi_user_pass_change'] = $verifi_user_pass_change;
                 } else {
                     $error['class'] = 'error';
-                    $error['notise'] = __('You have entered an incorrect password', 'tripinglamp');
+                    $error['notise'] = __('You have entered an incorrect password', 'glamping-club');
                 }
             } else {
                 $error['class'] = 'error';
-                $error['notise'] = __('Fill in the field', 'tripinglamp');
+                $error['notise'] = __('Fill in the field', 'glamping-club');
             }
         }
 
@@ -89,24 +89,24 @@ function tripinglamp_edit_settings () {
                     if ( !empty($_POST['user_pass']) && !empty($_POST['new_password_again']) ) {
                         if ($_POST['user_pass'] == $_POST['new_password_again']) {
                             $user = get_user_by('id', $user_id);
-                            reset_password( $user, $user_pass );
+                            reset_password( $user, $_POST['user_pass'] );
                             $error['class'] = 'success';
-                            $error['notise'] = __('Password changed successfully', 'tripinglamp');
+                            $error['notise'] = __('Password changed successfully', 'glamping-club');
                         } else {
                             $error['class'] = 'error';
-                            $error['user_pass_inputs_no'] = __('Password mismatch', 'tripinglamp');
+                            $error['user_pass_inputs_no'] = __('Password mismatch', 'glamping-club');
                         }
                     } else {
                         $error['class'] = 'error';
-                        $error['user_pass_no'] = __('Fill in all the fields', 'tripinglamp');
+                        $error['user_pass_no'] = __('Fill in all the fields', 'glamping-club');
                     }
                 } else {
                     $error['class'] = 'error';
-                    $error['verifi_error'] = __('Error, please try again later', 'tripinglamp');
+                    $error['verifi_error'] = __('Error, please try again later', 'glamping-club');
                 }
             } else {
                 $error['class'] = 'error';
-                $error['verifi'] = __('Error, please try again later', 'tripinglamp');
+                $error['verifi'] = __('Error, please try again later', 'glamping-club');
             }
         }
 
@@ -118,7 +118,7 @@ function tripinglamp_edit_settings () {
     }
 }
 
-function tripinglamp_user_glemp() {
+function glamping_club_user_glemp() {
     global $post, $user_ID;
 
     $glampings = get_posts( [

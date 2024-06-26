@@ -23,6 +23,18 @@ const myModal = new HystModal({
     linkAttributeName: "data-hystmodal",
     catchFocus: false,
     // fixedSelectors: 'body',
+    afterClose: function(modal){
+        // console.log('Message after modal has closed');
+        // console.dir(modal._modalBlock); //modal window object
+        let form = modal._modalBlock.querySelector('form');
+        let textWarning = modal._modalBlock.querySelector('.glc-modal__content__text__warning')
+        if (form) {
+            form.reset();
+        }
+        if (textWarning) {
+            textWarning.innerHTML = '';
+        }
+    },
 });
 
 const editSettings = () => {
@@ -38,14 +50,14 @@ const editSettings = () => {
 
                 let formData = new FormData(form);
                 formData.append('action', 'edit_settings');
-                formData.append('nonce', tripinglamp_ajax.nonce);
+                formData.append('nonce', glamping_club_ajax.nonce);
                 formData.append('type', btn.dataset.input);
-                formData.append('user_id', tripinglamp_ajax.marker);
+                formData.append('user_id', glamping_club_ajax.marker);
                 let test = '';
 
                 jQuery(document).ready( function($){
                     $.ajax({
-                        url: tripinglamp_ajax.ajaxUrl,
+                        url: glamping_club_ajax.ajaxUrl,
                         method: 'post',
                         processData: false,
                         contentType: false,
@@ -63,14 +75,13 @@ const editSettings = () => {
                             // test._hide();
                             console.dir(data);
                             data = JSON.parse(data);
-                            let warningWrap = document.querySelector('.tripinglamp-modal__content__text__warning.'+btn.dataset.input);
+                            let warningWrap = document.querySelector('.glc-modal__content__text__warning.'+btn.dataset.input);
                             if (btn.dataset.input == 'name') {
                                 warningWrap.innerHTML = `<span class="color-${data.class}">${data.notise}<span>`;
                                 warningWrap.classList.add('active');
                                 if (data.class == 'success') {
                                     document.querySelector('input#user_name').setAttribute('value', data.value);
                                 }
-
                             }
                             if (btn.dataset.input == 'email') {
                                 warningWrap.innerHTML = `<span class="color-${data.class}">${data.notise}<span>`;
@@ -91,6 +102,14 @@ const editSettings = () => {
                                     // }, 4000);
                                 }
 
+                            }
+                            if (btn.dataset.input == 'pass_new') {
+                                warningWrap.innerHTML = `<span class="color-${data.class}">${data.notise}<span>`;
+                                warningWrap.classList.add('active');
+                                // if (data.class == 'success') {
+                                //     myModal.open('#passChangeEnd');
+                                //     document.querySelector('input#verifi').value = data.verifi_user_pass_change;
+                                // }
                             }
                         },
                         error: function (jqXHR, text, error) {
