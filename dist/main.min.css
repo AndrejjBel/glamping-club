@@ -71,10 +71,6 @@ body {
     @media (max-width: 767px) {
       .site__header {
         padding: 10px 0; } }
-    @media (max-width: 1349px) {
-      .site__header .container {
-        max-width: 100%;
-        padding: 0 25px; } }
     @media (max-width: 576px) {
       .site__header .container {
         padding: 0; } }
@@ -1148,6 +1144,71 @@ a.btn-back-to-home {
     position: absolute;
     top: 20px;
     right: 20px; }
+
+.thumbnail-gallery {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  display: flex;
+  gap: 2px;
+  border-radius: 12px;
+  overflow: hidden; }
+  .thumbnail-gallery__first {
+    flex-basis: 100%;
+    position: relative; }
+    .thumbnail-gallery__first a {
+      position: relative;
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      height: 100%; }
+      .thumbnail-gallery__first a img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+           object-fit: cover; }
+  .thumbnail-gallery__two {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex-basis: 204px;
+    flex-shrink: 0;
+    flex-grow: 0; }
+    .thumbnail-gallery__two a {
+      position: relative;
+      display: flex;
+      overflow: hidden;
+      width: 100%;
+      height: 100%; }
+      .thumbnail-gallery__two a:nth-child(n+3) {
+        display: none; }
+      .thumbnail-gallery__two a img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+           object-fit: cover; }
+  .thumbnail-gallery__btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: #fff;
+    padding: 2px 6px;
+    border-radius: 4px; }
+
+.images {
+  display: flex;
+  gap: 20px; }
+  .images__gallery {
+    flex-grow: 1;
+    min-width: 0px; }
+  .images__right {
+    width: 400px; }
 
 @media (max-width: 620px) {
   .hystmodal__wrap {

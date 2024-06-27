@@ -93,13 +93,8 @@
 </header><!-- #masthead -->
 
 <div class="header-fixed-height"></div>
-<?php if ( !is_front_page() && is_page() ) { ?>
-    <section class="page-title-area">
-        <div class="page-title-area__content container">
-            <h1><?php the_title(); ?></h1>
-            <div class="page-title-area__content__breadcrumb">
-                <?php if ( function_exists( 'strojdo_breadcrumbs' ) ) strojdo_breadcrumbs(); ?>
-            </div>
-        </div>
+<?php if ( !is_front_page()  ) { // && is_page() ?>
+    <section class="container">
+        <?php if ( function_exists( 'breadcrumbs' ) ) breadcrumbs(); ?>
     </section>
 <?php } ?>

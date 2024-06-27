@@ -35,3 +35,36 @@ function glamping_club_pingback_header() {
 	}
 }
 add_action( 'wp_head', 'glamping_club_pingback_header' );
+
+function glamping_single_thumbnail($post_id) {
+	$media = get_attached_media( 'image', $post_id );
+	$i = 1;
+	echo '<div class="thumbnail-gallery__first">';
+	foreach ( $media as $img ) {
+		$url = wp_get_attachment_image_url( $img->ID, 'glamping-club-thumb' );
+		$url_full = wp_get_attachment_image_url( $img->ID, 'full' );
+		if ($i == 1) {
+			echo '<a href="' . $url_full . '" class="item">';
+			echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
+		}
+		$i++;
+	}
+	echo '</div>';
+	$it = 1;
+	echo '<div class="thumbnail-gallery__two">';
+	foreach ( $media as $img ) {
+		$url = wp_get_attachment_image_url( $img->ID, 'medium' );
+		$url_full = wp_get_attachment_image_url( $img->ID, 'full' );
+		if ($it > 1) {
+			echo '<a href="' . $url_full . '" class="item">';
+			echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
+		}
+		$it++;
+	}
+	echo '</div>';
+	echo '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
+		<span>Смотреть </span>
+		<span id="gallery-item-count">1</span>
+		<span> фото</span>
+	</button>';
+}

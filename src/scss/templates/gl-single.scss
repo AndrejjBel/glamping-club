@@ -1,0 +1,14 @@
+.images {
+    display: flex;
+    gap: 20px;
+
+    &__gallery {
+        flex-grow: 1;
+        min-width: 0px;
+        // width: calc(60% - 20px);
+    }
+
+    &__right {
+        width: 400px;
+    }
+}

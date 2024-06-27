@@ -56,6 +56,10 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_style('theme-all-color', get_stylesheet_directory_uri() . '/css/color/all.css', array(),
         filemtime( get_stylesheet_directory() . '/css/color/all.css' )
     );
+
+    wp_enqueue_style('lightgallery', get_stylesheet_directory_uri() . '/assets/lightGallery/css/lightgallery.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/lightGallery/css/lightgallery.css' )
+    );
     wp_enqueue_style('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal.min.css' )
     );
@@ -70,14 +74,20 @@ function glamping_club_main_scripts_old() {
     );
 
     // js
+    wp_enqueue_script('lightgallery', get_stylesheet_directory_uri() . '/assets/lightGallery/lightgallery.umd.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/lightGallery/lightgallery.umd.js' ), [ 'strategy' => 'defer' ]
+    );
     wp_enqueue_script('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal-custom.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal-custom.min.js' ), [ 'strategy' => 'defer' ]
     );
 	wp_enqueue_script('toast', get_stylesheet_directory_uri() . '/assets/toast/toast.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/toast/toast.min.js' ), [ 'strategy' => 'defer' ]
     );
-    wp_enqueue_script('bundle', get_stylesheet_directory_uri() . '/dist/bundle.min.js',	array('jquery', 'hystmodal', 'toast'),
+    wp_enqueue_script('bundle', get_stylesheet_directory_uri() . '/dist/bundle.min.js',	array('jquery', 'hystmodal', 'toast', 'lightgallery'),
         filemtime( get_stylesheet_directory() . '/dist/bundle.min.js' ), [ 'strategy' => 'defer' ]
+    );
+    wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/js/custom.js',	array('jquery'),
+        filemtime( get_stylesheet_directory() . '/js/custom.js' ), [ 'strategy' => 'defer' ]
     );
 
     wp_add_inline_script( 'bundle', 'const glamping_club_ajax = ' . wp_json_encode( $bundle_obj ), 'before' );
@@ -95,11 +105,13 @@ require get_template_directory() . '/functions/account/inc/shortcodes.php';
 
 require get_template_directory() . '/functions/admin/inc/functions-admin.php';
 
+require get_template_directory() . '/inc/breadcrumbs.php';
+
 ## отключаем создание миниатюр файлов для указанных размеров
 add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
 function delete_intermediate_image_sizes( $sizes ){
 	return array_diff( $sizes, [
-        'medium',
+        // 'medium',
 		'medium_large',
 		'large',
 		'1536x1536',
@@ -107,7 +119,7 @@ function delete_intermediate_image_sizes( $sizes ){
 	] );
 }
 
-// add_image_size( 'glamping-club-thumb', 800, 520 );
+add_image_size( 'glamping-club-thumb', 800, 520 );
 
 function get_glc_option($group, $option) {
     $site_options = get_option( $group );
