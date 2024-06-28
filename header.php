@@ -33,7 +33,7 @@ if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 	get_template_part( 'template-parts/head-footer/filtr-items' );
 }
 // get_template_part( 'template-parts/head-footer/filtr-items' );
-if (is_post_type_archive('glampings')) {
-	// get_template_part( 'template-parts/head-footer/filtr-items' );
-}
+// if (is_post_type_archive('glampings')) {
+// 	get_template_part( 'template-parts/head-footer/filtr-items' );
+// }
 ?>

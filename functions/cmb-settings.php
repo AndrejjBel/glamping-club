@@ -66,6 +66,18 @@ function glamping_club_register_main_options_metabox() {
 		'type'    => 'text'
 	) );
 
+    $main_options->add_field( array(
+		'name'    => esc_html__( 'Яндекс zoom', 'glamping-club' ),
+		'desc'    => esc_html__( 'Масштаб карты для глэмпинга', 'glamping-club' ),
+		'id'      => 'yand_zoom',
+		'type'    => 'text',
+        'attributes' => array(
+			'type' => 'number',
+			'min'  => '1',
+		),
+        'default' => 12
+	) );
+
 	// $main_options->add_field( array(
 	// 	'name'    => esc_html__( 'Основной цвет', 'glamping-club' ),
 	// 	// 'desc'    => esc_html__( 'выбор основного цвета сайта', 'glamping-club' ),

@@ -38,13 +38,13 @@ function glamping_club_main_scripts_old() {
     //     $glempings = get_option('glampings_obj_'.$category->term_id);
     // }
     // $yand_zoom = carbon_get_theme_option( 'yandex_zoom' );
-    // $yand_zoom = get_option( '_yandex_zoom' );
+    $yand_zoom = get_glc_option('glc_options', 'yand_zoom');
     $bundle_obj = [
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
         'nonce' => wp_create_nonce('glamping_club'),
         'action' => 'glamping_club',
         'marker' => bin2hex('current_user-' . $user_ID),
-        // 'yand_zoom' => $yand_zoom,
+        'yand_zoom' => $yand_zoom,
         // 'glAll' => $glempings
     ];
     // css
@@ -60,6 +60,10 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_style('lightgallery', get_stylesheet_directory_uri() . '/assets/lightGallery/css/lightgallery.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/lightGallery/css/lightgallery.css' )
     );
+    wp_enqueue_style('lg-thumbnail', get_stylesheet_directory_uri() . '/assets/lightGallery/css/lg-thumbnail.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/lightGallery/css/lg-thumbnail.css' )
+    );
+
     wp_enqueue_style('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal.min.css' )
     );
@@ -77,6 +81,10 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_script('lightgallery', get_stylesheet_directory_uri() . '/assets/lightGallery/lightgallery.umd.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/lightGallery/lightgallery.umd.js' ), [ 'strategy' => 'defer' ]
     );
+    wp_enqueue_script('lg-thumbnail', get_stylesheet_directory_uri() . '/assets/lightGallery/plugins/thumbnail/lg-thumbnail.umd.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/lightGallery/plugins/thumbnail/lg-thumbnail.umd.js' ), [ 'strategy' => 'defer' ]
+    );
+
     wp_enqueue_script('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal-custom.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal-custom.min.js' ), [ 'strategy' => 'defer' ]
     );

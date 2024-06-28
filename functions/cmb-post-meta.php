@@ -155,6 +155,20 @@ function register_single_glampings_metabox() {
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
+		'name' => esc_html__( 'Адрес', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
+		'id'   => 'address',
+		'type' => 'text',
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
+		'name' => esc_html__( 'Координаты', 'glamping-club' ),
+		'desc' => esc_html__( 'Координаты через запятую, например: 40.346544,-101.645507', 'glamping-club' ),
+		'id'   => 'coordinates',
+		'type' => 'text',
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
 		'name' => esc_html__( 'Год постройки', 'glamping-club' ),
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'year_construction',
@@ -209,7 +223,7 @@ function register_single_glampings_metabox() {
 
 	$single_glampings->add_group_field( $group_field, array(
 		'name' => esc_html__( 'Заезд:', 'glamping-club' ),
-		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
+		'desc' => esc_html__( 'после указанного времени', 'glamping-club' ),
 		'id'   => 'checkin_glamping',
 		'type' => 'text_time',
 		'attributes' => array(
@@ -224,7 +238,7 @@ function register_single_glampings_metabox() {
 
 	$single_glampings->add_group_field( $group_field, array(
 		'name' => esc_html__( 'Выезд:', 'glamping-club' ),
-		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
+		'desc' => esc_html__( 'до указанного времени', 'glamping-club' ),
 		'id'   => 'checkout_glamping',
 		'type' => 'text_time',
 		'attributes' => array(
@@ -242,22 +256,24 @@ function register_single_glampings_metabox() {
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'prepayment',
 		'type' => 'text',
-		'attributes' => array(
-			'type' => 'number',
-			'min'  => '1',
-		),
+		// 'attributes' => array(
+		// 	'type' => 'number',
+		// 	'min'  => '1',
+		// ),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
 		'name' => esc_html__( 'Отмена бронирования:', 'glamping-club' ),
-		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
+		'desc' => esc_html__( 'например: за 7 дней - 100% возврат', 'glamping-club' ),
 		'id'   => 'cancel_reservation',
-		'type' => 'radio_inline',
-		'options'          => array(
-			'no' => __( 'Нет', 'glamping-club' ),
-			'yes'   => __( 'Есть', 'glamping-club' )
-		),
-		'default' => 'no',
+		'type' => 'text',
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
+		'name' => esc_html__( 'Примечания', 'glamping-club' ),
+		// 'desc' => esc_html__( 'например: за 7 дней - 100% возврат', 'glamping-club' ),
+		'id'   => 'glc_notes',
+		'type' => 'wysiwyg',
 	) );
 
 	// Скидка

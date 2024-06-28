@@ -737,3 +737,18 @@
         &__breadcrumb {}
     }
 }
+
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+
+    & span {
+        display: flex;
+        align-items: center;
+
+        & a {
+            text-decoration: none;
+        }
+    }
+}

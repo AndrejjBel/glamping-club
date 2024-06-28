@@ -93,8 +93,10 @@
 </header><!-- #masthead -->
 
 <div class="header-fixed-height"></div>
-<?php if ( !is_front_page()  ) { // && is_page() ?>
-    <section class="container">
-        <?php if ( function_exists( 'breadcrumbs' ) ) breadcrumbs(); ?>
-    </section>
-<?php } ?>
+<div class="container">
+<?php
+if ( !is_front_page() && function_exists( 'breadcrumbs' )  ) { // && is_page()
+    breadcrumbs();
+}
+?>
+</div>
