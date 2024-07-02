@@ -60,6 +60,7 @@ function register_single_glampings_metabox() {
 		'name' => esc_html__( 'Стоимость', 'glamping-club' ),
 		'id'   => 'glamping_price',
 		'type' => 'text',
+		'before_field' => '₽',
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',
@@ -179,7 +180,8 @@ function register_single_glampings_metabox() {
 		'name' => esc_html__( 'Сайт для бронирования', 'glamping-club' ),
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'site_glamping',
-		'type' => 'text',
+		'type' => 'text_url',
+		'protocols' => array( 'http', 'https' ),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -393,6 +395,7 @@ function register_single_glampings_metabox() {
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'price',
 		'type' => 'text',
+		'before_field' => '₽',
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',

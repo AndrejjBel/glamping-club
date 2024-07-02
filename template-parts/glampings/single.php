@@ -8,7 +8,9 @@
             <?php glamping_single_thumbnail($post->ID); ?>
         </div>
 
-        <div class="images__right"></div>
+        <div class="images__right">
+            <?php get_images_right_content(); ?>
+        </div>
     </div>
 
     <div class="meta"></div>
@@ -22,6 +24,22 @@
             </svg>
             <span><?php echo get_additionally_meta('address'); ?></span>
         </div>
+        <div class="type-glamping">
+            <span>Тип глэмпинга: </span>
+            <span><?php echo get_glamping_type_content(); ?></span>
+        </div>
+        <div class="type-glamping">
+            <span>Тип размещения: </span>
+            <span><?php echo get_glamping_allocation_content(); ?></span>
+        </div>
+        <div class="type-glamping">
+            <span>Стоимость: </span>
+            <span>от <?php echo $post->glamping_price; ?>р.</span>
+        </div>
+        <div class="type-glamping">
+            <span>Бронирование онлайн: </span>
+            <span><?php echo glamping_book_online(); ?></span>
+        </div>
     </div>
 
     <div class="single-section description">
@@ -33,7 +51,43 @@
         </div>
     </div>
 
-    <div class="single-section facilities"></div>
+    <div class="single-section facilities">
+        <div class="single-section facilities__item">
+            <div class="single-section__title">
+                <h4>Удобства</h4>
+            </div>
+            <div class="single-section__content">
+                <?php glamping_icons_facilities('glamping_facilities'); ?>
+            </div>
+        </div>
+
+        <div class="single-section facilities__item">
+            <div class="single-section__title">
+                <h4>Питание</h4>
+            </div>
+            <div class="single-section__content">
+                <?php glamping_icons_facilities('glamping_nutrition'); ?>
+            </div>
+        </div>
+
+        <div class="single-section facilities__item">
+            <div class="single-section__title">
+                <h4>Территория</h4>
+            </div>
+            <div class="single-section__content">
+                <?php glamping_icons_facilities('glamping_territory'); ?>
+            </div>
+        </div>
+
+        <div class="single-section facilities__item">
+            <div class="single-section__title">
+                <h4>Развлечения</h4>
+            </div>
+            <div class="single-section__content">
+                <?php glamping_icons_facilities('glamping_entertainment'); ?>
+            </div>
+        </div>
+    </div>
 
     <div class="single-section conditions">
         <div class="single-section__title">
@@ -97,6 +151,7 @@
 <?php } ?>
 
 <?php
+// $meta_object = get_post_meta($post->ID, 'additionally_field');
 // echo '<pre>';
-// var_dump(get_accommodation_options());
+// var_dump(get_post_meta($post->ID, 'acc_options'));
 // echo '<pre>';

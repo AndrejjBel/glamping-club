@@ -127,16 +127,28 @@ function get_accommodation_options() {
 	foreach ($meta_obj as $option) {
 		$media_gallery = $option['media_gallery'];
 		$media = '';
-		foreach ($media_gallery as $key => $value) {
-			$media .= '<div class="acc-media" data-src="' . wp_get_attachment_image_url( $key, 'full' ) . '">';
-			$media .= '<img src="' . wp_get_attachment_image_url( $key, 'medium' ) . '" alt="">';
+		// foreach ($media_gallery as $key => $value) {
+		// 	$media .= '<div class="acc-media" data-src="' . wp_get_attachment_image_url( $key, 'full' ) . '">';
+		// 	$media .= '<img src="' . wp_get_attachment_image_url( $key, 'medium' ) . '" alt="">';
+		// 	$media .= '</div>';
+		// }
+
+		$media .= '<div class="acc-gallery galery' . $i . '">
+		<div id="sw-' . $i . '" class="swiper-wrapper">';
+		foreach ( $media_gallery as $key => $value ) {
+			$url = wp_get_attachment_image_url( $key, 'medium' );
+			$url_full = wp_get_attachment_image_url( $key, 'full' );
+			$media .= '<div class="acc-gallery__item swiper-slide gallery-' . $i . '">';
+			$media .= '<a href="' . $url_full . '" class="acc-media">';
+			$media .= '<img src="' . $url . '" alt="" /></a>';
 			$media .= '</div>';
 		}
+		$media .= '</div></div>';
 	?>
 		<div class="acc-options__item acc-option">
-			<div id="acc-gallery<?php echo $i; ?>" class="acc-option__media">
+			<!-- <div id="acc-gallery<?php //echo $i; ?>" class="acc-option__media"> -->
 				<?php echo $media; ?>
-			</div>
+			<!-- </div> -->
 			<div class="acc-option__title">
 				<?php echo $option['title']; ?>
 			</div>
@@ -169,4 +181,105 @@ function get_accommodation_options() {
 	}
 
 	// return $meta_obj;
+}
+
+function get_glamping_type_content() {
+	global $post;
+	$type = $post->glamping_type;
+	$type_text = '';
+	if ($type == 'glamping') {
+		$type_text = 'Глэмпинг';
+	} elseif ($type == 'eco_hotel') {
+		$type_text = 'Эко-отель';
+	} elseif ($type == 'camp_site') {
+		$type_text = 'Турбаза';
+	} elseif ($type == 'private_sector') {
+		$type_text = 'Частный сектор';
+	}
+	return $type_text;
+}
+
+function get_glamping_allocation_content() {
+	global $post;
+	$allocation = $post->glamping_allocation;
+	return implode(", ", $allocation);
+}
+
+function get_images_right_content() {
+	global $post;
+    $meta_object = get_post_meta($post->ID, 'additionally_field');
+    if (!empty($meta_object)) {
+        $meta_obj = $meta_object[0][0];
+    } else {
+        return false;
+    }
+	?>
+	<div class="images__right__title">
+		<h3>Контактная информация</h3>
+	</div>
+	<?php if ($meta_obj['email_glamping']) { ?>
+		<div class="images__right__item">
+			<div class="images__right__item__title">E-mail:</div>
+			<div class="images__right__item__text">
+				<a href="mailto:<?php echo $meta_obj['email_glamping']; ?>"><?php echo $meta_obj['email_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php if ($meta_obj['site_glamping']) { ?>
+		<div class="images__right__item">
+			<div class="images__right__item__title">Сайт для бронирования:</div>
+			<div class="images__right__item__text">
+				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo $meta_obj['site_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php if ($meta_obj['phone_glamping']) { ?>
+		<div class="images__right__item">
+			<div class="images__right__item__title">Телефон:</div>
+			<div class="images__right__item__text">
+				<a href="tel:<?php echo $meta_obj['phone_glamping']; ?>"><?php echo $meta_obj['phone_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php if ($meta_obj['whatsup_glamping']) { ?>
+		<div class="images__right__item">
+			<div class="images__right__item__title">Whatsup:</div>
+			<div class="images__right__item__text">
+				<a href="https://wa.me/<?php echo $meta_obj['whatsup_glamping']; ?>" target="_blank"><?php echo $meta_obj['whatsup_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php if ($meta_obj['telegram_glamping']) { ?>
+		<div class="images__right__item">
+			<div class="images__right__item__title">Telegram:</div>
+			<div class="images__right__item__text">
+				<a href="https://t.me/<?php echo $meta_obj['telegram_glamping']; ?>" target="_blank">@<?php echo $meta_obj['telegram_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php
+}
+
+function glamping_icons_facilities($type_facilities) {
+	global $post;
+	require get_template_directory() . '/functions/icons.php';
+	$facilities = $post->$type_facilities;
+	foreach ($facilities as $value) {
+		echo '<div class="facilities__item__content-item">';
+		echo $icons[ $value ];
+		echo '<span>' . $value . '</span>';
+		echo '</div>';
+	}
+}
+
+function glamping_book_online() {
+	global $post;
+	$book_online = $post->book_online;
+	$text = '';
+	if ($book_online == 'no') {
+		$text = 'Нет';
+	} elseif ($book_online == 'yes') {
+		$text = 'Есть';
+	}
+	return $text;
 }

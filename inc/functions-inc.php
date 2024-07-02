@@ -64,6 +64,9 @@ function glamping_club_main_scripts_old() {
         filemtime( get_stylesheet_directory() . '/assets/lightGallery/css/lg-thumbnail.css' )
     );
 
+    wp_enqueue_style('swiper', get_stylesheet_directory_uri() . '/assets/swiper/swiper-bundle.min.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/lightGallery/css/lg-thumbnail.css' )
+    );
     wp_enqueue_style('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal.min.css' )
     );
@@ -85,16 +88,19 @@ function glamping_club_main_scripts_old() {
         filemtime( get_stylesheet_directory() . '/assets/lightGallery/plugins/thumbnail/lg-thumbnail.umd.js' ), [ 'strategy' => 'defer' ]
     );
 
+    wp_enqueue_script('swiper', get_stylesheet_directory_uri() . '/assets/swiper/swiper-bundle.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/swiper/swiper-bundle.min.js' ), [ 'strategy' => 'defer' ]
+    );
     wp_enqueue_script('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal-custom.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal-custom.min.js' ), [ 'strategy' => 'defer' ]
     );
 	wp_enqueue_script('toast', get_stylesheet_directory_uri() . '/assets/toast/toast.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/toast/toast.min.js' ), [ 'strategy' => 'defer' ]
     );
-    wp_enqueue_script('bundle', get_stylesheet_directory_uri() . '/dist/bundle.min.js',	array('jquery', 'hystmodal', 'toast', 'lightgallery'),
+    wp_enqueue_script('bundle', get_stylesheet_directory_uri() . '/dist/bundle.min.js',	array('jquery', 'hystmodal', 'toast', 'lightgallery', 'swiper'),
         filemtime( get_stylesheet_directory() . '/dist/bundle.min.js' ), [ 'strategy' => 'defer' ]
     );
-    wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/js/custom.js',	array('jquery'),
+    wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/js/custom.js',	array('jquery', 'swiper'),
         filemtime( get_stylesheet_directory() . '/js/custom.js' ), [ 'strategy' => 'defer' ]
     );
 
