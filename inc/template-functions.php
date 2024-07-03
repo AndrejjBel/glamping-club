@@ -133,8 +133,9 @@ function get_accommodation_options() {
 		// 	$media .= '</div>';
 		// }
 
-		$media .= '<div class="acc-gallery galery' . $i . '">
-		<div id="sw-' . $i . '" class="swiper-wrapper">';
+		$it = 0;
+		$media .= '<div class="acc-gallery galery' . $i . '">';
+		// $media .= '<div id="sw-' . $i . '" class="swiper-wrapper">';
 		foreach ( $media_gallery as $key => $value ) {
 			$url = wp_get_attachment_image_url( $key, 'medium' );
 			$url_full = wp_get_attachment_image_url( $key, 'full' );
@@ -142,38 +143,58 @@ function get_accommodation_options() {
 			$media .= '<a href="' . $url_full . '" class="acc-media">';
 			$media .= '<img src="' . $url . '" alt="" /></a>';
 			$media .= '</div>';
+			$it++;
 		}
-		$media .= '</div></div>';
+		$media .= '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
+			<span>Смотреть </span>
+			<span id="gallery-item-count">' . $it . '</span>
+			<span> фото</span>
+		</button>';
+		$media .= '</div>';
+		// $media .= '</div>';
 	?>
-		<div class="acc-options__item acc-option">
-			<!-- <div id="acc-gallery<?php //echo $i; ?>" class="acc-option__media"> -->
+		<div class="acc-options__item">
+			<div class="acc-options__item__content acc-option custom-scroll">
 				<?php echo $media; ?>
-			<!-- </div> -->
-			<div class="acc-option__title">
-				<?php echo $option['title']; ?>
-			</div>
-			<div class="acc-option__options">
-				<div class="acc-option__options__item">
-					<div class="acc-option__options__item__title">Площадь</div>
-					<div class="acc-option__options__item__value">
-						<?php echo $option['area']. 'м<sup>2</sup>.'; ?>
+				<div class="acc-option__title">
+					<?php echo $option['title']; ?>
+				</div>
+				<div class="acc-option__options">
+					<div class="acc-option__options__item">
+						<div class="acc-option__options__item__title">Площадь</div>
+						<div class="acc-option__options__item__value">
+							<?php echo $option['area']. 'м<sup>2</sup>.'; ?>
+						</div>
+					</div>
+					<div class="acc-option__options__item">
+						<div class="acc-option__options__item__title">Мест</div>
+						<div class="acc-option__options__item__value">
+							<?php echo $option['places']; ?>
+						</div>
+					</div>
+					<div class="acc-option__options__item">
+						<div class="acc-option__options__item__title">Стоимость</div>
+						<div class="acc-option__options__item__value">
+							<?php echo $option['price']. 'р.'; ?>
+						</div>
 					</div>
 				</div>
-				<div class="acc-option__options__item">
-					<div class="acc-option__options__item__title">Мест</div>
-					<div class="acc-option__options__item__value">
-						<?php echo $option['places']; ?>
+				<div class="acc-option__description">
+					<?php echo $option['description']; ?>
+				</div>
+
+				<div class="acc-option__facilities">
+					<div class="acc-option__facilities__title">
+						<h5>Удобства</h5>
+					</div>
+					<div class="facilities">
+						<?php
+						glamping_icons_facilities_options($option['facilities_options_home'], 'В доме');
+						glamping_icons_facilities_options($option['facilities_options_bathroom'], 'В ванной');
+						glamping_icons_facilities_options($option['facilities_options_kitchen'], 'На кухне');
+						?>
 					</div>
 				</div>
-				<div class="acc-option__options__item">
-					<div class="acc-option__options__item__title">Стоимость</div>
-					<div class="acc-option__options__item__value">
-						<?php echo $option['price']. 'р.'; ?>
-					</div>
-				</div>
-			</div>
-			<div class="acc-option__description">
-				<?php echo $option['description']; ?>
 			</div>
 		</div>
 	<?php
@@ -222,6 +243,27 @@ function glamping_icons_facilities($type_facilities, $title) {
             </div>
             <div class="single-section__content">';
 		foreach ($facilities as $value) {
+			echo '<div class="facilities__item__content-item">';
+			echo $icons[ $value ];
+			echo '<span>' . $value . '</span>';
+			echo '</div>';
+		}
+		echo '</div>
+		</div>';
+	}
+}
+
+function glamping_icons_facilities_options($type_facilities, $title) {
+	global $post;
+	require get_template_directory() . '/functions/icons.php';
+	// $facilities = $post->$type_facilities;
+	if ($type_facilities) {
+		echo '<div class="single-section facilities__item">
+            <div class="single-section__title">
+                <h6>' . $title . '</h6>
+            </div>
+            <div class="single-section__content">';
+		foreach ($type_facilities as $value) {
 			echo '<div class="facilities__item__content-item">';
 			echo $icons[ $value ];
 			echo '<span>' . $value . '</span>';

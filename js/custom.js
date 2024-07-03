@@ -69,26 +69,45 @@ const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
         }
     });
 }
-sliderGlempType('.galery1', '#sw-1', 2, 3, 5, 6);
-sliderGlempType('.galery2', '#sw-2', 2, 3, 5, 6);
-sliderGlempType('.galery3', '#sw-3', 2, 3, 5, 6);
-sliderGlempType('.galery4', '#sw-4', 2, 3, 5, 6);
-sliderGlempType('.galery5', '#sw-5', 2, 3, 5, 6);
-sliderGlempType('.galery6', '#sw-6', 2, 3, 5, 6);
-sliderGlempType('.galery7', '#sw-7', 2, 3, 5, 6);
-sliderGlempType('.galery8', '#sw-8', 2, 3, 5, 6);
-sliderGlempType('.galery9', '#sw-9', 2, 3, 5, 6);
-sliderGlempType('.galery10', '#sw-10', 2, 3, 5, 6);
-sliderGlempType('.galery11', '#sw-11', 2, 3, 5, 6);
-sliderGlempType('.galery12', '#sw-12', 2, 3, 5, 6);
-sliderGlempType('.galery13', '#sw-13', 2, 3, 5, 6);
-sliderGlempType('.galery14', '#sw-14', 2, 3, 5, 6);
-sliderGlempType('.galery15', '#sw-15', 2, 3, 5, 6);
-sliderGlempType('.galery16', '#sw-16', 2, 3, 5, 6);
-sliderGlempType('.galery17', '#sw-17', 2, 3, 5, 6);
-sliderGlempType('.galery18', '#sw-18', 2, 3, 5, 6);
-sliderGlempType('.galery19', '#sw-19', 2, 3, 5, 6);
-sliderGlempType('.galery20', '#sw-20', 2, 3, 5, 6);
+// sliderGlempType('.galery1', '#sw-1', 2, 3, 5, 6);
+// sliderGlempType('.galery2', '#sw-2', 2, 3, 5, 6);
+// sliderGlempType('.galery3', '#sw-3', 2, 3, 5, 6);
+// sliderGlempType('.galery4', '#sw-4', 2, 3, 5, 6);
+// sliderGlempType('.galery5', '#sw-5', 2, 3, 5, 6);
+// sliderGlempType('.galery6', '#sw-6', 2, 3, 5, 6);
+// sliderGlempType('.galery7', '#sw-7', 2, 3, 5, 6);
+// sliderGlempType('.galery8', '#sw-8', 2, 3, 5, 6);
+// sliderGlempType('.galery9', '#sw-9', 2, 3, 5, 6);
+// sliderGlempType('.galery10', '#sw-10', 2, 3, 5, 6);
+// sliderGlempType('.galery11', '#sw-11', 2, 3, 5, 6);
+// sliderGlempType('.galery12', '#sw-12', 2, 3, 5, 6);
+// sliderGlempType('.galery13', '#sw-13', 2, 3, 5, 6);
+// sliderGlempType('.galery14', '#sw-14', 2, 3, 5, 6);
+// sliderGlempType('.galery15', '#sw-15', 2, 3, 5, 6);
+// sliderGlempType('.galery16', '#sw-16', 2, 3, 5, 6);
+// sliderGlempType('.galery17', '#sw-17', 2, 3, 5, 6);
+// sliderGlempType('.galery18', '#sw-18', 2, 3, 5, 6);
+// sliderGlempType('.galery19', '#sw-19', 2, 3, 5, 6);
+// sliderGlempType('.galery20', '#sw-20', 2, 3, 5, 6);
+
+function optionsGallery(index) {
+    const gallery = document.querySelector(index);
+    const lg = lightGallery(gallery, {
+        selector: '.acc-media',
+        download: false,
+        plugins: [lgThumbnail],
+    });
+    const btn = document.querySelector(index+' #js-gallery-count');
+    if (btn) {
+        btn.addEventListener('click', (e) => {
+            lg.openGallery();
+        });
+    }
+}
+optionsGallery('.galery1');
+optionsGallery('.galery2');
+optionsGallery('.galery3');
+optionsGallery('.galery4');
 
 function toastAll(title, text, theme, autohide, interval) {
     new Toast({
@@ -140,3 +159,39 @@ function copyToClipboard(content) {
         unsecuredCopyToClipboard(content);
     }
 }
+
+const contactsMobailVision = () => {
+    const btn = document.querySelector('#contacts-mobail-btn');
+    if (!btn) return;
+    const singleAside = document.querySelector('.single-aside');
+    const iconPhone = document.querySelector('.icon-phone');
+    const iconMessage = document.querySelector('.icon-message');
+    const svgClose = document.querySelector('svg.close');
+    btn.addEventListener('click', (e) => {
+        singleAside.classList.toggle('active');
+        iconPhone.classList.toggle('active');
+        iconMessage.classList.toggle('active');
+        svgClose.classList.toggle('active');
+    });
+
+    document.addEventListener( 'click', (e) => {
+        const withinsingleAside = e.composedPath().includes(singleAside);
+        const withinsingleBtn = e.composedPath().includes(btn);
+        if ( ! withinsingleAside && !withinsingleBtn ) {
+            singleAside.classList.remove('active');
+            iconPhone.classList.remove('active');
+            iconMessage.classList.remove('active');
+            svgClose.classList.remove('active');
+        }
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if( e.keyCode == 27 ) {
+            singleAside.classList.remove('active');
+            iconPhone.classList.remove('active');
+            iconMessage.classList.remove('active');
+            svgClose.classList.remove('active');
+        }
+    });
+}
+contactsMobailVision();

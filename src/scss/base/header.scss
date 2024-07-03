@@ -740,8 +740,10 @@
 
 .breadcrumbs {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
     padding: 10px 0;
+    font-size: 12px;
 
     & span {
         display: flex;
@@ -749,6 +751,15 @@
 
         & a {
             text-decoration: none;
+        }
+
+        & svg {
+            width: 14px;
+            height: 14px;
+
+            & path {
+                fill: var(--text-color, #161616);
+            }
         }
     }
 }

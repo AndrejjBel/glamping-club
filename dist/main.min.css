@@ -748,13 +748,20 @@ strong, b {
 
 .breadcrumbs {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  padding: 10px 0; }
+  padding: 10px 0;
+  font-size: 12px; }
   .breadcrumbs span {
     display: flex;
     align-items: center; }
     .breadcrumbs span a {
       text-decoration: none; }
+    .breadcrumbs span svg {
+      width: 14px;
+      height: 14px; }
+      .breadcrumbs span svg path {
+        fill: var(--text-color, #161616); }
 
 .site__footer {
   background: var(--footer-color);
@@ -1239,6 +1246,9 @@ a.btn-back-to-home {
   gap: 2px;
   border-radius: 12px;
   overflow: hidden; }
+  @media (max-width: 379px) {
+    .thumbnail-gallery {
+      height: 220px; } }
   .thumbnail-gallery__first {
     flex-basis: 100%;
     position: relative; }
@@ -1263,6 +1273,9 @@ a.btn-back-to-home {
     flex-basis: 204px;
     flex-shrink: 0;
     flex-grow: 0; }
+    @media (max-width: 639px) {
+      .thumbnail-gallery__two {
+        display: none; } }
     .thumbnail-gallery__two a {
       position: relative;
       display: flex;
@@ -1291,15 +1304,38 @@ a.btn-back-to-home {
   display: flex;
   gap: 36px;
   margin-top: 10px; }
+  @media (max-width: 1199px) {
+    .single-glampings-main {
+      flex-direction: column; } }
   .single-glampings-main article {
     flex-grow: 1;
     min-width: 0px; }
   .single-glampings-main aside {
     flex-shrink: 0;
-    width: 340px; }
+    max-width: 340px;
+    width: 100%; }
     @media (max-width: 1199px) {
       .single-glampings-main aside {
         display: none; } }
+    .single-glampings-main aside.active {
+      position: fixed;
+      display: block;
+      background: #ffffff;
+      box-shadow: 0 6px 30px 0 rgba(32, 43, 61, 0.1);
+      width: calc(100vw - 20px);
+      max-width: 360px;
+      padding: 20px;
+      border-radius: 12px;
+      right: 20px;
+      bottom: 180px; }
+      @media (max-width: 399px) {
+        .single-glampings-main aside.active {
+          left: 15px;
+          right: 15px;
+          bottom: 140px; } }
+      @media (max-width: 375px) {
+        .single-glampings-main aside.active {
+          bottom: 100px; } }
 
 .images {
   display: flex;
@@ -1310,6 +1346,10 @@ a.btn-back-to-home {
   margin-bottom: 10px; }
 
 .single-section__title h5 {
+  margin-top: 0;
+  margin-bottom: 10px; }
+
+.single-section__title h6 {
   margin-top: 0;
   margin-bottom: 10px; }
 
@@ -1332,8 +1372,16 @@ a.btn-back-to-home {
   width: 200px;
   margin-top: 0; }
 
-.acc-options__item:not(:last-child) {
-  margin-bottom: 20px; }
+.acc-options__item {
+  padding: 10px;
+  background: #f5f5f5;
+  border-radius: 12px; }
+  .acc-options__item:not(:last-child) {
+    margin-bottom: 20px; }
+  .acc-options__item__content {
+    max-height: 400px;
+    height: 100%;
+    overflow: auto; }
 
 .acc-option__media {
   display: flex;
@@ -1357,32 +1405,55 @@ a.btn-back-to-home {
 
 .acc-option__title {
   font-size: 18px;
-  font-weight: 600; }
+  font-weight: 600;
+  padding: 8px 0; }
 
-.acc-option__options__item__title {
-  display: inline-block; }
-
-.acc-option__options__item__value {
-  display: inline-block; }
+.acc-option__options {
+  margin-bottom: 8px; }
+  .acc-option__options__item__title {
+    display: inline-block;
+    font-weight: 500; }
+  .acc-option__options__item__value {
+    display: inline-block; }
 
 .acc-gallery {
-  width: 100%;
+  position: relative;
+  display: flex;
+  gap: 4px;
+  width: 528px;
   overflow: hidden; }
-  .acc-gallery__item a.acc-media {
-    position: relative;
-    display: flex;
-    overflow: hidden;
-    width: 100%;
-    height: 180px;
-    border-radius: 12px; }
-    .acc-gallery__item a.acc-media img {
-      position: absolute;
-      top: 0px;
-      left: 0px;
+  @media (max-width: 639px) {
+    .acc-gallery {
+      width: 336px; } }
+  @media (max-width: 419px) {
+    .acc-gallery {
+      max-width: 270px;
+      width: 100%; } }
+  .acc-gallery__item {
+    flex: 1; }
+    .acc-gallery__item:nth-child(n+4) {
+      display: none; }
+    @media (max-width: 639px) {
+      .acc-gallery__item:nth-child(n+3) {
+        display: none; } }
+    @media (max-width: 419px) {
+      .acc-gallery__item:nth-child(n+2) {
+        display: none; } }
+    .acc-gallery__item a.acc-media {
+      position: relative;
+      display: flex;
+      overflow: hidden;
       width: 100%;
-      height: 100%;
-      -o-object-fit: cover;
-         object-fit: cover; }
+      height: 180px;
+      border-radius: 12px; }
+      .acc-gallery__item a.acc-media img {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+           object-fit: cover; }
 
 .facilities {
   -moz-column-count: 3;
@@ -1469,7 +1540,69 @@ a.btn-back-to-home {
 .single-glampings .toast-container {
   top: auto;
   bottom: 15px;
-  z-index: 2; }
+  z-index: 9; }
+
+.contacts-mobail-btn {
+  display: none; }
+  @media (max-width: 1199px) {
+    .contacts-mobail-btn {
+      position: fixed;
+      display: block;
+      bottom: 100px;
+      right: 20px;
+      z-index: 2; } }
+  @media (max-width: 476px) {
+    .contacts-mobail-btn {
+      bottom: 50px; } }
+  .contacts-mobail-btn__content {
+    position: relative;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--color-primary); }
+    .contacts-mobail-btn__content__icons {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%; }
+      .contacts-mobail-btn__content__icons__item {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 30px;
+        height: 30px;
+        background: #fff;
+        border-radius: 50%; }
+        .contacts-mobail-btn__content__icons__item.active {
+          display: none; }
+        .contacts-mobail-btn__content__icons__item svg {
+          width: 18px;
+          height: 18px; }
+          .contacts-mobail-btn__content__icons__item svg path {
+            fill: var(--color-primary); }
+        .contacts-mobail-btn__content__icons__item.icon-phone {
+          bottom: 8px;
+          right: 8px;
+          border: 1px solid var(--color-primary);
+          z-index: 2; }
+        .contacts-mobail-btn__content__icons__item.icon-message {
+          top: 8px;
+          left: 8px;
+          border: 1px solid var(--color-primary); }
+      .contacts-mobail-btn__content__icons svg.close {
+        display: none; }
+        .contacts-mobail-btn__content__icons svg.close.active {
+          display: block; }
+    .contacts-mobail-btn__content button {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 3; }
 
 @media (max-width: 620px) {
   .hystmodal__wrap {
