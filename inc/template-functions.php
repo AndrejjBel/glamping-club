@@ -89,27 +89,27 @@ function get_additionally_content() {
     }
 	if (isset($meta_obj['checkin_glamping'])) {
 		echo '<div class="conditions__item">';
-		echo '<h4>Заезд: </h4><span>c ' . $meta_obj['checkin_glamping'] . ' ч.</span>';
+		echo '<h5>Заезд: </h5><span>c ' . $meta_obj['checkin_glamping'] . ' ч.</span>';
 		echo '</div>';
 	}
 	if (isset($meta_obj['checkout_glamping'])) {
 		echo '<div class="conditions__item">';
-		echo '<h4>Выезд: </h4><span>до ' . $meta_obj['checkout_glamping'] . ' ч.</span>';
+		echo '<h5>Выезд: </h5><span>до ' . $meta_obj['checkout_glamping'] . ' ч.</span>';
 		echo '</div>';
 	}
 	if (isset($meta_obj['cancel_reservation'])) {
 		echo '<div class="conditions__item">';
-		echo '<h4>Отмена бронирования: </h4><span>' . $meta_obj['cancel_reservation'] . '</span>';
+		echo '<h5>Отмена бронирования: </h5><span>' . $meta_obj['cancel_reservation'] . '</span>';
 		echo '</div>';
 	}
 	if (isset($meta_obj['prepayment'])) {
 		echo '<div class="conditions__item">';
-		echo '<h4>Предоплата: </h4><span>' . $meta_obj['prepayment'] . '</span>';
+		echo '<h5>Предоплата: </h5><span>' . $meta_obj['prepayment'] . '</span>';
 		echo '</div>';
 	}
 	if (isset($meta_obj['glc_notes'])) {
 		echo '<div class="conditions__item">';
-		echo '<h4>Примечания </h4>' . apply_filters( 'the_content', $meta_obj['glc_notes'] );
+		echo '<h5>Примечания </h5>' . apply_filters( 'the_content', $meta_obj['glc_notes'] );
 		echo '</div>';
 	}
 }
@@ -152,9 +152,6 @@ function get_accommodation_options() {
 			<div class="acc-option__title">
 				<?php echo $option['title']; ?>
 			</div>
-			<div class="acc-option__description">
-				<?php echo $option['description']; ?>
-			</div>
 			<div class="acc-option__options">
 				<div class="acc-option__options__item">
 					<div class="acc-option__options__item__title">Площадь</div>
@@ -174,6 +171,9 @@ function get_accommodation_options() {
 						<?php echo $option['price']. 'р.'; ?>
 					</div>
 				</div>
+			</div>
+			<div class="acc-option__description">
+				<?php echo $option['description']; ?>
 			</div>
 		</div>
 	<?php
@@ -205,70 +205,30 @@ function get_glamping_allocation_content() {
 	return implode(", ", $allocation);
 }
 
-function get_images_right_content() {
+function get_glamping_nature_around_content() {
 	global $post;
-    $meta_object = get_post_meta($post->ID, 'additionally_field');
-    if (!empty($meta_object)) {
-        $meta_obj = $meta_object[0][0];
-    } else {
-        return false;
-    }
-	?>
-	<div class="images__right__title">
-		<h3>Контактная информация</h3>
-	</div>
-	<?php if ($meta_obj['email_glamping']) { ?>
-		<div class="images__right__item">
-			<div class="images__right__item__title">E-mail:</div>
-			<div class="images__right__item__text">
-				<a href="mailto:<?php echo $meta_obj['email_glamping']; ?>"><?php echo $meta_obj['email_glamping']; ?></a>
-			</div>
-		</div>
-	<?php } ?>
-	<?php if ($meta_obj['site_glamping']) { ?>
-		<div class="images__right__item">
-			<div class="images__right__item__title">Сайт для бронирования:</div>
-			<div class="images__right__item__text">
-				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo $meta_obj['site_glamping']; ?></a>
-			</div>
-		</div>
-	<?php } ?>
-	<?php if ($meta_obj['phone_glamping']) { ?>
-		<div class="images__right__item">
-			<div class="images__right__item__title">Телефон:</div>
-			<div class="images__right__item__text">
-				<a href="tel:<?php echo $meta_obj['phone_glamping']; ?>"><?php echo $meta_obj['phone_glamping']; ?></a>
-			</div>
-		</div>
-	<?php } ?>
-	<?php if ($meta_obj['whatsup_glamping']) { ?>
-		<div class="images__right__item">
-			<div class="images__right__item__title">Whatsup:</div>
-			<div class="images__right__item__text">
-				<a href="https://wa.me/<?php echo $meta_obj['whatsup_glamping']; ?>" target="_blank"><?php echo $meta_obj['whatsup_glamping']; ?></a>
-			</div>
-		</div>
-	<?php } ?>
-	<?php if ($meta_obj['telegram_glamping']) { ?>
-		<div class="images__right__item">
-			<div class="images__right__item__title">Telegram:</div>
-			<div class="images__right__item__text">
-				<a href="https://t.me/<?php echo $meta_obj['telegram_glamping']; ?>" target="_blank">@<?php echo $meta_obj['telegram_glamping']; ?></a>
-			</div>
-		</div>
-	<?php } ?>
-	<?php
+	$allocation = $post->glamping_nature_around;
+	return implode(", ", $allocation);
 }
 
-function glamping_icons_facilities($type_facilities) {
+function glamping_icons_facilities($type_facilities, $title) {
 	global $post;
 	require get_template_directory() . '/functions/icons.php';
 	$facilities = $post->$type_facilities;
-	foreach ($facilities as $value) {
-		echo '<div class="facilities__item__content-item">';
-		echo $icons[ $value ];
-		echo '<span>' . $value . '</span>';
-		echo '</div>';
+	if ($facilities) {
+		echo '<div class="single-section facilities__item">
+            <div class="single-section__title">
+                <h5>' . $title . '</h5>
+            </div>
+            <div class="single-section__content">';
+		foreach ($facilities as $value) {
+			echo '<div class="facilities__item__content-item">';
+			echo $icons[ $value ];
+			echo '<span>' . $value . '</span>';
+			echo '</div>';
+		}
+		echo '</div>
+		</div>';
 	}
 }
 
@@ -282,4 +242,72 @@ function glamping_book_online() {
 		$text = 'Есть';
 	}
 	return $text;
+}
+
+function get_contact_information_content() {
+	global $post;
+    $meta_object = get_post_meta($post->ID, 'additionally_field');
+    if (!empty($meta_object)) {
+        $meta_obj = $meta_object[0][0];
+    } else {
+        return false;
+    }
+	?>
+	<div class="single-aside__content__title mt20">
+		<span>Контактная информация</span>
+		<!-- <span>Есть вопросы по глэмпингу?</span>
+		<span>Свяжитесь с координатором</span> -->
+	</div>
+	<?php if ($meta_obj['email_glamping']) { ?>
+		<div class="single-aside__content__item">
+			<div class="single-aside__content__item__title">E-mail:</div>
+			<div class="single-aside__content__item__text">
+				<a href="mailto:<?php echo $meta_obj['email_glamping']; ?>"><?php echo $meta_obj['email_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php if ($meta_obj['site_glamping']) { ?>
+		<div class="single-aside__content__item">
+			<div class="single-aside__content__item__title">Сайт для бронирования:</div>
+			<div class="single-aside__content__item__text">
+				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo $meta_obj['site_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php if ($meta_obj['whatsup_glamping'] || $meta_obj['telegram_glamping']) { ?>
+		<div class="single-aside__content__item">
+			<span>Напишите нам в мессенджере:</span>
+		</div>
+		<?php if ($meta_obj['whatsup_glamping']) { ?>
+			<div class="single-aside__content__item messenger">
+				<div class="single-aside__content__item__text">
+					<a href="https://wa.me/<?php echo $meta_obj['whatsup_glamping']; ?>" target="_blank" title="WhatsApp">
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+							<path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		<?php } ?>
+		<?php if ($meta_obj['telegram_glamping']) { ?>
+			<div class="single-aside__content__item messenger">
+				<div class="single-aside__content__item__text">
+					<a href="https://t.me/<?php echo $meta_obj['telegram_glamping']; ?>" target="_blank" title="Telegram">
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+							<path d="M29.919 6.163l-4.225 19.925c-0.319 1.406-1.15 1.756-2.331 1.094l-6.438-4.744-3.106 2.988c-0.344 0.344-0.631 0.631-1.294 0.631l0.463-6.556 11.931-10.781c0.519-0.462-0.113-0.719-0.806-0.256l-14.75 9.288-6.35-1.988c-1.381-0.431-1.406-1.381 0.288-2.044l24.837-9.569c1.15-0.431 2.156 0.256 1.781 2.013z"/>
+						</svg>
+					</a>
+				</div>
+			</div>
+		<?php } ?>
+	<?php } ?>
+	<?php if ($meta_obj['phone_glamping']) { ?>
+		<div class="single-aside__content__item">
+			<div class="single-aside__content__item__title">Или позвоните нам:</div>
+			<div class="single-aside__content__item__text">
+				<a href="tel:<?php echo $meta_obj['phone_glamping']; ?>"><?php echo $meta_obj['phone_glamping']; ?></a>
+			</div>
+		</div>
+	<?php } ?>
+	<?php
 }

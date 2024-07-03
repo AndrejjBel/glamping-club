@@ -47,6 +47,16 @@ function register_single_glampings_metabox() {
 	) );
 
     $single_glampings->add_field( array(
+		'name' => esc_html__( 'Количество домиков', 'glamping-club' ),
+		'id'   => 'glamping_number_houses',
+		'type' => 'text',
+		'attributes' => array(
+			'type' => 'number',
+			'min'  => '1',
+		),
+	) );
+
+	$single_glampings->add_field( array(
 		'name' => esc_html__( 'Вместимость', 'glamping-club' ),
 		'id'   => 'glamping_capacity',
 		'type' => 'text',
@@ -91,10 +101,31 @@ function register_single_glampings_metabox() {
 	) );
 
 	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Удобства', 'glamping-club' ),
-		'id'   => 'glamping_facilities',
+		'name' => esc_html__( 'Удобства общие', 'glamping-club' ),
+		'id'   => 'glamping_facilities_general',
 		'type' => 'multicheck_inline',
-		'options_cb' => 'facilities_options',
+		'options_cb' => 'facilities_options_general',
+	) );
+
+	$single_glampings->add_field( array(
+		'name' => esc_html__( 'Удобства в доме', 'glamping-club' ),
+		'id'   => 'facilities_options_home',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_home',
+	) );
+
+	$single_glampings->add_field( array(
+		'name' => esc_html__( 'Удобства в ванной комнате', 'glamping-club' ),
+		'id'   => 'facilities_options_bathroom',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_bathroom',
+	) );
+
+	$single_glampings->add_field( array(
+		'name' => esc_html__( 'Удобства на кухне', 'glamping-club' ),
+		'id'   => 'facilities_options_kitchen',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_kitchen',
 	) );
 
 	$single_glampings->add_field( array(
@@ -105,10 +136,24 @@ function register_single_glampings_metabox() {
 	) );
 
 	$single_glampings->add_field( array(
+		'name' => esc_html__( 'Для детей', 'glamping-club' ),
+		'id'   => 'facilities_options_children',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_children',
+	) );
+
+	$single_glampings->add_field( array(
 		'name' => esc_html__( 'Территория', 'glamping-club' ),
 		'id'   => 'glamping_territory',
 		'type' => 'multicheck_inline',
 		'options_cb' => 'territory_options',
+	) );
+
+	$single_glampings->add_field( array(
+		'name' => esc_html__( 'Безопасность', 'glamping-club' ),
+		'id'   => 'facilities_options_safety',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_safety',
 	) );
 
 	$single_glampings->add_field( array(
@@ -364,7 +409,7 @@ function register_single_glampings_metabox() {
 		'name' => esc_html__( 'Описание варианта размещения', 'glamping-club' ),
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'description',
-		'type' => 'text',
+		'type' => 'wysiwyg',
 	) );
 
 	$accommodation_options->add_group_field( $acc_options_group, array(
@@ -400,6 +445,27 @@ function register_single_glampings_metabox() {
 			'type' => 'number',
 			'min'  => '1',
 		),
+	) );
+
+	$accommodation_options->add_group_field( $acc_options_group, array(
+		'name' => esc_html__( 'Удобства в доме', 'glamping-club' ),
+		'id'   => 'facilities_options_home',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_home',
+	) );
+
+	$accommodation_options->add_group_field( $acc_options_group, array(
+		'name' => esc_html__( 'Удобства в ванной комнате', 'glamping-club' ),
+		'id'   => 'facilities_options_bathroom',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_bathroom',
+	) );
+
+	$accommodation_options->add_group_field( $acc_options_group, array(
+		'name' => esc_html__( 'Удобства на кухне', 'glamping-club' ),
+		'id'   => 'facilities_options_kitchen',
+		'type' => 'multicheck_inline',
+		'options_cb' => 'facilities_options_kitchen',
 	) );
 
 	$accommodation_options->add_group_field( $acc_options_group, array(

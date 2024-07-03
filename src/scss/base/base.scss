@@ -1,6 +1,7 @@
 html {
     height: 100%;
     font-size: 62.5%;
+    scroll-behavior: smooth;
 }
 @media (max-width: 1499px) {
     html {
@@ -109,6 +110,7 @@ body {
 
 a {
     color: inherit;
+    text-decoration: none;
 }
 
 ul {
@@ -147,6 +149,38 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   .width-#{$name} {
     width: $width_size;
   }
+}
+
+.mt6 {
+    margin-top: 6px;
+}
+
+.mt10 {
+    margin-top: 10px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mt40 {
+    margin-top: 40px;
+}
+
+.mb6 {
+    margin-bottom: 6px;
+}
+
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+.mb40 {
+    margin-bottom: 40px;
 }
 
 .custom-scroll {

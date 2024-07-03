@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main container">
+	<main id="primary" class="site-main single-glampings-main container">
 
 		<?php get_template_part( 'template-parts/glampings/single'); ?>
 
