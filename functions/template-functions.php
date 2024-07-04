@@ -106,13 +106,15 @@ function glamping_club_footer_emails() {
 
 function glamping_club_footer_phones() {
 	$site_options = get_option( 'glc_options' );
-	if ( array_key_exists('contact_phone', $site_options) ) {
-		foreach ($site_options['contact_phone'] as $value) {
-			echo '<span><a href="tel:' . $value . '">' . $value . '</a></span>';
+	if ($site_options) {
+		if ( array_key_exists('contact_phone', $site_options) ) {
+			foreach ($site_options['contact_phone'] as $value) {
+				echo '<span><a href="tel:' . $value . '">' . $value . '</a></span>';
+			}
+		} else {
+			echo '<span><a href="tel:+8801838288389">+8801838288389</a></span>
+				<span><a href="tel:+8801941101915">+8801941101915</a></span>';
 		}
-	} else {
-		echo '<span><a href="tel:+8801838288389">+8801838288389</a></span>
-			<span><a href="tel:+8801941101915">+8801941101915</a></span>';
 	}
 }
 
