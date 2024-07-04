@@ -43,6 +43,7 @@ function glamping_club_main_scripts_old() {
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
         'nonce' => wp_create_nonce('glamping_club'),
         'action' => 'glamping_club',
+        'user_id' => $user_ID,
         'marker' => bin2hex('current_user-' . $user_ID),
         'yand_zoom' => $yand_zoom,
         // 'glAll' => $glempings

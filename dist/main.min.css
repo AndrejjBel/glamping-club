@@ -129,29 +129,41 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   width: -moz-fit-content;
   width: fit-content; }
 
-.mt6 {
-  margin-top: 6px; }
+@media (min-width: 577px) {
+  .mt6 {
+    margin-top: 6px; }
+  .mt10 {
+    margin-top: 10px; }
+  .mt20 {
+    margin-top: 20px; }
+  .mt40 {
+    margin-top: 40px; }
+  .mb6 {
+    margin-bottom: 6px; }
+  .mb10 {
+    margin-bottom: 10px; }
+  .mb20 {
+    margin-bottom: 20px; }
+  .mb40 {
+    margin-bottom: 40px; } }
 
-.mt10 {
-  margin-top: 10px; }
-
-.mt20 {
-  margin-top: 20px; }
-
-.mt40 {
-  margin-top: 40px; }
-
-.mb6 {
-  margin-bottom: 6px; }
-
-.mb10 {
-  margin-bottom: 10px; }
-
-.mb20 {
-  margin-bottom: 20px; }
-
-.mb40 {
-  margin-bottom: 40px; }
+@media (max-width: 576px) {
+  .mt-smail-6 {
+    margin-top: 6px; }
+  .mt-smail-10 {
+    margin-top: 10px; }
+  .mt-smail-20 {
+    margin-top: 20px; }
+  .mt-smail-40 {
+    margin-top: 40px; }
+  .mb-smail-6 {
+    margin-bottom: 6px; }
+  .mb-smail-10 {
+    margin-bottom: 10px; }
+  .mb-smail-20 {
+    margin-bottom: 20px; }
+  .mb-smail-40 {
+    margin-bottom: 40px; } }
 
 .custom-scroll {
   scrollbar-color: var(--Gray-200, #E4E7EC) var(--Gray-50, #F9FAFB);
@@ -1321,7 +1333,7 @@ a.btn-back-to-home {
       position: fixed;
       display: block;
       background: #ffffff;
-      box-shadow: 0 6px 30px 0 rgba(32, 43, 61, 0.1);
+      box-shadow: 0 6px 30px 0 rgba(32, 43, 61, 0.3);
       width: calc(100vw - 20px);
       max-width: 360px;
       padding: 20px;
@@ -1330,12 +1342,15 @@ a.btn-back-to-home {
       bottom: 180px; }
       @media (max-width: 399px) {
         .single-glampings-main aside.active {
+          width: calc(100vw - 30px);
           left: 15px;
           right: 15px;
-          bottom: 140px; } }
+          bottom: 140px;
+          font-size: 14px; } }
       @media (max-width: 375px) {
         .single-glampings-main aside.active {
-          bottom: 100px; } }
+          padding: 15px;
+          bottom: 120px; } }
 
 .images {
   display: flex;
@@ -1505,6 +1520,9 @@ a.btn-back-to-home {
       display: block;
       font-size: 18px;
       font-weight: 500; }
+      @media (max-width: 399px) {
+        .single-aside__content__title span {
+          font-size: 16px; } }
   .single-aside__content__item:not(:last-child) {
     margin-bottom: 8px; }
   .single-aside__content__item__title {

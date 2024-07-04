@@ -151,36 +151,72 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   }
 }
 
-.mt6 {
-    margin-top: 6px;
+@media (min-width: 577px) {
+    .mt6 {
+        margin-top: 6px;
+    }
+
+    .mt10 {
+        margin-top: 10px;
+    }
+
+    .mt20 {
+        margin-top: 20px;
+    }
+
+    .mt40 {
+        margin-top: 40px;
+    }
+
+    .mb6 {
+        margin-bottom: 6px;
+    }
+
+    .mb10 {
+        margin-bottom: 10px;
+    }
+
+    .mb20 {
+        margin-bottom: 20px;
+    }
+
+    .mb40 {
+        margin-bottom: 40px;
+    }
 }
 
-.mt10 {
-    margin-top: 10px;
-}
+@media (max-width: 576px) {
+    .mt-smail-6 {
+        margin-top: 6px;
+    }
 
-.mt20 {
-    margin-top: 20px;
-}
+    .mt-smail-10 {
+        margin-top: 10px;
+    }
 
-.mt40 {
-    margin-top: 40px;
-}
+    .mt-smail-20 {
+        margin-top: 20px;
+    }
 
-.mb6 {
-    margin-bottom: 6px;
-}
+    .mt-smail-40 {
+        margin-top: 40px;
+    }
 
-.mb10 {
-    margin-bottom: 10px;
-}
+    .mb-smail-6 {
+        margin-bottom: 6px;
+    }
 
-.mb20 {
-    margin-bottom: 20px;
-}
+    .mb-smail-10 {
+        margin-bottom: 10px;
+    }
 
-.mb40 {
-    margin-bottom: 40px;
+    .mb-smail-20 {
+        margin-bottom: 20px;
+    }
+
+    .mb-smail-40 {
+        margin-bottom: 40px;
+    }
 }
 
 .custom-scroll {

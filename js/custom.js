@@ -69,26 +69,12 @@ const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
         }
     });
 }
-// sliderGlempType('.galery1', '#sw-1', 2, 3, 5, 6);
-// sliderGlempType('.galery2', '#sw-2', 2, 3, 5, 6);
-// sliderGlempType('.galery3', '#sw-3', 2, 3, 5, 6);
-// sliderGlempType('.galery4', '#sw-4', 2, 3, 5, 6);
-// sliderGlempType('.galery5', '#sw-5', 2, 3, 5, 6);
-// sliderGlempType('.galery6', '#sw-6', 2, 3, 5, 6);
-// sliderGlempType('.galery7', '#sw-7', 2, 3, 5, 6);
-// sliderGlempType('.galery8', '#sw-8', 2, 3, 5, 6);
-// sliderGlempType('.galery9', '#sw-9', 2, 3, 5, 6);
-// sliderGlempType('.galery10', '#sw-10', 2, 3, 5, 6);
-// sliderGlempType('.galery11', '#sw-11', 2, 3, 5, 6);
-// sliderGlempType('.galery12', '#sw-12', 2, 3, 5, 6);
-// sliderGlempType('.galery13', '#sw-13', 2, 3, 5, 6);
-// sliderGlempType('.galery14', '#sw-14', 2, 3, 5, 6);
-// sliderGlempType('.galery15', '#sw-15', 2, 3, 5, 6);
-// sliderGlempType('.galery16', '#sw-16', 2, 3, 5, 6);
-// sliderGlempType('.galery17', '#sw-17', 2, 3, 5, 6);
-// sliderGlempType('.galery18', '#sw-18', 2, 3, 5, 6);
-// sliderGlempType('.galery19', '#sw-19', 2, 3, 5, 6);
-// sliderGlempType('.galery20', '#sw-20', 2, 3, 5, 6);
+
+function initSliderGlempType(item) {
+    for (var i = 0; i < item; i++) {
+        sliderGlempType('.galery'+i, '#sw-'+i, 2, 3, 5, 6);
+    }
+}
 
 function optionsGallery(index) {
     const gallery = document.querySelector(index);
@@ -104,10 +90,13 @@ function optionsGallery(index) {
         });
     }
 }
-optionsGallery('.galery1');
-optionsGallery('.galery2');
-optionsGallery('.galery3');
-optionsGallery('.galery4');
+
+function initOptionsGallery(item) {
+    for (var i = 0; i < item; i++) {
+        optionsGallery('.galery'+i);
+    }
+}
+initOptionsGallery(20);
 
 function toastAll(title, text, theme, autohide, interval) {
     new Toast({
@@ -195,3 +184,40 @@ const contactsMobailVision = () => {
     });
 }
 contactsMobailVision();
+
+const addFavCom = () => {
+    const favoritesBtns = document.querySelectorAll('#add-favorites');
+    const comparisonBtns = document.querySelectorAll('#add-comparison');
+    if (favoritesBtns.length) {
+        favoritesBtns.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                lsLocalCheng('glcFav', btn.dataset.postid);
+            });
+        });
+    }
+    if (comparisonBtns.length) {
+        comparisonBtns.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                localCheng('glcCompar', btn.dataset.postid);
+            });
+        });
+    }
+}
+addFavCom();
+
+function localCheng(name, value) {
+    let ls_obj = [];
+    if ( localStorage.getItem(name) ) {
+        let ls = localStorage.getItem(name)
+        ls_obj = ls.split(',');
+        if (ls_obj.includes(value)) {
+            ls_obj = ls_obj.filter((i) => i !== value);
+        } else {
+            ls_obj.push(value);
+        }
+    } else {
+        ls_obj = [];
+        ls_obj.push(value);
+    }
+    localStorage.setItem(name, ls_obj);
+}

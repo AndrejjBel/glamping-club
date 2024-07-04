@@ -223,13 +223,17 @@ function get_glamping_type_content() {
 function get_glamping_allocation_content() {
 	global $post;
 	$allocation = $post->glamping_allocation;
-	return implode(", ", $allocation);
+	if ($allocation) {
+		return implode(", ", $allocation);
+	}
 }
 
 function get_glamping_nature_around_content() {
 	global $post;
-	$allocation = $post->glamping_nature_around;
-	return implode(", ", $allocation);
+	$nature_around = $post->glamping_nature_around;
+	if ($nature_around) {
+		return implode(", ", $nature_around);
+	}
 }
 
 function glamping_icons_facilities($type_facilities, $title) {
@@ -295,7 +299,7 @@ function get_contact_information_content() {
         return false;
     }
 	?>
-	<div class="single-aside__content__title mt20">
+	<div class="single-aside__content__title mt20 mt-smail-10">
 		<span>Контактная информация</span>
 		<!-- <span>Есть вопросы по глэмпингу?</span>
 		<span>Свяжитесь с координатором</span> -->

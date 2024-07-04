@@ -25,7 +25,7 @@
             position: fixed;
             display: block;
             background: #ffffff;
-            box-shadow: 0 6px 30px 0 rgba(32,43,61,.1);
+            box-shadow: 0 6px 30px 0 rgba(32,43,61,.3);
             width: calc(100vw - 20px);
             max-width: 360px;
             padding: 20px;
@@ -34,13 +34,16 @@
             bottom: 180px;
 
             @media (max-width: 399px) {
+                width: calc(100vw - 30px);
                 left: 15px;
                 right: 15px;
                 bottom: 140px;
+                font-size: 14px
             }
 
             @media (max-width: 375px) {
-                bottom: 100px;
+                padding: 15px;
+                bottom: 120px;
             }
         }
     }
@@ -321,6 +324,10 @@ article.type-glampings {
                 display: block;
                 font-size: 18px;
                 font-weight: 500;
+
+                @media (max-width: 399px) {
+                    font-size: 16px;
+                }
             }
         }
 
