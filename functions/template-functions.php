@@ -92,13 +92,15 @@ function glamping_club_footer_copiright() {
 
 function glamping_club_footer_emails() {
 	$site_options = get_option( 'glc_options' );
-	if ( array_key_exists('contact_emails', $site_options) ) {
-		foreach ($site_options['contact_emails'] as $value) {
-			echo '<span><a href="mailto:' . $value . '">' . $value . '</a></span>';
+	if ($site_options) {
+		if ( array_key_exists('contact_emails', $site_options) ) {
+			foreach ($site_options['contact_emails'] as $value) {
+				echo '<span><a href="mailto:' . $value . '">' . $value . '</a></span>';
+			}
+		} else {
+			echo '<span><a href="mailto:info@site.com">info@site.com</a></span>
+				<span><a href="mailto:info1@site.com">info1@site.com</a></span>';
 		}
-	} else {
-		echo '<span><a href="mailto:info@site.com">info@site.com</a></span>
-			<span><a href="mailto:info1@site.com">info1@site.com</a></span>';
 	}
 }
 
