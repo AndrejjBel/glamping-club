@@ -53,8 +53,12 @@ function glamping_club_main_scripts_old() {
         // 'glAll' => $glempings
     ];
     // css
-    $theme_color = get_option( 'glc_options' );
-    $color = ( $theme_color['theme_color'] )? $theme_color['theme_color'] : 'theme-color-defolt';
+    $theme_option = get_option( 'glc_options' );
+    if ($theme_option) {
+        $color = ( $theme_option['theme_color'] )? $theme_option['theme_color'] : 'theme-color-defolt';
+    } else {
+        $color = 'theme-color-defolt';
+    }
     wp_enqueue_style('theme-color', get_stylesheet_directory_uri() . '/css/color/' . $color . '.css', array(),
         filemtime( get_stylesheet_directory() . '/css/color/' . $color . '.css' )
     );
