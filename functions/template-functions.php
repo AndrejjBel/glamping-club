@@ -83,10 +83,12 @@ function glamping_club_newsletter() {
 function glamping_club_footer_copiright() {
 	$site_options = get_option( 'glc_options' );
 	$bloginfo_name = get_bloginfo('name');
-	if ( array_key_exists('copiright_text', $site_options) ) {
-		echo '<p>' . $site_options['copiright_text'] . '</p>';
-	} else {
-		echo '<p>Все права защищены © 2024 - ' . $bloginfo_name . '</p>';
+	if ($site_options) {
+		if ( array_key_exists('copiright_text', $site_options) ) {
+			echo '<p>' . $site_options['copiright_text'] . '</p>';
+		} else {
+			echo '<p>Все права защищены © 2024 - ' . $bloginfo_name . '</p>';
+		}
 	}
 }
 
