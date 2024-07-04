@@ -139,7 +139,7 @@ add_image_size( 'glamping-club-thumb', 800, 520 );
 function get_glc_option($group, $option) {
     $site_options = get_option( $group );
     $value = '';
-    if (sizeof($site_options)) {
+    if ($site_options) {
         if (array_key_exists($option, $site_options)) {
             $value = $site_options[$option];
         } else {
