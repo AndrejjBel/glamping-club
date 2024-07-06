@@ -244,6 +244,13 @@ function register_single_glampings_metabox() {
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
+		'name' => esc_html__( 'Viber', 'glamping-club' ),
+		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
+		'id'   => 'viber_glamping',
+		'type' => 'text',
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
 		'name' => esc_html__( 'Telegram', 'glamping-club' ),
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'telegram_glamping',

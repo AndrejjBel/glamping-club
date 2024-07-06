@@ -13,7 +13,7 @@
  */
 
 get_header();
-if (is_page([PAGE_DASHBOARD])) {
+if (is_page([PAGE_DASHBOARD, 'favorites'])) {
 	the_content();
 } else {
 ?>

@@ -13,7 +13,18 @@
         </div> -->
     </div>
 
-    <div class="meta"></div>
+    <div class="meta mt10">
+        <div class="meta__item item-rating">
+            <?php get_rating_post(2.94, 4); // рейтинг / отзывы ?>
+        </div>
+
+        <div class="meta__item item-views" title="Просмотры">
+            <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                <path d="M160 256C160 185.3 217.3 128 288 128C358.7 128 416 185.3 416 256C416 326.7 358.7 384 288 384C217.3 384 160 326.7 160 256zM288 336C332.2 336 368 300.2 368 256C368 211.8 332.2 176 288 176C287.3 176 286.7 176 285.1 176C287.3 181.1 288 186.5 288 192C288 227.3 259.3 256 224 256C218.5 256 213.1 255.3 208 253.1C208 254.7 208 255.3 208 255.1C208 300.2 243.8 336 288 336L288 336zM95.42 112.6C142.5 68.84 207.2 32 288 32C368.8 32 433.5 68.84 480.6 112.6C527.4 156 558.7 207.1 573.5 243.7C576.8 251.6 576.8 260.4 573.5 268.3C558.7 304 527.4 355.1 480.6 399.4C433.5 443.2 368.8 480 288 480C207.2 480 142.5 443.2 95.42 399.4C48.62 355.1 17.34 304 2.461 268.3C-.8205 260.4-.8205 251.6 2.461 243.7C17.34 207.1 48.62 156 95.42 112.6V112.6zM288 80C222.8 80 169.2 109.6 128.1 147.7C89.6 183.5 63.02 225.1 49.44 256C63.02 286 89.6 328.5 128.1 364.3C169.2 402.4 222.8 432 288 432C353.2 432 406.8 402.4 447.9 364.3C486.4 328.5 512.1 286 526.6 256C512.1 225.1 486.4 183.5 447.9 147.7C406.8 109.6 353.2 80 288 80V80z"/>
+            </svg>
+            <span><?php echo $post->views; ?></span>
+        </div>
+    </div>
 
     <div class="single-section title">
         <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
@@ -60,8 +71,14 @@
         <div class="single-section__title">
             <h3>Описание - Или изменить текст или убрать совсем???</h3>
         </div>
-        <div class="single-section__content">
+        <div class="single-section__content collapse-content">
             <?php the_content(); ?>
+        </div>
+        <div class="collapse-content-btn">
+            <span>Развернуть</span>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+            </svg>
         </div>
     </div>
 
@@ -125,17 +142,25 @@
                         <path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
                     </svg>
                 </button>
+
+                <script src="https://yastatic.net/share2/share.js"></script>
+                <style media="screen">.ya-share2__link_more-button-type_short{display: flex;}</style>
+                <div class="ya-share2" data-curtain data-shape="round" data-limit="0"
+                    data-more-button-type="short"
+                    data-services="vkontakte,odnoklassniki" title="Поделиться"></div>
             </div>
         </div>
 
-        <div class="single-aside__content__item aside-item mt20 mt-smail-10">
+        <!-- <div class="single-aside__content__item aside-item mt20 mt-smail-10">
             <div class="single-aside__content__title mb6">
                 <span>Поделиться</span>
             </div>
             <script src="https://yastatic.net/share2/share.js"></script>
-            <div class="ya-share2" data-curtain data-shape="round"
-                data-services="vkontakte,telegram,odnoklassniki,viber,whatsapp,messenger,moimir"></div>
-        </div>
+            <style media="screen">.ya-share2__link_more-button-type_short{display: flex;}</style>
+            <div class="ya-share2" data-curtain data-shape="round" data-limit="0"
+                data-more-button-type="short"
+                data-services="vkontakte,odnoklassniki"></div>
+        </div> -->
 
         <div class="single-aside__content__item aside-item mt20 mt-smail-10">
             <div class="single-aside__content__title mb6">
@@ -145,11 +170,10 @@
                 <div class="copy-group__text to-copy">
                     <?php the_permalink(); ?>
                 </div>
-                <button class="copy-group__btn copy-btns" type="button" name="button">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                        <path d="M3.33301 10.5H2.66634C2.31272 10.5 1.97358 10.3596 1.72353 10.1095C1.47348 9.85947 1.33301 9.52033 1.33301 9.16671V3.16671C1.33301 2.81309 1.47348 2.47395 1.72353 2.2239C1.97358 1.97385 2.31272 1.83337 2.66634 1.83337H8.66634C9.01996 1.83337 9.3591 1.97385 9.60915 2.2239C9.8592 2.47395 9.99967 2.81309 9.99967 3.16671V3.83337M7.33301 6.50004H13.333C14.0694 6.50004 14.6663 7.09699 14.6663 7.83337V13.8334C14.6663 14.5698 14.0694 15.1667 13.333 15.1667H7.33301C6.59663 15.1667 5.99967 14.5698 5.99967 13.8334V7.83337C5.99967 7.09699 6.59663 6.50004 7.33301 6.50004Z" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                </button>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                    <path d="M3.33301 10.5H2.66634C2.31272 10.5 1.97358 10.3596 1.72353 10.1095C1.47348 9.85947 1.33301 9.52033 1.33301 9.16671V3.16671C1.33301 2.81309 1.47348 2.47395 1.72353 2.2239C1.97358 1.97385 2.31272 1.83337 2.66634 1.83337H8.66634C9.01996 1.83337 9.3591 1.97385 9.60915 2.2239C9.8592 2.47395 9.99967 2.81309 9.99967 3.16671V3.83337M7.33301 6.50004H13.333C14.0694 6.50004 14.6663 7.09699 14.6663 7.83337V13.8334C14.6663 14.5698 14.0694 15.1667 13.333 15.1667H7.33301C6.59663 15.1667 5.99967 14.5698 5.99967 13.8334V7.83337C5.99967 7.09699 6.59663 6.50004 7.33301 6.50004Z" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+                <button class="copy-group__btn copy-btns" type="button" name="button" title="Копировать ссылку"></button>
             </div>
         </div>
 
@@ -195,3 +219,5 @@
 // echo '<pre>';
 // var_dump(get_post_meta($post->ID, 'acc_options'));
 // echo '<pre>';
+
+// echo roundHalf(3.89);

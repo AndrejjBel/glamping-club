@@ -43,28 +43,50 @@ body {
 }
 
 .container {
-    max-width: 80%;
     width: 100%;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
 
-    @media (min-width: 2500px) {
-        max-width: 70%;
+    @media (min-width: 576px) {
+        max-width: 540px;
     }
 
-    @media (max-width: 1349px) {
-        max-width: 90%;
-    }
-
-    @media (max-width: 991px) {
-        max-width: 93%;
-    }
-
-    @media (max-width: 576px) {
+    @media (min-width: 768px) {
         max-width: 100%;
-        width: auto;
-        margin: 0 15px;
+        padding: 0 20px;
     }
+
+    @media (min-width: 1290px) {
+        max-width: 1290px;
+    }
+
 }
+
+// .container {
+//     max-width: 80%;
+//     width: 100%;
+//     margin: 0 auto;
+//
+//     @media (min-width: 2500px) {
+//         max-width: 70%;
+//     }
+//
+//     @media (max-width: 1349px) {
+//         max-width: 90%;
+//     }
+//
+//     @media (max-width: 991px) {
+//         max-width: 93%;
+//     }
+//
+//     @media (max-width: 576px) {
+//         max-width: 100%;
+//         width: auto;
+//         margin: 0 15px;
+//     }
+// }
 
 .container-dashboard {
     width: 100%;

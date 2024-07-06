@@ -330,7 +330,7 @@
 
             &__item {
                 position: relative;
-                padding: 12px;
+                // padding: 12px;
                 border-radius: 50%;
                 background: var(--chalk);
                 width: 40px;
@@ -342,6 +342,7 @@
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    padding: 12px;
 
                     & svg {
                         width: 100%;
@@ -350,8 +351,8 @@
 
                     & sup {
                         position: absolute;
-                        top: -20px;
-                        right: -20px;
+                        top: -10px;
+                        right: -10px;
                         width: 24px;
                         height: 24px;
                         display: flex;
@@ -761,5 +762,10 @@
                 fill: var(--text-color, #161616);
             }
         }
+    }
+
+    &__current {
+        font-weight: 600;
+        color: var(--color-primary);
     }
 }

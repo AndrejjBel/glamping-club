@@ -1,12 +1,4 @@
 <?php
-function glamping_club_page_class() {
-    $class = '';
-    if (is_page([PAGE_DASHBOARD])) {
-        $class = ' dashboard';
-    }
-    return $class;
-}
-
 function glamping_club_dashboard_tabs() {
     if ( $_GET ) {
         if ( isset( $_GET["tab"] ) ) {

@@ -44,6 +44,13 @@ function breadcrumbs() {
 	$span          .= '<meta itemprop="item" content="%4$s" />';
 	$span          .= '</span>';
 
+	$span_current  = '<span class="breadcrumbs__current" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">';
+	$span_current  .= '<span>%1$s</span>';
+	$span_current  .= '<meta itemprop="name" content="%2$s">';
+	$span_current  .= '<meta itemprop="position" content="%3$s" />';
+	$span_current  .= '<meta itemprop="item" content="%4$s" />';
+	$span_current  .= '</span>';
+
 	if ( is_home() || is_front_page() ) {
 
 		if ( $show_on_home ) echo $wrap_before . $home_link . $wrap_after;
@@ -130,7 +137,7 @@ function breadcrumbs() {
 				if ( $show_current ) {
 					$position += 1;
 					// echo $sep . $before . get_the_title() . $after;
-					echo $sep . sprintf( $span, get_the_title(), get_the_title(), $position, get_permalink() );
+					echo $sep . sprintf( $span_current, get_the_title(), get_the_title(), $position, get_permalink() );
 				}
 				elseif ( $show_last_sep ) echo $sep;
 			} else {
@@ -196,7 +203,7 @@ function breadcrumbs() {
 			if ( $show_current ) {
 				$position += 1;
 				// echo $sep . $before . get_the_title() . $after;
-				echo sprintf( $span, get_the_title(), get_the_title(), $position, get_permalink() );
+				echo sprintf( $span_current, get_the_title(), get_the_title(), $position, get_permalink() );
 			}
 			elseif ( $show_home_link && $show_last_sep ) echo $sep;
 

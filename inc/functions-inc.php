@@ -96,6 +96,9 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_script('lg-thumbnail', get_stylesheet_directory_uri() . '/assets/lightGallery/plugins/thumbnail/lg-thumbnail.umd.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/lightGallery/plugins/thumbnail/lg-thumbnail.umd.js' ), [ 'strategy' => 'defer' ]
     );
+    wp_enqueue_script('cookie', get_stylesheet_directory_uri() . '/assets/cookie/cookie.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/cookie/cookie.min.js' ), [ 'strategy' => 'defer' ]
+    );
 
     wp_enqueue_script('swiper', get_stylesheet_directory_uri() . '/assets/swiper/swiper-bundle.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/swiper/swiper-bundle.min.js' ), [ 'strategy' => 'defer' ]
@@ -122,6 +125,7 @@ require get_template_directory() . '/functions/cmb-settings.php';
 require get_template_directory() . '/functions/cmb-post-meta.php';
 require get_template_directory() . '/functions/glampings-options.php';
 require get_template_directory() . '/functions/template-functions.php';
+require get_template_directory() . '/functions/postviews.php';
 
 require get_template_directory() . '/functions/account/functions-acc.php';
 require get_template_directory() . '/functions/account/inc/shortcodes.php';
@@ -144,6 +148,24 @@ function delete_intermediate_image_sizes( $sizes ){
 
 add_image_size( 'glamping-club-thumb', 800, 520 );
 
+function glamping_club_page_class() {
+    $class = '';
+    if (is_page([PAGE_DASHBOARD])) {
+        $class = ' dashboard';
+    } elseif (is_page(['favorites'])) {
+        $class = ' favorites';
+    }
+    return $class;
+}
+
+add_filter( 'post_class', 'glamping_club_add_class_post', 10, 3 );
+function glamping_club_add_class_post( $classes, $class, $post_id ){
+	if( is_page(['favorites']) ){
+		$classes[] = 'favorites-article';
+	}
+	return $classes;
+}
+
 function get_glc_option($group, $option) {
     $site_options = get_option( $group );
     $value = '';
@@ -157,4 +179,20 @@ function get_glc_option($group, $option) {
         $value = false;
     }
     return $value;
+}
+
+function num_word($value, $words, $show = true) {
+	$num = $value % 100;
+	if ($num > 19) {
+		$num = $num % 10;
+	}
+	$out = ($show) ?  $value . ' ' : '';
+	switch ($num) {
+		case 1:  $out .= $words[0]; break;
+		case 2:
+		case 3:
+		case 4:  $out .= $words[1]; break;
+		default: $out .= $words[2]; break;
+	}	
+	return $out;
 }

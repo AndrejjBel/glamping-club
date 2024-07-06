@@ -5,6 +5,12 @@
     --color-primary-hover-dark: #2F3485;
     --color-primary-white: #7277D8;
 
+    --color-primary-dop: #00B945;
+    --color-primary-dop-dark: #00782D;
+    --color-primary-dop-hover: #37DC74;
+    --color-primary-dop-hover-dark: #238B49;
+    --color-primary-dop-white: #63DC90;
+
     --footer-color: #080229;
     --footer-end-color: #0d0633;
 
@@ -57,6 +63,12 @@
     --color-primary-hover: #4D54D8;
     --color-primary-hover-dark: #2F3485;
     --color-primary-white: #7277D8;
+
+    --color-primary-dop: #00B945;
+    --color-primary-dop-dark: #00782D;
+    --color-primary-dop-hover: #37DC74;
+    --color-primary-dop-hover-dark: #238B49;
+    --color-primary-dop-white: #63DC90;
 
     --footer-color: #080229;
     --footer-end-color: #0d0633;

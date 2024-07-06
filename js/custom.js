@@ -185,20 +185,56 @@ const contactsMobailVision = () => {
 }
 contactsMobailVision();
 
+const collapseViews = () => {
+    const collapseContent = document.querySelectorAll('.glampings .collapse-content');
+    if (collapseContent.length) {
+        collapseContent.forEach((item) => {
+            item.nextElementSibling.addEventListener('click', (e) => {
+                item.classList.toggle('active');
+                item.nextElementSibling.classList.toggle('active');
+                if (item.nextElementSibling.classList.contains('active')) {
+                    item.nextElementSibling.children[0].innerText = 'Свернуть';
+                } else {
+                    item.nextElementSibling.children[0].innerText = 'Развернуть';
+                }
+            });
+        });
+    }
+}
+collapseViews();
+
 const addFavCom = () => {
     const favoritesBtns = document.querySelectorAll('#add-favorites');
     const comparisonBtns = document.querySelectorAll('#add-comparison');
     if (favoritesBtns.length) {
+        const supFavorites = document.querySelector('#sup-favorites');
         favoritesBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
-                lsLocalCheng('glcFav', btn.dataset.postid);
+                let glcFavCount = localCheng('glcFav', btn.dataset.postid);
+                supFavorites.innerHTML = glcFavCount;
+                btn.classList.toggle('active');
+                if (btn.classList.contains('active')) {
+                    btn.attributes.title.value = 'Удалить из избранного';
+                    console.dir(btn);
+                } else {
+                    btn.attributes.title.value = 'Добавить в избранное';
+                }
             });
         });
     }
     if (comparisonBtns.length) {
+        const supComparison = document.querySelector('#sup-comparison');
         comparisonBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
-                localCheng('glcCompar', btn.dataset.postid);
+                let glcComparCount = localCheng('glcCompar', btn.dataset.postid);
+                supComparison.innerHTML = glcComparCount;
+                btn.classList.toggle('active');
+                if (btn.classList.contains('active')) {
+                    btn.attributes.title.value = 'Удалить из сравнения';
+                    console.dir(btn);
+                } else {
+                    btn.attributes.title.value = 'Добавить к сравнению';
+                }
             });
         });
     }
@@ -207,8 +243,8 @@ addFavCom();
 
 function localCheng(name, value) {
     let ls_obj = [];
-    if ( localStorage.getItem(name) ) {
-        let ls = localStorage.getItem(name)
+    if ( Cookies.get(name) ) { // localStorage.getItem(name)
+        let ls = Cookies.get(name); // localStorage.getItem(name)
         ls_obj = ls.split(',');
         if (ls_obj.includes(value)) {
             ls_obj = ls_obj.filter((i) => i !== value);
@@ -219,5 +255,59 @@ function localCheng(name, value) {
         ls_obj = [];
         ls_obj.push(value);
     }
-    localStorage.setItem(name, ls_obj);
+    // localStorage.setItem(name, ls_obj);
+    // Cookies.remove('name')
+    Cookies.set(name, ls_obj);
+    return ls_obj.length;
+}
+
+function favoritesRender() {
+    const supFavorites = document.querySelector('#sup-favorites');
+    const supComparison = document.querySelector('#sup-comparison');
+    const addFavorites = document.querySelector('#add-favorites');
+    const addComparison = document.querySelector('#add-comparison');
+    // if (glamping_club_ajax.user_id) {
+    //     favoritesRenderLogin();
+    // } else {
+        let glcFav = favoritesRenderNologin('glcFav');
+        let glcCompar = favoritesRenderNologin('glcCompar');
+        if (supFavorites) {
+            supFavorites.innerHTML = glcFav.length;
+            if (glcFav.includes(addFavorites.dataset.postid)) {
+                addFavorites.classList.add('active');
+                addFavorites.attributes.title.value = 'Удалить из избранного';
+            }
+        }
+        if (supComparison) {
+            supComparison.innerHTML = glcCompar.length;
+            if (glcCompar.includes(addComparison.dataset.postid)) {
+                addComparison.classList.add('active');
+                addComparison.attributes.title.value = 'Удалить из сравнения';
+            }
+        }
+    // }
+}
+favoritesRender();
+
+function favoritesRenderNologin(name) {
+    // const glcFav = localStorage.getItem('glcFav');
+    const glcFav = Cookies.get(name);
+    let glcFav_obj = [];
+    if (glcFav) {
+        glcFav_obj = glcFav.split(',');
+    }
+    // else {
+    //     glcFav_obj = glcFav.split('');
+    // }
+    // console.dir(glcFav_obj);
+    return glcFav_obj;
+}
+
+function favoritesRenderLogin() {
+    // if (glamping_club_ajax.user_id) {
+    //
+    // } else {
+    //     const glcFav = localStorage.getItem('glcFav');
+    //     const glcFav_obj = glcFav.split(',');
+    // }
 }
