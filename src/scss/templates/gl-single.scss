@@ -32,6 +32,7 @@
             border-radius: 12px;
             right: 20px;
             bottom: 180px;
+            z-index: 9;
 
             @media (max-width: 399px) {
                 width: calc(100vw - 30px);
