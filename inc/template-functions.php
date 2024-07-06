@@ -345,11 +345,11 @@ function get_contact_information_content() {
 			</div>
 		</div>
 	<?php } ?>
-	<?php if (array_key_exists('whatsup_glamping', $meta_obj) || array_key_exists('telegram_glamping', $meta_obj)) { ?>
+	<?php if (array_key_exists('whatsup_glamping', $meta_obj) || array_key_exists('viber_glamping', $meta_obj) || array_key_exists('telegram_glamping', $meta_obj)) { ?>
 		<div class="single-aside__content__item">
 			<span>Напишите нам в мессенджере:</span>
 		</div>
-		<?php if ($meta_obj['whatsup_glamping']) { ?>
+		<?php if (array_key_exists('whatsup_glamping', $meta_obj)) { ?>
 			<div class="single-aside__content__item messenger">
 				<div class="single-aside__content__item__text">
 					<a href="https://wa.me/<?php echo $meta_obj['whatsup_glamping']; ?>" target="_blank" title="WhatsApp">
@@ -360,7 +360,7 @@ function get_contact_information_content() {
 				</div>
 			</div>
 		<?php } ?>
-		<?php if ($meta_obj['viber_glamping']) { ?>
+		<?php if (array_key_exists('viber_glamping', $meta_obj)) { ?>
 			<div class="single-aside__content__item messenger">
 				<div class="single-aside__content__item__text">
 					<a href="viber://chat?number=%2B<?php echo $meta_obj['viber_glamping']; ?>" target="_blank" title="Viber">
