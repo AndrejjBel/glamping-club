@@ -43,7 +43,7 @@ body {
   margin-right: auto;
   padding-right: 0.5rem;
   padding-left: 0.5rem; }
-  @media (min-width: 576px) {
+  @media (min-width: 577px) {
     .container {
       max-width: 540px; } }
   @media (min-width: 768px) {
@@ -53,6 +53,14 @@ body {
   @media (min-width: 1290px) {
     .container {
       max-width: 1290px; } }
+  @media (max-width: 576px) {
+    .container {
+      padding-right: 15px;
+      padding-left: 15px; } }
+  @media (max-width: 479px) {
+    .container {
+      padding-right: 10px;
+      padding-left: 10px; } }
 
 .container-dashboard {
   width: 100%;
@@ -1426,11 +1434,18 @@ a.btn-back-to-home {
       right: 20px;
       bottom: 180px;
       z-index: 9; }
-      @media (max-width: 399px) {
+      @media (max-width: 576px) {
         .single-glampings-main aside.active {
           width: calc(100vw - 30px);
-          left: 15px;
-          right: 15px;
+          right: 15px; } }
+      @media (max-width: 479px) {
+        .single-glampings-main aside.active {
+          right: 10px; } }
+      @media (max-width: 399px) {
+        .single-glampings-main aside.active {
+          width: calc(100vw - 20px);
+          left: 10px;
+          right: 10px;
           bottom: 140px;
           font-size: 14px; } }
       @media (max-width: 375px) {
