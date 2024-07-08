@@ -183,7 +183,6 @@
 </aside>
 
 <?php if ( get_additionally_meta('coordinates') ) { ?>
-    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
     <script type="text/javascript">
         var coords = '<?php echo get_additionally_meta('coordinates'); ?>';
         var title = '<?php the_title(); ?>';

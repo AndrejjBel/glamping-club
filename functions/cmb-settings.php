@@ -67,6 +67,14 @@ function glamping_club_register_main_options_metabox() {
 	) );
 
     $main_options->add_field( array(
+		'name'    => esc_html__( 'Ключ API Яндекс карт', 'glamping-club' ),
+		// 'desc'    => esc_html__( 'например admin@site.ru', 'glamping-club' ),
+		'id'      => 'yandex_map_key',
+		'type'    => 'text',
+        'default' => 0
+	) );
+
+    $main_options->add_field( array(
 		'name'    => esc_html__( 'Яндекс zoom', 'glamping-club' ),
 		'desc'    => esc_html__( 'Масштаб карты для глэмпинга', 'glamping-club' ),
 		'id'      => 'yand_zoom',

@@ -63,12 +63,8 @@ body {
       padding-left: 10px; } }
 
 .container-ag {
-  padding-right: 20px;
-  padding-left: 20px; }
-  @media (max-width: 576px) {
-    .container-ag {
-      padding-right: 15px;
-      padding-left: 15px; } }
+  padding-right: 16px;
+  padding-left: 16px; }
   @media (max-width: 479px) {
     .container-ag {
       padding-right: 10px;
@@ -1808,12 +1804,22 @@ a.btn-back-to-home {
   height: 40px; }
 
 .archive-glampings {
-  display: flex; }
+  display: flex;
+  gap: 16px;
+  padding-bottom: 40px; }
   .archive-glampings__left {
-    width: 850px; }
+    width: 850px;
+    flex: none;
+    display: flex;
+    gap: 16px; }
+
+.glampings-filtr {
+  width: 210px;
+  flex: none; }
 
 .glampings-map {
-  flex: 1; }
+  max-width: calc(100% - 850px);
+  width: 100%; }
 
 @media (max-width: 620px) {
   .hystmodal__wrap {

@@ -265,7 +265,7 @@ function favoritesRender() {
     const supFavorites = document.querySelector('#sup-favorites');
     const supComparison = document.querySelector('#sup-comparison');
     const addFavorites = document.querySelector('#add-favorites');
-    const addComparison = document.querySelector('#add-comparison');    
+    const addComparison = document.querySelector('#add-comparison');
     // if (glamping_club_ajax.user_id) {
     //     favoritesRenderLogin();
     // } else {

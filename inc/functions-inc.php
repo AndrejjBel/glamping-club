@@ -59,6 +59,7 @@ function glamping_club_main_scripts_old() {
     } else {
         $color = 'theme-color-defolt';
     }
+    $yandex_map_key = ($theme_option['yandex_map_key'])? $theme_option['yandex_map_key'] : 1;
     wp_enqueue_style('theme-color', get_stylesheet_directory_uri() . '/css/color/' . $color . '.css', array(),
         filemtime( get_stylesheet_directory() . '/css/color/' . $color . '.css' )
     );
@@ -99,6 +100,8 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_script('cookie', get_stylesheet_directory_uri() . '/assets/cookie/cookie.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/cookie/cookie.min.js' ), [ 'strategy' => 'defer' ]
     );
+    wp_register_script( 'yandex-map', 'https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=' . $yandex_map_key);
+	wp_enqueue_script( 'yandex-map' );
 
     wp_enqueue_script('swiper', get_stylesheet_directory_uri() . '/assets/swiper/swiper-bundle.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/swiper/swiper-bundle.min.js' ), [ 'strategy' => 'defer' ]
@@ -193,6 +196,6 @@ function num_word($value, $words, $show = true) {
 		case 3:
 		case 4:  $out .= $words[1]; break;
 		default: $out .= $words[2]; break;
-	}	
+	}
 	return $out;
 }

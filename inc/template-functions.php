@@ -510,3 +510,55 @@ function favorites_render($posts, $type, $posts_per_page=-1) {
 	}
 	wp_reset_postdata();
 }
+
+function glampings_map_render() {
+	global $post;
+	$args = [
+		'posts_per_page' => -1,
+		'post_type' => 'glampings'
+	];
+	$glampings = get_posts( $args );
+	foreach ($glampings as $post) {
+		setup_postdata( $post );
+		$meta_object = get_post_meta($post->ID, 'additionally_field')[0][0];
+		if (isset($meta_object['coordinates'])) {
+	        $coordinates = $meta_object['coordinates'];
+	    }
+		if (isset($meta_object['address'])) {
+	        $address = $meta_object['address'];
+	    }
+		$link = get_permalink( $post->ID );
+		$coord = explode(',', str_replace(" ", "", $coordinates));
+		// $coord = count($coord) > 1 ? [floatval($coord[0]), floatval($coord[1])] : [0.0, 0.0];
+		$title = str_replace(["'", "\"", "«"], '', get_the_title( $post->ID ));
+		$title = get_the_title( $post->ID );
+		$points [] = (object) array(
+			"type"		 => "Feature",
+			"id"		 => $post->ID,
+			"geometry"   => (object) array("type"=> "Point", "coordinates"=> $coord),
+			"properties" => (object) array(
+				"id"		 => $post->ID,
+				"balloonContentHeader"	=> $title,
+				"balloonContentBody"	=> 'Адрес: ' . $address,
+				"balloonContentFooter"	=> '<a href=\"'.$link.'\">Подробнее</a>',
+				"clusterCaption"		=> $title,
+				"link" 					=> $link,
+				"hintContent"			=> '<span>' . get_the_title( $post->ID ) . '</span>',
+				// "marker-color"			=> "#008887"
+			)
+		);
+	}
+	wp_reset_postdata();
+
+	$geoData = [
+		"type" => "FeatureCollection",
+		"metadata" => (object) array(
+			"name" => "Глэмпинги",
+			"creator" => "creatsites.ru",
+			"description" => "Глэмпинги Creatsites."
+		),
+		"features"=> $points
+	];
+
+	return json_encode($geoData, JSON_UNESCAPED_UNICODE);
+}

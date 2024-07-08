@@ -1,15 +1,24 @@
 .archive-glampings {
     display: flex;
+    gap: 16px;
+    padding-bottom: 40px;
 
     &__left {
         width: 850px;
+        flex: none;
+        display: flex;
+        gap: 16px;
     }
 }
 
-.glampings-filtr {}
+.glampings-filtr {
+    width: 210px;
+    flex: none;
+}
 
 .glampings-items {}
 
 .glampings-map {
-    flex: 1;
+    max-width: calc(100% - 850px);
+    width: 100%;
 }

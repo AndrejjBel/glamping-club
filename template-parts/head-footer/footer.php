@@ -112,6 +112,3 @@ if (is_post_type_archive('glampings')) {
         </div>
     </div>
 </footer><!-- #colophon -->
-
-<?php
-// var_dump($site_options);
