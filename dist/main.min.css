@@ -1808,7 +1808,7 @@ a.btn-back-to-home {
   gap: 16px;
   padding-bottom: 40px; }
   .archive-glampings__left {
-    width: 850px;
+    width: 860px;
     flex: none;
     display: flex;
     gap: 16px; }
@@ -1818,7 +1818,7 @@ a.btn-back-to-home {
   flex: none; }
 
 .glampings-map {
-  max-width: calc(100% - 850px);
+  max-width: calc(100% - 860px);
   width: 100%; }
 
 @media (max-width: 620px) {

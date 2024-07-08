@@ -4,7 +4,7 @@
     padding-bottom: 40px;
 
     &__left {
-        width: 850px;
+        width: 860px;
         flex: none;
         display: flex;
         gap: 16px;
@@ -19,6 +19,6 @@
 .glampings-items {}
 
 .glampings-map {
-    max-width: calc(100% - 850px);
+    max-width: calc(100% - 860px);
     width: 100%;
 }
