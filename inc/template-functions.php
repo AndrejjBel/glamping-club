@@ -43,6 +43,13 @@ function glamping_club_shortcode_page_favorites() {
 	return ob_get_clean();
 }
 
+add_shortcode( 'glc-compare-page', 'glamping_club_shortcode_page_compare' );
+function glamping_club_shortcode_page_compare() {
+    ob_start();
+    get_template_part( 'template-parts/pages/compare' );
+	return ob_get_clean();
+}
+
 function glamping_single_thumbnail($post_id) {
 	$media = get_attached_media( 'image', $post_id );
 	$i = 1;
@@ -487,4 +494,19 @@ function roundHalf($val) {
         $res = $val > 0 ? ceil($val) : floor($val);
     }
     return (float)$res;
+}
+
+function favorites_render($posts, $type, $posts_per_page=-1) {
+	// $posts_arr = explode(",", $postsf);
+	global $post;
+	$posts_arr = get_posts( [
+		'posts_per_page' => $posts_per_page,
+		'post_type' => 'glampings',
+		'include' => $posts
+		] );
+	foreach ($posts_arr as $post) {
+		setup_postdata( $post );
+		get_template_part( 'template-parts/pages/excerpt', $type );
+	}
+	wp_reset_postdata();
 }

@@ -13,7 +13,7 @@
  */
 
 get_header();
-if (is_page([PAGE_DASHBOARD, 'favorites'])) {
+if (is_page([PAGE_DASHBOARD, 'favorites', 'compare'])) {
 	the_content();
 } else {
 ?>

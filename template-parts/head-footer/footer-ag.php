@@ -1,13 +1,9 @@
 <?php
 $site_options = get_option( 'glc_options' );
-$container = 'container';
-if (is_post_type_archive('glampings')) {
-    $container = 'container-ag';
-}
 ?>
 <footer id="colophon" class="site__footer">
     <div class="footer-generale">
-        <div class="<?php echo $container; ?>">
+        <div class="container">
             <?php if ( get_option( '_subscr_show' ) == 'yes' ) { ?>
                 <div class="footer-generale__newsletter">
                     <div class="footer-generale__newsletter__item">
@@ -105,7 +101,7 @@ if (is_post_type_archive('glampings')) {
         </div>
     </div>
     <div class="footer-end">
-        <div class="<?php echo $container; ?>">
+        <div class="container">
             <div class="footer-end__content">
                 <?php glamping_club_footer_copiright(); ?>
             </div>

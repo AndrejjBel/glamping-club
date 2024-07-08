@@ -10,32 +10,40 @@
 get_header();
 ?>
 
-	<main id="primary" class="site-main container">
+	<main id="primary" class="archive-glampings container-ag">
+		<div class="archive-glampings__left">
 
-		<?php if ( have_posts() ) : ?>
+			<div class="glampings-filtr"></div>
 
-			<header class="page-header">
-				<h1 class="page-title">Глэмпинги</h1>
-			</header><!-- .page-header -->
+			<?php if ( have_posts() ) : ?>
 
-			<?php
-			while ( have_posts() ) :
-				the_post();
-				get_template_part( 'template-parts/glampings/archive' );
+			<div class="glampings-items">
 
-			endwhile;
+				<?php
+				while ( have_posts() ) :
+					the_post();
+					get_template_part( 'template-parts/glampings/archive' );
 
-			the_posts_navigation();
+				endwhile;
+				?>
 
-		else :
+			</div>
 
-			get_template_part( 'template-parts/content', 'none' );
+				<?php
 
-		endif;
-		?>
+				the_posts_navigation();
+
+			else :
+
+				get_template_part( 'template-parts/content', 'none' );
+
+			endif;
+			?>
+		</div>
+
+		<div class="glampings-map"></div>
 
 	</main><!-- #main -->
 
 <?php
-// get_sidebar();
 get_footer();
