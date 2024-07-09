@@ -537,9 +537,10 @@ function glampings_map_render() {
 			"id"		 => $post->ID,
 			"geometry"   => (object) array("type"=> "Point", "coordinates"=> $coord),
 			"properties" => (object) array(
-				"id"		 => $post->ID,
+				"id"		 			=> $post->ID,
+				"price" 			=> $post->glamping_price,
 				"balloonContentHeader"	=> $title,
-				"balloonContentBody"	=> 'Адрес: ' . $address,
+				"balloonContentBody"	=> '<span class=\"ymaps-2-1-79-balloon-content__header\">от ' . $post->glamping_price . 'р.</span> Адрес: ' . $address,
 				"balloonContentFooter"	=> '<a href=\"'.$link.'\">Подробнее</a>',
 				"clusterCaption"		=> $title,
 				"link" 					=> $link,
