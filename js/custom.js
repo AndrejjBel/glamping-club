@@ -369,3 +369,34 @@ function backObjects() {
         })
     });
 }
+
+function sliderNumber() {
+    const slider = document.getElementById('glc-slider');
+
+    noUiSlider.create(slider, {
+        start: [20, 80],
+        connect: true,
+        range: {
+            'min': 0,
+            'max': 100
+        }
+    });
+
+    slider.noUiSlider.on('update', function () {
+        let sliderValue = slider.noUiSlider.get();
+        // console.dir(sliderValue);
+
+        // contractSum.value = '$' +Math.round(sliderValue);
+        // rangeSliderHash.noUiSlider.set(sliderValue/+motherhash_ajax.cost_power);
+        // contractHash.innerText = (sliderValue/+motherhash_ajax.cost_power).toFixed(1) + ' TH/s';
+        // if (resultSumm) {
+        //     resultSumm.innerText = Math.round(sliderValue);
+        // }
+    });
+
+    slider.noUiSlider.on('end', function () {
+        let sliderValue = slider.noUiSlider.get();
+        console.dir(sliderValue);
+    });
+}
+sliderNumber();

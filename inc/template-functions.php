@@ -523,6 +523,29 @@ function glamping_club_gl_thumbnail($size) {
 	the_post_thumbnail($size);
 }
 
+function filtr_cookie_value($name='') {
+	$title = 'Рекомендованные';
+	$class = '';
+	if ( !empty( $_COOKIE["glcSort"] ) ) {
+		if ($_COOKIE["glcSort"] == $name) {
+			$class = 'active';
+		}
+		$title = options_name($_COOKIE["glcSort"]);
+	} elseif ($name == 'recommended') {
+		$class = 'active';
+	}
+	return ['title' => $title, 'class' => $class];
+}
+
+function options_name($name) {
+    $options = [
+        'recommended' => 'Рекомендованные',
+        'min_price' => 'Сначала дешевые',
+        'max_price' => 'Сначала дорогие',
+    ];
+    return $options[$name];
+}
+
 function glampings_map_render() {
 	global $post;
 	$args = [

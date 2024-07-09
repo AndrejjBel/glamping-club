@@ -16,7 +16,10 @@
 }
 
 .glampings-filtr {
-    width: 210px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 240px;
     flex: none;
 }
 

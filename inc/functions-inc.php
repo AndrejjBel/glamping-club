@@ -72,15 +72,18 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_style('lg-thumbnail', get_stylesheet_directory_uri() . '/assets/lightGallery/css/lg-thumbnail.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/lightGallery/css/lg-thumbnail.css' )
     );
-
     wp_enqueue_style('swiper', get_stylesheet_directory_uri() . '/assets/swiper/swiper-bundle.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/lightGallery/css/lg-thumbnail.css' )
     );
+
     wp_enqueue_style('hystmodal', get_stylesheet_directory_uri() . '/assets/hystModal/hystmodal.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/hystModal/hystmodal.min.css' )
     );
     wp_enqueue_style('toast', get_stylesheet_directory_uri() . '/assets/toast/toast.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/toast/toast.min.css' )
+    );
+    wp_enqueue_style('nouislider', get_stylesheet_directory_uri() . '/assets/noUiSlider/nouislider.min.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/noUiSlider/nouislider.min.css' )
     );
     wp_enqueue_style('main', get_stylesheet_directory_uri() . '/dist/main.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/dist/main.min.css' )
@@ -110,6 +113,9 @@ function glamping_club_main_scripts_old() {
     );
 	wp_enqueue_script('toast', get_stylesheet_directory_uri() . '/assets/toast/toast.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/toast/toast.min.js' ), [ 'strategy' => 'defer' ]
+    );
+    wp_enqueue_script('noUiSlider', get_stylesheet_directory_uri() . '/assets/noUiSlider/nouislider.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/noUiSlider/nouislider.min.js' ), [ 'strategy' => 'defer' ]
     );
     wp_enqueue_script('bundle', get_stylesheet_directory_uri() . '/dist/bundle.min.js',	array('jquery', 'hystmodal', 'toast', 'lightgallery', 'swiper'),
         filemtime( get_stylesheet_directory() . '/dist/bundle.min.js' ), [ 'strategy' => 'defer' ]
