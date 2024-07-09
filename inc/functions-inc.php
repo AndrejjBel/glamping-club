@@ -29,7 +29,7 @@ function glamping_club_body_class_add( $classes ) {
 add_action( 'wp_enqueue_scripts', 'glamping_club_main_scripts_old', 99 );
 function glamping_club_main_scripts_old() {
     global $user_ID;
-    // $glempings = '';
+    $glempings = glampings_map_render();
     // if( is_front_page() ){
     //     $glempings = tripinglamp_home_location_list_json();
     // }
@@ -41,7 +41,6 @@ function glamping_club_main_scripts_old() {
     //     $current_cat_id = $category->term_id;
     //     $glempings = get_option('glampings_obj_'.$category->term_id);
     // }
-    // $yand_zoom = carbon_get_theme_option( 'yandex_zoom' );
     $yand_zoom = get_glc_option('glc_options', 'yand_zoom');
     $bundle_obj = [
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
@@ -50,7 +49,7 @@ function glamping_club_main_scripts_old() {
         'user_id' => $user_ID,
         'marker' => bin2hex('current_user-' . $user_ID),
         'yand_zoom' => $yand_zoom,
-        // 'glAll' => $glempings
+        'glAll' => $glempings
     ];
     // css
     $theme_option = get_option( 'glc_options' );

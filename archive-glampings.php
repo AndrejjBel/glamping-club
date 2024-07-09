@@ -13,11 +13,13 @@ get_header();
 	<main id="primary" class="archive-glampings container-ag">
 		<div class="archive-glampings__left">
 
-			<div class="glampings-filtr"></div>
+			<div class="glampings-filtr">
+				<?php get_template_part( 'template-parts/glampings/archive-filtr' ); ?>
+			</div>
 
 			<?php if ( have_posts() ) : ?>
 
-			<div class="glampings-items">
+			<div class="glampings-items list">
 
 				<?php
 				while ( have_posts() ) :
@@ -42,15 +44,15 @@ get_header();
 		</div>
 
 		<div class="glampings-map">
-			<div id="mapYandexNew" class="glampings-map__content" style="width:100%; height: 500px;"></div>
+			<div id="mapYandex" class="glampings-map__content" style="width:100%; height: 500px;"></div>
 		</div>
 
 	</main><!-- #main -->
 
-	<script>
+	<!-- <script>
 	ymaps.ready(init);
 	function init() {
-		var geoJson = JSON.parse('<?php echo glampings_map_render(); ?>');
+		var geoJson = JSON.parse(glamping_club_ajax.glAll);
 		var zoomNum = (glamping_club_ajax.yand_zoom) ? glamping_club_ajax.yand_zoom : 12;
 		map = new ymaps.Map('mapYandexNew', {center:[54.9924, 73.3686], zoom:zoomNum, controls: ['zoomControl',  /*'fullscreenControl'*/]}),
 		map.behaviors.disable(['scrollZoom']);
@@ -98,7 +100,7 @@ get_header();
 			})
 		});
 	}
-	</script>
+	</script> -->
 
 <?php
 get_footer();

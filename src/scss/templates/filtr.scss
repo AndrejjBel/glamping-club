@@ -1,0 +1,65 @@
+.glampings-filtr {}
+
+.filtr-item {
+    border-radius: $border-radius-single;
+    background: #FFFFFF;
+    overflow: hidden;
+
+    &__title {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 14px;
+        font-weight: 500;
+        padding: 12px;
+        cursor: pointer;
+
+        & svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.4s;
+
+            & path {
+                fill: var(--color-svg-form);
+            }
+
+            &.active {
+                transform: rotate(180deg);
+            }
+        }
+    }
+
+    &__options {
+        font-size: 14px;
+
+        &.select {
+            display: none;
+            height: 0;
+            opacity: 0;
+            visibility: hidden;
+
+            &.active {
+                display: flex;
+                gap: 4px;
+                flex-direction: column;
+                height: auto;
+                opacity: 1;
+                visibility: visible;
+                margin: 8px 0;
+            }
+        }
+    }
+}
+
+.filtr-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: all 0.4s;
+
+    &:hover {
+        background: var(--color-option-hover);
+    }
+}

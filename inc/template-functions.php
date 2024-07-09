@@ -511,6 +511,18 @@ function favorites_render($posts, $type, $posts_per_page=-1) {
 	wp_reset_postdata();
 }
 
+function glamping_club_gl_thumbnail($size) {
+	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
+		return;
+	}
+	// $default_attr = array(
+	// 	'src'   => $src,
+	// 	'class' => "attachment-$size",
+	// 	'alt'   => trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),
+	// );
+	the_post_thumbnail($size);
+}
+
 function glampings_map_render() {
 	global $post;
 	$args = [
