@@ -372,18 +372,24 @@ function backObjects() {
 
 function sliderNumber() {
     const slider = document.getElementById('glc-slider');
+    if (!slider) return;
+
+    const minPriceInput = document.getElementById('min_price');
+    const maxPriceInput = document.getElementById('max_price');
 
     noUiSlider.create(slider, {
-        start: [20, 80],
+        start: [2000, 80000],
         connect: true,
         range: {
-            'min': 0,
-            'max': 100
+            'min': 2000,
+            'max': 8000
         }
     });
 
     slider.noUiSlider.on('update', function () {
         let sliderValue = slider.noUiSlider.get();
+        minPriceInput.value = Math.ceil(sliderValue[0]);
+        maxPriceInput.value = Math.ceil(sliderValue[1]);
         // console.dir(sliderValue);
 
         // contractSum.value = '$' +Math.round(sliderValue);
