@@ -77,7 +77,7 @@
         <div class="filtr-item__title__count"></div>
     </div>
 
-    <ul class="filtr-item__options item-options-checkbox custom-scroll">
+    <!-- <ul class="filtr-item__options item-options-checkbox custom-scroll">
         <li>
             <input type="checkbox" id="111" name="Московская область" value="">
             <label for="111">
@@ -90,5 +90,5 @@
                 <span class="count">1</span>
             </label>
         </li>
-    </ul>
+    </ul> -->
 </div>
