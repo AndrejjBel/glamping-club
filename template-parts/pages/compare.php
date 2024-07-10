@@ -1,13 +1,13 @@
 <?php
 if ( !empty( $_COOKIE["glcCompar"] ) ) {
 ?>
-<main id="compare" class="compares__main container">
+<main id="compare" class="compares-main container">
     <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
         <header class="entry-header">
     		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
     	</header><!-- .entry-header -->
 
-        <div class="content">
+        <div class="glampings-items card">
             <?php favorites_render($_COOKIE["glcCompar"], 'compare'); ?>
         </div>
     </article><!-- #post-<?php the_ID(); ?> -->
