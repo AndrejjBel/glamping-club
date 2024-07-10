@@ -10,7 +10,7 @@
 get_header();
 ?>
 
-	<main id="primary" class="archive-glampings container-ag">
+	<main id="archive-glampings" class="archive-glampings container-ag">
 		<div class="archive-glampings__left">
 
 			<div class="glampings-filtr glcf-scroll custom-scroll">

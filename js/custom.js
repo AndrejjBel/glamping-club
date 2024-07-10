@@ -317,6 +317,8 @@ function favoritesRenderLogin() {
 }
 
 function mapRender() {
+    const archiveGlampings = document.querySelector('#archive-glampings');
+    if (!archiveGlampings) return;
     ymaps.ready(init);
 	function init() {
 		var geoJson = JSON.parse(glamping_club_ajax.glAll);
