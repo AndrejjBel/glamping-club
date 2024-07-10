@@ -1,5 +1,17 @@
 .glampings-filtr {}
 
+.glcf-scroll {
+    height: 82vh;
+    overflow: auto;
+    padding-right: 8px;
+}
+
+.glampings-filtr-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .filtr-item {
     border-radius: $border-radius-single;
     background: #FFFFFF;
@@ -90,7 +102,7 @@
 ul.item-options-checkbox {
     list-style: none;
     padding: 0;
-    // margin-bottom: 15px;
+    margin-bottom: 12px;
     margin-top: 0;
     max-height: 300px;
     overflow: auto;
@@ -120,7 +132,7 @@ ul.item-options-checkbox {
         display: flex;
         align-items: center;
         position: relative;
-        padding: 12px 20px;
+        padding: 8px 20px;
 
         &:hover {
             background: var(--color-option-hover);

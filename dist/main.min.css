@@ -193,6 +193,9 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   .custom-scroll::-webkit-scrollbar-thumb:hover {
     background-color: var(--Gray-300, #D0D5DD); }
 
+.scroll-no::-webkit-scrollbar {
+  width: 0; }
+
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-weight: 700;
   font-family: "Roboto", sans-serif;
@@ -1872,6 +1875,16 @@ a.btn-back-to-home {
     flex: 1;
     padding: 16px; }
 
+.glcf-scroll {
+  height: 82vh;
+  overflow: auto;
+  padding-right: 8px; }
+
+.glampings-filtr-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; }
+
 .filtr-item {
   border-radius: 12px;
   background: #FFFFFF;
@@ -1934,6 +1947,7 @@ a.btn-back-to-home {
 ul.item-options-checkbox {
   list-style: none;
   padding: 0;
+  margin-bottom: 12px;
   margin-top: 0;
   max-height: 300px;
   overflow: auto; }
@@ -1941,7 +1955,7 @@ ul.item-options-checkbox {
     display: flex;
     align-items: center;
     position: relative;
-    padding: 12px 20px; }
+    padding: 8px 20px; }
     ul.item-options-checkbox li:hover {
       background: var(--color-option-hover); }
       ul.item-options-checkbox li:hover label .checkmark.fcheckbox {

@@ -216,7 +216,7 @@
 <?php
 // $meta_object = get_post_meta($post->ID, 'additionally_field');
 // echo '<pre>';
-// var_dump(get_post_meta($post->ID, 'acc_options'));
+// var_dump(filtr_options_render('type_options'));
 // echo '<pre>';
 
 // echo roundHalf(3.89);

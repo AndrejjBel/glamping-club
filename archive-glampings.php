@@ -13,7 +13,7 @@ get_header();
 	<main id="primary" class="archive-glampings container-ag">
 		<div class="archive-glampings__left">
 
-			<div class="glampings-filtr">
+			<div class="glampings-filtr glcf-scroll custom-scroll">
 				<?php get_template_part( 'template-parts/glampings/archive-filtr' ); ?>
 			</div>
 

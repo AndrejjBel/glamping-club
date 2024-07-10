@@ -285,3 +285,7 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 		background-color: var(--Gray-300, #D0D5DD);
 	}
 }
+
+.scroll-no::-webkit-scrollbar {
+  width: 0;
+}

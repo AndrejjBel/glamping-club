@@ -30,12 +30,13 @@ function register_single_glampings_metabox() {
 		'name' => esc_html__( 'Тип места', 'glamping-club' ),
 		'id'   => 'glamping_type',
 		'type'    => 'radio_inline',
-		'options' => array(
-			'glamping' => __( 'Глэмпинг', 'glamping-club' ),
-			'eco_hotel'   => __( 'Эко-отель', 'glamping-club' ),
-			'camp_site'     => __( 'Турбаза', 'glamping-club' ),
-			'private_sector'     => __( 'Частный сектор', 'glamping-club' ),
-		),
+		'options_cb' => 'type_options',
+		// 'options' => array(
+		// 	'glamping' => __( 'Глэмпинг', 'glamping-club' ),
+		// 	'eco_hotel'   => __( 'Эко-отель', 'glamping-club' ),
+		// 	'camp_site'     => __( 'Турбаза', 'glamping-club' ),
+		// 	'private_sector'     => __( 'Частный сектор', 'glamping-club' ),
+		// ),
 		'default' => 'glamping',
 	) );
 
@@ -167,6 +168,7 @@ function register_single_glampings_metabox() {
 		'name' => esc_html__( 'Природа вокруг', 'glamping-club' ),
 		'id'   => 'glamping_nature_around',
 		'type'    => 'multicheck_inline',
+		'options_cb' => 'nature_around_options',
 		'options' => array(
 			'Лес' => 'Лес',
 			'Горы' => 'Горы',

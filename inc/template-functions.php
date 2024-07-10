@@ -546,6 +546,27 @@ function options_name($name) {
     return $options[$name];
 }
 
+function filtr_options_render($name) {
+    $options = call_user_func($name);
+	foreach ($options as $key => $value) {
+	?>
+	<li>
+		<input type="checkbox" id="<?php echo $key; ?>" name="<?php echo $value; ?>" value="">
+		<label for="<?php echo $key; ?>">
+			<span class="checkmark fcheckbox">
+				<svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+					<path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+				</svg>
+			</span>
+			<span class="name"><?php echo $value; ?></span>
+			<span class="count">1</span>
+		</label>
+	</li>
+	<?php
+	}
+	return $options;
+}
+
 function glampings_map_render() {
 	global $post;
 	$args = [
