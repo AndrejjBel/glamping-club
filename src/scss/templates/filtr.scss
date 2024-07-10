@@ -49,6 +49,10 @@
     &__options {
         font-size: 14px;
 
+        &.pad12 {
+            padding: 12px;
+        }
+
         &.select {
             display: none;
             height: 0;

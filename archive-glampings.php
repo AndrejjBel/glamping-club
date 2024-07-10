@@ -11,12 +11,12 @@ get_header();
 ?>
 
 	<main id="archive-glampings" class="archive-glampings container-ag">
-		<div class="archive-glampings__left">
+		<div class="archive-glampings__left<?php echo template_cookie_value()['no_map']; ?>">
 			<div class="glampings-filtr glcf-scroll custom-scroll">
 				<?php get_template_part( 'template-parts/glampings/archive-filtr' ); ?>
 			</div>
 			<?php if ( have_posts() ) : ?>
-			<div class="glampings-items list">
+			<div class="glampings-items<?php echo template_cookie_value()['card_list']; ?>">
 				<?php
 				while ( have_posts() ) :
 					the_post();
@@ -32,7 +32,7 @@ get_header();
 			endif;
 			?>
 		</div>
-		<div class="glampings-map">
+		<div class="glampings-map<?php echo template_cookie_value()['map']; ?>">
 			<div id="mapYandex" class="glampings-map__content"></div>
 		</div>
 	</main><!-- #main -->

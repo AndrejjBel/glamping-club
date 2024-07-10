@@ -401,7 +401,7 @@ function get_contact_information_content() {
 	<?php
 }
 
-function get_rating_post($rating_value=0, $rating_otziv=0) {
+function get_rating_post($rating_value=0, $count_otziv=0) {
 	$checked_val = roundHalf($rating_value);
 	?>
 	<div class="rating-views half-stars">
@@ -476,7 +476,52 @@ function get_rating_post($rating_value=0, $rating_otziv=0) {
 			<?php echo number_format(round($rating_value, 1), 1, ',', ' '); ?>
 		</div>
 		<div class="rating-count__otziv">
-			<span>/ <?php echo num_word($rating_otziv, array('отзыв', 'отзыва', 'отзывов')); ?></span>
+			<span>/ <?php echo num_word($count_otziv, array('отзыв', 'отзыва', 'отзывов')); ?></span>
+		</div>
+	</div>
+	<?php
+}
+
+// Формирование звезд отзывов
+function reviews_stars_items_average( $average_rating, $count_otziv ) {
+	$rating = $average_rating;
+	$star_full = '<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="var(--reviews-color)" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>';
+	$star_aver = '<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-primary" fill="var(--reviews-color)" d="M288 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.995 275.8 .0131 287.1-.0391L288 439.8zM433.2 512C432.1 512.1 431 512.1 429.9 512H433.2z"/>
+	<path class="fa-secondary" fill="#d7dbe3" d="M146.3 512C145.3 512.1 144.2 512.1 143.1 512H146.3zM288 439.8V-.0387L288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.1 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L288 439.8z"/>
+	</svg>';
+	$star_half = '<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="#d7dbe3" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>';
+	?>
+	<div class="rating-stars">
+	<?php
+	//$full_stars = $doc_meta->rating/$doc_meta->raitcol;
+	$empty_stars = floor( 5 - $average_rating );
+	while ( $average_rating > 0 ) {
+		if ( $average_rating > 0 && $average_rating - 1 >= 0 ) {
+			echo $star_full;
+		}
+		if ( $average_rating > 0 && $average_rating - 1 < 0 ) {
+			echo $star_aver;
+		}
+		$average_rating--;
+	}
+	while ( $empty_stars > 0 ) {
+		echo $star_half;
+
+		$empty_stars--;
+	}
+	?>
+	</div>
+	<div class="rating-count">
+		<div class="rating-count__rating">
+			<?php echo number_format(round($rating, 1), 1, ',', ' '); ?>
+		</div>
+		<div class="rating-count__otziv">
+			<span>/ <?php echo num_word($count_otziv, array('отзыв', 'отзыва', 'отзывов')); ?></span>
 		</div>
 	</div>
 	<?php
@@ -535,6 +580,27 @@ function filtr_cookie_value($name='') {
 		$class = 'active';
 	}
 	return ['title' => $title, 'class' => $class];
+}
+
+function template_cookie_value() {
+	$no_map = '';
+	$card_list = ' list';
+	$map = ' active';
+	$btn_vision = ' active';
+	$btn_close = '';
+	if ( !empty( $_COOKIE["glcTemp"] ) ) {
+		if ($_COOKIE["glcTemp"] == 'mapClose') {
+			$no_map = ' no-map';
+			$card_list = ' card';
+			$map = '';
+			$btn_vision = '';
+			$btn_close = ' active';
+		}
+		// elseif ($_COOKIE["glcTemp"] == 'mapVision') {
+		// 	// code...
+		// }
+	}
+	return ['no_map' => $no_map, 'card_list' => $card_list, 'map' => $map, 'btn_vision' => $btn_vision, 'btn_close' => $btn_close];
 }
 
 function options_name($name) {
