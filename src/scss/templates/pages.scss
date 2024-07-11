@@ -1,7 +1,15 @@
 .compares-main {
     margin-bottom: 40px;
+
+    & .glampings-items.card .glamping-item {
+        background: var(--color-bg-dashboard);
+    }
 }
 
 .favorites-main {
     margin-bottom: 40px;
+
+    & .glampings-items.card .glamping-item {
+        background: var(--color-bg-dashboard);
+    }
 }

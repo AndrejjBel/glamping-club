@@ -1118,6 +1118,8 @@ button.primary-red {
     padding: 8px 14px; }
   button.primary-red.lg {
     padding: 10px 16px; }
+  button.primary-red.lgg {
+    padding: 10px 10px; }
   button.primary-red.xl {
     padding: 10px 18px; }
   button.primary-red.active {
@@ -1134,6 +1136,8 @@ button.primary-red {
     border: 1px solid var(--Error-200, #FECDCA);
     background: var(--White, #FFF);
     cursor: default; }
+  button.primary-red svg path {
+    fill: #FFFFFF; }
 
 button.primary-success {
   display: flex;
@@ -1869,6 +1873,7 @@ a.btn-back-to-home {
 .glampings-items {
   display: flex;
   gap: 16px;
+  flex-wrap: wrap;
   width: 100%; }
   .glampings-items.list {
     flex-direction: column; }
@@ -1883,6 +1888,15 @@ a.btn-back-to-home {
       flex-direction: column;
       width: calc((100% - 48px) / 4);
       background: #FFFFFF; }
+      @media (max-width: 1199px) {
+        .glampings-items.card .glamping-item {
+          width: calc((100% - 32px) / 3); } }
+      @media (max-width: 767px) {
+        .glampings-items.card .glamping-item {
+          width: calc((100% - 16px) / 2); } }
+      @media (max-width: 499px) {
+        .glampings-items.card .glamping-item {
+          width: 100%; } }
       .glampings-items.card .glamping-item__thumbnail {
         position: relative;
         width: 100%;
@@ -1899,6 +1913,8 @@ a.btn-back-to-home {
           justify-content: space-between;
           width: 100%;
           margin-top: auto; }
+          .glampings-items.card .glamping-item__content__right__btn.btn-delete {
+            z-index: 4; }
 
 .glampings-map {
   display: none;
@@ -1985,6 +2001,21 @@ a.btn-back-to-home {
         gap: 4px; }
       .glamping-item__content__bottom__address a svg path {
         fill: var(--text-color-light); }
+
+.archive-glampings .glampings-items.card .glamping-item {
+  width: calc((100% - 64px) / 5); }
+  @media (max-width: 1649px) {
+    .archive-glampings .glampings-items.card .glamping-item {
+      width: calc((100% - 48px) / 4); } }
+  @media (max-width: 1439px) {
+    .archive-glampings .glampings-items.card .glamping-item {
+      width: calc((100% - 32px) / 3); } }
+  @media (max-width: 1099px) {
+    .archive-glampings .glampings-items.card .glamping-item {
+      width: calc((100% - 16px) / 2); } }
+  @media (max-width: 499px) {
+    .archive-glampings .glampings-items.card .glamping-item {
+      width: 100%; } }
 
 .glcf-scroll {
   height: 82vh;
@@ -2169,9 +2200,13 @@ ul.item-options-checkbox {
 
 .compares-main {
   margin-bottom: 40px; }
+  .compares-main .glampings-items.card .glamping-item {
+    background: var(--color-bg-dashboard); }
 
 .favorites-main {
   margin-bottom: 40px; }
+  .favorites-main .glampings-items.card .glamping-item {
+    background: var(--color-bg-dashboard); }
 
 @media (max-width: 620px) {
   .hystmodal__wrap {

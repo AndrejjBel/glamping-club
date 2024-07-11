@@ -38,7 +38,6 @@
 				<span class="price-text">за 1 ночь</span>
 			</div>
 			<div class="glamping-item__content__right__btn">
-				<!-- <span>за 1 ночь</span> -->
 				<button class="primary ld w100" type="button" name="button">выбрать</button>
 			</div>
 		</div>

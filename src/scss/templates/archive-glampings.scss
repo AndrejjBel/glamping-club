@@ -34,6 +34,7 @@
 .glampings-items {
     display: flex;
     gap: 16px;
+    flex-wrap: wrap;
     width: 100%;
 
     &.list {
@@ -57,6 +58,18 @@
             flex-direction: column;
             width: calc((100% - 48px) / 4);
             background: #FFFFFF;
+
+            @media (max-width: 1199px) {
+                width: calc((100% - 32px) / 3);
+            }
+
+            @media (max-width: 767px) {
+                width: calc((100% - 16px) / 2);
+            }
+
+            @media (max-width: 499px) {
+                width: 100%;
+            }
 
             &__thumbnail {
                 position: relative;
@@ -82,6 +95,13 @@
                     justify-content: space-between;
                     width: 100%;
                     margin-top: auto;
+
+                    &__btn {
+
+                        &.btn-delete {
+                            z-index: 4;
+                        }
+                    }
                 }
             }
         }
@@ -224,6 +244,35 @@
                             fill: var(--text-color-light);
                         }
                     }
+                }
+            }
+        }
+    }
+}
+
+.archive-glampings {
+
+    & .glampings-items {
+
+        &.card {
+
+            & .glamping-item {
+                width: calc((100% - 64px) / 5);
+
+                @media (max-width: 1649px) {
+                    width: calc((100% - 48px) / 4);
+                }
+
+                @media (max-width: 1439px) {
+                    width: calc((100% - 32px) / 3);
+                }
+
+                @media (max-width: 1099px) {
+                    width: calc((100% - 16px) / 2);
+                }
+
+                @media (max-width: 499px) {
+                    width: 100%;
                 }
             }
         }
