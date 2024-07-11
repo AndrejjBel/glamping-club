@@ -1934,6 +1934,11 @@ a.btn-back-to-home {
   overflow: hidden; }
   .glamping-item:hover img {
     transform: scale(1.1); }
+  .glamping-item:hover button {
+    border: 1px solid var(--Primary-700, #3033D1);
+    background: var(--Primary-700, #3033D1); }
+  .glamping-item:hover .glamping-item__content__title {
+    color: var(--Primary-700, #3033D1); }
   .glamping-item__url {
     position: absolute;
     top: 0;

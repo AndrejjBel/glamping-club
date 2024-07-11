@@ -207,11 +207,14 @@ const addFavCom = () => {
     const favoritesBtns = document.querySelectorAll('#add-favorites');
     const comparisonBtns = document.querySelectorAll('#add-comparison');
     if (favoritesBtns.length) {
-        const supFavorites = document.querySelector('#sup-favorites');
+        const supFavorites = document.querySelectorAll('#sup-favorites');
         favoritesBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 let glcFavCount = localCheng('glcFav', btn.dataset.postid);
-                supFavorites.innerHTML = glcFavCount;
+                // supFavorites.innerHTML = glcFavCount;
+                supFavorites.forEach((item) => {
+                    item.innerHTML = glcFavCount;
+                });
                 btn.classList.toggle('active');
                 if (btn.classList.contains('active')) {
                     btn.attributes.title.value = 'Удалить из избранного';
@@ -223,11 +226,14 @@ const addFavCom = () => {
         });
     }
     if (comparisonBtns.length) {
-        const supComparison = document.querySelector('#sup-comparison');
+        const supComparison = document.querySelectorAll('#sup-comparison');
         comparisonBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 let glcComparCount = localCheng('glcCompar', btn.dataset.postid);
-                supComparison.innerHTML = glcComparCount;
+                // supComparison.innerHTML = glcComparCount;
+                supComparison.forEach((item) => {
+                    item.innerHTML = glcComparCount;
+                });
                 btn.classList.toggle('active');
                 if (btn.classList.contains('active')) {
                     btn.attributes.title.value = 'Удалить из сравнения';
@@ -245,22 +251,26 @@ const deleteFavCom = () => {
     const favoritesBtns = document.querySelectorAll('#delete-favorites');
     const comparisonBtns = document.querySelectorAll('#delete-comparison');
     if (favoritesBtns.length) {
-        const supFavorites = document.querySelector('#sup-favorites');
+        const supFavorites = document.querySelectorAll('#sup-favorites');
         favoritesBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 let glcFavCount = localCheng('glcFav', btn.dataset.postid);
-                supFavorites.innerHTML = glcFavCount;
                 btn.parentElement.parentElement.parentElement.parentElement.remove();
+                supFavorites.forEach((item) => {
+                    item.innerHTML = glcFavCount;
+                });
             });
         });
     }
     if (comparisonBtns.length) {
-        const supComparison = document.querySelector('#sup-comparison');
+        const supComparison = document.querySelectorAll('#sup-comparison');
         comparisonBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 let glcComparCount = localCheng('glcCompar', btn.dataset.postid);
-                supComparison.innerHTML = glcComparCount;
                 btn.parentElement.parentElement.parentElement.parentElement.remove();
+                supComparison.forEach((item) => {
+                    item.innerHTML = glcComparCount;
+                });
             });
         });
     }
@@ -288,14 +298,16 @@ function localCheng(name, value) {
 }
 
 function favoritesRender() {
-    const supFavorites = document.querySelector('#sup-favorites');
-    const supComparison = document.querySelector('#sup-comparison');
+    const supFavorites = document.querySelectorAll('#sup-favorites');
+    const supComparison = document.querySelectorAll('#sup-comparison');
     const addFavorites = document.querySelector('#add-favorites');
     const addComparison = document.querySelector('#add-comparison');
     let glcFav = favoritesRenderNologin('glcFav');
     let glcCompar = favoritesRenderNologin('glcCompar');
-    if (supFavorites) {
-        supFavorites.innerHTML = glcFav.length;
+    if (supFavorites.length) {
+        supFavorites.forEach((item) => {
+            item.innerHTML = glcFav.length;
+        });
         if (addFavorites) {
             if (glcFav.includes(addFavorites.dataset.postid)) {
                 addFavorites.classList.add('active');
@@ -303,8 +315,10 @@ function favoritesRender() {
             }
         }
     }
-    if (supComparison) {
-        supComparison.innerHTML = glcCompar.length;
+    if (supComparison.length) {
+        supComparison.forEach((item) => {
+            item.innerHTML = glcCompar.length;
+        });
         if (addComparison) {
             if (glcCompar.includes(addComparison.dataset.postid)) {
                 addComparison.classList.add('active');
