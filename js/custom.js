@@ -494,7 +494,6 @@ function sliderInit() {
     sliders.forEach((item) => {
         let sl = '.slider-'+item.id;
         sliderArchiveGlampings(sl);
-        console.dir(sl);
     });
 
 }
