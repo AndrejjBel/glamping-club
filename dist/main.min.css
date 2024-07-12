@@ -1932,9 +1932,7 @@ a.btn-back-to-home {
   border-radius: 12px;
   background: #FFFFFF;
   overflow: hidden; }
-  .glamping-item:hover img {
-    transform: scale(1.1); }
-  .glamping-item:hover button {
+  .glamping-item:hover button.btnvib {
     border: 1px solid var(--Primary-700, #3033D1);
     background: var(--Primary-700, #3033D1); }
   .glamping-item:hover .glamping-item__content__title {
@@ -1946,8 +1944,17 @@ a.btn-back-to-home {
     width: 100%;
     height: 100%;
     z-index: 2; }
+  .glamping-item__btn-add {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    z-index: 9;
+    width: 30px;
+    height: 30px;
+    padding: 8px; }
   .glamping-item__thumbnail {
-    overflow: hidden; }
+    overflow: hidden;
+    z-index: 4; }
     .glamping-item__thumbnail img {
       position: absolute;
       top: 0px;
@@ -2021,6 +2028,14 @@ a.btn-back-to-home {
   @media (max-width: 499px) {
     .archive-glampings .glampings-items.card .glamping-item {
       width: 100%; } }
+
+.swiper-pagination-bullet-active {
+  background: #FFFFFF; }
+
+.swiper-button-next, .swiper-button-prev {
+  color: #FFFFFF; }
+  .swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 22px; }
 
 .glcf-scroll {
   height: 82vh;

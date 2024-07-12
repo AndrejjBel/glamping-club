@@ -362,7 +362,7 @@ function register_single_glampings_metabox() {
 		'type' => 'textarea',
 	) );
 
-	// Варианты размещения
+	// Фото
 	$media_gallery = new_cmb2_box( array(
 		'id'           => 'media_gallery',
 		'title'        => esc_html__( 'Фото', 'glamping-club' ),

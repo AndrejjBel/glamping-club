@@ -300,31 +300,35 @@ function localCheng(name, value) {
 function favoritesRender() {
     const supFavorites = document.querySelectorAll('#sup-favorites');
     const supComparison = document.querySelectorAll('#sup-comparison');
-    const addFavorites = document.querySelector('#add-favorites');
-    const addComparison = document.querySelector('#add-comparison');
+    const addFavorites = document.querySelectorAll('#add-favorites');
+    const addComparison = document.querySelectorAll('#add-comparison');
     let glcFav = favoritesRenderNologin('glcFav');
     let glcCompar = favoritesRenderNologin('glcCompar');
     if (supFavorites.length) {
         supFavorites.forEach((item) => {
             item.innerHTML = glcFav.length;
         });
-        if (addFavorites) {
-            if (glcFav.includes(addFavorites.dataset.postid)) {
-                addFavorites.classList.add('active');
-                addFavorites.attributes.title.value = 'Удалить из избранного';
+    if (addFavorites.length) {
+        addFavorites.forEach((item) => {
+            if (glcFav.includes(item.dataset.postid)) {
+                item.classList.add('active');
+                item.attributes.title.value = 'Удалить из избранного';
             }
-        }
+        });
+    }
     }
     if (supComparison.length) {
         supComparison.forEach((item) => {
             item.innerHTML = glcCompar.length;
         });
-        if (addComparison) {
-            if (glcCompar.includes(addComparison.dataset.postid)) {
-                addComparison.classList.add('active');
-                addComparison.attributes.title.value = 'Удалить из сравнения';
+    if (addComparison.length) {
+        addComparison.forEach((item) => {
+            if (glcCompar.includes(item.dataset.postid)) {
+                item.classList.add('active');
+                item.attributes.title.value = 'Удалить из сравнения';
             }
-        }
+        });
+    }
     }
 }
 favoritesRender();
@@ -336,10 +340,6 @@ function favoritesRenderNologin(name) {
     if (glcFav) {
         glcFav_obj = glcFav.split(',');
     }
-    // else {
-    //     glcFav_obj = glcFav.split('');
-    // }
-    // console.dir(glcFav_obj);
     return glcFav_obj;
 }
 
@@ -429,14 +429,6 @@ function sliderNumber() {
         let sliderValue = slider.noUiSlider.get();
         minPriceInput.value = Math.ceil(sliderValue[0]);
         maxPriceInput.value = Math.ceil(sliderValue[1]);
-        // console.dir(sliderValue);
-
-        // contractSum.value = '$' +Math.round(sliderValue);
-        // rangeSliderHash.noUiSlider.set(sliderValue/+motherhash_ajax.cost_power);
-        // contractHash.innerText = (sliderValue/+motherhash_ajax.cost_power).toFixed(1) + ' TH/s';
-        // if (resultSumm) {
-        //     resultSumm.innerText = Math.round(sliderValue);
-        // }
     });
 
     slider.noUiSlider.on('end', function () {
@@ -482,3 +474,28 @@ function btnMapChange(btns) {
         btn.classList.remove('active');
     });
 }
+
+function sliderArchiveGlampings(elem) {
+    const mySl = new Swiper(elem, {
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+}
+
+function sliderInit() {
+    const sliders = document.querySelectorAll('.glamping-item');
+    if (!sliders.length) return;
+    sliders.forEach((item) => {
+        let sl = '.slider-'+item.id;
+        sliderArchiveGlampings(sl);
+        console.dir(sl);
+    });
+
+}
+sliderInit();

@@ -214,9 +214,11 @@
 <?php } ?>
 
 <?php
-// $meta_object = get_post_meta($post->ID, 'additionally_field');
+// $media = get_attached_media( 'image', $post->ID );
+// foreach ($media as $key => $value) {
+//     echo wp_get_attachment_image_url( $key, 'glamping-club-thumb' );
+//     echo '<br>';
+// }
 // echo '<pre>';
-// var_dump(filtr_options_render('type_options'));
+// var_dump(glamping_all_img());
 // echo '<pre>';
-
-// echo roundHalf(3.89);

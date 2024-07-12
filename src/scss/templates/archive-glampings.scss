@@ -131,11 +131,11 @@
     overflow: hidden;
 
     &:hover {
-        & img {
-            transform: scale($scale);
-        }
+        // & img {
+        //     transform: scale($scale);
+        // }
 
-        & button {
+        & button.btnvib {
             border: 1px solid var(--Primary-700, #3033D1);
             background: var(--Primary-700, #3033D1);
         }
@@ -154,8 +154,19 @@
         z-index: 2;
     }
 
+    &__btn-add {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        z-index: 9;
+        width: 30px;
+        height: 30px;
+        padding: 8px
+    }
+
     &__thumbnail {
         overflow: hidden;
+        z-index: 4;
 
         & img {
             position: absolute;
@@ -285,5 +296,17 @@
                 }
             }
         }
+    }
+}
+
+.swiper-pagination-bullet-active {
+    background: #FFFFFF;
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #FFFFFF;
+
+    &:after {
+        font-size: 22px;
     }
 }

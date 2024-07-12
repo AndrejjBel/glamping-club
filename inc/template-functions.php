@@ -51,12 +51,12 @@ function glamping_club_shortcode_page_compare() {
 }
 
 function glamping_single_thumbnail($post_id) {
-	$media = get_attached_media( 'image', $post_id );
+	$media = array_unique(glamping_all_img($post_id), SORT_REGULAR);
 	$i = 1;
 	echo '<div class="thumbnail-gallery__first">';
 	foreach ( $media as $img ) {
-		$url = wp_get_attachment_image_url( $img->ID, 'glamping-club-thumb' );
-		$url_full = wp_get_attachment_image_url( $img->ID, 'full' );
+		$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+		$url_full = wp_get_attachment_image_url( $img, 'full' );
 		if ($i == 1) {
 			echo '<a href="' . $url_full . '" class="item">';
 			echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
@@ -67,8 +67,8 @@ function glamping_single_thumbnail($post_id) {
 	$it = 0;
 	echo '<div class="thumbnail-gallery__two">';
 	foreach ( $media as $img ) {
-		$url = wp_get_attachment_image_url( $img->ID, 'medium' );
-		$url_full = wp_get_attachment_image_url( $img->ID, 'full' );
+		$url = wp_get_attachment_image_url( $img, 'medium' );
+		$url_full = wp_get_attachment_image_url( $img, 'full' );
 		if ($it > 0) {
 			echo '<a href="' . $url_full . '" class="item">';
 			echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
@@ -182,38 +182,48 @@ function get_accommodation_options() {
 		<div class="acc-options__item">
 			<div class="acc-options__item__content acc-option custom-scroll">
 				<?php echo $media; ?>
-				<div class="acc-option__title">
-					<?php echo $option['title']; ?>
-				</div>
+				<?php if (array_key_exists('title', $option)) { ?>
+					<div class="acc-option__title">
+						<?php echo $option['title']; ?>
+					</div>
+				<?php } ?>
 				<div class="acc-option__options">
-					<div class="acc-option__options__item">
-						<div class="acc-option__options__item__title">Площадь</div>
-						<div class="acc-option__options__item__value">
-							<?php echo $option['area']. 'м<sup>2</sup>.'; ?>
+					<?php if (array_key_exists('area', $option)) { ?>
+						<div class="acc-option__options__item">
+							<div class="acc-option__options__item__title">Площадь</div>
+							<div class="acc-option__options__item__value">
+								<?php echo $option['area']. 'м<sup>2</sup>.'; ?>
+							</div>
 						</div>
-					</div>
-					<div class="acc-option__options__item">
-						<div class="acc-option__options__item__title">Мест</div>
-						<div class="acc-option__options__item__value">
-							<?php echo $option['places']; ?>
+					<?php } ?>
+					<?php if (array_key_exists('places', $option)) { ?>
+						<div class="acc-option__options__item">
+							<div class="acc-option__options__item__title">Мест</div>
+							<div class="acc-option__options__item__value">
+								<?php echo $option['places']; ?>
+							</div>
 						</div>
-					</div>
-					<div class="acc-option__options__item">
-						<div class="acc-option__options__item__title">Стоимость</div>
-						<div class="acc-option__options__item__value">
-							<?php echo $option['price']. 'р.'; ?>
+					<?php } ?>
+					<?php if (array_key_exists('price', $option)) { ?>
+						<div class="acc-option__options__item">
+							<div class="acc-option__options__item__title">Стоимость</div>
+							<div class="acc-option__options__item__value">
+								<?php echo $option['price']. 'р.'; ?>
+							</div>
 						</div>
-					</div>
+					<?php } ?>
 				</div>
-				<div class="acc-option__description collapse-content">
-					<?php echo $option['description']; ?>
-				</div>
-				<div class="collapse-content-btn">
-		            <span>Развернуть</span>
-		            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-		                <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
-		            </svg>
-		        </div>
+				<?php if (array_key_exists('description', $option)) { ?>
+					<div class="acc-option__description collapse-content">
+						<?php echo $option['description']; ?>
+					</div>
+					<div class="collapse-content-btn">
+			            <span>Развернуть</span>
+			            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+			                <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+			            </svg>
+			        </div>
+				<?php } ?>
 
 				<div class="acc-option__facilities">
 					<div class="acc-option__facilities__title">
@@ -221,9 +231,15 @@ function get_accommodation_options() {
 					</div>
 					<div class="facilities">
 						<?php
-						glamping_icons_facilities_options($option['facilities_options_home'], 'В доме');
-						glamping_icons_facilities_options($option['facilities_options_bathroom'], 'В ванной');
-						glamping_icons_facilities_options($option['facilities_options_kitchen'], 'На кухне');
+						if (array_key_exists('facilities_options_home', $option)) {
+							glamping_icons_facilities_options($option['facilities_options_home'], 'В доме');
+						}
+						if (array_key_exists('facilities_options_bathroom', $option)) {
+							glamping_icons_facilities_options($option['facilities_options_bathroom'], 'В доме');
+						}
+						if (array_key_exists('facilities_options_kitchen', $option)) {
+							glamping_icons_facilities_options($option['facilities_options_kitchen'], 'В доме');
+						}
 						?>
 					</div>
 				</div>
@@ -566,6 +582,40 @@ function glamping_club_gl_thumbnail($size) {
 	// 	'alt'   => trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),
 	// );
 	the_post_thumbnail($size);
+}
+
+function glamping_all_img($post_id) {
+	$media_gallery = get_post_meta( $post_id, 'media_gallery', 1 );
+	$acc_options = get_post_meta( $post_id, 'acc_options', 1 );
+	$files = [];
+	foreach ($media_gallery as $key => $value) {
+		array_push($files, $key);
+	}
+	foreach ($acc_options as $key => $acc_option) {
+		foreach ($acc_option['media_gallery'] as $key => $value) {
+			array_push($files, $key);
+		}
+	}
+	if (has_post_thumbnail()) {
+		array_unshift($files, get_post_thumbnail_id());
+	}
+	return $files;
+}
+
+function glamping_club_gl_thumbnail_slider($post_id) {
+	// $media = get_attached_media( 'image', $post_id );
+	echo '<div id="slider-post-' . $post_id . '" class="swiper slider-post-' . $post_id . '">';
+    echo '<div class="swiper-wrapper">';
+	foreach ( glamping_all_img($post_id) as $key => $img ) {
+		$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+		$url_medium = wp_get_attachment_image_url( $img, 'medium' );
+		echo '<div class="swiper-slide"><img src="' . $url . '" alt="" loading="lazy" /></div>';
+	}
+	echo '</div>';
+	echo '<div class="swiper-button-next"></div>';
+    echo '<div class="swiper-button-prev"></div>';
+	echo '<div class="swiper-pagination"></div>';
+	echo '</div>';
 }
 
 function filtr_cookie_value($name='') {
