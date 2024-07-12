@@ -1315,7 +1315,7 @@ a.btn-back-to-home {
     box-shadow: var(--primary-bshadow);
     transition: all linear .3s; }
   .round-sup-red:hover svg path {
-    fill: #B42318; }
+    fill: var(--text-color); }
   .round-sup-red.active svg path {
     fill: #F04438; }
   .round-sup-red.active:hover svg path {

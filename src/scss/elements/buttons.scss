@@ -422,7 +422,7 @@ a.btn-back-to-home {
         // background: var(--color-primary);
 
         & svg path {
-            fill: #B42318;
+            fill: var(--text-color); //#B42318;
         }
     }
 
