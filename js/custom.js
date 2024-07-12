@@ -367,8 +367,8 @@ function mapRender() {
 			gridSize: 32,
 			clusterDisableClickZoom: true
 		});
-		objectManager.clusters.options.set({preset: 'islands#redClusterIcons'}); // , clusterIconColor: '#00ABAA'
-		objectManager.objects.options.set({preset: 'islands#greenMountainIcon'}); // , iconColor: '#00ABAA'
+		objectManager.clusters.options.set({preset: 'islands#redClusterIcons'}); //  , clusterIconColor: '#00ABAA'
+		objectManager.objects.options.set({preset: 'islands#darkGreenStretchyIcon'}); //  islands#greenMountainIcon, iconColor: '#00ABAA'
 		objectManager.add(geoJson);
 		map.geoObjects.add(objectManager);
 		map.setBounds(map.geoObjects.getBounds(),{checkZoomRange:true, zoomMargin:9});
@@ -396,7 +396,8 @@ function refreshObjects(elementId) {
     objectManager.objects.each(object => {
         const isActive = object.id === elementId;
         objectManager.objects.setObjectOptions(object.id, {
-            preset: isActive ? 'islands#redMountainIcon' : 'islands#greenMountainIcon'
+            preset: isActive ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon'
+            // iconColor: isActive ? 'islands#redMountainIcon' : 'islands#greenMountainIcon'
         })
     });
 }
@@ -404,7 +405,7 @@ function refreshObjects(elementId) {
 function backObjects() {
     objectManager.objects.each(object => {
         objectManager.objects.setObjectOptions(object.id, {
-            preset: 'islands#greenMountainIcon'
+            preset: 'islands#darkGreenStretchyIcon'
         })
     });
 }

@@ -712,11 +712,12 @@ function glampings_map_render() {
 				"id"		 			=> $post->ID,
 				"price" 			=> $post->glamping_price,
 				"balloonContentHeader"	=> $title,
-				"balloonContentBody"	=> '<span class=\"ymaps-2-1-79-balloon-content__header\">от ' . $post->glamping_price . 'р.</span> Адрес: ' . $address,
+				"balloonContentBody"	=> '<p class=\"ymaps-2-1-79-balloon-content__header\">от ' . $post->glamping_price . 'р.</p> Адрес: ' . $address,
 				"balloonContentFooter"	=> '<a href=\"'.$link.'\">Подробнее</a>',
 				"clusterCaption"		=> $title,
 				"link" 					=> $link,
 				"hintContent"			=> '<span>' . get_the_title( $post->ID ) . '</span>',
+				"iconContent"			=> number_format($post->glamping_price, 0, ',', ' '). 'р',
 				// "marker-color"			=> "#008887"
 			)
 		);
