@@ -576,11 +576,6 @@ function glamping_club_gl_thumbnail($size) {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;
 	}
-	// $default_attr = array(
-	// 	'src'   => $src,
-	// 	'class' => "attachment-$size",
-	// 	'alt'   => trim(strip_tags( $wp_postmeta->_wp_attachment_image_alt )),
-	// );
 	the_post_thumbnail($size);
 }
 
@@ -608,9 +603,10 @@ function glamping_all_img($post_id) {
 
 function glamping_club_gl_thumbnail_slider($post_id) {
 	// $media = get_attached_media( 'image', $post_id );
+	$media = array_unique(glamping_all_img($post_id));
 	echo '<div id="slider-post-' . $post_id . '" class="swiper slider-post-' . $post_id . '">';
     echo '<div class="swiper-wrapper">';
-	foreach ( glamping_all_img($post_id) as $key => $img ) {
+	foreach ( $media as $key => $img ) {
 		$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
 		$url_medium = wp_get_attachment_image_url( $img, 'medium' );
 		echo '<div class="swiper-slide"><img src="' . $url . '" alt="" loading="lazy" /></div>';
