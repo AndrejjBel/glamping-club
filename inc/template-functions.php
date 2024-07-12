@@ -588,12 +588,16 @@ function glamping_all_img($post_id) {
 	$media_gallery = get_post_meta( $post_id, 'media_gallery', 1 );
 	$acc_options = get_post_meta( $post_id, 'acc_options', 1 );
 	$files = [];
-	foreach ($media_gallery as $key => $value) {
-		array_push($files, $key);
-	}
-	foreach ($acc_options as $key => $acc_option) {
-		foreach ($acc_option['media_gallery'] as $key => $value) {
+	if ($media_gallery) {
+		foreach ($media_gallery as $key => $value) {
 			array_push($files, $key);
+		}
+	}
+	if ($acc_options) {
+		foreach ($acc_options as $key => $acc_option) {
+			foreach ($acc_option['media_gallery'] as $key => $value) {
+				array_push($files, $key);
+			}
 		}
 	}
 	if (has_post_thumbnail()) {
