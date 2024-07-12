@@ -1281,6 +1281,46 @@ a.btn-back-to-home {
       .round-sup.active:hover svg path {
         fill: var(--text-color-light); }
 
+.round-sup-red {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 12px;
+  border-radius: 50%;
+  background: var(--chalk); }
+  .round-sup-red svg {
+    width: 100%;
+    height: 100%; }
+    .round-sup-red svg path {
+      fill: var(--text-color-light); }
+  .round-sup-red sup {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 50%;
+    color: var(--white);
+    background: var(--color-primary);
+    border: 2px solid var(--white);
+    text-shadow: var(--primary-tshadow);
+    box-shadow: var(--primary-bshadow);
+    transition: all linear .3s; }
+  .round-sup-red:hover svg path {
+    fill: #B42318; }
+  .round-sup-red.active svg path {
+    fill: #F04438; }
+  .round-sup-red.active:hover svg path {
+    fill: #B42318; }
+
 .btn-group {
   display: flex;
   gap: 20px; }

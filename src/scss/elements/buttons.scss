@@ -378,6 +378,71 @@ a.btn-back-to-home {
     }
 }
 
+.round-sup-red {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    padding: 12px;
+    border-radius: 50%;
+    background: var(--chalk);
+
+    & svg {
+        width: 100%;
+        height: 100%;
+
+        & path {
+            fill: var(--text-color-light);
+        }
+    }
+
+    & sup {
+        position: absolute;
+        top: -20px;
+        right: -20px;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 12px;
+        line-height: 20px;
+        border-radius: 50%;
+        color: var(--white);
+        background: var(--color-primary);
+        border: 2px solid var(--white);
+        text-shadow: var(--primary-tshadow);
+        box-shadow: var(--primary-bshadow);
+        transition: all linear .3s;
+    }
+
+    &:hover {
+        // background: var(--color-primary);
+
+        & svg path {
+            fill: #B42318;
+        }
+    }
+
+    &.active {
+        // background: var(--color-primary);
+
+        & svg path {
+            fill: #F04438;
+        }
+
+        &:hover {
+            // background: var(--chalk);
+
+            & svg path {
+                fill: #B42318;
+            }
+        }
+    }
+}
+
 .btn-group {
     display: flex;
     gap: 20px;

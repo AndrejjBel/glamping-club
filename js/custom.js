@@ -218,7 +218,7 @@ const addFavCom = () => {
                 btn.classList.toggle('active');
                 if (btn.classList.contains('active')) {
                     btn.attributes.title.value = 'Удалить из избранного';
-                    console.dir(btn);
+                    // console.dir(btn);
                 } else {
                     btn.attributes.title.value = 'Добавить в избранное';
                 }
@@ -477,6 +477,7 @@ function btnMapChange(btns) {
 
 function sliderArchiveGlampings(elem) {
     const mySl = new Swiper(elem, {
+        loop: true,
         navigation: {
             nextEl: ".swiper-button-next",
             prevEl: ".swiper-button-prev",
