@@ -150,14 +150,14 @@
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <!-- <div class="filtr-item price">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">В доме</div>
             <div class="filtr-item__title__count"></div>
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll">
-            <?php filtr_options_render('facilities_options_home'); ?>
+            <?php //filtr_options_render('facilities_options_home'); ?>
         </ul>
     </div>
 
@@ -168,7 +168,7 @@
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll">
-            <?php filtr_options_render('facilities_options_bathroom'); ?>
+            <?php //filtr_options_render('facilities_options_bathroom'); ?>
         </ul>
     </div>
 
@@ -179,9 +179,9 @@
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll">
-            <?php filtr_options_render('facilities_options_kitchen'); ?>
+            <?php //filtr_options_render('facilities_options_kitchen'); ?>
         </ul>
-    </div>
+    </div> -->
 
     <div class="filtr-item price">
         <div class="filtr-item__title js-filtr-title">

@@ -708,6 +708,13 @@ function glampings_map_render() {
 			"type"		 => "Feature",
 			"id"		 => $post->ID,
 			"geometry"   => (object) array("type"=> "Point", "coordinates"=> $coord),
+			// "options"	 => (object) array(
+			// 	"iconLayout" => "default#imageWithContent",
+			// 	"iconImageHref" => '',
+			// 	"iconImageSize" => [80, 30],
+			// 	"iconImageOffset" => [-40, -30],
+			// 	"iconContent" => 123
+			// ),
 			"properties" => (object) array(
 				"id"		 			=> $post->ID,
 				"price" 			=> $post->glamping_price,
@@ -717,8 +724,14 @@ function glampings_map_render() {
 				"clusterCaption"		=> $title,
 				"link" 					=> $link,
 				"hintContent"			=> '<span>' . get_the_title( $post->ID ) . '</span>',
-				"iconContent"			=> number_format($post->glamping_price, 0, ',', ' '). 'р',
+				"iconContent"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
+				"iconContentDef"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
+				"iconContentHover"			=> '<span id="' . $post->ID . '" class="glc-icon-content active">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
 				// "marker-color"			=> "#008887"
+				// "iconLayout" => "default#imageWithContent",
+				// "iconImageHref" => '',
+				// "iconImageSize" => [80, 30],
+				// "iconImageOffset" => [-40, -30],
 			)
 		);
 	}

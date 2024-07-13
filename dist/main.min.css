@@ -2077,6 +2077,35 @@ a.btn-back-to-home {
   .swiper-button-next:after, .swiper-button-prev:after {
     font-size: 22px; }
 
+.glc-icon-content {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 80px;
+  height: 24px;
+  background: #FFFFFF;
+  border-radius: 12px;
+  font-weight: 600; }
+  .glc-icon-content:before {
+    content: "";
+    border: solid transparent;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    border-top-color: #fff;
+    border-width: 6px;
+    margin-left: -6px; }
+  .glc-icon-content.active {
+    background: var(--color-primary);
+    color: #fff; }
+    .glc-icon-content.active:before {
+      border-top-color: var(--color-primary); }
+
+.glamping-item:hover .glc-icon-content {
+  background: var(--color-primary);
+  color: #fff; }
+
 .glcf-scroll {
   height: 82vh;
   overflow: auto;

@@ -367,8 +367,16 @@ function mapRender() {
 			gridSize: 32,
 			clusterDisableClickZoom: true
 		});
-		objectManager.clusters.options.set({preset: 'islands#redClusterIcons'}); //  , clusterIconColor: '#00ABAA'
-		objectManager.objects.options.set({preset: 'islands#darkGreenStretchyIcon'}); //  islands#greenMountainIcon, iconColor: '#00ABAA'
+		objectManager.clusters.options.set({preset: 'islands#darkGreenClusterIcons'}); //  , clusterIconColor: '#00ABAA'
+		objectManager.objects.options.set(
+            {
+                iconLayout: 'default#imageWithContent',
+                iconImageHref: '',
+                iconImageSize: [80, 24],
+                iconImageOffset: [-40, -30]
+            },
+            // {preset: 'islands#darkGreenStretchyIcon'}
+        ); //  islands#greenMountainIcon, iconColor: '#00ABAA'
 		objectManager.add(geoJson);
 		map.geoObjects.add(objectManager);
 		map.setBounds(map.geoObjects.getBounds(),{checkZoomRange:true, zoomMargin:9});
@@ -377,18 +385,13 @@ function mapRender() {
 			let geoObject = objectManager.objects.getById(id);
 			// console.dir(geoObject.properties.id);
 		});
-	};
+	}
 
-	const glPosts = document.querySelectorAll('.glamping-item');
-	glPosts.forEach((post) => {
-		let postId = post.id.split('-')[1];
-		post.addEventListener('mouseenter', function() {
-			refreshObjects(Number(postId));
-		});
-		post.addEventListener('mouseleave', function() {
-			backObjects();
-		});
-	});
+    // setTimeout(function(){
+    //     markersHover();
+    // }, 1000);
+
+    markersHover();
 }
 mapRender();
 
@@ -397,7 +400,6 @@ function refreshObjects(elementId) {
         const isActive = object.id === elementId;
         objectManager.objects.setObjectOptions(object.id, {
             preset: isActive ? 'islands#redStretchyIcon' : 'islands#darkGreenStretchyIcon'
-            // iconColor: isActive ? 'islands#redMountainIcon' : 'islands#greenMountainIcon'
         })
     });
 }
@@ -409,6 +411,32 @@ function backObjects() {
         })
     });
 }
+
+function markersHover() {
+    const glPosts = document.querySelectorAll('.glamping-item');
+	glPosts.forEach((post) => {
+		let postId = post.id.split('-')[1];
+		post.addEventListener('mouseenter', function() {
+            const markers = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
+            markers.forEach((item) => {
+                if (item.id == postId) {
+                    item.classList.add('active');
+                }
+            });
+
+            // console.dir(markers);
+		});
+		post.addEventListener('mouseleave', function() {
+            const markers = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
+            markers.forEach((item) => {
+                item.classList.remove('active');
+            });
+		});
+	});
+}
+// setTimeout(function(){
+//     markersHover();
+// }, 1000);
 
 function sliderNumber() {
     const slider = document.getElementById('glc-slider');
