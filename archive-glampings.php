@@ -16,7 +16,7 @@ get_header();
 				<?php get_template_part( 'template-parts/glampings/archive-filtr' ); ?>
 			</div>
 			<?php if ( have_posts() ) : ?>
-			<div class="glampings-items<?php echo template_cookie_value()['card_list']; ?>">
+			<div class="glampings-items<?php echo template_cookie_value()['card_list']; ?>  custom-scroll">
 				<?php
 				while ( have_posts() ) :
 					the_post();
