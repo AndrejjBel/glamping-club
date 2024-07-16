@@ -40,6 +40,8 @@
     &.list {
         flex-direction: column;
         overflow: auto;
+        flex-wrap: nowrap;
+        height: 82vh;
 
         & .glamping-item {
 

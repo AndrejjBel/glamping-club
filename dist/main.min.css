@@ -1917,7 +1917,9 @@ a.btn-back-to-home {
   width: 100%; }
   .glampings-items.list {
     flex-direction: column;
-    overflow: auto; }
+    overflow: auto;
+    flex-wrap: nowrap;
+    height: 82vh; }
     .glampings-items.list .glamping-item__thumbnail {
       position: relative;
       width: 210px;
