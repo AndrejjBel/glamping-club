@@ -2102,7 +2102,8 @@ a.btn-back-to-home {
     margin-left: -6px; }
   .glc-icon-content.active {
     background: var(--color-primary);
-    color: #fff; }
+    color: #fff;
+    z-index: 99; }
     .glc-icon-content.active:before {
       border-top-color: var(--color-primary); }
 
