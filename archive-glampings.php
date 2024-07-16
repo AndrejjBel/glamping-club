@@ -24,9 +24,10 @@ get_header();
 
 				endwhile;
 				?>
+				<div class="js-more-wrap"></div>
 			</div>
 				<?php
-				the_posts_navigation();
+				// the_posts_navigation();
 			else :
 				get_template_part( 'template-parts/content', 'none' );
 			endif;
