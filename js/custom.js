@@ -421,6 +421,7 @@ function markersHover() {
             markers.forEach((item) => {
                 if (item.id == postId) {
                     item.classList.add('active');
+                    item.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.zIndex = '999';
                 }
             });
 
@@ -430,6 +431,7 @@ function markersHover() {
             const markers = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
             markers.forEach((item) => {
                 item.classList.remove('active');
+                item.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.zIndex = '';
             });
 		});
 	});
