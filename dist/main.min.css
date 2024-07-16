@@ -1916,7 +1916,8 @@ a.btn-back-to-home {
   flex-wrap: wrap;
   width: 100%; }
   .glampings-items.list {
-    flex-direction: column; }
+    flex-direction: column;
+    overflow: auto; }
     .glampings-items.list .glamping-item__thumbnail {
       position: relative;
       width: 210px;
@@ -1968,6 +1969,7 @@ a.btn-back-to-home {
 
 .glamping-item {
   position: relative;
+  flex: none;
   display: flex;
   border-radius: 12px;
   background: #FFFFFF;

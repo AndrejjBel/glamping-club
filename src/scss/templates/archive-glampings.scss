@@ -39,6 +39,7 @@
 
     &.list {
         flex-direction: column;
+        overflow: auto;
 
         & .glamping-item {
 
@@ -125,6 +126,7 @@
 
 .glamping-item {
     position: relative;
+    flex: none;
     display: flex;
     border-radius: $border-radius-single;
     background: #FFFFFF;
