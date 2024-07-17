@@ -21,31 +21,33 @@ function conditionalFiles() {
 conditionalFiles();
 
 function glamping_recommended_list_save() {
-    const glampingRecommendedInput = document.querySelector('input#glamping_recommended_list');
-    if (!glampingRecommendedInput) return;
-    glampingRecommendedInput.addEventListener('change', function () {
-        let formData = new FormData();
-        formData.append('action', 'glamping_meta_update');
-        formData.append('post_id', glampingRecommendedInput.dataset.glamp);
-        formData.append('post_meta', 'glamping_recommended');
-        formData.append('meta_value', glampingRecommendedInput.checked);
+    const glampingRecommendedInputs = document.querySelectorAll('input.glamping_recommended_list');
+    if (!glampingRecommendedInputs.length) return;
+    glampingRecommendedInputs.forEach((input) => {
+        input.addEventListener('change', function () {
+            let formData = new FormData();
+            formData.append('action', 'glamping_meta_update');
+            formData.append('post_id', input.dataset.glamp);
+            formData.append('post_meta', 'glamping_recommended');
+            formData.append('meta_value', input.checked);
 
-        jQuery(document).ready( function($){
-            $.ajax({
-                url: ajaxurl,
-                method: 'post',
-                processData: false,
-                contentType: false,
-                data: formData,
-                beforeSend: function () {
-                    // resultSuccess.innerHTML = `<p class="color-green fs-20 mt40">${cuccessText}</p>`;
-                },
-                success: function(data){
-                    console.dir(data);
-                },
-                error: function (jqXHR, text, error) {
-                    console.log('Ошибка отправки.');
-                }
+            jQuery(document).ready( function($){
+                $.ajax({
+                    url: ajaxurl,
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    beforeSend: function () {
+                        // resultSuccess.innerHTML = `<p class="color-green fs-20 mt40">${cuccessText}</p>`;
+                    },
+                    success: function(data){
+                        console.dir(data);
+                    },
+                    error: function (jqXHR, text, error) {
+                        console.log('Ошибка отправки.');
+                    }
+                });
             });
         });
     });

@@ -492,6 +492,6 @@ function glamping_recommended_display( $field_args, $field ) {
 	if ($field->escaped_value() == 'yes') {
 		$chec_value = ' checked';
 	}
-	echo '<input type="checkbox" class="cmb2-option-cust" name="glamping_recommended_list" id="glamping_recommended_list" data-glamp="' . $field->object_id . '" ' . $chec_value . '>
-	<label for="glamping_recommended_list">Рекомендовать</label>';
+	echo '<input type="checkbox" class="cmb2-option-cust glamping_recommended_list" name="glamping_recommended_list" id="glamping_recommended_list-' . $field->object_id . '" data-glamp="' . $field->object_id . '" ' . $chec_value . '>
+	<label for="glamping_recommended_list-' . $field->object_id . '">Рекомендовать</label>';
 }
