@@ -29,7 +29,7 @@ function register_single_glampings_metabox() {
 	$single_glampings->add_field( array(
 		'name' => esc_html__( 'Тип места', 'glamping-club' ),
 		'id'   => 'glamping_type',
-		'type'    => 'radio_inline',
+		'type'    => 'multicheck_inline',
 		'options_cb' => 'type_options',
 		// 'options' => array(
 		// 	'glamping' => __( 'Глэмпинг', 'glamping-club' ),
