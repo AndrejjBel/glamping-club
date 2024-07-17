@@ -17,7 +17,7 @@ const locationsArchive = (glempAll) => {
     });
 
     if (locObj.length) {
-        let count = glempAll.filter(elem => elem.location_id == item);
+        let count = glempAll.filter(elem => elem.location_id == item.location_id);
         regionItem.children[1].innerHTML = '';
         locObj.forEach((item) => {
             regionItem.children[1].insertAdjacentHTML(
