@@ -358,7 +358,7 @@ function mapRender() {
     ymaps.ready(init);
 	function init() {
         var map;
-		var geoJson = JSON.parse(glamping_club_ajax.glAll);
+		var geoJson = JSON.parse(glamping_club_ajax.glAllMap);
 		var zoomNum = (glamping_club_ajax.yand_zoom) ? glamping_club_ajax.yand_zoom : 12;
 		map = new ymaps.Map('mapYandex', {center:[54.9924, 73.3686], zoom:zoomNum, controls: ['zoomControl',  /*'fullscreenControl'*/]}),
 		map.behaviors.disable(['scrollZoom']);

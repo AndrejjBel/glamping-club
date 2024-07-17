@@ -1,10 +1,5 @@
 <div class="glampings-filtr-items">
-    <div class="filtr-item price">
-        <!-- <div class="filtr-item__title js-filtr-title">
-            <div class="filtr-item__title__text">Тип места</div>
-            <div class="filtr-item__title__count"></div>
-        </div> -->
-
+    <div class="filtr-item">
         <div class="filtr-item__options btn-group pad12 js-btn-map">
             <button id="mapClose" class="secondary fs12 w100<?php echo template_cookie_value()['btn_close']; ?>" type="button" name="button">Скрыть карту</button>
             <button id="mapVision" class="secondary fs12 w100<?php echo template_cookie_value()['btn_vision']; ?>" type="button" name="button">На карте</button>
@@ -42,9 +37,9 @@
     </div>
 
     <div class="filtr-item region">
-        <div class="filtr-item__title js-filtr-title">
+        <div class="filtr-item__title">
             <div class="filtr-item__title__text">Регионы</div>
-            <div class="filtr-item__title__count"></div>
+            <sup class="filtr-item__title__count"></sup>
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll">
@@ -64,9 +59,9 @@
     </div>
 
     <div class="filtr-item price">
-        <div class="filtr-item__title js-filtr-title">
+        <div class="filtr-item__title">
             <div class="filtr-item__title__text">Цена</div>
-            <div class="filtr-item__title__count"></div>
+            <sup class="filtr-item__title__count"></sup>
         </div>
 
         <div class="filtr-item__inputs">
@@ -84,10 +79,10 @@
         </div>
     </div>
 
-    <div class="filtr-item price">
-        <div class="filtr-item__title js-filtr-title">
+    <div class="filtr-item type">
+        <div class="filtr-item__title">
             <div class="filtr-item__title__text">Тип места</div>
-            <div class="filtr-item__title__count"></div>
+            <sup class="filtr-item__title__count"></sup>
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll">
@@ -95,35 +90,41 @@
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <div class="filtr-item allocation">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">Тип размещения</div>
-            <div class="filtr-item__title__count"></div>
+            <sup class="filtr-item__title__count"></sup>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+            </svg>
         </div>
 
-        <ul class="filtr-item__options item-options-checkbox custom-scroll">
+        <ul class="filtr-item__options item-options-checkbox custom-scroll select">
             <?php filtr_options_render('allocation_options'); ?>
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <div class="filtr-item working">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">Режим работы</div>
-            <div class="filtr-item__title__count"></div>
+            <sup class="filtr-item__title__count"></sup>
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+            </svg>
         </div>
 
-        <ul class="filtr-item__options item-options-checkbox custom-scroll">
+        <ul class="filtr-item__options item-options-checkbox custom-scroll select">
             <?php filtr_options_render('working_mode_seasons'); ?>
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <div class="filtr-item nature">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">Окружение</div>
+            <sup class="filtr-item__title__count"></sup>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
             </svg>
-            <!-- <div class="filtr-item__title__count"></div> -->
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll select">
@@ -131,13 +132,13 @@
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <div class="filtr-item facilities_general">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">В глэмпинге</div>
+            <sup class="filtr-item__title__count"></sup>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
             </svg>
-            <!-- <div class="filtr-item__title__count"></div> -->
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll select">
@@ -145,13 +146,13 @@
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <div class="filtr-item children">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">Дети</div>
+            <sup class="filtr-item__title__count"></sup>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
             </svg>
-            <!-- <div class="filtr-item__title__count"></div> -->
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll select">
@@ -192,13 +193,13 @@
         </ul>
     </div> -->
 
-    <div class="filtr-item price">
+    <div class="filtr-item entertainment">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">Развлечения</div>
+            <sup class="filtr-item__title__count"></sup>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
             </svg>
-            <!-- <div class="filtr-item__title__count"></div> -->
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll select">
@@ -206,13 +207,13 @@
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <div class="filtr-item territory">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">На территории</div>
+            <sup class="filtr-item__title__count"></sup>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
             </svg>
-            <!-- <div class="filtr-item__title__count"></div> -->
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll select">
@@ -220,13 +221,13 @@
         </ul>
     </div>
 
-    <div class="filtr-item price">
+    <div class="filtr-item safety">
         <div class="filtr-item__title js-filtr-title">
             <div class="filtr-item__title__text">Безопасность</div>
+            <sup class="filtr-item__title__count"></sup>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
             </svg>
-            <!-- <div class="filtr-item__title__count"></div> -->
         </div>
 
         <ul class="filtr-item__options item-options-checkbox custom-scroll select">

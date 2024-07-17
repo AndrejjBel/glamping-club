@@ -220,5 +220,5 @@
 //     echo '<br>';
 // }
 // echo '<pre>';
-// var_dump(glamping_all_img());
+// var_dump(glamping_club_result_render());
 // echo '<pre>';

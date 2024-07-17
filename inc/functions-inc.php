@@ -29,7 +29,9 @@ function glamping_club_body_class_add( $classes ) {
 add_action( 'wp_enqueue_scripts', 'glamping_club_main_scripts_old', 99 );
 function glamping_club_main_scripts_old() {
     global $user_ID;
-    $glempings = glampings_map_render();
+    $glempings = get_option('glampings_obj');
+    $glempings_f = glamping_club_result_render();
+    $glempings_map = glampings_map_render();
     // if( is_front_page() ){
     //     $glempings = tripinglamp_home_location_list_json();
     // }
@@ -49,7 +51,8 @@ function glamping_club_main_scripts_old() {
         'user_id' => $user_ID,
         'marker' => bin2hex('current_user-' . $user_ID),
         'yand_zoom' => $yand_zoom,
-        'glAll' => $glempings
+        'glAll' => $glempings,
+        'glAllMap' => $glempings_map
     ];
     // css
     $theme_option = get_option( 'glc_options' );
@@ -134,6 +137,7 @@ require get_template_directory() . '/functions/cmb-post-meta.php';
 require get_template_directory() . '/functions/glampings-options.php';
 require get_template_directory() . '/functions/template-functions.php';
 require get_template_directory() . '/functions/postviews.php';
+require get_template_directory() . '/functions/gl-json.php';
 
 require get_template_directory() . '/functions/account/functions-acc.php';
 require get_template_directory() . '/functions/account/inc/shortcodes.php';

@@ -9,15 +9,15 @@ const filtrOptionsVision = () => {
         });
     });
 
-    document.addEventListener( 'click', (e) => {
-        filtrTitle.forEach((item) => {
-            const itemNo = e.composedPath().includes(item);
-            if (!itemNo) {
-                item.nextElementSibling.classList.remove('active');
-                if (item.children[1])  item.children[1].classList.remove('active');
-            }
-        });
-    });
+    // document.addEventListener( 'click', (e) => {
+    //     filtrTitle.forEach((item) => {
+    //         const itemNo = e.composedPath().includes(item);
+    //         if (!itemNo) {
+    //             item.nextElementSibling.classList.remove('active');
+    //             if (item.children[1])  item.children[1].classList.remove('active');
+    //         }
+    //     });
+    // });
 
     document.addEventListener('keydown', function(e) {
         if( e.keyCode == 27 ) {
@@ -32,7 +32,7 @@ const filtrOptionsVision = () => {
         let filtrOptions = item.querySelectorAll('.filtr-option');
         filtrOptions.forEach((elem) => {
             elem.addEventListener('click', (e) => {
-                console.dir(elem.dataset.value);
+                // console.dir(elem.dataset.value);
                 elem.parentElement.previousElementSibling.children[0].innerText = e.target.innerText;
                 optionsChecked(filtrOptions);
                 elem.children[1].classList.add('active');
