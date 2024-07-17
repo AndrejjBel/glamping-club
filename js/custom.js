@@ -530,3 +530,14 @@ function sliderInit() {
 
 }
 sliderInit();
+
+let arr = JSON.parse(glamping_club_ajax.glAll);
+console.dir(arr);
+let res = arr.filter(function(elem) {
+	if ([5, 6].includes(elem.location_id)) {
+		return true;
+	} else {
+		return false;
+	}
+});
+console.dir(res);
