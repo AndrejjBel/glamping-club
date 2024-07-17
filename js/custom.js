@@ -365,7 +365,7 @@ function mapRender() {
 		objectManager = new ymaps.ObjectManager({
 			clusterize: true,
 			gridSize: 32,
-			clusterDisableClickZoom: true
+			// clusterDisableClickZoom: true
 		});
 		objectManager.clusters.options.set({preset: 'islands#darkGreenClusterIcons', clusterIconColor: '#1921B1'}); //  , clusterIconColor: '#00ABAA'
 		objectManager.objects.options.set(
