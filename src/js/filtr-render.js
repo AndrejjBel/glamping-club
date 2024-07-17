@@ -17,6 +17,7 @@ const locationsArchive = (glempAll) => {
     });
 
     if (locObj.length) {
+        let count = glempAll.filter(elem => elem.location_id == item);
         regionItem.children[1].innerHTML = '';
         locObj.forEach((item) => {
             regionItem.children[1].insertAdjacentHTML(
@@ -30,7 +31,7 @@ const locationsArchive = (glempAll) => {
                             </svg>
                         </span>
                         <span class="name">${item.location}</span>
-                        <span class="count">1</span>
+                        <span class="count">${count.length}</span>
                     </label>
                 </li>`
             )
@@ -64,7 +65,7 @@ const filtrTypeArchive = (glempAll) => {
             } else if (item == 'private_sector') {
                 itemName = 'Частный сектор';
             }
-            let res = glempAll.filter(elem => elem.type == item);
+            let count = glempAll.filter(elem => elem.type == item);
             regionItem.children[1].insertAdjacentHTML(
                 "beforeend",
                 `<li>
@@ -76,7 +77,7 @@ const filtrTypeArchive = (glempAll) => {
                             </svg>
                         </span>
                         <span class="name">${itemName}</span>
-                        <span class="count">${res.length}</span>
+                        <span class="count">${count.length}</span>
                     </label>
                     <span></span>
                 </li>`
