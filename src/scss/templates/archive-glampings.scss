@@ -322,9 +322,10 @@
     justify-content: center;
     width: 80px;
     height: 24px;
-    background: #FFFFFF;
+    background: #FFFFFF; //var(--color-svg-form);
     border-radius: 12px;
     font-weight: 600;
+    // color: var(--color-primary);
 
     &:before {
     	content: "";
@@ -332,7 +333,7 @@
     	position: absolute;
      	top: 100%;
     	left: 50%;
-    	border-top-color: #fff;
+    	border-top-color: #FFFFFF; //var(--color-svg-form);
     	border-width: 6px;
     	margin-left: -6px;
     }
