@@ -36,24 +36,10 @@ const locationsArchive = (glempAll) => {
             )
         });
     }
-
-    // let locationItems = locationsContent.querySelectorAll('li')
-    // let itemDiv = locationsContent.querySelector('ul')
-    // renderFiltrItems(locObj, itemDiv);
-    // filtrItemsSearch(locationList, locObj, itemDiv);
-    // let itemDivLi = document.querySelectorAll('.filtr__item.locations .filtr__item__content li')
-    // if ( lcSubmit ) {
-    //     lcSubmit.addEventListener('click', (e) => {
-    //         let lsLocations_obj = localStorage.getItem('locations')
-    //         let coocLocations_obj = ''
-    //         locationsContent.classList.remove('active')
-    //         locationsBtn.children[2].classList.toggle('active')
-    //     })
-    // }
 }
 locationsArchive(JSON.parse(glamping_club_ajax.glAll));
 
-const filtrItemArchive = (glempAll) => {
+const filtrTypeArchive = (glempAll) => {
     const regionItem = document.querySelector('.filtr-item.type');
     if (!regionItem) return;
     let typObj = [];
@@ -78,6 +64,7 @@ const filtrItemArchive = (glempAll) => {
             } else if (item == 'private_sector') {
                 itemName = 'Частный сектор';
             }
+            let res = glempAll.filter(elem => elem.type == item);
             regionItem.children[1].insertAdjacentHTML(
                 "beforeend",
                 `<li>
@@ -89,7 +76,7 @@ const filtrItemArchive = (glempAll) => {
                             </svg>
                         </span>
                         <span class="name">${itemName}</span>
-                        <span class="count">1</span>
+                        <span class="count">${res.length}</span>
                     </label>
                     <span></span>
                 </li>`
@@ -97,7 +84,7 @@ const filtrItemArchive = (glempAll) => {
         });
     }
 }
-filtrItemArchive(JSON.parse(glamping_club_ajax.glAll));
+filtrTypeArchive(JSON.parse(glamping_club_ajax.glAll));
 
 function removeDuplicates(arr) {
   const locationsById = ((
@@ -119,7 +106,7 @@ function itemsChange() {
         let inputs = filtrItems.querySelectorAll('input');
         let input = event.target.closest('input');
         if (input) {
-            console.dir(itemsVal(inputs));            
+            console.dir(itemsVal(inputs));
         }
     });
 }
@@ -133,6 +120,15 @@ function itemsVal(inputs) {
         }
     });
     return inputChecked;
+}
+
+function countOption(arr) {
+    let count = arr.filter(function(elem) {
+    	if ([5, 6].includes(elem.location_id)) {
+    		return true;
+    	}
+    });
+    return count;
 }
 
 function makeUniq(arr) { return [...new Set(arr)]; }
