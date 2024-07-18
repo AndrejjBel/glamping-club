@@ -1914,7 +1914,8 @@ a.btn-back-to-home {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
-  width: calc(100% - 288px); }
+  width: calc(100% - 288px);
+  padding-right: 10px; }
   @media (max-width: 1199px) {
     .glampings-items {
       width: calc(100% - 272px); } }
