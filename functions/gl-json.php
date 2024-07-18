@@ -34,6 +34,12 @@ function glamping_club_result_render($location=0) {
         $address = get_additionally_meta('address');
         $coord = get_additionally_meta('coordinates');
         $post_date = get_the_date('U', $post->ID);
+        $media = array_unique(glamping_all_img($post->ID));
+        $media_urls = [];
+        foreach ( $media as $img ) {
+    		$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+            $media_urls[] = $url;
+    	}
         $glampings[] = [
             'id' => $post->ID,
             'post_date' => $post_date,
@@ -56,7 +62,9 @@ function glamping_club_result_render($location=0) {
             'thumbnail_url' => $thumbnail_url,
             'location' => $cur_terms[0]->name,
             'location_id' => $cur_terms[0]->term_id,
-            'location_slug' => $cur_terms[0]->slug
+            'location_slug' => $cur_terms[0]->slug,
+            'media' => $media,
+            'media_urls' => $media_urls
         ];
     }
     wp_reset_postdata();

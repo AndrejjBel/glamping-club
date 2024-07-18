@@ -206,19 +206,19 @@ collapseViews();
 const addFavCom = () => {
     const favoritesBtns = document.querySelectorAll('#add-favorites');
     const comparisonBtns = document.querySelectorAll('#add-comparison');
+    const singleGlampings = document.querySelector('.single-glampings');
+    if (!singleGlampings) return;
     if (favoritesBtns.length) {
         const supFavorites = document.querySelectorAll('#sup-favorites');
         favoritesBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 let glcFavCount = localCheng('glcFav', btn.dataset.postid);
-                // supFavorites.innerHTML = glcFavCount;
                 supFavorites.forEach((item) => {
                     item.innerHTML = glcFavCount;
                 });
                 btn.classList.toggle('active');
                 if (btn.classList.contains('active')) {
                     btn.attributes.title.value = 'Удалить из избранного';
-                    // console.dir(btn);
                 } else {
                     btn.attributes.title.value = 'Добавить в избранное';
                 }
@@ -230,14 +230,12 @@ const addFavCom = () => {
         comparisonBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 let glcComparCount = localCheng('glcCompar', btn.dataset.postid);
-                // supComparison.innerHTML = glcComparCount;
                 supComparison.forEach((item) => {
                     item.innerHTML = glcComparCount;
                 });
                 btn.classList.toggle('active');
                 if (btn.classList.contains('active')) {
                     btn.attributes.title.value = 'Удалить из сравнения';
-                    console.dir(btn);
                 } else {
                     btn.attributes.title.value = 'Добавить к сравнению';
                 }
@@ -277,6 +275,32 @@ const deleteFavCom = () => {
 }
 deleteFavCom();
 
+function buttonsFavChange() {
+    const glampingsItems = document.querySelector('.glampings-items');
+    const singleGlampings = document.querySelector('.single-glampings');
+    if (!glampingsItems) return;
+    const supFavorites = document.querySelectorAll('#sup-favorites');
+    glampingsItems.addEventListener('click', function(event) {
+        let btns = glampingsItems.querySelectorAll('button');
+        let btn = event.target.closest('button');
+        if (btn) {
+            if (btn.id == 'add-favorites') {
+                let glcFavCount = localCheng('glcFav', btn.dataset.postid);
+                supFavorites.forEach((item) => {
+                    item.innerHTML = glcFavCount;
+                });
+                btn.classList.toggle('active');
+                if (btn.classList.contains('active')) {
+                    btn.attributes.title.value = 'Удалить из избранного';
+                } else {
+                    btn.attributes.title.value = 'Добавить в избранное';
+                }
+            }
+        }
+    });
+}
+buttonsFavChange();
+
 function localCheng(name, value) {
     let ls_obj = [];
     if ( Cookies.get(name) ) { // localStorage.getItem(name)
@@ -308,33 +332,32 @@ function favoritesRender() {
         supFavorites.forEach((item) => {
             item.innerHTML = glcFav.length;
         });
-    if (addFavorites.length) {
-        addFavorites.forEach((item) => {
-            if (glcFav.includes(item.dataset.postid)) {
-                item.classList.add('active');
-                item.attributes.title.value = 'Удалить из избранного';
-            }
-        });
-    }
+        if (addFavorites.length) {
+            addFavorites.forEach((item) => {
+                if (glcFav.includes(item.dataset.postid)) {
+                    item.classList.add('active');
+                    item.attributes.title.value = 'Удалить из избранного';
+                }
+            });
+        }
     }
     if (supComparison.length) {
         supComparison.forEach((item) => {
             item.innerHTML = glcCompar.length;
         });
-    if (addComparison.length) {
-        addComparison.forEach((item) => {
-            if (glcCompar.includes(item.dataset.postid)) {
-                item.classList.add('active');
-                item.attributes.title.value = 'Удалить из сравнения';
-            }
-        });
-    }
+        if (addComparison.length) {
+            addComparison.forEach((item) => {
+                if (glcCompar.includes(item.dataset.postid)) {
+                    item.classList.add('active');
+                    item.attributes.title.value = 'Удалить из сравнения';
+                }
+            });
+        }
     }
 }
 favoritesRender();
 
 function favoritesRenderNologin(name) {
-    // const glcFav = localStorage.getItem('glcFav');
     const glcFav = Cookies.get(name);
     let glcFav_obj = [];
     if (glcFav) {
@@ -506,27 +529,31 @@ function btnMapChange(btns) {
     });
 }
 
-function sliderArchiveGlampings(elem) {
-    const mySl = new Swiper(elem, {
-        loop: true,
-        navigation: {
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-            el: ".swiper-pagination",
-            clickable: true,
-        },
-    });
-}
+// function sliderArchiveGlampings(elem) {
+//     const mySl = new Swiper(elem, {
+//         loop: true,
+//         navigation: {
+//             nextEl: ".swiper-button-next",
+//             prevEl: ".swiper-button-prev",
+//         },
+//         pagination: {
+//             el: ".swiper-pagination",
+//             clickable: true,
+//         },
+//     });
+// }
+//
+// function sliderInit() {
+//     const sliders = document.querySelectorAll('.glamping-item');
+//     if (!sliders.length) return;
+//     sliders.forEach((item) => {
+//         let sl = '.slider-'+item.id;
+//         sliderArchiveGlampings(sl);
+//     });
+//
+// }
+// sliderInit();
 
-function sliderInit() {
-    const sliders = document.querySelectorAll('.glamping-item');
-    if (!sliders.length) return;
-    sliders.forEach((item) => {
-        let sl = '.slider-'+item.id;
-        sliderArchiveGlampings(sl);
-    });
+console.dir(JSON.parse(glamping_club_ajax.glAll));
 
-}
-sliderInit();
+// console.dir(Intl.NumberFormat('ru-RU', {'currency': 'RUB', style:"currency", minimumFractionDigits:0, maximumFractionDigits:0}).format(12333));

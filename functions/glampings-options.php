@@ -163,10 +163,10 @@ function territory_options() {
 
 function type_options() {
     $options = [
-        'glamping' => 'Глэмпинг',
-        'eco_hotel' => 'Эко-отель',
-        'camp_site' => 'Турбаза',
-        'private_sector' => 'Частный сектор',
+        'Глэмпинг' => 'Глэмпинг',
+        'Эко-отель' => 'Эко-отель',
+        'Турбаза' => 'Турбаза',
+        'Частный сектор' => 'Частный сектор',
     ];
     return $options;
 }

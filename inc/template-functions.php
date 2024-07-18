@@ -604,7 +604,6 @@ function glamping_all_img($post_id) {
 }
 
 function glamping_club_gl_thumbnail_slider($post_id) {
-	// $media = get_attached_media( 'image', $post_id );
 	$media = array_unique(glamping_all_img($post_id));
 	echo '<div id="slider-post-' . $post_id . '" class="swiper slider-post-' . $post_id . '">';
     echo '<div class="swiper-wrapper">';

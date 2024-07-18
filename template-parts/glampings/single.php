@@ -39,7 +39,7 @@
         </div>
         <div class="characteristics-glamping">
             <span class="characteristics-glamping__title">Тип глэмпинга: </span>
-            <span><?php echo get_glamping_type_content(); ?></span>
+            <span><?php echo implode(', ', $post->glamping_type); //get_glamping_type_content(); ?></span>
         </div>
         <div class="characteristics-glamping">
             <span class="characteristics-glamping__title">Тип размещения: </span>
@@ -220,5 +220,5 @@
 //     echo '<br>';
 // }
 // echo '<pre>';
-// var_dump(glamping_club_result_render());
+// var_dump($post->glamping_type);
 // echo '<pre>';

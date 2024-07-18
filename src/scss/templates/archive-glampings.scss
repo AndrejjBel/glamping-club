@@ -35,7 +35,19 @@
     display: flex;
     gap: 16px;
     flex-wrap: wrap;
-    width: 100%;
+    width: calc(100% - 288px);
+
+    @media (max-width: 1199px) {
+        width: calc(100% - 272px);
+    }
+
+    @media (max-width: 767px) {
+        width: calc(100% - 256px);
+    }
+
+    @media (max-width: 499px) {
+        width: 100%;
+    }
 
     &.list {
         flex-direction: column;
