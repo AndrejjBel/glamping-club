@@ -55,16 +55,6 @@ const filtrTypeArchive = (glempAll) => {
     if (typObj.length) {
         regionItem.children[1].innerHTML = '';
         typObj.forEach((item) => {
-            // let itemName = '';
-            // if (item == 'glamping') {
-            //     itemName = 'Глэмпинг';
-            // } else if (item == 'eco_hotel') {
-            //     itemName = 'Эко-отель';
-            // } else if (item == 'camp_site') {
-            //     itemName = 'Турбаза';
-            // } else if (item == 'private_sector') {
-            //     itemName = 'Частный сектор';
-            // }
             let count = glempAll.filter(elem => elem.type.includes(item));
             regionItem.children[1].insertAdjacentHTML(
                 "beforeend",
@@ -292,12 +282,22 @@ function mapRender(geoData) {
 	function init() {
         var map;
 		var geoJson = geoData; //JSON.parse(glamping_club_ajax.glAllMap);
-		var zoomNum = (glamping_club_ajax.yand_zoom) ? glamping_club_ajax.yand_zoom : 12;
-		map = new ymaps.Map('mapYandex', {center:[54.9924, 73.3686], zoom:zoomNum, controls: ['zoomControl',  /*'fullscreenControl'*/]}),
+		var zoomNum = (glamping_club_ajax.yand_zoom) ? Number(glamping_club_ajax.yand_zoom) : 12;
+		map = new ymaps.Map('mapYandex',
+            {
+                center: [54.9924, 73.3686],
+                zoom: zoomNum,
+                controls: ['zoomControl',  /*'fullscreenControl'*/]
+            },
+            // {
+            //     maxZoom: 12
+            // }
+        ),
 		map.behaviors.disable(['scrollZoom']);
 		objectManager = new ymaps.ObjectManager({
 			clusterize: true,
-			gridSize: 32,
+			gridSize: 64,
+            // viewportMargin: 50
 			// clusterDisableClickZoom: true
 		});
 		objectManager.clusters.options.set({preset: 'islands#darkGreenClusterIcons', clusterIconColor: '#1921B1'}); //  , clusterIconColor: '#00ABAA'
@@ -312,18 +312,21 @@ function mapRender(geoData) {
         ); //  islands#greenMountainIcon, iconColor: '#00ABAA'
 		objectManager.add(geoJson);
 		map.geoObjects.add(objectManager);
-		map.setBounds(map.geoObjects.getBounds(),{checkZoomRange:true, zoomMargin:9});
-		map.geoObjects.events.add('click', function (e) {
-			let id = e.get('objectId');
-			let geoObject = objectManager.objects.getById(id);
-		});
+        if (geoData.features.length == 1) {
+            map.setCenter(map.geoObjects.getBounds()[0], 14, {checkZoomRange: true});
+        } else {
+            map.setBounds(map.geoObjects.getBounds(), {checkZoomRange:true, zoomMargin:9, useMapMargin: true});
+        }
+		// map.geoObjects.events.add('click', function (e) {
+		// 	let id = e.get('objectId');
+		// 	let geoObject = objectManager.objects.getById(id);
+		// });
 	}
     markersHover();
 }
 mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
 const mapPointTest = (glAll) => {
-    // const glAll = JSON.parse(glamping_club_ajax.glAll);
     let points = [];
     glAll.forEach((item) => {
         let coord = [];
@@ -358,7 +361,6 @@ const mapPointTest = (glAll) => {
         },
         features: points
     };
-    console.dir(geoData);
     return geoData;
 }
 mapPointTest(JSON.parse(glamping_club_ajax.glAll));
@@ -392,8 +394,6 @@ function markersHover() {
                     item.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.zIndex = '999';
                 }
             });
-
-            // console.dir(markers);
 		});
 		post.addEventListener('mouseleave', function() {
             const markers = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');

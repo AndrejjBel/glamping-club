@@ -567,6 +567,6 @@ function btnMapChange(btns) {
     });
 }
 
-// console.dir(JSON.parse(glamping_club_ajax.glAll));
+// console.dir(JSON.parse(glamping_club_ajax.glAllMap).features);
 
 // console.dir(Intl.NumberFormat('ru-RU', {'currency': 'RUB', style:"currency", minimumFractionDigits:0, maximumFractionDigits:0}).format(12333));
