@@ -17,13 +17,23 @@ const locationsArchive = (glempAll) => {
     });
 
     if (locObj.length) {
+        countFiltrItem('glcRegion', regionItem);
+        ls = localStorage.getItem('glcRegion');
+        let chek = '';
         regionItem.children[1].innerHTML = '';
         locObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item.location)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
             let count = glempAll.filter(elem => elem.location_id == item.location_id);
             regionItem.children[1].insertAdjacentHTML(
                 "beforeend",
                 `<li>
-                    <input type="checkbox" id="${item.location_id}" name="${item.location}" data-name="region" value="">
+                    <input type="checkbox" id="${item.location_id}" name="${item.location}" data-name="region" value="" ${chek}>
                     <label for="${item.location_id}">
                         <span class="checkmark fcheckbox">
                             <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -41,8 +51,8 @@ const locationsArchive = (glempAll) => {
 locationsArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrTypeArchive = (glempAll) => {
-    const regionItem = document.querySelector('.filtr-item.type');
-    if (!regionItem) return;
+    const typeItem = document.querySelector('.filtr-item.type');
+    if (!typeItem) return;
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -50,16 +60,26 @@ const filtrTypeArchive = (glempAll) => {
         });
         typObj = makeUniqSort(typObj);
     } else {
-        typObj = arr[0].type
+        typObj = glempAll[0].type
     }
     if (typObj.length) {
-        regionItem.children[1].innerHTML = '';
+        typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcType', typeItem);
+        ls = localStorage.getItem('glcType');
+        let chek = '';
         typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
             let count = glempAll.filter(elem => elem.type.includes(item));
-            regionItem.children[1].insertAdjacentHTML(
+            typeItem.children[1].insertAdjacentHTML(
                 "beforeend",
                 `<li>
-                    <input type="checkbox" id="${item}" name="${item}" data-name="type" value="">
+                    <input type="checkbox" id="${item}" name="${item}" data-name="type" value="" ${chek}>
                     <label for="${item}">
                         <span class="checkmark fcheckbox">
                             <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -102,6 +122,14 @@ function itemsChange() {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             let newgGempAll =  glempAll.filter(filtrOptionsChange);
             glempRender(newgGempAll);
+            if (input.dataset.name == 'region') {
+                checkLocalCheng(input, 'glcRegion', '');
+                filtrTypeArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'type') {
+                checkLocalCheng(input, 'glcType', '');
+                locationsArchive(newgGempAll);
+            }
             glampingsMap.children[0].innerHTML = '';
             mapRender(mapPointTest(newgGempAll));
         }
@@ -117,6 +145,77 @@ function itemsVal(inputs) {
         }
     });
     return inputChecked;
+}
+
+function checkLocalCheng(item, lsName, filtrItemCount) {
+    let ls_obj = [];
+    let ls_obj_new = [];
+    if ( localStorage.getItem(lsName) ) {
+        ls = localStorage.getItem(lsName);
+        if (ls.includes(',')) {
+            ls_obj = ls.split(',');
+            if (item.checked == false) {
+                let ls_obj_new = ls_obj.filter(function(e) { return e !== item.name });
+                if (ls_obj_new.length == 0) {
+                    localStorage.removeItem(lsName)
+                } else {
+                    localStorage.setItem(lsName, ls_obj_new);
+                }
+            } else {
+                ls_obj.push(item.name);
+                ls_obj_new = ls_obj; //.slice();
+                localStorage.setItem(lsName, ls_obj_new);
+            }
+        } else {
+            ls_obj.push(ls);
+            if (item.checked == false && item.name == ls) {
+                localStorage.removeItem(lsName)
+            } else {
+                ls_obj.push(item.name);
+                let ls_obj_new = ls_obj.join(',');
+                localStorage.setItem(lsName, ls_obj_new);
+            }
+        }
+    } else {
+        ls_obj.push(item.name);
+        let ls_obj_new = ls_obj.join(',');
+        localStorage.setItem(lsName, ls_obj_new);
+    }
+    lsf = localStorage.getItem(lsName);
+    ls_objf = [];
+    if (lsf) {
+        if (lsf.includes(',')) {
+            ls_objf = lsf.split(',');
+            if (ls_objf.length == 0) {
+                item.parentElement.parentElement.previousElementSibling.children[1].innerText = '';
+            } else {
+                item.parentElement.parentElement.previousElementSibling.children[1].innerText = ls_objf.length;
+            }
+        } else {
+            item.parentElement.parentElement.previousElementSibling.children[1].innerText = 1;
+        }
+    } else {
+        item.parentElement.parentElement.previousElementSibling.children[1].innerText = '';
+    }
+}
+
+function countFiltrItem(name, countSelector) {
+    lsf = localStorage.getItem(name);
+    ls_objf = [];
+    if (lsf) {
+        if (lsf.includes(',')) {
+            ls_objf = lsf.split(',');
+            if (ls_objf.length == 0) {
+                countSelector.children[0].children[1].innerText = '';
+            } else {
+                countSelector.children[0].children[1].innerText = ls_objf.length;
+            }
+        } else {
+            countSelector.children[0].children[1].innerText = 1;
+        }
+    } else {
+        countSelector.children[0].children[1].innerText = '';
+    }
 }
 
 function filtrOptionsChange(item, index, arr) {

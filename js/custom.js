@@ -412,8 +412,8 @@ function favoritesRenderLogin() {
 // }
 // mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
-console.dir(JSON.parse(glamping_club_ajax.glAllMap));
-console.dir(JSON.parse(glamping_club_ajax.glAll));
+// console.dir(JSON.parse(glamping_club_ajax.glAllMap));
+// console.dir(JSON.parse(glamping_club_ajax.glAll));
 
 // const mapPointTest = (glAll) => {
 //     // const glAll = JSON.parse(glamping_club_ajax.glAll);
