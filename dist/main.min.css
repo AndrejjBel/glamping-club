@@ -2056,7 +2056,8 @@ a.btn-back-to-home {
       font-weight: 600; }
     .glamping-item__content__rating {
       display: flex;
-      gap: 8px; }
+      gap: 8px;
+      flex-wrap: wrap; }
     .glamping-item__content__bottom {
       margin-top: auto;
       font-size: 12px;

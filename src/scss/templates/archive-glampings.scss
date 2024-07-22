@@ -258,6 +258,7 @@
         &__rating {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         &__bottom {
