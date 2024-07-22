@@ -33,7 +33,7 @@ const locationsArchive = (glempAll) => {
             regionItem.children[1].insertAdjacentHTML(
                 "beforeend",
                 `<li>
-                    <input type="checkbox" id="${item.location_id}" name="${item.location}" data-name="region" value="" ${chek}>
+                    <input type="checkbox" id="${item.location_id}" name="${item.location}" data-name="glcRegion" value="" ${chek}>
                     <label for="${item.location_id}">
                         <span class="checkmark fcheckbox">
                             <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -79,7 +79,7 @@ const filtrTypeArchive = (glempAll) => {
             typeItem.children[1].insertAdjacentHTML(
                 "beforeend",
                 `<li>
-                    <input type="checkbox" id="${item}" name="${item}" data-name="type" value="" ${chek}>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcType" value="" ${chek}>
                     <label for="${item}">
                         <span class="checkmark fcheckbox">
                             <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
@@ -122,8 +122,9 @@ function itemsChange() {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             let newgGempAll =  glempAll.filter(filtrOptionsChange);
             glempRender(newgGempAll);
-            if (input.dataset.name == 'region') {
-                checkLocalCheng(input, 'glcRegion', '');
+            checkLocalCheng(input, input.dataset.name, '');
+            if (input.dataset.name == 'glcRegion') {
+                // checkLocalCheng(input, 'glcRegion', '');
                 if (!localStorage.getItem('glcType')) {
                     locationsArchive(glempAll);
                     filtrTypeArchive(newgGempAll);
@@ -132,8 +133,8 @@ function itemsChange() {
                     filtrTypeArchive(newgGempAll);
                 }
             }
-            if (input.dataset.name == 'type') {
-                checkLocalCheng(input, 'glcType', '');
+            if (input.dataset.name == 'glcType') {
+                // checkLocalCheng(input, 'glcType', '');
                 if (!localStorage.getItem('glcRegion')) {
                     // filtrTypeArchive(glempAll);
                     locationsArchive(newgGempAll);
@@ -237,9 +238,9 @@ function filtrOptionsChange(item, index, arr) {
     let types = [];
     inputs.forEach((input) => {
         if (input.checked == true) {
-            if (input.dataset.name == 'region') {
+            if (input.dataset.name == 'glcRegion') {
                 region.push(input.id);
-            } else if (input.dataset.name == 'type') {
+            } else if (input.dataset.name == 'glcType') {
                 types.push(input.id);
             }
         }
