@@ -139,6 +139,7 @@ function itemsChange() {
                     locationsArchive(newgGempAll);
                 } else {
                     filtrTypeArchive(newgGempAll);
+                    locationsArchive(newgGempAll);
 
                 }
             }
