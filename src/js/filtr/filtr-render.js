@@ -893,6 +893,7 @@ function glempRender(glemps) {
         glemp.media_urls.forEach((item) => {
             slider += `<div class="swiper-slide"><img src="${item}" alt="" loading="lazy" /></div>`;
         });
+        let rating = reviews_stars_items_average( 2.9, 4 );
 
         glampingsItems.insertAdjacentHTML(
             "beforeEnd",
@@ -914,9 +915,7 @@ function glempRender(glemps) {
             	<div class="glamping-item__content">
             		<div class="glamping-item__content__left">
             			<div class="glamping-item__content__title">${glemp.title}</div>
-            			<div class="glamping-item__content__rating">
-            				<?php reviews_stars_items_average( 2.94, 4 ); ?>
-            			</div>
+            			<div class="glamping-item__content__rating">${rating}</div>
             			<div class="glamping-item__content__bottom">
             				<div class="glamping-item__content__bottom__type">
             					<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
@@ -1134,4 +1133,60 @@ function markersHover() {
             });
 		});
 	});
+}
+
+function reviews_stars_items_average( average_rating, count_otziv ) {
+	let rating = average_rating;
+	let star_full = `<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="var(--reviews-color)" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>`;
+	let star_aver = `<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-primary" fill="var(--reviews-color)" d="M288 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.995 275.8 .0131 287.1-.0391L288 439.8zM433.2 512C432.1 512.1 431 512.1 429.9 512H433.2z"/>
+	<path class="fa-secondary" fill="#d7dbe3" d="M146.3 512C145.3 512.1 144.2 512.1 143.1 512H146.3zM288 439.8V-.0387L288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.1 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L288 439.8z"/>
+	</svg>`;
+	let star_half = `<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="#d7dbe3" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>`;
+
+	let content = `<div class="rating-stars">`;
+
+	//$full_stars = $doc_meta->rating/$doc_meta->raitcol;
+	let empty_stars = Math.floor( 5 - average_rating );
+	while ( average_rating > 0 ) {
+		if ( average_rating > 0 && average_rating - 1 >= 0 ) {
+			content += star_full;
+		}
+		if ( average_rating > 0 && average_rating - 1 < 0 ) {
+			content += star_aver;
+		}
+		average_rating--;
+	}
+	while ( empty_stars > 0 ) {
+		content += star_half;
+
+		empty_stars--;
+	}
+	content += `</div>`;
+	content += `<div class="rating-count">
+		<div class="rating-count__rating">`;
+	content += rating; //.toFixed(1);
+	content += `</div>
+        <div class="rating-count__otziv">`;
+
+	content += `<span>/ `;
+    content += num_word(count_otziv, ['отзыв', 'отзыва', 'отзывов']);
+    content += `</span>`;
+	content += `</div>
+	    </div>`;
+    return content;
+}
+
+function num_word(value, words){
+	value = Math.abs(value) % 100;
+	var num = value % 10;
+	if(value > 10 && value < 20) return words[2];
+	if(num > 1 && num < 5) return words[1];
+	if(num == 1) return words[0];
+	return words[2];
+    // num_word(value, ['товар', 'товара', 'товаров']);
 }
