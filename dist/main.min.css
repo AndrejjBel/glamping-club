@@ -2100,16 +2100,18 @@ a.btn-back-to-home {
   height: 24px;
   background: #FFFFFF;
   border-radius: 12px;
-  font-weight: 600; }
+  border: 2px solid var(--color-primary);
+  font-weight: 600;
+  color: var(--color-primary); }
   .glc-icon-content:before {
     content: "";
     border: solid transparent;
     position: absolute;
     top: 100%;
     left: 50%;
-    border-top-color: #FFFFFF;
-    border-width: 6px;
-    margin-left: -6px; }
+    border-top-color: var(--color-primary);
+    border-width: 5px;
+    margin-left: -5px; }
   .glc-icon-content.active {
     background: var(--color-primary);
     color: #fff;

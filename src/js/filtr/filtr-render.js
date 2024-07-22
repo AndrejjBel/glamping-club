@@ -1024,7 +1024,7 @@ function mapRender(geoData) {
             //     maxZoom: 12
             // }
         ),
-		map.behaviors.disable(['scrollZoom']);
+		// map.behaviors.disable(['scrollZoom']);
 		objectManager = new ymaps.ObjectManager({
 			clusterize: true,
 			gridSize: 64,

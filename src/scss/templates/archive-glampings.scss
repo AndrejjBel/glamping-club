@@ -337,8 +337,9 @@
     height: 24px;
     background: #FFFFFF; //var(--color-svg-form);
     border-radius: 12px;
+    border: 2px solid var(--color-primary);
     font-weight: 600;
-    // color: var(--color-primary);
+    color: var(--color-primary);
 
     &:before {
     	content: "";
@@ -346,9 +347,9 @@
     	position: absolute;
      	top: 100%;
     	left: 50%;
-    	border-top-color: #FFFFFF; //var(--color-svg-form);
-    	border-width: 6px;
-    	margin-left: -6px;
+    	border-top-color: var(--color-primary); //var(--color-svg-form);
+    	border-width: 5px;
+    	margin-left: -5px;
     }
 
     &.active {
