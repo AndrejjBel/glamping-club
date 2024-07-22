@@ -40,6 +40,10 @@ function glamping_club_result_render($location=0) {
     		$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
             $media_urls[] = $url;
     	}
+        $working_mode_seasons = $post->working_mode_seasons;
+        if ($post->working_mode == 'whole_year') {
+            $working_mode_seasons = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+        }
         $glampings[] = [
             'id' => $post->ID,
             'post_date' => $post_date,
@@ -47,7 +51,7 @@ function glamping_club_result_render($location=0) {
             'type' => $post->glamping_type,
             'allocation' => $post->glamping_allocation,
             'working_mode' => $post->working_mode,
-            'working_mode_seasons' => $post->working_mode_seasons,
+            'working_mode_seasons' => $working_mode_seasons,
             'recommended' => $post->glamping_recommended,
             'price' => $post->glamping_price,
             'nature_around' => $post->glamping_nature_around,

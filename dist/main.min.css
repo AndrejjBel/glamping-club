@@ -2257,6 +2257,8 @@ ul.item-options-checkbox {
             fill: #FFFFFF; }
       ul.item-options-checkbox li label span {
         font-size: 14px; }
+        ul.item-options-checkbox li label span.name::first-letter {
+          text-transform: uppercase; }
         ul.item-options-checkbox li label span.count {
           flex: none;
           margin-left: auto; }

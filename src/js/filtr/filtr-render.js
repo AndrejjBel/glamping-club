@@ -1,5 +1,16 @@
+localStorage.removeItem('glcRegion');
+localStorage.removeItem('glcType');
+localStorage.removeItem('glcAllocation');
+localStorage.removeItem('glcWorking');
+localStorage.removeItem('glcNature');
+localStorage.removeItem('glcFacilGen');
+localStorage.removeItem('glcEntertainment');
+localStorage.removeItem('glcTerritory');
+localStorage.removeItem('glcSafety');
+
 const locationsArchive = (glempAll) => {
     const regionItem = document.querySelector('.filtr-item.region');
+    regionItem.style.display = '';
     if (!regionItem) return;
     let locObj = [];
     glempAll.forEach((item) => {
@@ -46,12 +57,16 @@ const locationsArchive = (glempAll) => {
                 </li>`
             )
         });
+    } else {
+        regionItem.children[1].innerHTML = '';
+        regionItem.style.display = 'none';
     }
 }
 locationsArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrTypeArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.type');
+    typeItem.style.display = '';
     if (!typeItem) return;
     let typObj = [];
     if ( glempAll.length > 1 ) {
@@ -93,9 +108,514 @@ const filtrTypeArchive = (glempAll) => {
                 </li>`
             )
         });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
     }
 }
 filtrTypeArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrAllocationArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.allocation');
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.allocation);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].allocation
+    }
+    typeItem.children[1].innerHTML = '';
+    if (typObj.length) {
+        // typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcAllocation', typeItem);
+        ls = localStorage.getItem('glcAllocation');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.allocation.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcAllocation" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrAllocationArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrWorkingArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.working');
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.working_mode_seasons);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].working_mode_seasons
+    }
+    typeItem.children[1].innerHTML = '';
+    if (typObj.length) {
+        // typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcWorking', typeItem);
+        ls = localStorage.getItem('glcWorking');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.working_mode_seasons.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcWorking" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrWorkingArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrNatureArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.nature');
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.nature_around);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].nature_around
+    }
+    typeItem.children[1].innerHTML = '';
+    if (typObj.length) {
+        // typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcNature', typeItem);
+        ls = localStorage.getItem('glcNature');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.nature_around.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcNature" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrNatureArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrFacilitiesGeneralArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.facilities_general');
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.facilities_general);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].facilities_general
+    }
+    typeItem.children[1].innerHTML = '';
+    if (typObj.length) {
+        // typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcFacilGen', typeItem);
+        ls = localStorage.getItem('glcFacilGen');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.facilities_general.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcFacilGen" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrFacilitiesGeneralArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrChildrenArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.children');
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.facilities_children);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].facilities_children
+    }
+    typeItem.children[1].innerHTML = '';
+    if (typObj.length) {
+        // typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcFacilChildren', typeItem);
+        ls = localStorage.getItem('glcFacilChildren');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.facilities_children.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcFacilChildren" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrChildrenArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrErtainmentArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.entertainment');
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.entertainment);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].entertainment
+    }
+    typeItem.children[1].innerHTML = '';
+    if (typObj.length) {
+        // typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcEntertainment', typeItem);
+        ls = localStorage.getItem('glcEntertainment');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.entertainment.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcEntertainment" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrErtainmentArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrTerritoryArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.territory');
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.territory);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].territory
+    }
+    typeItem.children[1].innerHTML = '';
+    if (typObj.length) {
+        // typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcTerritory', typeItem);
+        ls = localStorage.getItem('glcTerritory');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.territory.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcTerritory" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrTerritoryArchive(JSON.parse(glamping_club_ajax.glAll));
+
+const filtrSafetyArchive = (glempAll) => {
+    const typeItem = document.querySelector('.filtr-item.safety');
+    typeItem.style.display = '';
+    typeItem.style.display = '';
+    if (!typeItem) return;
+    let typObj = [];
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            typObj = typObj.concat(item.safety);
+        });
+        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = makeUniqSort(typObj);
+    } else {
+        typObj = glempAll[0].safety
+    }
+    if (typObj.length) {
+        typeItem.children[1].innerHTML = '';
+        countFiltrItem('glcSafety', typeItem);
+        ls = localStorage.getItem('glcSafety');
+        let chek = '';
+        typObj.forEach((item) => {
+            if (ls) {
+                if (ls.includes(item)) {
+                    chek = 'checked';
+                } else {
+                    chek = '';
+                }
+            }
+            let count = glempAll.filter(elem => elem.safety.includes(item));
+            typeItem.children[1].insertAdjacentHTML(
+                "beforeend",
+                `<li>
+                    <input type="checkbox" id="${item}" name="${item}" data-name="glcSafety" value="" ${chek}>
+                    <label for="${item}">
+                        <span class="checkmark fcheckbox">
+                            <svg width="12" height="12" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"></path>
+                            </svg>
+                        </span>
+                        <span class="name">${item}</span>
+                        <span class="count">${count.length}</span>
+                    </label>
+                    <span></span>
+                </li>`
+            )
+        });
+    } else {
+        typeItem.children[1].innerHTML = '';
+        typeItem.style.display = 'none';
+    }
+}
+filtrSafetyArchive(JSON.parse(glamping_club_ajax.glAll));
+
+function sliderNumber(startMin, startMax, min, max) {
+    const slider = document.getElementById('glc-slider');
+    if (!slider) return;
+    const minPriceInput = document.getElementById('min_price');
+    const maxPriceInput = document.getElementById('max_price');
+    noUiSlider.create(slider, {
+        start: [startMin, startMax],
+        connect: true,
+        range: {
+            'min': min,
+            'max': max
+        }
+    });
+    slider.noUiSlider.on('update', function () {
+        let sliderValue = slider.noUiSlider.get();
+        minPriceInput.value = Math.ceil(sliderValue[0]);
+        maxPriceInput.value = Math.ceil(sliderValue[1]);
+    });
+    slider.noUiSlider.on('end', function () {
+        let sliderValue = slider.noUiSlider.get();
+        console.dir(sliderValue);
+
+        let glempAll = JSON.parse(glamping_club_ajax.glAll);
+        let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
+        glempRender(newgGempAll);
+    });
+}
+// sliderNumber(2000, 8000, 2000, 8000);
+
+function priceSliderRender(arr) {
+    let pricesObj = [];
+    let priceMin = '';
+    let priceMax = '';
+    if ( arr.length > 1 ) {
+        arr.forEach((item) => {
+            pricesObj = pricesObj.concat(item.price);
+        });
+        pricesObj = makeUniqSort(pricesObj);
+        priceMin = Math.min.apply(null, pricesObj);
+        priceMax = Math.max.apply(null, pricesObj);
+    } else {
+        pricesObj = arr[0].price
+        priceMin = pricesObj;
+        priceMax = pricesObj;
+    }
+    sliderNumber(priceMin, priceMax, priceMin, priceMax);
+    return {priceMin: priceMin, priceMax: priceMax};
+}
+// priceSliderRender(JSON.parse(glamping_club_ajax.glAll));
+console.dir(priceSliderRender(JSON.parse(glamping_club_ajax.glAll)));
+
+function sliderUpdatePrice(arr) {
+    const slider = document.getElementById('glc-slider');
+    let pricesObj = [];
+    let priceMin = '';
+    let priceMax = '';
+    if ( arr.length > 1 ) {
+        arr.forEach((item) => {
+            pricesObj = pricesObj.concat(item.price);
+        });
+        pricesObj = makeUniqSort(pricesObj);
+        priceMin = Math.min.apply(null, pricesObj.map(Number));
+        priceMax = Math.max.apply(null, pricesObj.map(Number));
+    } else {
+        pricesObj = arr[0].price
+        priceMin = +pricesObj;
+        priceMax = +pricesObj;
+    }
+    slider.noUiSlider.updateOptions({
+        start: [priceMin, priceMax],
+        range: {
+            'min': priceMin,
+            'max': priceMax
+        }
+    });
+    return [priceMin,priceMax];
+}
 
 function removeDuplicates(arr) {
   const locationsById = ((
@@ -121,37 +641,52 @@ function itemsChange() {
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             let newgGempAll =  glempAll.filter(filtrOptionsChange);
+            let priceObj = [];
+            priceObj = sliderUpdatePrice(newgGempAll);
+            newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
-            // if (input.dataset.name == 'glcRegion') {
-            //     if (!localStorage.getItem('glcType')) {
-            //         locationsArchive(glempAll);
-            //         filtrTypeArchive(newgGempAll);
-            //     } else {
-            //         locationsArchive(newgGempAll);
-            //         filtrTypeArchive(newgGempAll);
-            //     }
-            // }
-            // if (input.dataset.name == 'glcType') {
-            //     if (!localStorage.getItem('glcRegion')) {
-            //         // filtrTypeArchive(glempAll);
-            //         locationsArchive(newgGempAll);
-            //     } else {
-            //         filtrTypeArchive(newgGempAll);
-            //         locationsArchive(newgGempAll);
-            //
-            //     }
-            // }
             if (input.dataset.name != 'glcRegion') {
-                if (localStorage.getItem('glcType')) {
+                if (
+                    localStorage.getItem('glcType') ||
+                    localStorage.getItem('glcAllocation') ||
+                    localStorage.getItem('glcWorking') ||
+                    localStorage.getItem('glcNature') ||
+                    localStorage.getItem('glcFacilGen') ||
+                    localStorage.getItem('glcEntertainment') ||
+                    localStorage.getItem('glcTerritory') ||
+                    localStorage.getItem('glcSafety')
+                ) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
                 }
             }
-            if (input.dataset.name != 'glcType') {                
+            if (input.dataset.name != 'glcType') {
                 filtrTypeArchive(newgGempAll);
             }
+            if (input.dataset.name != 'glcAllocation') {
+                filtrAllocationArchive(newgGempAll);
+            }
+            if (input.dataset.name != 'glcWorking') {
+                filtrWorkingArchive(newgGempAll);
+            }
+            if (input.dataset.name != 'glcNature') {
+                filtrNatureArchive(newgGempAll);
+            }
+            if (input.dataset.name != 'glcFacilGen') {
+                filtrFacilitiesGeneralArchive(newgGempAll);
+            }
+            if (input.dataset.name != 'glcEntertainment') {
+                filtrErtainmentArchive(newgGempAll);
+            }
+            if (input.dataset.name != 'glcTerritory') {
+                filtrTerritoryArchive(newgGempAll);
+            }
+            if (input.dataset.name != 'glcSafety') {
+                filtrSafetyArchive(newgGempAll);
+            }
+
             glampingsMap.children[0].innerHTML = '';
             mapRender(mapPointTest(newgGempAll));
         }
@@ -244,12 +779,36 @@ function filtrOptionsChange(item, index, arr) {
     const inputs = document.querySelectorAll('.glampings-filtr-items input');
     let region = [];
     let types = [];
+    let allocation =[];
+    let working =[];
+    let nature =[];
+    let facilGen =[];
+    let facilChildren =[];
+    let entertainment =[];
+    let territory =[];
+    let safety =[];
     inputs.forEach((input) => {
         if (input.checked == true) {
             if (input.dataset.name == 'glcRegion') {
                 region.push(input.id);
             } else if (input.dataset.name == 'glcType') {
                 types.push(input.id);
+            } else if (input.dataset.name == 'glcAllocation') {
+                allocation.push(input.id);
+            } else if (input.dataset.name == 'glcWorking') {
+                working.push(input.id);
+            } else if (input.dataset.name == 'glcNature') {
+                nature.push(input.id);
+            } else if (input.dataset.name == 'glcFacilGen') {
+                facilGen.push(input.id);
+            } else if (input.dataset.name == 'glcFacilChildren') {
+                facilChildren.push(input.id);
+            } else if (input.dataset.name == 'glcEntertainment') {
+                entertainment.push(input.id);
+            } else if (input.dataset.name == 'glcTerritory') {
+                territory.push(input.id);
+            } else if (input.dataset.name == 'glcSafety') {
+                safety.push(input.id);
             }
         }
     });
@@ -264,10 +823,56 @@ function filtrOptionsChange(item, index, arr) {
         typesIncl = types.some((element) => item.type.includes(element));
     }
 
-    if ( regionIncl && typesIncl ) {
+    let allocationIncl = 1;
+    if (allocation.length) {
+        typesIncl = allocation.some((element) => item.allocation.includes(element));
+    }
+
+    let workingIncl = 1;
+    if (working.length) {
+        allocationIncl = working.some((element) => item.working_mode_seasons.includes(element));
+    }
+
+    let natureIncl = 1;
+    if (nature.length) {
+        natureIncl = nature.some((element) => item.nature_around.includes(element));
+    }
+
+    let facilGenIncl = 1;
+    if (facilGen.length) {
+        facilGenIncl = facilGen.some((element) => item.facilities_general.includes(element));
+    }
+
+    let facilChildrenIncl = 1;
+    if (facilChildren.length) {
+        facilChildrenIncl = facilChildren.some((element) => item.facilities_children.includes(element));
+    }
+
+    let entertainmentIncl = 1;
+    if (entertainment.length) {
+        entertainmentIncl = entertainment.some((element) => item.entertainment.includes(element));
+    }
+
+    let territoryIncl = 1;
+    if (territory.length) {
+        territoryIncl = territory.some((element) => item.territory.includes(element));
+    }
+
+    let safetyIncl = 1;
+    if (safety.length) {
+        safetyIncl = safety.some((element) => item.safety.includes(element));
+    }
+
+    if ( regionIncl && typesIncl && allocationIncl && workingIncl && natureIncl && facilGenIncl && facilChildrenIncl && entertainmentIncl && territoryIncl && safetyIncl ) {
         return true;
     } else {
         return false;
+    }
+}
+
+function priceRange(item) {
+    if (Number(item.price) >= this[0] && Number(item.price) <= this[1]) {
+        return item;
     }
 }
 
@@ -349,6 +954,11 @@ function glempRender(glemps) {
 function makeUniq(arr) { return [...new Set(arr)]; }
 function makeUniqSort(arr) { return [...new Set(arr)].sort(); }
 function makeUniqNum(arr) { return [...new Set(arr)].sort(function(a, b){return a - b}); }
+function myGeeks(array) {
+    let filtered = array.filter(function (el) {
+        return el != null;
+    });
+}
 function currFormat(num) {
     let nf = Intl.NumberFormat(
         'ru-RU',

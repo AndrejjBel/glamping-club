@@ -413,7 +413,7 @@ function favoritesRenderLogin() {
 // mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
 // console.dir(JSON.parse(glamping_club_ajax.glAllMap));
-// console.dir(JSON.parse(glamping_club_ajax.glAll));
+console.dir(JSON.parse(glamping_club_ajax.glAll));
 
 // const mapPointTest = (glAll) => {
 //     // const glAll = JSON.parse(glamping_club_ajax.glAll);
@@ -501,34 +501,30 @@ function favoritesRenderLogin() {
 //     markersHover();
 // }, 1000);
 
-function sliderNumber() {
-    const slider = document.getElementById('glc-slider');
-    if (!slider) return;
-
-    const minPriceInput = document.getElementById('min_price');
-    const maxPriceInput = document.getElementById('max_price');
-
-    noUiSlider.create(slider, {
-        start: [2000, 80000],
-        connect: true,
-        range: {
-            'min': 2000,
-            'max': 8000
-        }
-    });
-
-    slider.noUiSlider.on('update', function () {
-        let sliderValue = slider.noUiSlider.get();
-        minPriceInput.value = Math.ceil(sliderValue[0]);
-        maxPriceInput.value = Math.ceil(sliderValue[1]);
-    });
-
-    slider.noUiSlider.on('end', function () {
-        let sliderValue = slider.noUiSlider.get();
-        console.dir(sliderValue);
-    });
-}
-sliderNumber();
+// function sliderNumber(startMin, startMax, min, max) {
+//     const slider = document.getElementById('glc-slider');
+//     if (!slider) return;
+//     const minPriceInput = document.getElementById('min_price');
+//     const maxPriceInput = document.getElementById('max_price');
+//     noUiSlider.create(slider, {
+//         start: [startMin, startMax],
+//         connect: true,
+//         range: {
+//             'min': min,
+//             'max': max
+//         }
+//     });
+//     slider.noUiSlider.on('update', function () {
+//         let sliderValue = slider.noUiSlider.get();
+//         minPriceInput.value = Math.ceil(sliderValue[0]);
+//         maxPriceInput.value = Math.ceil(sliderValue[1]);
+//     });
+//     slider.noUiSlider.on('end', function () {
+//         let sliderValue = slider.noUiSlider.get();
+//         console.dir(sliderValue);
+//     });
+// }
+// sliderNumber(2000, 8000, 2000, 8000);
 
 const listCardMap = () => {
     const btnMap = document.querySelector('.js-btn-map');

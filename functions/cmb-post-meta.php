@@ -495,3 +495,15 @@ function glamping_recommended_display( $field_args, $field ) {
 	echo '<input type="checkbox" class="cmb2-option-cust glamping_recommended_list" name="glamping_recommended_list" id="glamping_recommended_list-' . $field->object_id . '" data-glamp="' . $field->object_id . '" ' . $chec_value . '>
 	<label for="glamping_recommended_list-' . $field->object_id . '">Рекомендовать</label>';
 }
+
+// function hook_in_and_add_default_group_value( $post_id, $updated, $cmb ) {
+// 	if ( in_array( 'working_mode', $updated ) ) {
+// 		if ( 'whole_year' === get_post_meta( $post_id, 'working_mode', 1 ) ) {
+// 			// do stuff
+// 			update_post_meta( $post_id, 'working_mode_seasons',
+// 				array('январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь')
+// 			);
+// 		}
+// 	}
+// }
+// add_action( 'cmb2_save_post_fields_single_glampings', 'hook_in_and_add_default_group_value', 10, 3 );

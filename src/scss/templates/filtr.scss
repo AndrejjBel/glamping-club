@@ -222,7 +222,11 @@ ul.item-options-checkbox {
             & span {
                 font-size: 14px;
 
-                &.name {}
+                &.name {
+                    &::first-letter {
+                        text-transform: uppercase;
+                    }
+                }
 
                 &.count {
                     flex: none;
