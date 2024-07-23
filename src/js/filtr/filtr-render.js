@@ -664,6 +664,8 @@ function itemsChange() {
                 priceObj = glcPrice.split(',');
             }
             // priceObj = sliderUpdatePrice(newgGempAll);
+            let newgGempAllPr =  glempAll.filter(filtrOptionsChange);
+            sliderUpdatePrice(newgGempAllPr);
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
