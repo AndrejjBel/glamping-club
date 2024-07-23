@@ -2101,7 +2101,7 @@ a.btn-back-to-home {
   height: 24px;
   background: #FFFFFF;
   border-radius: 12px;
-  border: 2px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
   font-weight: 600;
   color: var(--color-primary); }
   .glc-icon-content:before {
@@ -2111,8 +2111,8 @@ a.btn-back-to-home {
     top: 100%;
     left: 50%;
     border-top-color: var(--color-primary);
-    border-width: 5px;
-    margin-left: -5px; }
+    border-width: 4px;
+    margin-left: -4px; }
   .glc-icon-content.active {
     background: var(--color-primary);
     color: #fff;
