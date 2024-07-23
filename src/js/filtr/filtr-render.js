@@ -124,7 +124,7 @@ const filtrAllocationArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.allocation);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].allocation
@@ -177,9 +177,8 @@ const filtrWorkingArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.working_mode_seasons);
         });
-        // typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = montsSort(typObj);
-        // typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].working_mode_seasons
     }
@@ -231,7 +230,7 @@ const filtrNatureArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.nature_around);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].nature_around
@@ -284,7 +283,7 @@ const filtrFacilitiesGeneralArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.facilities_general);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].facilities_general
@@ -337,7 +336,7 @@ const filtrChildrenArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.facilities_children);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].facilities_children
@@ -390,7 +389,7 @@ const filtrErtainmentArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.entertainment);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].entertainment
@@ -443,7 +442,7 @@ const filtrTerritoryArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.territory);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].territory
@@ -497,7 +496,7 @@ const filtrSafetyArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.safety);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
         typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].safety
@@ -559,12 +558,28 @@ function sliderNumber(startMin, startMax, min, max) {
         maxPriceInput.value = Math.ceil(sliderValue[1]);
     });
     slider.noUiSlider.on('end', function () {
+        const glampingsMap = document.querySelector('.glampings-map');
         let sliderValue = slider.noUiSlider.get();
         console.dir(sliderValue);
 
         let glempAll = JSON.parse(glamping_club_ajax.glAll);
         let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
         glempRender(newgGempAll);
+        // let priceObj = [priceMin, priceMax];
+        localStorage.setItem('glcPrice', sliderValue);
+
+        locationsArchive(newgGempAll);
+        filtrTypeArchive(newgGempAll);
+        filtrAllocationArchive(newgGempAll);
+        filtrWorkingArchive(newgGempAll);
+        filtrNatureArchive(newgGempAll);
+        filtrFacilitiesGeneralArchive(newgGempAll);
+        filtrErtainmentArchive(newgGempAll);
+        filtrTerritoryArchive(newgGempAll);
+        filtrSafetyArchive(newgGempAll);
+
+        glampingsMap.children[0].innerHTML = '';
+        mapRender(mapPointTest(newgGempAll));
     });
 }
 // sliderNumber(2000, 8000, 2000, 8000);
@@ -615,7 +630,9 @@ function sliderUpdatePrice(arr) {
             'max': priceMax
         }
     });
-    return [priceMin,priceMax];
+    let priceObj = [priceMin, priceMax];
+    localStorage.setItem('glcPrice', priceObj);
+    return priceObj;
 }
 
 function removeDuplicates(arr) {
