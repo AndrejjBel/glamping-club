@@ -526,42 +526,42 @@ console.dir(JSON.parse(glamping_club_ajax.glAll));
 // }
 // sliderNumber(2000, 8000, 2000, 8000);
 
-const listCardMap = () => {
-    const btnMap = document.querySelector('.js-btn-map');
-    if (!btnMap) return;
-    const glampingsItems = document.querySelector('#archive-glampings .glampings-items');
-    const glampingsMap = document.querySelector('.glampings-map');
-    const archGlampingsLeft = document.querySelector('.archive-glampings__left');
-    const btns = btnMap.querySelectorAll('button');
-    btns.forEach((btn) => {
-        btn.addEventListener('click', (e) => {
-            btnMapChange(btns);
-            btn.classList.add('active');
-            if (btn.id == 'mapVision') {
-                archGlampingsLeft.classList.remove('no-map');
-                glampingsItems.classList.remove('card');
-                glampingsItems.classList.add('list');
-                glampingsMap.classList.add('active');
-                glampingsMap.children[0].innerHTML = '';
-                mapRender();
-            } else if (btn.id == 'mapClose') {
-                glampingsItems.classList.remove('list');
-                glampingsItems.classList.add('card');
-                glampingsMap.classList.remove('active');
-                archGlampingsLeft.classList.add('no-map');
-            }
-            Cookies.set('glcTemp', btn.id);
-        });
-        // console.dir(btn);
-    });
-}
-listCardMap();
-
-function btnMapChange(btns) {
-    btns.forEach((btn) => {
-        btn.classList.remove('active');
-    });
-}
+// const listCardMap = () => {
+//     const btnMap = document.querySelector('.js-btn-map');
+//     if (!btnMap) return;
+//     const glampingsItems = document.querySelector('#archive-glampings .glampings-items');
+//     const glampingsMap = document.querySelector('.glampings-map');
+//     const archGlampingsLeft = document.querySelector('.archive-glampings__left');
+//     const btns = btnMap.querySelectorAll('button');
+//     btns.forEach((btn) => {
+//         btn.addEventListener('click', (e) => {
+//             btnMapChange(btns);
+//             btn.classList.add('active');
+//             if (btn.id == 'mapVision') {
+//                 archGlampingsLeft.classList.remove('no-map');
+//                 glampingsItems.classList.remove('card');
+//                 glampingsItems.classList.add('list');
+//                 glampingsMap.classList.add('active');
+//                 glampingsMap.children[0].innerHTML = '';
+//                 mapRender();
+//             } else if (btn.id == 'mapClose') {
+//                 glampingsItems.classList.remove('list');
+//                 glampingsItems.classList.add('card');
+//                 glampingsMap.classList.remove('active');
+//                 archGlampingsLeft.classList.add('no-map');
+//             }
+//             Cookies.set('glcTemp', btn.id);
+//         });
+//         // console.dir(btn);
+//     });
+// }
+// listCardMap();
+//
+// function btnMapChange(btns) {
+//     btns.forEach((btn) => {
+//         btn.classList.remove('active');
+//     });
+// }
 
 // console.dir(JSON.parse(glamping_club_ajax.glAllMap).features);
 
