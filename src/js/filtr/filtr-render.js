@@ -565,7 +565,6 @@ function sliderNumber(startMin, startMax, min, max) {
         let glempAll = JSON.parse(glamping_club_ajax.glAll);
         let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
         glempRender(newgGempAll);
-        // let priceObj = [priceMin, priceMax];
         localStorage.setItem('glcPrice', sliderValue);
 
         locationsArchive(newgGempAll);
