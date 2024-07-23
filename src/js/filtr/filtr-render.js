@@ -659,7 +659,11 @@ function itemsChange() {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             let newgGempAll =  glempAll.filter(filtrOptionsChange);
             let priceObj = [];
-            priceObj = sliderUpdatePrice(newgGempAll);
+            let glcPrice = localStorage.getItem('glcPrice');
+            if (glcPrice) {
+                priceObj = glcPrice.split(',');
+            }
+            // priceObj = sliderUpdatePrice(newgGempAll);
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
