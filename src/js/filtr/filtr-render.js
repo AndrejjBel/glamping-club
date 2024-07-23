@@ -658,6 +658,7 @@ function itemsChange() {
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             let newgGempAll =  glempAll.filter(filtrOptionsChange);
+            sliderUpdatePrice(newgGempAll);
             let priceObj = [];
             let glcPrice = localStorage.getItem('glcPrice');
             if (glcPrice) {
@@ -665,8 +666,8 @@ function itemsChange() {
             }
             // priceObj = sliderUpdatePrice(newgGempAll);
             // let newgGempAllPr =  glempAll.filter(filtrOptionsChange);
-            // sliderUpdatePrice(newgGempAllPr);
-            newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
+
+            newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
             if (input.dataset.name != 'glcRegion') {
