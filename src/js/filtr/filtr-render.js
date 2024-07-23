@@ -177,8 +177,9 @@ const filtrWorkingArchive = (glempAll) => {
         glempAll.forEach((item) => {
             typObj = typObj.concat(item.working_mode_seasons);
         });
-        typObj = filtered = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
-        typObj = makeUniqSort(typObj);
+        // typObj = typObj.reduce((acc, i) => i ? [...acc, i] : acc, []);
+        typObj = montsSort(typObj);
+        // typObj = makeUniqSort(typObj);
     } else {
         typObj = glempAll[0].working_mode_seasons
     }
@@ -830,7 +831,15 @@ function filtrOptionsChange(item, index, arr) {
 
     let workingIncl = 1;
     if (working.length) {
-        allocationIncl = working.some((element) => item.working_mode_seasons.includes(element));
+        workingIncl = working.some((element) => item.working_mode_seasons.includes(element));
+
+        // workingIncl = working.some((element) => {
+        //     if (element == 'whole_year') {
+        //         item.working_mode.includes(element);
+        //     } else {
+        //         item.working_mode_seasons.includes(element);
+        //     }
+        // });
     }
 
     let natureIncl = 1;
@@ -969,6 +978,51 @@ function currFormat(num) {
         }
     ).format(num);
     return nf;
+}
+function montsSort(arr) {
+    let monts = [];
+    arr.forEach((mont) => {
+        if (mont == 'Весь год') {
+            monts[0] = 'Весь год';
+        }
+        if (mont == 'январь') {
+            monts[1] = 'январь';
+        }
+        if (mont == 'февраль') {
+            monts[2] = 'февраль';
+        }
+        if (mont == 'март') {
+            monts[3] = 'март';
+        }
+        if (mont == 'апрель') {
+            monts[4] = 'апрель';
+        }
+        if (mont == 'май') {
+            monts[5] = 'май';
+        }
+        if (mont == 'июнь') {
+            monts[6] = 'июнь';
+        }
+        if (mont == 'июль') {
+            monts[7] = 'июль';
+        }
+        if (mont == 'август') {
+            monts[8] = 'август';
+        }
+        if (mont == 'сентябрь') {
+            monts[9] = 'сентябрь';
+        }
+        if (mont == 'октябрь') {
+            monts[10] = 'октябрь';
+        }
+        if (mont == 'ноябрь') {
+            monts[11] = 'ноябрь';
+        }
+        if (mont == 'декабрь') {
+            monts[12] = 'декабрь';
+        }
+    });
+    return monts;
 }
 
 function favoritesRender(name) {

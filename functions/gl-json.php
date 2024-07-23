@@ -42,7 +42,8 @@ function glamping_club_result_render($location=0) {
     	}
         $working_mode_seasons = $post->working_mode_seasons;
         if ($post->working_mode == 'whole_year') {
-            $working_mode_seasons = ['январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
+            // $working_mode_seasons = 'whole_year';
+            $working_mode_seasons = ['Весь год', 'январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
         }
         $glampings[] = [
             'id' => $post->ID,
