@@ -203,6 +203,24 @@ const collapseViews = () => {
 }
 collapseViews();
 
+const collapseHeightViews = () => {
+    const collapseHeightContent = document.querySelectorAll('.glampings .collapse-height-content');
+    if (collapseHeightContent.length) {
+        collapseHeightContent.forEach((item) => {
+            item.nextElementSibling.addEventListener('click', (e) => {
+                item.classList.toggle('active');
+                item.nextElementSibling.classList.toggle('active');
+                if (item.nextElementSibling.classList.contains('active')) {
+                    item.nextElementSibling.children[0].innerText = 'Скрыть';
+                } else {
+                    item.nextElementSibling.children[0].innerText = 'Подробнее';
+                }
+            });
+        });
+    }
+}
+collapseHeightViews();
+
 const addFavCom = () => {
     const favoritesBtns = document.querySelectorAll('#add-favorites');
     const comparisonBtns = document.querySelectorAll('#add-comparison');

@@ -10,8 +10,8 @@ localStorage.removeItem('glcSafety');
 
 const locationsArchive = (glempAll) => {
     const regionItem = document.querySelector('.filtr-item.region');
-    regionItem.style.display = '';
     if (!regionItem) return;
+    regionItem.style.display = '';
     let locObj = [];
     glempAll.forEach((item) => {
         let locItem = {
@@ -66,8 +66,8 @@ locationsArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrTypeArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.type');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -117,8 +117,8 @@ filtrTypeArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrAllocationArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.allocation');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -170,8 +170,8 @@ filtrAllocationArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrWorkingArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.working');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -223,8 +223,8 @@ filtrWorkingArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrNatureArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.nature');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -276,8 +276,8 @@ filtrNatureArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrFacilitiesGeneralArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.facilities_general');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -329,8 +329,8 @@ filtrFacilitiesGeneralArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrChildrenArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.children');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -382,8 +382,8 @@ filtrChildrenArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrErtainmentArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.entertainment');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -435,8 +435,8 @@ filtrErtainmentArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrTerritoryArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.territory');
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {
@@ -488,9 +488,8 @@ filtrTerritoryArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrSafetyArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.safety');
-    typeItem.style.display = '';
-    typeItem.style.display = '';
     if (!typeItem) return;
+    typeItem.style.display = '';
     let typObj = [];
     if ( glempAll.length > 1 ) {
         glempAll.forEach((item) => {

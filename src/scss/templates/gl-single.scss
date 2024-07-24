@@ -154,7 +154,13 @@ article.type-glampings {
         }
     }
 
-    &__content {}
+    &__content {
+
+        &.number {
+            display: flex;
+            gap: 8px;
+        }
+    }
 }
 
 .collapse-content {
@@ -171,6 +177,55 @@ article.type-glampings {
 }
 
 .collapse-content-btn {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    color: var(--color-primary);
+    cursor: pointer;
+
+    & span {
+        display: flex;
+        font-size: 12px;
+        font-weight: 600;
+    }
+
+    & svg {
+        width: 20px;
+        height: 20px;
+        fill: var(--color-primary);
+    }
+
+    &:hover {
+        color: var(--color-primary-hover);
+
+        & svg {
+            fill: var(--color-primary-hover);
+        }
+    }
+
+    &.active {
+        & svg {
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.collapse-height-content {
+    display: none;
+    height: 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: all 0.4s;
+
+    &.active {
+        display: block;
+        height: auto;
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.collapse-height-content-btn {
     display: flex;
     gap: 8px;
     align-items: center;
@@ -235,9 +290,9 @@ article.type-glampings {
         }
 
         &__content {
-            max-height: 400px;
+            // max-height: 400px;
             height: 100%;
-            overflow: auto;
+            // overflow: auto;
         }
 
         // &:not(:last-child) {
@@ -279,6 +334,9 @@ article.type-glampings {
     }
 
     &__options {
+        display: flex;
+        gap: 8px;
+        align-items: flex-end;
         margin-bottom: 8px;
 
         &__item {
@@ -288,8 +346,31 @@ article.type-glampings {
                 font-weight: 500;
             }
 
+            &__icon {
+                // width: 14px;
+                height: 14px;
+
+                &.circle {
+                    width: 2px;
+                }
+            }
+
             &__value {
                 display: inline-block;
+
+                &.value-price {
+                    font-size: 22px;
+                    font-weight: 500;
+                }
+            }
+
+            &.item-price {
+                // margin-left: auto;
+            }
+
+            &.price-btn {
+                display: flex;
+                justify-content: space-between;
             }
         }
     }
@@ -299,8 +380,8 @@ article.type-glampings {
     position: relative;
     display: flex;
     gap: 4px;
-    // width: 100%;
-    width: 528px;
+    width: 100%;
+    // width: 528px;
     overflow: hidden;
 
     @media (max-width: 639px) {

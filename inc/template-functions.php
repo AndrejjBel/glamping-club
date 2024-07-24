@@ -190,58 +190,73 @@ function get_accommodation_options() {
 				<div class="acc-option__options">
 					<?php if (array_key_exists('area', $option)) { ?>
 						<div class="acc-option__options__item">
-							<div class="acc-option__options__item__title">Площадь</div>
+							<!-- <div class="acc-option__options__item__title">Площадь</div> -->
+							<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+								<path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm96 288l288 0c17.7 0 32-14.3 32-32l0-68.2c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1l0 84c0 17.7 14.3 32 32 32z"/>
+							</svg>
 							<div class="acc-option__options__item__value">
-								<?php echo $option['area']. 'м<sup>2</sup>.'; ?>
+								<?php echo $option['area']. 'м<sup>2</sup>'; ?>
 							</div>
 						</div>
 					<?php } ?>
 					<?php if (array_key_exists('places', $option)) { ?>
 						<div class="acc-option__options__item">
-							<div class="acc-option__options__item__title">Мест</div>
+							<!-- <div class="acc-option__options__item__title">Мест</div> -->
+							<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+								<path d="M32 32c17.7 0 32 14.3 32 32l0 256 224 0 0-160c0-17.7 14.3-32 32-32l224 0c53 0 96 43 96 96l0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-32-224 0-32 0L64 416l0 32c0 17.7-14.3 32-32 32s-32-14.3-32-32L0 64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/>
+							</svg>
 							<div class="acc-option__options__item__value">
 								<?php echo $option['places']; ?>
 							</div>
 						</div>
 					<?php } ?>
+				</div>
+				<?php if (array_key_exists('facilities_options_home', $option)) {
+					glamping_icons_facilities_options($option['facilities_options_home'], '', 3);
+				}
+				?>
+				<div class="acc-option__options__item price-btn">
 					<?php if (array_key_exists('price', $option)) { ?>
-						<div class="acc-option__options__item">
-							<div class="acc-option__options__item__title">Стоимость</div>
-							<div class="acc-option__options__item__value">
-								<?php echo $option['price']. 'р.'; ?>
+						<div class="acc-option__options__item item-price">
+							<!-- <div class="acc-option__options__item__title">Стоимость</div> -->
+							<div class="acc-option__options__item__value value-price">
+								<?php echo $option['price']. 'р'; ?>
 							</div>
 						</div>
 					<?php } ?>
+					<button class="primary ld btnvib" type="button" name="button">Выбрать</button>
 				</div>
-				<?php if (array_key_exists('description', $option)) { ?>
-					<div class="acc-option__description collapse-content">
-						<?php echo $option['description']; ?>
-					</div>
-					<div class="collapse-content-btn">
-			            <span>Развернуть</span>
-			            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-			                <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
-			            </svg>
-			        </div>
-				<?php } ?>
+				<div class="collapse-height-content">
+					<?php if (array_key_exists('description', $option)) { ?>
+						<div class="acc-option__description">
+							<?php echo $option['description']; ?>
+						</div>
+					<?php } ?>
 
-				<div class="acc-option__facilities">
-					<div class="acc-option__facilities__title">
-						<h5>Удобства</h5>
+					<div class="acc-option__facilities">
+						<div class="acc-option__facilities__title">
+							<h5>Удобства</h5>
+						</div>
+						<div class="facilities">
+							<?php
+							if (array_key_exists('facilities_options_home', $option)) {
+								glamping_icons_facilities_options($option['facilities_options_home'], 'В доме');
+							}
+							if (array_key_exists('facilities_options_bathroom', $option)) {
+								glamping_icons_facilities_options($option['facilities_options_bathroom'], 'В ванной');
+							}
+							if (array_key_exists('facilities_options_kitchen', $option)) {
+								glamping_icons_facilities_options($option['facilities_options_kitchen'], 'На кухне');
+							}
+							?>
+						</div>
 					</div>
-					<div class="facilities">
-						<?php
-						if (array_key_exists('facilities_options_home', $option)) {
-							glamping_icons_facilities_options($option['facilities_options_home'], 'В доме');
-						}
-						if (array_key_exists('facilities_options_bathroom', $option)) {
-							glamping_icons_facilities_options($option['facilities_options_bathroom'], 'В доме');
-						}
-						if (array_key_exists('facilities_options_kitchen', $option)) {
-							glamping_icons_facilities_options($option['facilities_options_kitchen'], 'В доме');
-						}
-						?>
-					</div>
+				</div>
+				<div class="collapse-height-content-btn">
+					<span>Подробнее</span>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+						<path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+					</svg>
 				</div>
 			</div>
 		</div>
@@ -305,21 +320,35 @@ function glamping_icons_facilities($type_facilities, $title) {
 	}
 }
 
-function glamping_icons_facilities_options($type_facilities, $title) {
+function glamping_icons_facilities_options($type_facilities, $title, $count=0) {
 	global $post;
 	require get_template_directory() . '/functions/icons.php';
 	// $facilities = $post->$type_facilities;
+	$ic = 1;
 	if ($type_facilities) {
 		echo '<div class="single-section facilities__item">
             <div class="single-section__title">
                 <h6>' . $title . '</h6>
-            </div>
-            <div class="single-section__content">';
-		foreach ($type_facilities as $value) {
-			echo '<div class="facilities__item__content-item">';
-			echo $icons[ $value ];
-			echo '<span>' . $value . '</span>';
-			echo '</div>';
+            </div>';
+		if ($count) {
+			echo '<div class="single-section__content number">';
+			foreach ($type_facilities as $value) {
+				if ($count >= $ic) {
+					echo '<div class="facilities__item__content-item">';
+					echo $icons[ $value ];
+					echo '<span>' . $value . '</span>';
+					echo '</div>';
+				}
+				$ic++;
+			}
+		} else {
+			echo '<div class="single-section__content">';
+			foreach ($type_facilities as $value) {
+				echo '<div class="facilities__item__content-item">';
+				echo $icons[ $value ];
+				echo '<span>' . $value . '</span>';
+				echo '</div>';
+			}
 		}
 		echo '</div>
 		</div>';

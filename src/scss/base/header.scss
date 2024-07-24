@@ -380,7 +380,7 @@
                     align-items: center;
                     justify-content: center;
                     margin: 0;
-                    padding: 0;
+                    padding: 12px;
 
                     & svg {
                         width: 100%;
@@ -389,8 +389,8 @@
 
                     & sup {
                         position: absolute;
-                        top: -20px;
-                        right: -20px;
+                        top: -10px;
+                        right: -10px;
                         width: 24px;
                         height: 24px;
                         display: flex;
