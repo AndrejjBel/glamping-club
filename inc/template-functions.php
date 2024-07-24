@@ -228,7 +228,8 @@ function get_accommodation_options() {
 							<div class="acc-option__options__item__value value-price">Не установлена</div>
 						</div>
 					<?php } ?>
-					<button class="primary ld btnvib" type="button" name="button">Выбрать</button>
+					<a href="#" class="primary ld btnvib">Выбрать</a>
+					<!-- <button class="primary ld btnvib" type="button" name="button">Выбрать</button> -->
 				</div>
 				<div class="collapse-height-content">
 					<?php if (array_key_exists('description', $option)) { ?>
