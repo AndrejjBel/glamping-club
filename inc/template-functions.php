@@ -223,6 +223,10 @@ function get_accommodation_options() {
 								<?php echo $option['price']. 'р'; ?>
 							</div>
 						</div>
+					<?php } else { ?>
+						<div class="acc-option__options__item item-price">
+							<div class="acc-option__options__item__value value-price">Не установлена</div>
+						</div>
 					<?php } ?>
 					<button class="primary ld btnvib" type="button" name="button">Выбрать</button>
 				</div>
