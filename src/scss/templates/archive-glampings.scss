@@ -50,6 +50,10 @@
         width: 100%;
     }
 
+    &.no-sidebar {
+        width: 100%;
+    }
+
     &.list {
         flex-direction: column;
         overflow: auto;

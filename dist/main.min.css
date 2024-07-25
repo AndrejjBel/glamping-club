@@ -2168,6 +2168,8 @@ a.secondary {
   @media (max-width: 499px) {
     .glampings-items {
       width: 100%; } }
+  .glampings-items.no-sidebar {
+    width: 100%; }
   .glampings-items.list {
     flex-direction: column;
     overflow: auto;

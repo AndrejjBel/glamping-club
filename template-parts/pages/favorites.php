@@ -7,7 +7,7 @@ if ( !empty( $_COOKIE["glcFav"] ) ) {
     		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
     	</header><!-- .entry-header -->
 
-        <div class="glampings-items card">
+        <div class="glampings-items card no-sidebar">
             <?php favorites_render($_COOKIE["glcFav"], 'favorites'); ?>
         </div>
         <?php //echo $_COOKIE["glcFav"]; ?>
