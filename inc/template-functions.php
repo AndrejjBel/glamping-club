@@ -235,7 +235,10 @@ function get_accommodation_options() {
 							<div class="acc-option__options__item__value value-price">Не установлена</div>
 						</div>
 					<?php } ?>
-					<a href="#" class="primary ld btnvib">Выбрать</a>
+					<a href="<?php echo get_post_meta($post->ID, 'additionally_field')[0][0]['site_glamping']?>"
+						class="primary ld btnvib"
+						target="_blank"
+						rel="nofollow">Выбрать</a>
 				</div>
 				<div class="collapse-height-content">
 					<?php if (array_key_exists('description', $option)) { ?>
