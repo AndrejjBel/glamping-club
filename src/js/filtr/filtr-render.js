@@ -1125,10 +1125,27 @@ function mapRender(geoData) {
         } else {
             map.setBounds(map.geoObjects.getBounds(), {checkZoomRange:true, zoomMargin:9, useMapMargin: true});
         }
-		// map.geoObjects.events.add('click', function (e) {
-		// 	let id = e.get('objectId');
-		// 	let geoObject = objectManager.objects.getById(id);
-		// });
+		map.geoObjects.events.add('mouseenter', function (e) {
+			let id = e.get('objectId');
+			// let geoObject = objectManager.objects.getById(id);
+            // console.dir(id);
+
+            const markerst = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
+            markerst.forEach((item) => {
+                if (item.id == id) {
+                    item.classList.add('active');
+                }
+            });
+		});
+        map.geoObjects.events.add('mouseleave', function (e) {
+            let id = e.get('objectId');
+            const markerst = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
+            markerst.forEach((item) => {
+                if (item.id == id) {
+                    item.classList.remove('active');
+                }
+            });
+		});
 	}
     markersHover();
 }
@@ -1210,7 +1227,7 @@ function markersHover() {
                 item.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.zIndex = '';
             });
 		});
-	});
+	});    
 }
 
 function reviews_stars_items_average( average_rating, count_otziv ) {
