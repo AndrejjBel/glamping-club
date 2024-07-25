@@ -1801,14 +1801,15 @@ a.secondary {
   gap: 8px;
   align-items: center;
   color: var(--color-primary);
+  margin-top: 8px;
   cursor: pointer; }
   .collapse-content-btn span {
     display: flex;
     font-size: 12px;
     font-weight: 600; }
   .collapse-content-btn svg {
-    width: 20px;
-    height: 20px;
+    width: 10px;
+    height: 10px;
     fill: var(--color-primary); }
   .collapse-content-btn:hover {
     color: var(--color-primary-hover); }

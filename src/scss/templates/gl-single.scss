@@ -181,6 +181,7 @@ article.type-glampings {
     gap: 8px;
     align-items: center;
     color: var(--color-primary);
+    margin-top: 8px;
     cursor: pointer;
 
     & span {
@@ -190,8 +191,8 @@ article.type-glampings {
     }
 
     & svg {
-        width: 20px;
-        height: 20px;
+        width: 10px;
+        height: 10px;
         fill: var(--color-primary);
     }
 
