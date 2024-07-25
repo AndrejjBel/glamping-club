@@ -1,5 +1,12 @@
 <div id="post-<?php echo $post->ID; ?>" class="glamping-item" title="<?php echo get_the_title( $post->ID ); ?>">
 	<a href="<?php echo esc_url( get_permalink() ); ?>" class="glamping-item__url" rel="bookmark"></a>
+	<div class="glamping-item__btns-fav-comp">
+		<button id="add-comparison" data-postid="<?php the_ID(); ?>" class="glamping-item__btns-fav-comp__btn-add-comp round-sup-red page-favorites" type="button" name="button" title="Добавить к сравнению">
+			<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+				<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+			</svg>
+		</button>
+	</div>
 	<div class="glamping-item__thumbnail">
 		<?php glamping_club_gl_thumbnail_slider($post->ID); //glamping_club_gl_thumbnail('medium'); ?>
 	</div>

@@ -2264,6 +2264,8 @@ a.secondary {
       width: 30px;
       height: 30px;
       padding: 8px; }
+      .glamping-item__btns-fav-comp__btn-add-comp.page-favorites {
+        top: 5px; }
   .glamping-item__thumbnail {
     overflow: hidden;
     z-index: 4; }
