@@ -1,5 +1,8 @@
 <div id="post-<?php the_ID(); ?>" class="glamping-item" title="<?php the_title(); ?>">
 	<a href="<?php echo esc_url( get_permalink() ); ?>" class="glamping-item__url" rel="bookmark"></a>
+	<div class="glamping-item__recommended">
+		<?php if ($post->glamping_recommended == 'yes') echo 'Рекомендуем';?>
+	</div>
 	<div class="glamping-item__btns-fav-comp">
 		<button id="add-favorites" data-postid="<?php the_ID(); ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" type="button" name="button" title="Добавить в избранное">
 			<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
