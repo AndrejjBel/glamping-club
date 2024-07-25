@@ -175,14 +175,31 @@
         z-index: 2;
     }
 
-    &__btn-add {
+    &__btns-fav-comp {
         position: absolute;
         top: 5px;
         right: 5px;
         z-index: 9;
-        width: 30px;
-        height: 30px;
-        padding: 8px;
+
+        &__btn-add-fav {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            z-index: 9;
+            width: 30px;
+            height: 30px;
+            padding: 8px;
+        }
+
+        &__btn-add-comp {
+            position: absolute;
+            top: 40px;
+            right: 5px;
+            z-index: 9;
+            width: 30px;
+            height: 30px;
+            padding: 8px;
+        }
     }
 
     &__thumbnail {

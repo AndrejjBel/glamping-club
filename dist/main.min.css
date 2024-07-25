@@ -2243,14 +2243,27 @@ a.secondary {
     width: 100%;
     height: 100%;
     z-index: 2; }
-  .glamping-item__btn-add {
+  .glamping-item__btns-fav-comp {
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 9;
-    width: 30px;
-    height: 30px;
-    padding: 8px; }
+    z-index: 9; }
+    .glamping-item__btns-fav-comp__btn-add-fav {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      z-index: 9;
+      width: 30px;
+      height: 30px;
+      padding: 8px; }
+    .glamping-item__btns-fav-comp__btn-add-comp {
+      position: absolute;
+      top: 40px;
+      right: 5px;
+      z-index: 9;
+      width: 30px;
+      height: 30px;
+      padding: 8px; }
   .glamping-item__thumbnail {
     overflow: hidden;
     z-index: 4; }
