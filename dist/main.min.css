@@ -2184,7 +2184,8 @@ a.secondary {
     .glampings-items.list .glamping-item__thumbnail {
       position: relative;
       width: 210px;
-      height: 200px; }
+      min-height: 200px;
+      height: 100%; }
   .glampings-items.card {
     height: -moz-fit-content;
     height: fit-content; }
