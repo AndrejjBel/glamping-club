@@ -8,6 +8,62 @@
  */
 
 get_header();
+
+global $query_string;
+parse_str($query_string, $args);
+
+if (!empty($_COOKIE['glcSort'])) {
+	if ($_COOKIE['glcSort'] == 'new') {
+		$args['orderby'] = 'meta_value date';
+		$args['meta_key'] = 'glamping_recommended';
+		$args['order'] = 'DESC';
+	} elseif ($_COOKIE['glcSort'] == 'rating') {
+		// $args['orderby'] = 'meta_value_num';
+		// $args['meta_key'] = 'average_rating';
+		// $args['order'] = 'DESC';
+
+		$args['meta_query'] = [
+			'relation' => 'AND',
+			'recommend' => [
+				'key' => 'average_rating',
+				'type' => 'NUMERIC'
+			],
+			'rating' => [
+				'key' => 'count_rating',
+				'type' => 'NUMERIC'
+			],
+		];
+		$args['orderby'] = [
+			'recommend' => 'DESC',
+			'rating' => 'DESC'
+		];
+	} elseif ($_COOKIE['glcSort'] == 'recommended') {
+		$args['orderby'] = 'meta_value date';
+		$args['meta_key'] = 'glamping_recommended';
+		$args['order'] = 'DESC';
+	} elseif ($_COOKIE['glcSort'] == 'popular') {
+		$args['orderby'] = 'meta_value_num';
+		$args['meta_key'] = 'views';
+		$args['order'] = 'DESC';
+	} elseif ($_COOKIE['glcSort'] == 'max_price') {
+		$args['orderby'] = 'meta_value_num';
+		$args['meta_key'] = 'glamping_price';
+		$args['order'] = 'DESC';
+	} elseif ($_COOKIE['glcSort'] == 'min_price') {
+		$args['orderby'] = 'meta_value_num';
+		$args['meta_key'] = 'glamping_price';
+		$args['order'] = 'ASC';
+	} else {
+		$args['orderby'] = 'meta_value date';
+		$args['meta_key'] = 'glamping_recommended';
+		$args['order'] = 'DESC';
+	}
+} else {
+	$args['orderby'] = 'meta_value date';
+	$args['meta_key'] = 'glamping_recommended';
+	$args['order'] = 'DESC';
+}
+query_posts($args);
 ?>
 
 	<main id="archive-glampings" class="archive-glampings container-ag">

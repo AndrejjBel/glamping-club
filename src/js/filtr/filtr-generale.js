@@ -28,26 +28,26 @@ const filtrOptionsVision = () => {
         }
     });
 
-    filtrItemOptions.forEach((item) => {
-        let filtrOptions = item.querySelectorAll('.filtr-option');
-        filtrOptions.forEach((elem) => {
-            elem.addEventListener('click', (e) => {
-                // console.dir(elem.dataset.value);
-                elem.parentElement.previousElementSibling.children[0].innerText = e.target.innerText;
-                optionsChecked(filtrOptions);
-                elem.children[1].classList.add('active');
-                Cookies.set('glcSort', elem.dataset.value);
-            });
-        });
-    });
+    // filtrItemOptions.forEach((item) => {
+    //     let filtrOptions = item.querySelectorAll('.filtr-option');
+    //     filtrOptions.forEach((elem) => {
+    //         elem.addEventListener('click', (e) => {
+    //             // console.dir(elem.dataset.value);
+    //             elem.parentElement.previousElementSibling.children[0].innerText = e.target.innerText;
+    //             optionsChecked(filtrOptions);
+    //             elem.children[1].classList.add('active');
+    //             Cookies.set('glcSort', elem.dataset.value);
+    //         });
+    //     });
+    // });
 }
 filtrOptionsVision();
 
-function optionsChecked(options) {
-    options.forEach((elem) => {
-        elem.children[1].classList.remove('active');
-    });
-}
+// function optionsChecked(options) {
+//     options.forEach((elem) => {
+//         elem.children[1].classList.remove('active');
+//     });
+// }
 
 function optionsName(name) {
     const options = {

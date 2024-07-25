@@ -693,6 +693,7 @@ function template_cookie_value() {
 
 function options_name($name) {
     $options = [
+		'new_items' => 'Новинки',
         'recommended' => 'Рекомендованные',
         'min_price' => 'Сначала дешевые',
         'max_price' => 'Сначала дорогие',

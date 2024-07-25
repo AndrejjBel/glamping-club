@@ -667,6 +667,23 @@ function itemsChange() {
             // let newgGempAllPr =  glempAll.filter(filtrOptionsChange);
 
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
+            let sortGl = Cookies.get('glcSort');
+            if (sortGl) {
+                if (sortGl == 'new_items') {
+                    newgGempAll.sort((x, y) => y.post_date - x.post_date);
+                } else if (sortGl == 'recommended') {
+                    newgGempAll.sort((x, y) => y.recommended - x.recommended);
+                } else if (sortGl == 'max_price') {
+                    newgGempAll.sort((x, y) => y.price - x.price);
+                } else if (sortGl == 'min_price') {
+                    newgGempAll.sort((x, y) => x.price - y.price);
+                }
+                // else if (sortGl == 'popular') {
+                //     newgGempAll.sort((x, y) => y.views - x.views);
+                // } else if (sortGl == 'rating') {
+                //     newgGempAll.sort((x, y) => y.review_rating - x.review_rating || y.review_count - x.review_count);
+                // }
+            }
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
             if (input.dataset.name != 'glcRegion') {
@@ -1227,7 +1244,7 @@ function markersHover() {
                 item.parentElement.parentElement.parentElement.parentElement.parentElement.parentElement.style.zIndex = '';
             });
 		});
-	});    
+	});
 }
 
 function reviews_stars_items_average( average_rating, count_otziv ) {
@@ -1325,5 +1342,57 @@ listCardMap();
 function btnMapChange(btns) {
     btns.forEach((btn) => {
         btn.classList.remove('active');
+    });
+}
+
+function sortGlemp() {
+    let sortGlemp = document.querySelector('.filtr-item__options.sort-glemp');
+    let filtrOptions = sortGlemp.querySelectorAll('.filtr-option');
+    filtrOptions.forEach((elem) => {
+        elem.addEventListener('click', (e) => {
+            elem.parentElement.previousElementSibling.children[0].innerText = e.target.innerText;
+            optionsChecked(filtrOptions);
+            elem.children[1].classList.add('active');
+            let sortGl = elem.dataset.value;
+            Cookies.set('glcSort', sortGl);
+            sortGlempRender(sortGl);
+            sortGlemp.classList.remove('active');
+            sortGlemp.previousElementSibling.children[1].classList.remove('active');
+        });
+    });
+}
+sortGlemp();
+
+function sortGlempRender(sortGl) {
+    let priceObj = [];
+    let glcPrice = localStorage.getItem('glcPrice');
+    if (glcPrice) {
+        priceObj = glcPrice.split(',');
+    }
+    let glempAll = JSON.parse(glamping_club_ajax.glAll);
+    let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
+    // let sortGl = Cookies.get('glcSort');
+    if (sortGl) {
+        if (sortGl == 'new_items') {
+            newgGempAll.sort((x, y) => y.post_date - x.post_date);
+        } else if (sortGl == 'recommended') {
+            newgGempAll.sort((x, y) => y.recommended - x.recommended);
+        } else if (sortGl == 'max_price') {
+            newgGempAll.sort((x, y) => y.price - x.price);
+        } else if (sortGl == 'min_price') {
+            newgGempAll.sort((x, y) => x.price - y.price);
+        }
+        // else if (sortGl == 'popular') {
+        //     newgGempAll.sort((x, y) => y.views - x.views);
+        // } else if (sortGl == 'rating') {
+        //     newgGempAll.sort((x, y) => y.review_rating - x.review_rating || y.review_count - x.review_count);
+        // }
+    }
+    glempRender(newgGempAll);
+}
+
+function optionsChecked(options) {
+    options.forEach((elem) => {
+        elem.children[1].classList.remove('active');
     });
 }

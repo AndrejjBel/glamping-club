@@ -14,7 +14,13 @@
             </svg>
         </div>
 
-        <div class="filtr-item__options select">
+        <div class="filtr-item__options select sort-glemp">
+            <div class="filtr-option" data-value="new_items">
+                <div class="filtr-option__text">Новинки</div>
+                <svg class="<?php echo filtr_cookie_value('new_items')['class']; ?>" xmlns="http://www.w3.org/2000/svg" width="16" height="11" fill="none" viewBox="0 0 16 11" data-test="checked-option">
+                    <path fill="#000" fill-rule="evenodd" d="M15.707.293a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L6 8.586 14.293.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"></path>
+                </svg>
+            </div>
             <div class="filtr-option" data-value="recommended">
                 <div class="filtr-option__text">Рекомендованные</div>
                 <svg class="<?php echo filtr_cookie_value('recommended')['class']; ?>" xmlns="http://www.w3.org/2000/svg" width="16" height="11" fill="none" viewBox="0 0 16 11" data-test="checked-option">
