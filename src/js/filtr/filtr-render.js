@@ -929,15 +929,22 @@ function priceRange(item) {
 function glempRender(glemps) {
     const glampingsItems = document.querySelector('.glampings-items');
     let glcFav = favoritesRender('glcFav');
+    let glcCompar = favoritesRender('glcCompar');
     glampingsItems.innerHTML = '';
     glemps.forEach((glemp) => {
         let price = currFormat(glemp.price);
         let type = glemp.type.join(', ');
         let clFav = '';
+        let clCompar = '';
         let titleFav = 'Добавить в избранное';
+        let titleCompar = 'Добавить к сравнению';
         if (glcFav.includes(glemp.id)) {
             clFav = ' active';
             titleFav = 'Удалить из избранного';
+        }
+        if (glcCompar.includes(glemp.id)) {
+            clCompar = ' active';
+            titleCompar = 'Удалить из сравнения';
         }
         let slider = ``;
         glemp.media_urls.forEach((item) => {
@@ -949,11 +956,18 @@ function glempRender(glemps) {
             "beforeEnd",
             `<div id="post-${glemp.id}" class="glamping-item" title="${glemp.title}">
             	<a href="${glemp.url}" class="glamping-item__url" rel="bookmark"></a>
-            	<button id="add-favorites" data-postid="${glemp.id}" class="glamping-item__btn-add round-sup-red${clFav}" type="button" name="button" title="${titleFav}">
-            		<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-            			<path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
-            		</svg>
-            	</button>
+                <div class="glamping-item__btns-fav-comp">
+            		<button id="add-favorites" data-postid="${glemp.id}" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red${clFav}" type="button" name="button" title="${titleFav}">
+            			<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+            				<path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+            			</svg>
+            		</button>
+            		<button id="add-comparison" data-postid="${glemp.id}" class="glamping-item__btns-fav-comp__btn-add-comp round-sup-red${clCompar}" type="button" name="button" title="${titleCompar}">
+            			<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            				<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+            			</svg>
+            		</button>
+            	</div>
             	<div class="glamping-item__thumbnail">
                     <div id="slider-post-${glemp.id}" class="swiper slider-post-${glemp.id}">
                         <div class="swiper-wrapper">${slider}</div>
