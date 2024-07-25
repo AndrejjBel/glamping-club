@@ -202,7 +202,7 @@ function get_accommodation_options() {
 						</div>
 					<?php }} ?>
 					<?php if (array_key_exists('places', $option)) {
-						if ($option['area']) {
+						if ($option['places']) {
 					?>
 						<div class="acc-option__options__item">
 							<!-- <div class="acc-option__options__item__title">Мест</div> -->
