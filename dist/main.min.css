@@ -2367,6 +2367,25 @@ a.secondary {
   background: var(--color-primary);
   color: #fff; }
 
+.swiper {
+  width: 100%;
+  height: 100%; }
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover; }
+
 .glcf-scroll {
   height: 82vh;
   overflow: auto;
