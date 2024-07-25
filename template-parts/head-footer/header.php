@@ -96,7 +96,7 @@ if (is_post_type_archive('glampings')) {
 </header><!-- #masthead -->
 
 <div class="header-fixed-height"></div>
-<div class="<?php echo $container; ?>">
+<div class="<?php echo $container; ?> breadcrumbs-wrap">
 <?php
 if ( !is_front_page() && function_exists( 'breadcrumbs' )  ) { // && is_page()
     breadcrumbs();

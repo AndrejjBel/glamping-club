@@ -102,6 +102,18 @@ body {
     padding-right: 16px;
     padding-left: 16px;
 
+    @media (min-width: 1921px) {
+        max-width: 1920px;
+        margin: 0 auto;
+
+        &.breadcrumbs-wrap {
+
+            & .breadcrumbs {
+                width: 1888px;
+            }
+        }
+    }
+
     // @media (max-width: 576px) {
     //     padding-right: 15px;
     //     padding-left: 15px;
