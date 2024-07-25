@@ -188,7 +188,9 @@ function get_accommodation_options() {
 					</div>
 				<?php } ?>
 				<div class="acc-option__options">
-					<?php if (array_key_exists('area', $option)) { ?>
+					<?php if (array_key_exists('area', $option)) {
+						if ($option['area']) {
+					?>
 						<div class="acc-option__options__item">
 							<!-- <div class="acc-option__options__item__title">Площадь</div> -->
 							<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -198,8 +200,10 @@ function get_accommodation_options() {
 								<?php echo $option['area']. 'м<sup>2</sup>'; ?>
 							</div>
 						</div>
-					<?php } ?>
-					<?php if (array_key_exists('places', $option)) { ?>
+					<?php }} ?>
+					<?php if (array_key_exists('places', $option)) {
+						if ($option['area']) {
+					?>
 						<div class="acc-option__options__item">
 							<!-- <div class="acc-option__options__item__title">Мест</div> -->
 							<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
@@ -209,7 +213,7 @@ function get_accommodation_options() {
 								<?php echo $option['places']; ?>
 							</div>
 						</div>
-					<?php } ?>
+					<?php }} ?>
 				</div>
 				<div class="acc-option__options__item__excerpt">
 					<?php if (array_key_exists('facilities_options_home', $option)) {
@@ -217,12 +221,6 @@ function get_accommodation_options() {
 					}
 					?>
 					<button class="primary-light ls js-btndetails" type="button" name="button">Подробнее</button>
-					<!-- <div class="collapse-height-content-btn">
-						<span>Подробнее</span>
-						<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-							<path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
-						</svg>
-					</div> -->
 				</div>
 				<div class="acc-option__options__item price-btn">
 					<?php if (array_key_exists('price', $option)) { ?>
@@ -238,7 +236,6 @@ function get_accommodation_options() {
 						</div>
 					<?php } ?>
 					<a href="#" class="primary ld btnvib">Выбрать</a>
-					<!-- <button class="primary ld btnvib" type="button" name="button">Выбрать</button> -->
 				</div>
 				<div class="collapse-height-content">
 					<?php if (array_key_exists('description', $option)) { ?>
@@ -266,12 +263,6 @@ function get_accommodation_options() {
 						</div>
 					</div>
 				</div>
-				<!-- <div class="collapse-height-content-btn">
-					<span>Подробнее</span>
-					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-						<path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
-					</svg>
-				</div> -->
 			</div>
 		</div>
 	<?php
