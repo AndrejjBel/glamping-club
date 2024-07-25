@@ -932,6 +932,11 @@ function glempRender(glemps) {
     let glcCompar = favoritesRender('glcCompar');
     glampingsItems.innerHTML = '';
     glemps.forEach((glemp) => {
+        let recommended = glemp.recommended;
+        let recRend = ``;
+        if (recommended == 'yes') {
+            recRend = `<div class="glamping-item__recommended">Рекомендуем</div>`;
+        }
         let price = currFormat(glemp.price);
         let type = glemp.type.join(', ');
         let clFav = '';
@@ -956,6 +961,7 @@ function glempRender(glemps) {
             "beforeEnd",
             `<div id="post-${glemp.id}" class="glamping-item" title="${glemp.title}">
             	<a href="${glemp.url}" class="glamping-item__url" rel="bookmark"></a>
+                ${recRend}
                 <div class="glamping-item__btns-fav-comp">
             		<button id="add-favorites" data-postid="${glemp.id}" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red${clFav}" type="button" name="button" title="${titleFav}">
             			<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
