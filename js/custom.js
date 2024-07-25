@@ -204,16 +204,17 @@ const collapseViews = () => {
 collapseViews();
 
 const collapseHeightViews = () => {
+    const btndetails = document.querySelectorAll('.glampings .js-btndetails');
     const collapseHeightContent = document.querySelectorAll('.glampings .collapse-height-content');
-    if (collapseHeightContent.length) {
-        collapseHeightContent.forEach((item) => {
-            item.nextElementSibling.addEventListener('click', (e) => {
-                item.classList.toggle('active');
-                item.nextElementSibling.classList.toggle('active');
-                if (item.nextElementSibling.classList.contains('active')) {
-                    item.nextElementSibling.children[0].innerText = 'Скрыть';
+    if (btndetails.length) {
+        btndetails.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                // item.classList.toggle('active');
+                item.parentElement.nextElementSibling.nextElementSibling.classList.toggle('active');
+                if (item.parentElement.nextElementSibling.nextElementSibling.classList.contains('active')) {
+                    item.innerText = 'Скрыть';
                 } else {
-                    item.nextElementSibling.children[0].innerText = 'Подробнее';
+                    item.innerText = 'Подробнее';
                 }
             });
         });

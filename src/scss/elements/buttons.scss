@@ -24,6 +24,10 @@ button.primary {
         font-size: 12px;
     }
 
+    &.ls {
+        padding: 6px 10px;
+    }
+
     &.md {
         padding: 8px 14px;
     }
@@ -79,6 +83,10 @@ button.primary-light {
         font-size: 12px;
     }
 
+    &.ls {
+        padding: 6px 10px;
+    }
+
     &.md {
         padding: 8px 14px;
     }
@@ -128,6 +136,10 @@ button.primary-red{
 
     &.fs12 {
         font-size: 12px;
+    }
+
+    &.ls {
+        padding: 6px 10px;
     }
 
     &.md {
@@ -190,6 +202,10 @@ button.primary-success{
 
     &.fs12 {
         font-size: 12px;
+    }
+
+    &.ls {
+        padding: 6px 10px;
     }
 
     &.md {
