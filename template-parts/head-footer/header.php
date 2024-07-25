@@ -5,28 +5,6 @@ if (is_post_type_archive('glampings')) {
     $container = 'container-ag';
 }
 ?>
-<style media="screen">
-.swiper {
-  width: 100%;
-  height: 100%;
-}
-
-.swiper-slide {
-  text-align: center;
-  font-size: 18px;
-  background: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-</style>
 <header id="masthead" class="site__header">
     <div class="<?php echo $container; ?>">
         <div class="header-generale">
