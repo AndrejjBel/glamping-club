@@ -543,6 +543,9 @@ function sliderNumber(startMin, startMax, min, max) {
     if (!slider) return;
     const minPriceInput = document.getElementById('min_price');
     const maxPriceInput = document.getElementById('max_price');
+    const icon = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+    <path d="M438.6 105.4C451.1 117.9 451.1 138.1 438.6 150.6L182.6 406.6C170.1 419.1 149.9 419.1 137.4 406.6L9.372 278.6C-3.124 266.1-3.124 245.9 9.372 233.4C21.87 220.9 42.13 220.9 54.63 233.4L159.1 338.7L393.4 105.4C405.9 92.88 426.1 92.88 438.6 105.4H438.6z"/>
+    </svg>`;
     noUiSlider.create(slider, {
         start: [startMin, startMax],
         connect: true,
@@ -551,6 +554,8 @@ function sliderNumber(startMin, startMax, min, max) {
             'max': max
         }
     });
+    let sliderValueStart = slider.noUiSlider.get();
+    // console.dir(sliderValueStart);
     slider.noUiSlider.on('update', function () {
         let sliderValue = slider.noUiSlider.get();
         minPriceInput.value = Math.ceil(sliderValue[0]);
@@ -559,7 +564,7 @@ function sliderNumber(startMin, startMax, min, max) {
     slider.noUiSlider.on('end', function () {
         const glampingsMap = document.querySelector('.glampings-map');
         let sliderValue = slider.noUiSlider.get();
-        console.dir(sliderValue);
+        // console.dir(sliderValue);
 
         let glempAll = JSON.parse(glamping_club_ajax.glAll);
         let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
@@ -578,9 +583,82 @@ function sliderNumber(startMin, startMax, min, max) {
 
         glampingsMap.children[0].innerHTML = '';
         mapRender(mapPointTest(newgGempAll));
+
+        // console.dir(slider.parentElement.previousElementSibling.previousElementSibling.children[1]);
+
+        if (isArraysEqual(sliderValueStart, sliderValue)) {
+            slider.parentElement.previousElementSibling.previousElementSibling.children[1].innerHTML = '';
+        } else {
+            slider.parentElement.previousElementSibling.previousElementSibling.children[1].innerHTML = icon;
+        }
+        chekAllFitrs();
     });
 }
 // sliderNumber(2000, 8000, 2000, 8000);
+
+function isArraysEqual(firstArray, secondArray) {
+    return firstArray.toString() === secondArray.toString();
+}
+
+function chekAllFitrs() {
+    const filtrItems = document.querySelectorAll('.filtr-item__title__count');
+    if (!filtrItems.length) return;
+    const btnFiltrClear = document.querySelector('#all-filter-clear');
+    let countObj = [];
+    filtrItems.forEach((item) => {
+        if (item.innerHTML) {
+            countObj.push(item.innerHTML);
+        }
+    });
+    if (countObj.length) {
+        btnFiltrClear.classList.add('activate');
+    } else {
+        btnFiltrClear.classList.remove('activate');
+    }
+    return countObj.length;
+}
+// chekAllFitrs();
+
+function removeAllFitrs() {
+    const btnFiltrClear = document.querySelector('#all-filter-clear');
+    if (!btnFiltrClear) return;
+    const priceCount = document.querySelector('.filtr-item.price .filtr-item__title__count');
+    const glampingsMap = document.querySelector('.glampings-map');
+    btnFiltrClear.addEventListener('click', function(e) {
+        localStorage.removeItem('glcRegion');
+        localStorage.removeItem('glcType');
+        localStorage.removeItem('glcAllocation');
+        localStorage.removeItem('glcWorking');
+        localStorage.removeItem('glcNature');
+        localStorage.removeItem('glcFacilGen');
+        localStorage.removeItem('glcEntertainment');
+        localStorage.removeItem('glcTerritory');
+        localStorage.removeItem('glcSafety');
+        localStorage.removeItem('glcPrice');
+
+        let glempAll = JSON.parse(glamping_club_ajax.glAll);
+
+        locationsArchive(glempAll);
+        filtrTypeArchive(glempAll);
+        filtrAllocationArchive(glempAll);
+        filtrWorkingArchive(glempAll);
+        filtrNatureArchive(glempAll);
+        filtrFacilitiesGeneralArchive(glempAll);
+        filtrErtainmentArchive(glempAll);
+        filtrTerritoryArchive(glempAll);
+        filtrSafetyArchive(glempAll);
+
+        glempRender(glempAll);
+        glampingsMap.children[0].innerHTML = '';
+        mapRender(mapPointTest(glempAll));
+
+        sliderUpdatePrice(glempAll);
+        priceCount.innerHTML = '';
+
+        btnFiltrClear.classList.remove('activate');
+    });
+}
+removeAllFitrs();
 
 function priceSliderRender(arr) {
     let pricesObj = [];
@@ -602,7 +680,7 @@ function priceSliderRender(arr) {
     return {priceMin: priceMin, priceMax: priceMax};
 }
 // priceSliderRender(JSON.parse(glamping_club_ajax.glAll));
-console.dir(priceSliderRender(JSON.parse(glamping_club_ajax.glAll)));
+priceSliderRender(JSON.parse(glamping_club_ajax.glAll));
 
 function sliderUpdatePrice(arr) {
     const slider = document.getElementById('glc-slider');
@@ -663,8 +741,9 @@ function itemsChange() {
             if (glcPrice) {
                 priceObj = glcPrice.split(',');
             }
-            // priceObj = sliderUpdatePrice(newgGempAll);
-            // let newgGempAllPr =  glempAll.filter(filtrOptionsChange);
+            // else {
+            //     sliderUpdatePrice(newgGempAll);
+            // }
 
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
             let sortGl = Cookies.get('glcSort');
@@ -731,6 +810,8 @@ function itemsChange() {
 
             glampingsMap.children[0].innerHTML = '';
             mapRender(mapPointTest(newgGempAll));
+
+            chekAllFitrs();
         }
     });
 }
@@ -1367,6 +1448,7 @@ function btnMapChange(btns) {
 
 function sortGlemp() {
     let sortGlemp = document.querySelector('.filtr-item__options.sort-glemp');
+    if (!sortGlemp) return;
     let filtrOptions = sortGlemp.querySelectorAll('.filtr-option');
     filtrOptions.forEach((elem) => {
         elem.addEventListener('click', (e) => {

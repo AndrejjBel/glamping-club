@@ -7,9 +7,31 @@
 }
 
 .glampings-filtr-items {
+    position: relative;
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    &__btn-filtr-clear {
+        position: fixed;
+        width: 40px;
+        top: 40%;
+        padding: 10px;
+        background: #dddddd96;
+        border-radius: 8px;
+        z-index: 2;
+        visibility: hidden;
+        opacity: 0;
+
+        &.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        & svg {
+            fill: red;
+        }
+    }
 }
 
 .filtr-item {
@@ -45,6 +67,15 @@
         &__count {
             font-weight: 600;
             color: var(--red);
+
+            & svg {
+                width: 12px;
+                height: 12px;
+
+                & path {
+                    fill: red;
+                }
+            }
         }
     }
 

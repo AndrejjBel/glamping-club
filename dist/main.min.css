@@ -65,6 +65,10 @@ body {
 .container-ag {
   padding-right: 16px;
   padding-left: 16px; }
+  .container-ag.breadcrumbs-wrap {
+    display: flex;
+    gap: 32px;
+    align-items: center; }
   @media (min-width: 1921px) {
     .container-ag {
       max-width: 1920px;
@@ -1086,8 +1090,12 @@ button.primary-light {
   color: var(--Gray-700, #344054);
   border: 1px solid var(--Gray-300, #D0D5DD);
   background: var(--White, #FFF); }
+  button.primary-light.fs10 {
+    font-size: 10px; }
   button.primary-light.fs12 {
     font-size: 12px; }
+  button.primary-light.lsm {
+    padding: 2px 10px; }
   button.primary-light.ls {
     padding: 6px 10px; }
   button.primary-light.md {
@@ -1110,6 +1118,14 @@ button.primary-light {
     border: 1px solid var(--Gray-200, #E4E7EC);
     background: var(--White, #FFF);
     cursor: default; }
+  button.primary-light.icon {
+    gap: 4px;
+    height: 26px;
+    padding: 0 6px; }
+    button.primary-light.icon svg {
+      width: 12px; }
+      button.primary-light.icon svg path {
+        fill: red; }
 
 button.primary-red {
   display: flex;
@@ -1122,6 +1138,8 @@ button.primary-red {
   color: var(--White, #FFF);
   border: 1px solid var(--Error-600, #D92D20);
   background: var(--Error-600, #D92D20); }
+  button.primary-red.fs10 {
+    font-size: 10px; }
   button.primary-red.fs12 {
     font-size: 12px; }
   button.primary-red.ls {
@@ -1338,6 +1356,13 @@ a.btn-back-to-home {
 .btn-group {
   display: flex;
   gap: 20px; }
+
+.btn-filter-clear {
+  visibility: hidden;
+  opacity: 0; }
+  .btn-filter-clear.activate {
+    visibility: visible;
+    opacity: 1; }
 
 a.primary {
   display: flex;
@@ -2424,9 +2449,25 @@ a.secondary {
   padding-right: 8px; }
 
 .glampings-filtr-items {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px; }
+  .glampings-filtr-items__btn-filtr-clear {
+    position: fixed;
+    width: 40px;
+    top: 40%;
+    padding: 10px;
+    background: #dddddd96;
+    border-radius: 8px;
+    z-index: 2;
+    visibility: hidden;
+    opacity: 0; }
+    .glampings-filtr-items__btn-filtr-clear.active {
+      visibility: visible;
+      opacity: 1; }
+    .glampings-filtr-items__btn-filtr-clear svg {
+      fill: red; }
 
 .filtr-item {
   border-radius: 12px;
@@ -2452,6 +2493,11 @@ a.secondary {
     .filtr-item__title__count {
       font-weight: 600;
       color: var(--red); }
+      .filtr-item__title__count svg {
+        width: 12px;
+        height: 12px; }
+        .filtr-item__title__count svg path {
+          fill: red; }
   .filtr-item__options {
     font-size: 14px; }
     .filtr-item__options.pad12 {

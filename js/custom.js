@@ -408,6 +408,19 @@ function favoritesRenderLogin() {
     // }
 }
 
+// function chekAllFitrs() {
+//     const filtrItems = document.querySelectorAll('.filtr-item__title__count');
+//     let countObj = [];
+//     filtrItems.forEach((item) => {
+//         // console.dir(item.innerHTML);
+//         if (item.innerHTML) {
+//             countObj[] = item.innerHTML;
+//         }
+//     });
+//     return countObj.length;
+// }
+// chekAllFitrs();
+
 // function mapRender(geoData) {
 //     const archiveGlampings = document.querySelector('#archive-glampings');
 //     if (!archiveGlampings) return;
@@ -446,7 +459,7 @@ function favoritesRenderLogin() {
 // mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
 // console.dir(JSON.parse(glamping_club_ajax.glAllMap));
-console.dir(JSON.parse(glamping_club_ajax.glAll));
+// console.dir(JSON.parse(glamping_club_ajax.glAll));
 
 // const mapPointTest = (glAll) => {
 //     // const glAll = JSON.parse(glamping_club_ajax.glAll);
