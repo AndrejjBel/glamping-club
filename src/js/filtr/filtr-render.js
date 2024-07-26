@@ -682,6 +682,25 @@ function priceSliderRender(arr) {
 // priceSliderRender(JSON.parse(glamping_club_ajax.glAll));
 priceSliderRender(JSON.parse(glamping_club_ajax.glAll));
 
+function priceSliderOption(arr) {
+    let pricesObj = [];
+    let priceMin = '';
+    let priceMax = '';
+    if ( arr.length > 1 ) {
+        arr.forEach((item) => {
+            pricesObj = pricesObj.concat(item.price);
+        });
+        pricesObj = makeUniqSort(pricesObj);
+        priceMin = Math.min.apply(null, pricesObj);
+        priceMax = Math.max.apply(null, pricesObj);
+    } else {
+        pricesObj = arr[0].price
+        priceMin = pricesObj;
+        priceMax = pricesObj;
+    }
+    return [priceMin, priceMax];
+}
+
 function sliderUpdatePrice(arr) {
     const slider = document.getElementById('glc-slider');
     let pricesObj = [];
@@ -699,6 +718,7 @@ function sliderUpdatePrice(arr) {
         priceMin = +pricesObj;
         priceMax = +pricesObj;
     }
+    let glempAll = JSON.parse(glamping_club_ajax.glAll);
     slider.noUiSlider.updateOptions({
         start: [priceMin, priceMax],
         range: {
@@ -708,6 +728,7 @@ function sliderUpdatePrice(arr) {
     });
     let priceObj = [priceMin, priceMax];
     localStorage.setItem('glcPrice', priceObj);
+
     return priceObj;
 }
 
@@ -734,16 +755,13 @@ function itemsChange() {
         let input = event.target.closest('input');
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
-            let newgGempAll =  glempAll.filter(filtrOptionsChange);
-            sliderUpdatePrice(newgGempAll);
+            let newgGempAllPr =  glempAll.filter(filtrOptionsChange);
+            sliderUpdatePrice(newgGempAllPr);
             let priceObj = [];
             let glcPrice = localStorage.getItem('glcPrice');
             if (glcPrice) {
                 priceObj = glcPrice.split(',');
             }
-            // else {
-            //     sliderUpdatePrice(newgGempAll);
-            // }
 
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
             let sortGl = Cookies.get('glcSort');
