@@ -7,6 +7,7 @@ localStorage.removeItem('glcFacilGen');
 localStorage.removeItem('glcEntertainment');
 localStorage.removeItem('glcTerritory');
 localStorage.removeItem('glcSafety');
+localStorage.removeItem('glcPrice');
 
 const locationsArchive = (glempAll) => {
     const regionItem = document.querySelector('.filtr-item.region');
@@ -555,6 +556,7 @@ function sliderNumber(startMin, startMax, min, max) {
         }
     });
     let sliderValueStart = slider.noUiSlider.get();
+    localStorage.setItem('glcPrice', sliderValueStart.map(Number));
     // console.dir(sliderValueStart);
     slider.noUiSlider.on('update', function () {
         let sliderValue = slider.noUiSlider.get();
@@ -564,12 +566,12 @@ function sliderNumber(startMin, startMax, min, max) {
     slider.noUiSlider.on('end', function () {
         const glampingsMap = document.querySelector('.glampings-map');
         let sliderValue = slider.noUiSlider.get();
-        // console.dir(sliderValue);
+        console.dir(sliderValue.map(Number).map(elem => elem.toFixed()));
 
         let glempAll = JSON.parse(glamping_club_ajax.glAll);
         let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
         glempRender(newgGempAll);
-        localStorage.setItem('glcPrice', sliderValue);
+        localStorage.setItem('glcPrice', sliderValue.map(Number).map(elem => elem.toFixed()));
 
         locationsArchive(newgGempAll);
         filtrTypeArchive(newgGempAll);
@@ -719,15 +721,17 @@ function sliderUpdatePrice(arr) {
         priceMax = +pricesObj;
     }
     let glempAll = JSON.parse(glamping_club_ajax.glAll);
+    let currPrice = [];
+    currPrice = localStorage.getItem('glcPrice').split(',').map(Number);
     slider.noUiSlider.updateOptions({
-        start: [priceMin, priceMax],
+        start: [currPrice[0], currPrice[1]],
         range: {
             'min': priceMin,
             'max': priceMax
         }
     });
     let priceObj = [priceMin, priceMax];
-    localStorage.setItem('glcPrice', priceObj);
+    // localStorage.setItem('glcPrice', priceObj);
 
     return priceObj;
 }
@@ -755,15 +759,21 @@ function itemsChange() {
         let input = event.target.closest('input');
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
-            let newgGempAllPr =  glempAll.filter(filtrOptionsChange);
-            sliderUpdatePrice(newgGempAllPr);
+            let newgGempAll =  glempAll.filter(filtrOptionsChange);
+            sliderUpdatePrice(newgGempAll);
+            // sliderUpdatePriceNew(glcPrice);
+            let sliderValueStart = priceSliderOption(glempAll);
+            console.dir(sliderValueStart);
+
             let priceObj = [];
             let glcPrice = localStorage.getItem('glcPrice');
             if (glcPrice) {
                 priceObj = glcPrice.split(',');
+                // sliderUpdatePriceNew(glcPrice);
             }
 
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
+
             let sortGl = Cookies.get('glcSort');
             if (sortGl) {
                 if (sortGl == 'new_items') {
@@ -792,14 +802,15 @@ function itemsChange() {
                     localStorage.getItem('glcFacilGen') ||
                     localStorage.getItem('glcEntertainment') ||
                     localStorage.getItem('glcTerritory') ||
-                    localStorage.getItem('glcSafety')
+                    localStorage.getItem('glcSafety') ||
+                    localStorage.getItem('glcPrice')
                 ) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
                 }
             } else {
-                locationsArchive(glempAll);
+                locationsArchive(newgGempAll);
             }
             if (input.dataset.name != 'glcType') {
                 filtrTypeArchive(newgGempAll);
