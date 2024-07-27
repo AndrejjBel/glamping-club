@@ -636,9 +636,10 @@ function removeAllFitrs() {
         localStorage.removeItem('glcEntertainment');
         localStorage.removeItem('glcTerritory');
         localStorage.removeItem('glcSafety');
-        localStorage.removeItem('glcPrice');
+        // localStorage.removeItem('glcPrice');
 
         let glempAll = JSON.parse(glamping_club_ajax.glAll);
+        localStorage.setItem('glcPrice', priceSliderOption(glempAll));
 
         locationsArchive(glempAll);
         filtrTypeArchive(glempAll);
