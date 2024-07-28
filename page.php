@@ -40,5 +40,3 @@ if (is_page([PAGE_DASHBOARD, 'favorites', 'compare'])) {
 }
 get_sidebar();
 get_footer();
-
-options_set();
