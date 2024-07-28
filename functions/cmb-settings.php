@@ -89,34 +89,230 @@ function glamping_club_register_main_options_metabox() {
 	/**
 	 * Registers secondary options page, and set main item as parent.
 	 */
-	// $secondary_options = new_cmb2_box( array(
-	// 	'id'           => 'glc_secondary_options_page',
-	// 	'title'        => esc_html__( 'Развлечения', 'glamping-club' ),
-	// 	'object_types' => array( 'options-page' ),
-	// 	'option_key'   => 'glc_secondary_options',
-	// 	'parent_slug'  => 'glc_options',
-	// ) );
-    //
-    // $acc_options_group = $secondary_options->add_field( array(
-	// 	'id'          => 'acc_options',
-	// 	'type'        => 'group',
-	// 	// 'description' => esc_html__( 'Группа полей', 'glamping-club' ),
-	// 	// 'repeatable'  => false,
-	// 	'options'     => array(
-	// 		'group_title'    => esc_html__( 'Вариант развлечения', 'cmb2' ),
-	// 		'add_button'     => __( 'Добавить вариант развлечения', 'cmb2' ),
-	// 		'remove_button'  => __( 'Удалить вариант развлечения', 'cmb2' ),
-	// 		'sortable'       => true,
-	// 		'closed'         => true
-	// 	),
-	// ) );
-    //
-	// $secondary_options->add_group_field( $acc_options_group, array(
-	// 	'name' => esc_html__( 'Название варианта развлечения', 'glamping-club' ),
-	// 	// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
-	// 	'id'   => 'title',
-	// 	'type' => 'text',
-	// ) );
+	$alloptions_glamping_options = new_cmb2_box( array(
+		'id'           => 'glc_alloptions_page',
+		'title'        => esc_html__( 'Опции глэмпинга', 'glamping-club' ),
+		'object_types' => array( 'options-page' ),
+		'option_key'   => 'glc_alloptions_page',
+		'parent_slug'  => 'glc_options',
+	) );
+
+    $glamping_type_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'glamping_type',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Тип места', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $glamping_type_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $glamping_allocation_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'glamping_allocation',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Тип размещения', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $glamping_allocation_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $glamping_facilities_general_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'glamping_facilities_general',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Удобства общие', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $glamping_facilities_general_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );    
+
+    $facilities_options_home_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_home',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Удобства в доме', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_home_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $facilities_options_bathroom_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_bathroom',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Удобства в ванной комнате', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_bathroom_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $facilities_options_kitchen_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_kitchen',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Удобства на кухне', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_kitchen_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $glamping_nutrition_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'glamping_nutrition',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Питание', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $glamping_nutrition_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $facilities_options_children_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_children',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Для детей', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_children_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $glamping_territory_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'glamping_territory',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Территория', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $glamping_territory_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $facilities_options_safety_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_safety',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Безопасность', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_safety_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $glamping_entertainment_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'glamping_entertainment',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Развлечения', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $glamping_entertainment_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $glamping_nature_around_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'glamping_nature_around',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Природа вокруг', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $glamping_nature_around_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
 
 	/**
 	 * Registers tertiary options page, and set main item as parent.

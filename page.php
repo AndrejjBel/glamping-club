@@ -40,3 +40,26 @@ if (is_page([PAGE_DASHBOARD, 'favorites', 'compare'])) {
 }
 get_sidebar();
 get_footer();
+
+// $site_options = get_option( 'glc_alloptions_page' );
+// $site_options['glamping_facilities_general'] = [['title' => [
+// 	'Wi-Fi',
+// 	'Кондиционер',
+// 	'Парковка',
+// 	'Можно с животными',
+// 	]]];
+
+// update_option( 'glc_alloptions_page', $site_options );
+
+// $options = [];
+// foreach ($site_options['glamping_type'][0]['title'] as $key => $value) {
+// 	$options[$value] = $value;
+// }
+
+// echo '<pre>';
+// var_dump($options);
+// echo '</pre>';
+//
+// echo '<pre>';
+// var_dump($site_options['glamping_type'][0]['title']);
+// echo '</pre>';
