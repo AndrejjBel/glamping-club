@@ -28,7 +28,14 @@
         }
 
         &__content {
+            display: flex;
+            flex-direction: column;
             overflow: auto;
+            padding-bottom: 20px;
+
+            & .nav-bottom {
+                margin-top: auto;
+            }
         }
 
         &.active {
@@ -57,6 +64,11 @@
             overflow: auto;
             padding: 20px 20px 0;
             background: var(--color-bg-dashboard);
+            height: calc(100vh - 77px);
+
+            @media (max-width: 767px) {
+                height: calc(100vh - 61px);
+            }
 
             &__footer {
                 margin-top: auto;
@@ -104,6 +116,10 @@
                     }
                 }
             }
+        }
+
+        &__glamps {
+
         }
     }
 }
@@ -155,6 +171,65 @@
                 & svg path {
                     stroke: var(--color-primary);
                     fill: var(--color-primary);
+                }
+            }
+        }
+    }
+}
+
+.user-glamps {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    &__item {
+        display: flex;
+        gap: 16px;
+        // max-width: 500px;
+        width: 100%;
+
+        &:nth-last-child(n+2) {
+            padding-bottom: 16px;
+            border-bottom: 1px solid var(--color-border-glemp);
+        }
+
+        &__img {
+            display: flex;
+            width: 60px;
+            height: 60px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        &__info {
+
+            &__title {
+                font-size: 18px;
+                font-weight: 500;
+            }
+
+            &__options {
+
+                &__item {
+                    display: flex;
+                    gap: 8px;
+                    align-items: center;
+                    font-size: 14px;
+                }
+            }
+        }
+
+        &__links {
+            display: flex;
+            gap: 8px;
+            flex-direction: column;
+            margin-left: auto;
+
+            & a {
+                display: flex;
+
+                &:nth-last-child(1) {
+                    margin-top: auto;
                 }
             }
         }
