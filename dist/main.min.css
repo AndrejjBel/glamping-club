@@ -2227,9 +2227,15 @@ a.secondary {
     gap: 16px; }
     .archive-glampings__left.no-map {
       width: 100%; }
+      @media (max-width: 767px) {
+        .archive-glampings__left.no-map {
+          display: flex; } }
     @media (max-width: 1399px) {
       .archive-glampings__left {
         width: auto; } }
+    @media (max-width: 767px) {
+      .archive-glampings__left {
+        display: none; } }
   .archive-glampings .rating-count {
     font-size: 12px; }
 

@@ -412,6 +412,7 @@ const filrtMobile = () => {
     const btn = document.querySelector('button.button-filtr-icon');
     if (!btn) return;
     const filtr = document.querySelector('.glampings-filtr');
+    const glampingsLeft = document.querySelector('.archive-glampings__left');
     const closeFiltr = document.querySelector('button.close-filtr');
     const overlay = document.querySelector('.js-overlay-modal');
     const body = document.querySelector('body');
@@ -419,15 +420,18 @@ const filrtMobile = () => {
         filtr.classList.add('active');
         overlay.classList.add('active');
         body.style.overflow = 'hidden';
+        glampingsLeft.style.display = 'flex';
     });
     closeFiltr.addEventListener('click', (e) => {
         filtr.classList.remove('active');
         overlay.classList.remove('active');
         body.style.overflow = '';
+        glampingsLeft.style.display = '';
     });
     overlay.addEventListener('click', (e) => {
         filtr.classList.remove('active');
         body.style.overflow = '';
+        glampingsLeft.style.display = '';
     });
 
     document.addEventListener('swiped-left', function(e) {
@@ -439,6 +443,7 @@ const filrtMobile = () => {
             filtr.classList.remove('active');
             overlay.classList.remove('active');
             body.style.overflow = '';
+            glampingsLeft.style.display = '';
         }
     });
 }
