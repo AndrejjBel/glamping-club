@@ -408,6 +408,47 @@ function favoritesRenderLogin() {
     // }
 }
 
+const filrtMobile = () => {
+    const btn = document.querySelector('button.button-filtr-icon');
+    if (!btn) return;
+    const filtr = document.querySelector('.glampings-filtr');
+    const closeFiltr = document.querySelector('button.close-filtr');
+    const overlay = document.querySelector('.js-overlay-modal');
+    const body = document.querySelector('body');
+    btn.addEventListener('click', (e) => {
+        filtr.classList.add('active');
+        overlay.classList.add('active');
+        body.style.overflow = 'hidden';
+    });
+    closeFiltr.addEventListener('click', (e) => {
+        filtr.classList.remove('active');
+        overlay.classList.remove('active');
+        body.style.overflow = '';
+    });
+    overlay.addEventListener('click', (e) => {
+        filtr.classList.remove('active');
+        body.style.overflow = '';
+    });
+
+    document.addEventListener('swiped-left', function(e) {
+        // const filtr = document.querySelector('.glampings-filtr');
+        // const overlay = document.querySelector('.js-overlay-modal')
+        // const body = document.querySelector('body')
+
+        if (filtr) {
+            filtr.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+    });
+}
+filrtMobile();
+
+// let w = document.documentElement.clientWidth;
+// let w2 = window.innerWidth;
+// console.dir(w);
+// console.dir(w2);
+
 // function chekAllFitrs() {
 //     const filtrItems = document.querySelectorAll('.filtr-item__title__count');
 //     let countObj = [];

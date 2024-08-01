@@ -4,6 +4,10 @@
     height: 82vh;
     overflow: auto;
     padding-right: 8px;
+
+    @media (max-width: 767px) {
+        height: 100vh;
+    }
 }
 
 .glampings-filtr-items {
@@ -11,6 +15,10 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @media (max-width: 767px) {
+        width: 88%;
+    }
 
     &__btn-filtr-clear {
         position: fixed;

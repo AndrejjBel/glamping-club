@@ -92,6 +92,7 @@ query_posts($args);
 		<div class="glampings-map<?php echo template_cookie_value()['map']; ?>">
 			<div id="mapYandex" class="glampings-map__content"></div>
 		</div>
+		<!-- <div class="overlay js-overlay-modal-archive"></div> -->
 	</main><!-- #main -->
 
 <?php

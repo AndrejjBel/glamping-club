@@ -433,7 +433,6 @@ strong, b {
       .header-generale__left__search-btn.active svg.svg-search {
         display: none; }
   .header-generale__form {
-    max-width: 500px;
     width: 100%;
     margin: 0px 50px;
     position: relative;
@@ -451,6 +450,9 @@ strong, b {
           left: 0;
           margin: 0;
           padding: 0 20%; } }
+    @media (max-width: 767px) {
+      .header-generale__form.active {
+        padding: 0 62px; } }
     .header-generale__form__search {
       border-radius: 8px;
       background: var(--chalk);
@@ -707,7 +709,7 @@ strong, b {
   left: 0px;
   width: 100%;
   padding: 8px 0;
-  z-index: 3;
+  z-index: 9;
   background: var(--white);
   border-radius: 10px 10px 0px 0px;
   box-shadow: var(--mobile-nav-shadow); }
@@ -738,6 +740,8 @@ strong, b {
         display: flex; }
       .mobile-nav__group__widget svg {
         fill: var(--text-color-light); }
+        .mobile-nav__group__widget svg.mobile-nav-filtr-icon {
+          transform: rotate(90deg); }
       @media (max-width: 476px) {
         .mobile-nav__group__widget__text {
           display: none; } }
@@ -759,6 +763,11 @@ strong, b {
         text-shadow: var(--primary-tshadow);
         box-shadow: var(--primary-bshadow);
         transition: all linear .3s; }
+      .mobile-nav__group__widget.button-filtr-icon {
+        display: none; }
+        @media (max-width: 767px) {
+          .mobile-nav__group__widget.button-filtr-icon {
+            display: flex; } }
     .mobile-nav__group__widget-add {
       position: relative;
       display: flex;
@@ -2174,6 +2183,9 @@ a.secondary {
     gap: 16px; }
     .archive-glampings__left.no-map {
       width: 100%; }
+    @media (max-width: 1399px) {
+      .archive-glampings__left {
+        width: auto; } }
   .archive-glampings .rating-count {
     font-size: 12px; }
 
@@ -2182,23 +2194,45 @@ a.secondary {
   flex-direction: column;
   gap: 16px;
   width: 240px;
-  flex: none; }
+  flex: none;
+  background: var(--chalk); }
+  @media (max-width: 767px) {
+    .glampings-filtr {
+      display: none;
+      visibility: hidden;
+      opacity: 0;
+      max-width: 340px;
+      width: 100%;
+      padding: 16px; }
+      .glampings-filtr.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        display: flex;
+        visibility: visible;
+        opacity: 1;
+        z-index: 999; } }
+  .glampings-filtr button.close-filtr {
+    position: fixed;
+    top: 10px;
+    left: 300px; }
+    @media (max-width: 334px) {
+      .glampings-filtr button.close-filtr {
+        left: 284px; } }
 
 .glampings-items {
   display: flex;
   gap: 16px;
   flex-wrap: wrap;
   width: calc(100% - 288px);
-  padding-right: 10px; }
-  @media (max-width: 1199px) {
+  padding-right: 16px; }
+  @media (max-width: 1399px) {
     .glampings-items {
-      width: calc(100% - 272px); } }
+      width: calc(100% - 240px); } }
   @media (max-width: 767px) {
     .glampings-items {
-      width: calc(100% - 256px); } }
-  @media (max-width: 499px) {
-    .glampings-items {
-      width: 100%; } }
+      width: 100%;
+      padding-right: 0; } }
   .glampings-items.no-sidebar {
     width: 100%; }
   .glampings-items.list {
@@ -2211,6 +2245,9 @@ a.secondary {
       width: 210px;
       min-height: 200px;
       height: 100%; }
+    @media (max-width: 1399px) {
+      .glampings-items.list {
+        display: none; } }
   .glampings-items.card {
     height: -moz-fit-content;
     height: fit-content; }
@@ -2252,6 +2289,9 @@ a.secondary {
   width: 100%; }
   .glampings-map.active {
     display: block; }
+    @media (max-width: 1399px) {
+      .glampings-map.active {
+        max-width: 100%; } }
   .glampings-map__content {
     width: 100%;
     height: 100%; }
@@ -2447,12 +2487,18 @@ a.secondary {
   height: 82vh;
   overflow: auto;
   padding-right: 8px; }
+  @media (max-width: 767px) {
+    .glcf-scroll {
+      height: 100vh; } }
 
 .glampings-filtr-items {
   position: relative;
   display: flex;
   flex-direction: column;
   gap: 16px; }
+  @media (max-width: 767px) {
+    .glampings-filtr-items {
+      width: 88%; } }
   .glampings-filtr-items__btn-filtr-clear {
     position: fixed;
     width: 40px;
