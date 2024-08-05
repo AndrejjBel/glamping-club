@@ -795,24 +795,25 @@ function itemsChange() {
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
             if (input.dataset.name != 'glcRegion') {
-            //     if (
-            //         localStorage.getItem('glcType') ||
-            //         localStorage.getItem('glcAllocation') ||
-            //         localStorage.getItem('glcWorking') ||
-            //         localStorage.getItem('glcNature') ||
-            //         localStorage.getItem('glcFacilGen') ||
-            //         localStorage.getItem('glcEntertainment') ||
-            //         localStorage.getItem('glcTerritory') ||
-            //         localStorage.getItem('glcSafety') ||
-            //         localStorage.getItem('glcPrice')
-            //     ) {
-            //         locationsArchive(newgGempAll);
-            //     } else {
-            //         locationsArchive(glempAll);
-            //     }
-            // }
-            // else {
                 locationsArchive(newgGempAll);
+                // if (
+                //     localStorage.getItem('glcType') ||
+                //     localStorage.getItem('glcAllocation') ||
+                //     localStorage.getItem('glcWorking') ||
+                //     localStorage.getItem('glcNature') ||
+                //     localStorage.getItem('glcFacilGen') ||
+                //     localStorage.getItem('glcEntertainment') ||
+                //     localStorage.getItem('glcTerritory') ||
+                //     localStorage.getItem('glcSafety') ||
+                //     localStorage.getItem('glcPrice')
+                // ) {
+                //     locationsArchive(newgGempAll);
+                // } else {
+                //     locationsArchive(glempAll);
+                // }
+            }
+            else {
+                locationsArchive(glempAll);
             }
             if (input.dataset.name != 'glcType') {
                 filtrTypeArchive(newgGempAll);
