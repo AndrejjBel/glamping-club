@@ -30,8 +30,8 @@ function glamping_club_dashboard_nav($item_id) {
     echo $class;
 }
 
-// add_filter( 'nav_menu_css_class', 'tripinglamp_add_menu_item_css_classes', 10, 4 );
-function tripinglamp_add_menu_item_css_classes( $classes, $item, $args, $depth ) {
+// add_filter( 'nav_menu_css_class', 'glamping_club_add_menu_item_css_classes', 10, 4 );
+function glamping_club_add_menu_item_css_classes( $classes, $item, $args, $depth ) {
     if ( $_GET ) {
     	if ( isset( $_GET["tab"] ) ) {
             if( $item->url === '?tab='.$_GET["tab"]  && $args->theme_location === 'menu-4' ){
@@ -42,8 +42,8 @@ function tripinglamp_add_menu_item_css_classes( $classes, $item, $args, $depth )
 	return $classes;
 }
 
-// add_filter( 'wp_nav_menu_objects', 'tripinglamp_filter_wp_nav_menu_objects', 10, 2 );
-function tripinglamp_filter_wp_nav_menu_objects( $items, $args ) {
+// add_filter( 'wp_nav_menu_objects', 'glamping_club_filter_wp_nav_menu_objects', 10, 2 );
+function glamping_club_filter_wp_nav_menu_objects( $items, $args ) {
     $icon_lk = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
     <path d="M18 20V10M12 20V4M6 20V14" stroke="var(--color-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
     </svg>';
@@ -129,3 +129,5 @@ function dashboard_glamp_user() {
     }
     wp_reset_postdata();
 }
+
+function glamping_club_postedit() {}

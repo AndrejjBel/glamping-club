@@ -228,9 +228,13 @@
             & a {
                 display: flex;
 
-                &:nth-last-child(1) {
-                    margin-top: auto;
+                &:hover svg path {
+                    fill: var(--link-color);
                 }
+
+                // &:nth-last-child(1) {
+                //     margin-top: auto;
+                // }
             }
         }
     }

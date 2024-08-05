@@ -745,11 +745,47 @@ function glampings_map_render() {
 		if (isset($meta_object['address'])) {
 	        $address = $meta_object['address'];
 	    }
-		$link = get_permalink( $post->ID );
+		$title = get_the_title( $post->ID );
+		$url_link = get_permalink( $post->ID );
+		$link_title = '<a href="' . $url_link . '">' . $title . '</a>';
+		$thumbnail = get_the_post_thumbnail( $post->ID, [120, 120], ['class' => "attachment-map-image"] );
+		$thumbnail_pan = get_the_post_thumbnail( $post->ID, [60, 60], ['class' => "attachment-map-image-pan"] );
+		$media = array_unique(glamping_all_img($post->ID));
+        $media_urls = '';
+		$mi = 0;
+        foreach ( $media as $img ) {
+			if ($mi <=2 ) {
+				$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+	            $media_urls .= '<img width="60" height="60" src="' . $url . '" class="attachment-map-image" alt="" decoding="async">';
+				$mi++;
+			}
+    	}
 		$coord = explode(',', str_replace(" ", "", $coordinates));
 		// $coord = count($coord) > 1 ? [floatval($coord[0]), floatval($coord[1])] : [0.0, 0.0];
-		$title = str_replace(["'", "\"", "«"], '', get_the_title( $post->ID ));
-		$title = get_the_title( $post->ID );
+		// $title = str_replace(["'", "\"", "«"], '', get_the_title( $post->ID ));
+		$balloonContentBody = '<div class="balloon-content-body">';
+		// $balloonContentBody .= '<div class="ymaps-2-1-79-balloon-content__header balloon-content-body__content__title">' . $title . '</div>';
+		$balloonContentBody .= '<div class="balloon-content-body__img">' . $thumbnail . '</div>';
+		$balloonContentBody .= '<div class="balloon-content-body__content">';
+		$balloonContentBody .= '<div class="balloon-content-body__content__title">' . $link_title . '</div>';
+		$balloonContentBody .= '<div class="balloon-content-body__content__price">от ' . $post->glamping_price . 'р.</div>';
+		$balloonContentBody .= '<div class="balloon-content-body__content__address">' . $address . '</div>';
+		$balloonContentBody .= '</div></div>';
+
+		$balloonContentBodyPan = '<div class="balloon-content-body-pan">';
+		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__title">' . $link_title . '</div>';
+		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__img">';
+		$balloonContentBodyPan .= '<a href="' . $url_link . '" class="balloon-content-body-pan__img__link"></a>';
+		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__img__count">';
+		$balloonContentBodyPan .= count($media) . ' фото';
+		$balloonContentBodyPan .= '</div>';
+		$balloonContentBodyPan .= $media_urls; //$thumbnail_pan;
+		$balloonContentBodyPan .= '</div>';
+		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content">';
+		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__price">от ' . $post->glamping_price . 'р.</div>';
+		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__address">' . $address . '</div>';
+		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__buttons"></div>';
+		$balloonContentBodyPan .= '</div></div>';
 		$points [] = (object) array(
 			"type"		 => "Feature",
 			"id"		 => $post->ID,
@@ -757,11 +793,12 @@ function glampings_map_render() {
 			"properties" => (object) array(
 				"id"		 			=> $post->ID,
 				"price" 			=> $post->glamping_price,
-				"balloonContentHeader"	=> $title,
-				"balloonContentBody"	=> '<p class=\"ymaps-2-1-79-balloon-content__header\">от ' . $post->glamping_price . 'р.</p> Адрес: ' . $address,
-				"balloonContentFooter"	=> '<a href=\"'.$link.'\">Подробнее</a>',
+				// "balloonContentHeader"	=> $title,
+				"balloonContentBody"	=> $balloonContentBody,
+				"balloonContentBodyPan"	=> $balloonContentBodyPan,
+				// "balloonContentFooter"	=> '<a href="'.$link.'">Подробнее</a>',
 				"clusterCaption"		=> $title,
-				"link" 					=> $link,
+				// "link" 					=> $link,
 				"hintContent"			=> '<span>' . get_the_title( $post->ID ) . '</span>',
 				"iconContent"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
 				"iconContentDef"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',

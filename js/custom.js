@@ -422,12 +422,14 @@ const filrtMobile = () => {
         body.style.overflow = 'hidden';
         glampingsLeft.style.display = 'flex';
     });
-    closeFiltr.addEventListener('click', (e) => {
-        filtr.classList.remove('active');
-        overlay.classList.remove('active');
-        body.style.overflow = '';
-        glampingsLeft.style.display = '';
-    });
+    if (closeFiltr) {
+        closeFiltr.addEventListener('click', (e) => {
+            filtr.classList.remove('active');
+            overlay.classList.remove('active');
+            body.style.overflow = '';
+            glampingsLeft.style.display = '';
+        });
+    }
     overlay.addEventListener('click', (e) => {
         filtr.classList.remove('active');
         body.style.overflow = '';

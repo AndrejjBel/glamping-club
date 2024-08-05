@@ -294,7 +294,8 @@ function glamping_club_recovery_pass () {
     $error = array();
     $key = $_POST['key'];
     $login = $_POST['login'];
-    $user_pass = $_POST['user_pass'];
+    // $user_pass = $_POST['user_pass'];
+	$new_pass = trim( wp_unslash( $_POST['user_pass'] ) );
     $user = check_password_reset_key( $key, $login );
     if ( is_wp_error($user) ) {
         $error['empty_user'] = __('Ошибка идентификации', 'glamping-club');
@@ -313,7 +314,8 @@ function glamping_club_recovery_pass () {
         echo $error_fin;
         wp_die();
     } else {
-        reset_password( $user, $user_pass );
+        // reset_password( $user, $user_pass );
+		wp_set_password( $new_pass, $user->ID );
         $error['class'] = 'success';
         $error['notise'] = __('Пароль успешно изменен', 'glamping-club');
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);

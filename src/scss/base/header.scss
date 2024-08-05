@@ -5,7 +5,7 @@
     background: var(--color-bg);
     border-bottom: 1px solid var(--color-border-white);
     box-shadow: var(--header-shadow);
-    z-index: 9;
+    z-index: 99;
     transition: all linear .3s;
 
     &.dashboard {

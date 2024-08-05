@@ -1245,11 +1245,18 @@ function mapRender(geoData) {
                 zoom: zoomNum,
                 controls: ['zoomControl',  /*'fullscreenControl'*/]
             },
-            // {
-            //     maxZoom: 12
-            // }
+            {
+                balloonPanelMaxMapArea: 390000,
+                // balloonPanelMaxMapArea: Infinity
+                // balloonMaxWidth: 270
+            }
         ),
 		// map.behaviors.disable(['scrollZoom']);
+
+        MyPanelContentLayout = ymaps.templateLayoutFactory.createClass(
+			'$[properties.balloonContentBodyPan]'
+	    ),
+
 		objectManager = new ymaps.ObjectManager({
 			clusterize: true,
 			gridSize: 64,
@@ -1268,6 +1275,9 @@ function mapRender(geoData) {
         ); //  islands#greenMountainIcon, iconColor: '#00ABAA'
 		objectManager.add(geoJson);
 		map.geoObjects.add(objectManager);
+        objectManager.objects.options.set({
+			balloonPanelContentLayout: MyPanelContentLayout
+        });
         if (geoData.features.length == 1) {
             map.setCenter(map.geoObjects.getBounds()[0], 14, {checkZoomRange: true});
         } else {
@@ -1300,8 +1310,49 @@ function mapRender(geoData) {
 mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
 const mapPointTest = (glAll) => {
+    console.dir(glAll);
     let points = [];
     glAll.forEach((item) => {
+        let itemUrl = item.url;
+        let media_urls = item.media_urls;
+        let media = '';
+        let mi = 0;
+        media_urls.forEach((media_url) => {
+            if (mi <= 2) {
+                media += `<img width="60" height="60" src="${media_url}" class="attachment-map-image" alt="" decoding="async">`;
+            }
+            mi++;
+        });
+
+
+        let img = `<img width="60" height="60" src="${item.thumbnail_url}" class="attachment-map-image" alt="" decoding="async">`;
+
+        let bcb = `<div class="balloon-content-body">
+        <div class="balloon-content-body__img">
+        <img width="120" height="120" src="${item.thumbnail_url}" class="attachment-map-image wp-post-image" alt="" decoding="async">
+        </div>
+        <div class="balloon-content-body__content">
+        <div class="balloon-content-body__content__title">
+        <a href="${itemUrl}">${item.title}</a>
+        </div>
+        <div class="balloon-content-body__content__price">от ${item.price}р.</div>
+        <div class="balloon-content-body__content__address">${item.adress}</div>
+        </div>
+        </div>`;
+
+        let bcbp = `<div class="balloon-content-body-pan">
+        <div class="balloon-content-body-pan__title"><a href="${itemUrl}">${item.title}</a></div>
+        <div class="balloon-content-body-pan__img">
+        <a href="${itemUrl}" class="balloon-content-body-pan__img__link"></a>
+        <div class="balloon-content-body-pan__img__count">${media_urls.length} фото</div>
+        ${media}
+        </div>
+        <div class="balloon-content-body-pan__content">
+        <div class="balloon-content-body-pan__content__price">от ${item.price}р.</div>
+        <div class="balloon-content-body-pan__content__address">${item.adress}</div>
+        <div class="balloon-content-body-pan__content__buttons"></div>
+        </div>
+        </div>`;
         let coord = [];
         points.push(
             {
@@ -1314,9 +1365,11 @@ const mapPointTest = (glAll) => {
                 properties: {
                     id: item.id,
     				price: item.price,
-    				balloonContentHeader: item.title,
-                    balloonContentBody: `<p class="ymaps-2-1-79-balloon-content__header">от ${item.price}р.</p> Адрес: ${item.adress}`,
-    				balloonContentFooter: `<a href="${item.url}">Подробнее</a>`,
+    				// balloonContentHeader: item.title,
+                    balloonContentBody: bcb, //`${img}<p class="ymaps-2-1-79-balloon-content__header">от ${item.price}р.</p> Адрес: ${item.adress}`,
+                    balloonContentBodyPan: bcbp,
+    				// balloonContentFooter: `<a href="${itemUrl}">Подробнее</a>`,
+                    // balloonContentFooter: '<a href=\"'+itemUrl+'\">Подробнее</a>',
     				clusterCaption: item.title,
     				link: item.url,
                     hintContent: `<span>${item.title}</span>`,
@@ -1334,6 +1387,7 @@ const mapPointTest = (glAll) => {
         },
         features: points
     };
+    console.dir(geoData);
     return geoData;
 }
 mapPointTest(JSON.parse(glamping_club_ajax.glAll));

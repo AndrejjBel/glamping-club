@@ -106,10 +106,12 @@ const editSettings = () => {
                             if (btn.dataset.input == 'pass_new') {
                                 warningWrap.innerHTML = `<span class="color-${data.class}">${data.notise}<span>`;
                                 warningWrap.classList.add('active');
-                                // if (data.class == 'success') {
-                                //     myModal.open('#passChangeEnd');
-                                //     document.querySelector('input#verifi').value = data.verifi_user_pass_change;
-                                // }
+                                if (data.class == 'success') {
+                                    setTimeout(() => {
+                                        window.location.href = '/login/';
+                                        // location.reload();
+                                    }, 4000);
+                                }
                             }
                         },
                         error: function (jqXHR, text, error) {

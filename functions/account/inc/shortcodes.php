@@ -27,3 +27,10 @@ function glamping_club_shortcode_page_dashboard() {
     get_template_part( 'functions/account/templates/dashboard' );
 	return ob_get_clean();
 }
+
+add_shortcode( 'glc-postedit-page', 'glamping_club_shortcode_page_postedit' );
+function glamping_club_shortcode_page_postedit() {
+    ob_start();
+    get_template_part( 'functions/account/templates/postedit' );
+	return ob_get_clean();
+}

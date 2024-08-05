@@ -463,8 +463,16 @@ a.btn-back-to-home {
     &:hover {
         // background: var(--color-primary);
 
-        & svg path {
-            fill: var(--text-color); //#B42318;
+        & svg {
+            & path {
+                fill: var(--text-color); //#B42318;
+            }
+
+            &.add-claim {
+                & path {
+                    fill: red;
+                }
+            }
         }
     }
 

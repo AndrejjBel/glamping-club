@@ -8,6 +8,9 @@ define( 'PAGE_REGISTRATION_N', 'Create an account' );
 define( 'PAGE_FORGOT_PASSWORD_N', 'Reset password' );
 define( 'PAGE_DASHBOARD_N', 'Dashboard' );
 
+define( 'PAGE_POST_EDIT', 'glc-postedit' );
+define( 'PAGE_POST_EDIT_N', 'Publication form' );
+
 define( 'PAGE_FAVORITES', 'favorites' );
 define( 'PAGE_FAVORITES_N', 'Favorites' );
 
@@ -63,6 +66,7 @@ function create_page_on_theme_activation() {
     create_page_registration();
     create_page_forgot_password();
     create_page_dashboard();
+	create_page_postedit();
 	create_page_favorites();
 	create_page_compare();
 }
@@ -139,6 +143,24 @@ function create_page_dashboard(){
     }
 }
 
+function create_page_postedit(){
+    $new_page_title     = PAGE_POST_EDIT_N;
+    $post_name          = PAGE_POST_EDIT;
+    $new_page_content   = '[glc-postedit-page]';
+    $page_check = url_to_postid('/' . $post_name);
+    $new_page = array(
+            'post_type'     => 'page',
+            'post_title'    => $new_page_title,
+            'post_content'  => $new_page_content,
+            'post_status'   => 'publish',
+            'post_author'   => 1,
+            'post_name'     => $post_name
+    );
+    if(!$page_check){
+        $new_page_id = wp_insert_post($new_page);
+    }
+}
+
 function create_page_favorites(){
     $new_page_title     = PAGE_FAVORITES_N;
     $post_name          = PAGE_FAVORITES;
@@ -191,7 +213,9 @@ function glamping_club_special_page_mark( $post_states, $post ){
 		if( $post->post_name === PAGE_DASHBOARD ){
 			$post_states[] = PAGE_DASHBOARD_N . ' page';
 		}
-
+		if( $post->post_name === PAGE_POST_EDIT ){
+			$post_states[] = PAGE_POST_EDIT_N . ' page';
+		}
 		if( $post->post_name === PAGE_FAVORITES ){
 			$post_states[] = PAGE_FAVORITES_N . ' page';
 		}

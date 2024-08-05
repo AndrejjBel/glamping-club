@@ -141,6 +141,7 @@ require get_template_directory() . '/functions/post-types.php';
 require get_template_directory() . '/functions/cmb2/init.php';
 require get_template_directory() . '/functions/cmb-settings.php';
 require get_template_directory() . '/functions/cmb-post-meta.php';
+require get_template_directory() . '/functions/cmb-glempedit.php';
 require get_template_directory() . '/functions/glampings-options.php';
 require get_template_directory() . '/functions/template-functions.php';
 require get_template_directory() . '/functions/postviews.php';
