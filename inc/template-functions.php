@@ -760,12 +760,13 @@ function glampings_map_render() {
 				$mi++;
 			}
     	}
+		$thumbnail_new = '<img width="120" height="120" src="' . wp_get_attachment_image_url( $media[0], 'glamping-club-thumb' ) . '" class="attachment-map-image" alt="" decoding="async">';
 		$coord = explode(',', str_replace(" ", "", $coordinates));
 		// $coord = count($coord) > 1 ? [floatval($coord[0]), floatval($coord[1])] : [0.0, 0.0];
 		// $title = str_replace(["'", "\"", "«"], '', get_the_title( $post->ID ));
 		$balloonContentBody = '<div class="balloon-content-body">';
 		// $balloonContentBody .= '<div class="ymaps-2-1-79-balloon-content__header balloon-content-body__content__title">' . $title . '</div>';
-		$balloonContentBody .= '<div class="balloon-content-body__img">' . $thumbnail . '</div>';
+		$balloonContentBody .= '<div class="balloon-content-body__img">' . $thumbnail_new . '</div>';
 		$balloonContentBody .= '<div class="balloon-content-body__content">';
 		$balloonContentBody .= '<div class="balloon-content-body__content__title">' . $link_title . '</div>';
 		$balloonContentBody .= '<div class="balloon-content-body__content__price">от ' . $post->glamping_price . 'р.</div>';

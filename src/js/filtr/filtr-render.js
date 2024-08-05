@@ -1324,13 +1324,13 @@ const mapPointTest = (glAll) => {
             mi++;
         });
 
+        let thumb = `<img width="120" height="120" src="${media_urls[0]}" class="attachment-map-image" alt="" decoding="async">`;
+
 
         let img = `<img width="60" height="60" src="${item.thumbnail_url}" class="attachment-map-image" alt="" decoding="async">`;
 
         let bcb = `<div class="balloon-content-body">
-        <div class="balloon-content-body__img">
-        <img width="120" height="120" src="${item.thumbnail_url}" class="attachment-map-image wp-post-image" alt="" decoding="async">
-        </div>
+        <div class="balloon-content-body__img">${thumb}</div>
         <div class="balloon-content-body__content">
         <div class="balloon-content-body__content__title">
         <a href="${itemUrl}">${item.title}</a>
