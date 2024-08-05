@@ -810,9 +810,10 @@ function itemsChange() {
                 } else {
                     locationsArchive(glempAll);
                 }
-            } else {
-                locationsArchive(newgGempAll);
             }
+            // else {
+            //     locationsArchive(newgGempAll);
+            // }
             if (input.dataset.name != 'glcType') {
                 filtrTypeArchive(newgGempAll);
             }
