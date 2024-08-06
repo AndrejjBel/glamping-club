@@ -121,6 +121,13 @@
     &__slider {
         padding: 0 26px 12px 26px;
     }
+
+    &.btn-map {
+
+        @media (max-width: 767px) {
+            display: none;
+        }
+    }
 }
 
 .filtr-option {

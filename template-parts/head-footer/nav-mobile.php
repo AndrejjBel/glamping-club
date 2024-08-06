@@ -13,15 +13,15 @@ if (is_post_type_archive('glampings')) {
                 </svg>
                 <span class="mobile-nav__group__widget__text">Главная</span>
             </a>
-            <button class="mobile-nav__group__widget button-filtr-icon">
+            <!-- <button class="mobile-nav__group__widget button-filtr-icon">
                 <span class="mobile-nav__group__widget__icon">
                     <svg width="16" height="16" class="mobile-nav-filtr-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="16" height="16" class="rotate-90">
                         <path fill-rule="evenodd" d="M3.25 2.75V6h-.086C1.969 6 1 6.97 1 8.167v1.666C1 11.03 1.969 12 3.164 12h.086v1.25a.75.75 0 1 0 1.5 0V12h.086C6.031 12 7 11.03 7 9.833V8.167A2.165 2.165 0 0 0 4.836 6H4.75V2.75a.75.75 0 0 0-1.5 0m2.252 7.083a.666.666 0 0 1-.666.667H3.164a.666.666 0 0 1-.666-.667V8.167c0-.369.298-.667.666-.667h1.672c.368 0 .666.298.666.667zm5.748 3.417V10h-.082A2.165 2.165 0 0 1 9 7.838V6.162C9 4.968 9.97 4 11.168 4h.082V2.75a.75.75 0 0 1 1.5 0V4h.082C14.029 4 15 4.968 15 6.162v1.676C15 9.032 14.03 10 12.832 10h-.082v3.25a.75.75 0 0 1-1.5 0m2.249-5.412a.666.666 0 0 1-.667.665h-1.664a.666.666 0 0 1-.667-.665V6.162c0-.367.299-.665.667-.665h1.664c.368 0 .667.298.667.665z"></path>
                     </svg>
-                    <!-- <span id="sup-filtr" class="mobile-nav__group__widget__count">0</span> -->
+                    <span id="sup-filtr" class="mobile-nav__group__widget__count">0</span>
                 </span>
                 <span class="mobile-nav__group__widget__text">Фильтр</span>
-            </button>
+            </button> -->
             <a href="/favorites/" class="mobile-nav__group__widget">
                 <span class="mobile-nav__group__widget__icon">
                     <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">

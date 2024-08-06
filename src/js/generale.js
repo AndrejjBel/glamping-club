@@ -1,6 +1,7 @@
 function navScroll(elementId) {
     const masthead = document.getElementById(elementId);
     const asideContent = document.getElementById('aside-content');
+    const btnFiltrVisionMobile = document.getElementById('btn-filtr-vision-mobile');
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
@@ -10,12 +11,18 @@ function navScroll(elementId) {
             if (asideContent) {
                 asideContent.style.top = headHeight+"px";
             }
+            if (btnFiltrVisionMobile) {
+                btnFiltrVisionMobile.style.top = '';
+            }
         } else {
             if (prevScrollpos > masthead.offsetHeight) { //clientHeight
                 masthead.style.top = '-'+masthead.offsetHeight+'px';
             }
             if (asideContent) {
                 asideContent.style.top = '24px';
+            }
+            if (btnFiltrVisionMobile) {
+                btnFiltrVisionMobile.style.top = '0';
             }
         }
         prevScrollpos = currentScrollPos;

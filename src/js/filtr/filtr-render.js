@@ -606,7 +606,7 @@ function isArraysEqual(firstArray, secondArray) {
 function chekAllFitrs() {
     const filtrItems = document.querySelectorAll('.filtr-item__title__count');
     if (!filtrItems.length) return;
-    const btnFiltrClear = document.querySelector('#all-filter-clear');
+    const btnFiltrClear = document.querySelectorAll('#all-filter-clear');
     let countObj = [];
     filtrItems.forEach((item) => {
         if (item.innerHTML) {
@@ -614,52 +614,62 @@ function chekAllFitrs() {
         }
     });
     if (countObj.length) {
-        btnFiltrClear.classList.add('activate');
+        btnFiltrClear.forEach((btn) => {
+            btn.classList.add('activate');
+        });
     } else {
-        btnFiltrClear.classList.remove('activate');
+        btnFiltrClear.forEach((btn) => {
+            btn.classList.remove('activate');
+        });
     }
     return countObj.length;
 }
 // chekAllFitrs();
 
 function removeAllFitrs() {
-    const btnFiltrClear = document.querySelector('#all-filter-clear');
-    if (!btnFiltrClear) return;
+    const btnFiltrClear = document.querySelectorAll('#all-filter-clear');
+    if (!btnFiltrClear.length) return;
     const priceCount = document.querySelector('.filtr-item.price .filtr-item__title__count');
     const glampingsMap = document.querySelector('.glampings-map');
-    btnFiltrClear.addEventListener('click', function(e) {
-        localStorage.removeItem('glcRegion');
-        localStorage.removeItem('glcType');
-        localStorage.removeItem('glcAllocation');
-        localStorage.removeItem('glcWorking');
-        localStorage.removeItem('glcNature');
-        localStorage.removeItem('glcFacilGen');
-        localStorage.removeItem('glcEntertainment');
-        localStorage.removeItem('glcTerritory');
-        localStorage.removeItem('glcSafety');
-        // localStorage.removeItem('glcPrice');
+    btnFiltrClear.forEach((btn) => {
+        btn.addEventListener('click', function(e) {
+            localStorage.removeItem('glcRegion');
+            localStorage.removeItem('glcType');
+            localStorage.removeItem('glcAllocation');
+            localStorage.removeItem('glcWorking');
+            localStorage.removeItem('glcNature');
+            localStorage.removeItem('glcFacilGen');
+            localStorage.removeItem('glcEntertainment');
+            localStorage.removeItem('glcTerritory');
+            localStorage.removeItem('glcSafety');
+            // localStorage.removeItem('glcPrice');
 
-        let glempAll = JSON.parse(glamping_club_ajax.glAll);
-        localStorage.setItem('glcPrice', priceSliderOption(glempAll));
+            let glempAll = JSON.parse(glamping_club_ajax.glAll);
+            localStorage.setItem('glcPrice', priceSliderOption(glempAll));
 
-        locationsArchive(glempAll);
-        filtrTypeArchive(glempAll);
-        filtrAllocationArchive(glempAll);
-        filtrWorkingArchive(glempAll);
-        filtrNatureArchive(glempAll);
-        filtrFacilitiesGeneralArchive(glempAll);
-        filtrErtainmentArchive(glempAll);
-        filtrTerritoryArchive(glempAll);
-        filtrSafetyArchive(glempAll);
+            locationsArchive(glempAll);
+            filtrTypeArchive(glempAll);
+            filtrAllocationArchive(glempAll);
+            filtrWorkingArchive(glempAll);
+            filtrNatureArchive(glempAll);
+            filtrFacilitiesGeneralArchive(glempAll);
+            filtrErtainmentArchive(glempAll);
+            filtrTerritoryArchive(glempAll);
+            filtrSafetyArchive(glempAll);
 
-        glempRender(glempAll);
-        glampingsMap.children[0].innerHTML = '';
-        mapRender(mapPointTest(glempAll));
+            glempRender(glempAll);
+            glampingsMap.children[0].innerHTML = '';
+            mapRender(mapPointTest(glempAll));
 
-        sliderUpdatePrice(glempAll);
-        priceCount.innerHTML = '';
+            sliderUpdatePrice(glempAll);
+            priceCount.innerHTML = '';
 
-        btnFiltrClear.classList.remove('activate');
+            btnFiltrClear.forEach((btn) => {
+                btn.classList.remove('activate');
+            });
+
+            // btnFiltrClear.classList.remove('activate');
+        });
     });
 }
 removeAllFitrs();
@@ -1559,6 +1569,47 @@ const listCardMap = () => {
     });
 }
 listCardMap();
+
+const listCardMapMobile = () => {
+    const btnMap = document.querySelector('.js-btn-map-mobile');
+    if (!btnMap) return;
+    const glampingsItems = document.querySelector('#archive-glampings .glampings-items');
+    const glampingsMap = document.querySelector('.glampings-map');
+    const archGlampingsLeft = document.querySelector('.archive-glampings__left');
+    const btns = btnMap.querySelectorAll('button');
+    // btns.forEach((btn) => {
+        btnMap.addEventListener('click', (e) => {
+            btnMapChange(btns);
+            if (btnMap.id == 'mapClose') {
+                archGlampingsLeft.classList.remove('no-map');
+                glampingsItems.classList.remove('card');
+                glampingsItems.classList.add('list');
+                glampingsMap.classList.add('active');
+                glampingsMap.children[0].innerHTML = '';
+                let glempAll = JSON.parse(glamping_club_ajax.glAll);
+                let newgGempAll =  glempAll.filter(filtrOptionsChange);
+                let priceObj = [];
+                priceObj = sliderUpdatePrice(newgGempAll);
+                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
+                mapRender(mapPointTest(newgGempAll));
+                btnMap.id = 'mapVision'
+                btnMap.innerText = 'Список'
+                Cookies.set('glcTemp', btnMap.id);
+            } else if (btnMap.id == 'mapVision') {
+                glampingsItems.classList.remove('list');
+                glampingsItems.classList.add('card');
+                glampingsMap.classList.remove('active');
+                archGlampingsLeft.classList.add('no-map');
+                btnMap.id = 'mapClose'
+                btnMap.innerText = 'Карта'
+                Cookies.set('glcTemp', btnMap.id);
+            }
+            // Cookies.set('glcTemp', btnMap.id);
+        });
+        // console.dir(btn);
+    // });
+}
+listCardMapMobile();
 
 function btnMapChange(btns) {
     btns.forEach((btn) => {

@@ -20,8 +20,22 @@ button.primary {
 	background: var(--Primary-600, #3B44E5);
 	box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 
+    &.green {
+        border: 1px solid var(--color-primary-dop-dark);
+    	background: var(--color-primary-dop-dark);
+
+        &:hover {
+            border: 1px solid var(--color-primary-dop-hover-dark);
+            background: var(--color-primary-dop-hover-dark);
+        }
+    }
+
     &.fs12 {
         font-size: 12px;
+    }
+
+    &.lsm {
+        padding: 2px 10px;
     }
 
     &.ls {
@@ -164,6 +178,10 @@ button.primary-red{
         font-size: 12px;
     }
 
+    &.lsm {
+        padding: 2px 10px;
+    }
+
     &.ls {
         padding: 6px 10px;
     }
@@ -230,6 +248,10 @@ button.primary-success{
         font-size: 12px;
     }
 
+    &.lsm {
+        padding: 2px 10px;
+    }
+
     &.ls {
         padding: 6px 10px;
     }
@@ -283,6 +305,14 @@ button.secondary{
 
     &.fs12 {
         font-size: 12px;
+    }
+
+    &.lsm {
+        padding: 2px 10px;
+    }
+
+    &.ls {
+        padding: 6px 10px;
     }
 
     &.md {
@@ -505,5 +535,12 @@ a.btn-back-to-home {
     &.activate {
         visibility: visible;
         opacity: 1;
+    }
+
+    &.decstop {
+
+        @media (max-width: 767px) {
+            display: none;
+        }
     }
 }
