@@ -1317,7 +1317,7 @@ function mapRender(geoData) {
         if (geoData.features.length == 1) {
             map.setCenter(map.geoObjects.getBounds()[0], 14, {checkZoomRange: true});
         } else {
-            map.setBounds(map.geoObjects.getBounds(), {checkZoomRange:true});
+            map.setBounds(map.geoObjects.getBounds(), {});
         }
 		map.geoObjects.events.add('mouseenter', function (e) {
 			let id = e.get('objectId');
