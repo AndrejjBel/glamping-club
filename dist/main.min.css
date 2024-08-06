@@ -2274,7 +2274,7 @@ a.secondary {
         display: flex;
         justify-content: center;
         width: 100%;
-        z-index: 999; } }
+        z-index: 99; } }
   .archive-glampings__btn-filtr-vision-mobile {
     display: none; }
     @media (max-width: 767px) {
