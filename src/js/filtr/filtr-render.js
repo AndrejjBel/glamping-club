@@ -815,7 +815,7 @@ function itemsChange() {
                     localStorage.getItem('glcFacilGen') ||
                     localStorage.getItem('glcEntertainment') ||
                     localStorage.getItem('glcTerritory') ||
-                    localStorage.getItem('glcSafety') ||
+                    localStorage.getItem('glcSafety') &&
                     localStorage.getItem('glcPrice') !== localStorage.getItem('glcPriceSt')
                 ) {
                     locationsArchive(newgGempAll);
