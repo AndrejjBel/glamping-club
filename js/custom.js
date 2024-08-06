@@ -33,18 +33,23 @@ const singleAccOptionGallery = () => {
         });
     }
 }
-singleAccOptionGallery();
+// singleAccOptionGallery();
 
 const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
     const swiperType = new Swiper(index, {
         slidesPerView: defolt,
         spaceBetween: 10,
+        // loop: true,
         pagination: {
             el: ".swiper-pagination",
             type: "progressbar",
         },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
         breakpoints: {
-            399: {
+            376: {
                 slidesPerView: mob,
             },
             768: {
@@ -54,27 +59,28 @@ const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
                 slidesPerView: decstop,
             },
         },
-        on: {
-            init: function () {
-                const lg = lightGallery(document.querySelector(index), {
-                    selector: '.acc-media',
-                    download: false,
-                    plugins: [lgThumbnail],
-                });
-                const slide = document.querySelector(indexItem);
-                slide.addEventListener('lgBeforeClose', () => {
-                    swiperType.slideTo(lg.index, 0)
-                });
-            },
-        }
+        // on: {
+        //     init: function () {
+        //         const lg = lightGallery(document.querySelector(index), {
+        //             selector: '.acc-media',
+        //             download: false,
+        //             plugins: [lgThumbnail],
+        //         });
+        //         const slide = document.querySelector(indexItem);
+        //         slide.addEventListener('lgBeforeClose', () => {
+        //             swiperType.slideTo(lg.index, 0)
+        //         });
+        //     },
+        // }
     });
 }
 
 function initSliderGlempType(item) {
     for (var i = 0; i < item; i++) {
-        sliderGlempType('.galery'+i, '#sw-'+i, 2, 3, 5, 6);
+        sliderGlempType('.galery'+i, '#sw-'+i, 1, 2, 4, 5);
     }
 }
+initSliderGlempType(20);
 
 function optionsGallery(index) {
     const gallery = document.querySelector(index);

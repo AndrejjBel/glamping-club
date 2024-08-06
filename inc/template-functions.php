@@ -161,7 +161,7 @@ function get_accommodation_options() {
 
 		$it = 0;
 		$media .= '<div class="acc-gallery galery' . $i . '">';
-		// $media .= '<div id="sw-' . $i . '" class="swiper-wrapper">';
+		$media .= '<div id="sw-' . $i . '" class="swiper-wrapper">';
 		foreach ( $media_gallery as $key => $value ) {
 			$url = wp_get_attachment_image_url( $key, 'medium' );
 			$url_full = wp_get_attachment_image_url( $key, 'full' );
@@ -171,13 +171,15 @@ function get_accommodation_options() {
 			$media .= '</div>';
 			$it++;
 		}
-		$media .= '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
-			<span>Смотреть </span>
-			<span id="gallery-item-count">' . $it . '</span>
-			<span> фото</span>
-		</button>';
+		// $media .= '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
+		// 	<span>Смотреть </span>
+		// 	<span id="gallery-item-count">' . $it . '</span>
+		// 	<span> фото</span>
+		// </button>';
 		$media .= '</div>';
-		// $media .= '</div>';
+		$media .= '<div class="swiper-button-next"></div>
+    		<div class="swiper-button-prev"></div>';
+		$media .= '</div>';
 	?>
 		<div class="acc-options__item">
 			<div class="acc-options__item__content acc-option custom-scroll">

@@ -14,7 +14,7 @@ $cur_user_id = get_current_user_id();
         </div> -->
     </div>
 
-    <div class="meta mt10">
+    <div class="meta mt10 mt-smail-10">
         <div class="meta__item item-rating">
             <?php get_rating_post(2.94, 4); // рейтинг / отзывы ?>
         </div>
@@ -54,10 +54,10 @@ $cur_user_id = get_current_user_id();
             <span class="characteristics-glamping__title">Количество домиков: </span>
             <span><?php echo $post->glamping_number_houses; ?></span>
         </div>
-        <div class="characteristics-glamping">
+        <!-- <div class="characteristics-glamping">
             <span class="characteristics-glamping__title">Вместимость: </span>
-            <span><?php echo $post->glamping_capacity; ?> чел.</span>
-        </div>
+            <span><?php //echo $post->glamping_capacity; ?> чел.</span>
+        </div> -->
         <div class="characteristics-glamping">
             <span class="characteristics-glamping__title">Стоимость: </span>
             <span>от <?php echo $post->glamping_price; ?>р.</span>

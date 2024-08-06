@@ -400,33 +400,33 @@ article.type-glampings {
     // width: 528px;
     overflow: hidden;
 
-    @media (max-width: 639px) {
-        width: 336px;
-    }
-
-    @media (max-width: 419px) {
-        max-width: 270px;
-        width: 100%;
-    }
+    // @media (max-width: 639px) {
+    //     width: 336px;
+    // }
+    //
+    // @media (max-width: 419px) {
+    //     max-width: 270px;
+    //     width: 100%;
+    // }
 
     &__item {
-        flex: 1;
+        // flex: 1;
 
-        &:nth-child(n+4) {
-            display: none;
-        }
+        // &:nth-child(n+4) {
+        //     display: none;
+        // }
 
-        @media (max-width: 639px) {
-            &:nth-child(n+3) {
-                display: none;
-            }
-        }
-
-        @media (max-width: 419px) {
-            &:nth-child(n+2) {
-                display: none;
-            }
-        }
+        // @media (max-width: 639px) {
+        //     &:nth-child(n+3) {
+        //         display: none;
+        //     }
+        // }
+        //
+        // @media (max-width: 419px) {
+        //     &:nth-child(n+2) {
+        //         display: none;
+        //     }
+        // }
 
         & a.acc-media {
             position: relative;
