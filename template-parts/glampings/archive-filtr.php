@@ -84,11 +84,11 @@
         <div class="filtr-item__inputs">
             <div class="group-input">
                 <label for="min_price">Мин.</label>
-                <input id="min_price" type="text" name="min_price" value="">
+                <input id="min_price" type="text" name="min_price" value="" disabled>
             </div>
             <div class="group-input">
                 <label for="max_price">Макс.</label>
-                <input id="max_price" type="text" name="max_price" value="">
+                <input id="max_price" type="text" name="max_price" value="" disabled>
             </div>
         </div>
         <div class="filtr-item__slider">
