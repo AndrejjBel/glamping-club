@@ -1890,7 +1890,8 @@ a.secondary {
 
 .single-section__content.number {
   display: flex;
-  gap: 8px; }
+  gap: 8px;
+  flex-wrap: wrap; }
 
 .collapse-content {
   height: 96px;
