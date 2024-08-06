@@ -2265,7 +2265,7 @@ a.secondary {
     font-size: 12px; }
   .archive-glampings__btn-map-mobile {
     position: sticky;
-    bottom: 60px;
+    bottom: 44px;
     display: none; }
     @media (max-width: 767px) {
       .archive-glampings__btn-map-mobile {
