@@ -557,6 +557,7 @@ function sliderNumber(startMin, startMax, min, max) {
     });
     let sliderValueStart = slider.noUiSlider.get();
     localStorage.setItem('glcPrice', sliderValueStart.map(Number));
+    localStorage.setItem('glcPriceSt', sliderValueStart.map(Number));
     // console.dir(sliderValueStart);
     slider.noUiSlider.on('update', function () {
         let sliderValue = slider.noUiSlider.get();
@@ -795,26 +796,53 @@ function itemsChange() {
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
             if (input.dataset.name != 'glcRegion') {
-                locationsArchive(newgGempAll);
-                // if (
-                //     localStorage.getItem('glcType') ||
-                //     localStorage.getItem('glcAllocation') ||
-                //     localStorage.getItem('glcWorking') ||
-                //     localStorage.getItem('glcNature') ||
-                //     localStorage.getItem('glcFacilGen') ||
-                //     localStorage.getItem('glcEntertainment') ||
-                //     localStorage.getItem('glcTerritory') ||
-                //     localStorage.getItem('glcSafety') ||
-                //     localStorage.getItem('glcPrice')
-                // ) {
-                //     locationsArchive(newgGempAll);
-                // } else {
-                //     locationsArchive(glempAll);
-                // }
+                // locationsArchive(newgGempAll);
+                if (
+                    localStorage.getItem('glcType') ||
+                    localStorage.getItem('glcAllocation') ||
+                    localStorage.getItem('glcWorking') ||
+                    localStorage.getItem('glcNature') ||
+                    localStorage.getItem('glcFacilGen') ||
+                    localStorage.getItem('glcEntertainment') ||
+                    localStorage.getItem('glcTerritory') ||
+                    localStorage.getItem('glcSafety') ||
+                    localStorage.getItem('glcPrice') !== localStorage.getItem('glcPriceSt')
+                ) {
+                    locationsArchive(newgGempAll);
+                }
+                else if (
+                    !localStorage.getItem('glcType') &&
+                    !localStorage.getItem('glcAllocation') &&
+                    !localStorage.getItem('glcWorking') &&
+                    !localStorage.getItem('glcNature') &&
+                    !localStorage.getItem('glcFacilGen') &&
+                    !localStorage.getItem('glcEntertainment') &&
+                    !localStorage.getItem('glcTerritory') &&
+                    !localStorage.getItem('glcSafety') &&
+                    localStorage.getItem('glcPrice') !== localStorage.getItem('glcPriceSt')
+                ) {
+                    locationsArchive(newgGempAll);
+                }
+                else if (
+                    !localStorage.getItem('glcType') ||
+                    !localStorage.getItem('glcAllocation') ||
+                    !localStorage.getItem('glcWorking') ||
+                    !localStorage.getItem('glcNature') ||
+                    !localStorage.getItem('glcFacilGen') ||
+                    !localStorage.getItem('glcEntertainment') ||
+                    !localStorage.getItem('glcTerritory') ||
+                    !localStorage.getItem('glcSafety') ||
+                    localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')
+                ) {
+                    locationsArchive(glempAll);
+                }
+                else {
+                    locationsArchive(glempAll);
+                }
             }
-            else {
-                locationsArchive(glempAll);
-            }
+            // else {
+            //     locationsArchive(glempAll);
+            // }
             if (input.dataset.name != 'glcType') {
                 filtrTypeArchive(newgGempAll);
             }
@@ -848,6 +876,12 @@ function itemsChange() {
     });
 }
 itemsChange();
+
+if (localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')) {
+    console.dir('Yes');
+} else {
+    console.dir('No');
+}
 
 function itemsVal(inputs) {
     let inputChecked = [];
