@@ -2410,7 +2410,7 @@ a.secondary {
         height: 82vh; } }
     @media (max-width: 576px) {
       .glampings-map.active {
-        height: calc(100vh - 206px); } }
+        height: calc(100vh - 246px); } }
   .glampings-map__content {
     width: 100%;
     height: 100%; }
