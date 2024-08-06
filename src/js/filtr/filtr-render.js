@@ -769,6 +769,18 @@ function itemsChange() {
     filtrItems.addEventListener('click', function(event) {
         let inputs = filtrItems.querySelectorAll('input');
         let input = event.target.closest('input');
+
+        let glcType = localStorage.getItem('glcType');
+        let glcAllocation = localStorage.getItem('glcAllocation');
+        let glcWorking = localStorage.getItem('glcWorking');
+        let glcNature = localStorage.getItem('glcNature');
+        let glcFacilGen = localStorage.getItem('glcFacilGen');
+        let glcEntertainment = localStorage.getItem('glcEntertainment');
+        let glcTerritory = localStorage.getItem('glcTerritory');
+        let glcSafety = localStorage.getItem('glcSafety');
+        let glcPrice = localStorage.getItem('glcPrice');
+        let glcPriceSt = localStorage.getItem('glcPriceSt');
+
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             let newgGempAll =  glempAll.filter(filtrOptionsChange);
@@ -807,56 +819,20 @@ function itemsChange() {
             checkLocalCheng(input, input.dataset.name, '');
             if (input.dataset.name != 'glcRegion') {
                 // locationsArchive(newgGempAll);
-                if (
-                    localStorage.getItem('glcType') ||
-                    localStorage.getItem('glcAllocation') ||
-                    localStorage.getItem('glcWorking') ||
-                    localStorage.getItem('glcNature') ||
-                    localStorage.getItem('glcFacilGen') ||
-                    localStorage.getItem('glcEntertainment') ||
-                    localStorage.getItem('glcTerritory') ||
-                    localStorage.getItem('glcSafety') &&
-                    localStorage.getItem('glcPrice') !== localStorage.getItem('glcPriceSt')
-                ) {
+                if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
+                    glcSafety && glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 }
-                else if (
-                    localStorage.getItem('glcType') ||
-                    localStorage.getItem('glcAllocation') ||
-                    localStorage.getItem('glcWorking') ||
-                    localStorage.getItem('glcNature') ||
-                    localStorage.getItem('glcFacilGen') ||
-                    localStorage.getItem('glcEntertainment') ||
-                    localStorage.getItem('glcTerritory') ||
-                    localStorage.getItem('glcSafety') &&
-                    localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')
-                ) {
+                else if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
+                    glcSafety && glcPrice == glcPriceSt) {
                     locationsArchive(newgGempAll);
                 }
-                else if (
-                    !localStorage.getItem('glcType') &&
-                    !localStorage.getItem('glcAllocation') &&
-                    !localStorage.getItem('glcWorking') &&
-                    !localStorage.getItem('glcNature') &&
-                    !localStorage.getItem('glcFacilGen') &&
-                    !localStorage.getItem('glcEntertainment') &&
-                    !localStorage.getItem('glcTerritory') &&
-                    !localStorage.getItem('glcSafety') &&
-                    localStorage.getItem('glcPrice') !== localStorage.getItem('glcPriceSt')
-                ) {
+                else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
+                    !glcSafety && glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 }
-                else if (
-                    !localStorage.getItem('glcType') ||
-                    !localStorage.getItem('glcAllocation') ||
-                    !localStorage.getItem('glcWorking') ||
-                    !localStorage.getItem('glcNature') ||
-                    !localStorage.getItem('glcFacilGen') ||
-                    !localStorage.getItem('glcEntertainment') ||
-                    !localStorage.getItem('glcTerritory') ||
-                    !localStorage.getItem('glcSafety') ||
-                    localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')
-                ) {
+                else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
+                    !glcSafety && glcPrice == glcPriceSt) {
                     locationsArchive(glempAll);
                 }
                 else {
@@ -1305,6 +1281,7 @@ function mapRender(geoData) {
                 controls: ['zoomControl',  /*'fullscreenControl'*/]
             },
             {
+                suppressMapOpenBlock: true,
                 balloonPanelMaxMapArea: 390000,
                 // balloonPanelMaxMapArea: Infinity
                 // balloonMaxWidth: 270

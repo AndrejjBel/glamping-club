@@ -28,6 +28,10 @@ button.primary {
             border: 1px solid var(--color-primary-dop-hover-dark);
             background: var(--color-primary-dop-hover-dark);
         }
+
+        &:focus {
+            box-shadow: none;
+        }
     }
 
     &.fs12 {
