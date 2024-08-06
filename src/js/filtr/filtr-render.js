@@ -821,6 +821,19 @@ function itemsChange() {
                     locationsArchive(newgGempAll);
                 }
                 else if (
+                    localStorage.getItem('glcType') ||
+                    localStorage.getItem('glcAllocation') ||
+                    localStorage.getItem('glcWorking') ||
+                    localStorage.getItem('glcNature') ||
+                    localStorage.getItem('glcFacilGen') ||
+                    localStorage.getItem('glcEntertainment') ||
+                    localStorage.getItem('glcTerritory') ||
+                    localStorage.getItem('glcSafety') &&
+                    localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')
+                ) {
+                    locationsArchive(newgGempAll);
+                }
+                else if (
                     !localStorage.getItem('glcType') &&
                     !localStorage.getItem('glcAllocation') &&
                     !localStorage.getItem('glcWorking') &&
