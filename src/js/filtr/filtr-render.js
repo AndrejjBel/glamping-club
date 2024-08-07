@@ -575,7 +575,30 @@ function sliderNumber(startMin, startMax, min, max) {
         glempRender(newgGempAll);
         localStorage.setItem('glcPrice', sliderValue.map(Number).map(elem => elem.toFixed()));
 
-        locationsArchive(newgGempAll);
+        let sliderValueStartStr = sliderValueStart.map(Number).join(',');
+        let sliderValueStr = sliderValue.map(Number).join(',');
+
+        console.dir(sliderValueStartStr);
+        console.dir(sliderValueStr);
+
+        const names = [
+            'glcType',
+            'glcAllocation',
+            'glcWorking',
+            'glcNature',
+            'glcFacilGen',
+            'glcFacilChildren',
+            'glcEntertainment',
+            'glcTerritory',
+            'glcSafety'
+        ];
+        let inputs = document.querySelectorAll('.glampings-filtr-items input');
+
+        if (itemsVal(inputs, names) || sliderValueStartStr !== sliderValueStr) {
+            locationsArchive(newgGempAll);
+        } else {
+            locationsArchive(glempAll);
+        }
         filtrTypeArchive(newgGempAll);
         filtrAllocationArchive(newgGempAll);
         filtrWorkingArchive(newgGempAll);
@@ -797,7 +820,6 @@ function itemsChange() {
             'glcTerritory',
             'glcSafety'
         ];
-        // let inputs = filtrItems.querySelectorAll('input');
 
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
@@ -856,7 +878,7 @@ function itemsChange() {
                 // } else {
                 //     locationsArchive(glempAll);
                 // }
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -873,7 +895,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcAllocation') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -890,7 +912,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcWorking') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -906,7 +928,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcNature') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -922,7 +944,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcFacilGen') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -938,7 +960,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcFacilChildren') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -954,7 +976,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcEntertainment') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -970,7 +992,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcTerritory') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
@@ -986,7 +1008,7 @@ function itemsChange() {
                 filtrSafetyArchive(newgGempAll);
             }
             if (input.dataset.name == 'glcSafety') {
-                if (itemsVal(inputs, names)) {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
                     locationsArchive(glempAll);
