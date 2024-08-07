@@ -830,7 +830,7 @@ function itemsChange() {
             // console.dir(sliderValueStart);
 
             let priceObj = [];
-            let glcPrice = localStorage.getItem('glcPrice');
+            // let glcPrice = localStorage.getItem('glcPrice');
             if (glcPrice) {
                 priceObj = glcPrice.split(',');
                 // sliderUpdatePriceNew(glcPrice);
@@ -872,12 +872,6 @@ function itemsChange() {
             }
 
             if (input.dataset.name == 'glcType') {
-                // if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
-                //     glcSafety) {
-                //     locationsArchive(newgGempAll);
-                // } else {
-                //     locationsArchive(glempAll);
-                // }
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
@@ -1024,63 +1018,6 @@ function itemsChange() {
                 // filtrSafetyArchive(newgGempAll);
             }
 
-
-            // if (input.dataset.name != 'glcRegion') {
-            //     if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory && !glcSafety) {
-            //         locationsArchive(glempAll);
-            //     }
-            //     else {
-            //         locationsArchive(newgGempAll);
-            //     }
-
-                // if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
-                //     glcSafety && glcPrice !== glcPriceSt) {
-                //     locationsArchive(newgGempAll);
-                // }
-                // else if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
-                //     glcSafety && glcPrice == glcPriceSt) {
-                //     locationsArchive(newgGempAll);
-                // }
-                // else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
-                //     !glcSafety && glcPrice !== glcPriceSt) {
-                //     locationsArchive(newgGempAll);
-                // }
-                // else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
-                //     !glcSafety && glcPrice == glcPriceSt) {
-                //     locationsArchive(glempAll);
-                // }
-                // else {
-                //     locationsArchive(glempAll);
-                // }
-            // }
-            // else {
-            //     locationsArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcType') {
-            //     filtrTypeArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcAllocation') {
-            //     filtrAllocationArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcWorking') {
-            //     filtrWorkingArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcNature') {
-            //     filtrNatureArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcFacilGen') {
-            //     filtrFacilitiesGeneralArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcEntertainment') {
-            //     filtrErtainmentArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcTerritory') {
-            //     filtrTerritoryArchive(newgGempAll);
-            // }
-            // if (input.dataset.name != 'glcSafety') {
-            //     filtrSafetyArchive(newgGempAll);
-            // }
-
             glampingsMap.children[0].innerHTML = '';
             mapRender(mapPointTest(newgGempAll));
 
@@ -1091,12 +1028,6 @@ function itemsChange() {
     });
 }
 itemsChange();
-
-// if (localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')) {
-//     console.dir('Yes');
-// } else {
-//     console.dir('No');
-// }
 
 function itemsVal(inputs, names) {
     let inputChecked = [];
