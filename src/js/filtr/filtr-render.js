@@ -1769,7 +1769,7 @@ const listCardMapMobile = () => {
                 mapRender(mapPointTest(newgGempAll));
                 btnMap.id = 'mapVision'
                 btnMap.innerText = 'Список'
-                Cookies.set('glcTemp', btnMap.id);
+                Cookies.set('glcTemp', btnMap.id);                
             } else if (btnMap.id == 'mapVision') {
                 glampingsItems.classList.remove('list');
                 glampingsItems.classList.add('card');
@@ -1780,6 +1780,7 @@ const listCardMapMobile = () => {
                 Cookies.set('glcTemp', btnMap.id);
             }
             // Cookies.set('glcTemp', btnMap.id);
+            document.querySelector('#page').scrollIntoView({ behavior: 'smooth' });
         });
         // console.dir(btn);
     // });
