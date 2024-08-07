@@ -845,6 +845,7 @@ function itemsChange() {
             }
             if (input.dataset.name != 'glcType') {
                 filtrTypeArchive(newgGempAll);
+                locationsArchive(newgGempAll);
             }
             if (input.dataset.name != 'glcAllocation') {
                 filtrAllocationArchive(newgGempAll);
