@@ -817,6 +817,7 @@ function itemsChange() {
             }
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
+            console.dir(input.dataset.name);
             if (input.dataset.name != 'glcRegion') {
                 // locationsArchive(newgGempAll);
                 if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
@@ -876,11 +877,11 @@ function itemsChange() {
 }
 itemsChange();
 
-if (localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')) {
-    console.dir('Yes');
-} else {
-    console.dir('No');
-}
+// if (localStorage.getItem('glcPrice') == localStorage.getItem('glcPriceSt')) {
+//     console.dir('Yes');
+// } else {
+//     console.dir('No');
+// }
 
 function itemsVal(inputs) {
     let inputChecked = [];
