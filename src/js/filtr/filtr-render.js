@@ -819,26 +819,26 @@ function itemsChange() {
             checkLocalCheng(input, input.dataset.name, '');
             console.dir(input.dataset.name);
             if (input.dataset.name != 'glcRegion') {
-                // locationsArchive(newgGempAll);
-                if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
-                    glcSafety && glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
-                }
-                else if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
-                    glcSafety && glcPrice == glcPriceSt) {
-                    locationsArchive(newgGempAll);
-                }
-                else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
-                    !glcSafety && glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
-                }
-                else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
-                    !glcSafety && glcPrice == glcPriceSt) {
-                    locationsArchive(glempAll);
-                }
-                else {
-                    locationsArchive(glempAll);
-                }
+                locationsArchive(newgGempAll);
+                // if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
+                //     glcSafety && glcPrice !== glcPriceSt) {
+                //     locationsArchive(newgGempAll);
+                // }
+                // else if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
+                //     glcSafety && glcPrice == glcPriceSt) {
+                //     locationsArchive(newgGempAll);
+                // }
+                // else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
+                //     !glcSafety && glcPrice !== glcPriceSt) {
+                //     locationsArchive(newgGempAll);
+                // }
+                // else if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
+                //     !glcSafety && glcPrice == glcPriceSt) {
+                //     locationsArchive(glempAll);
+                // }
+                // else {
+                //     locationsArchive(glempAll);
+                // }
             }
             // else {
             //     locationsArchive(glempAll);
