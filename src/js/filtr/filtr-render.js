@@ -568,7 +568,10 @@ function sliderNumber(startMin, startMax, min, max) {
         minPriceInput.value = Math.ceil(sliderValue[0]);
         maxPriceInput.value = Math.ceil(sliderValue[1]);
     });
-    slider.noUiSlider.on('end', function () {
+    slider.noUiSlider.on('end', function (values, handle) {
+        console.dir(handle);
+        console.dir(Number(values[handle]).toFixed());
+        console.dir(values.map(Number).map(elem => elem.toFixed()));
         const glampingsMap = document.querySelector('.glampings-map');
         let sliderValue = slider.noUiSlider.get();
         console.dir(sliderValue.map(Number).map(elem => elem.toFixed()));
@@ -577,8 +580,14 @@ function sliderNumber(startMin, startMax, min, max) {
         let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
         glempRender(newgGempAll);
         localStorage.setItem('glcPrice', sliderValue.map(Number).map(elem => elem.toFixed()));
-        localStorage.setItem('glcPriceMin', Math.ceil(sliderValue[0]));
-        localStorage.setItem('glcPriceMax', Math.ceil(sliderValue[1]));
+        if (handle == '0') {
+            localStorage.setItem('glcPriceMin', Math.ceil(sliderValue[0]));
+        }
+        if (handle == '1') {
+            localStorage.setItem('glcPriceMax', Math.ceil(sliderValue[1]));
+        }
+        // localStorage.setItem('glcPriceMin', Math.ceil(sliderValue[0]));
+        // localStorage.setItem('glcPriceMax', Math.ceil(sliderValue[1]));
 
         let sliderValueStartStr = sliderValueStart.map(Number).join(',');
         let sliderValueStr = sliderValue.map(Number).join(',');
