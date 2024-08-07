@@ -823,14 +823,13 @@ function itemsChange() {
             }
 
             if (input.dataset.name != 'glcRegion') {
-                locationsArchive(newgGempAll);
-                // if (!glcType || !glcAllocation || !glcWorking || !glcNature || !glcFacilGen || !glcEntertainment || !glcTerritory ||
-                //     !glcSafety) {
-                //     locationsArchive(glempAll);
-                // }
-                // else {
-                //     locationsArchive(newgGempAll);
-                // }
+                // locationsArchive(newgGempAll);
+                if (!glcType || !glcAllocation || !glcWorking || !glcNature || !glcFacilGen || !glcEntertainment || !glcTerritory || !glcSafety) {
+                    locationsArchive(glempAll);
+                }
+                else {
+                    locationsArchive(newgGempAll);
+                }
 
                 // if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
                 //     glcSafety && glcPrice !== glcPriceSt) {
