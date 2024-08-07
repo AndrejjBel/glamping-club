@@ -818,6 +818,10 @@ function itemsChange() {
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
             console.dir(input.dataset.name);
+            if (input.dataset.name == 'glcRegion') {
+                locationsArchive(newgGempAll);
+            }
+
             if (input.dataset.name != 'glcRegion') {
                 locationsArchive(newgGempAll);
                 // if (!glcType || !glcAllocation || !glcWorking || !glcNature || !glcFacilGen || !glcEntertainment || !glcTerritory ||
