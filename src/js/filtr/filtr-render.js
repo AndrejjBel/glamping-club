@@ -824,7 +824,7 @@ function itemsChange() {
 
             if (input.dataset.name != 'glcRegion') {
                 // locationsArchive(newgGempAll);
-                if (!glcType || !glcAllocation || !glcWorking || !glcNature || !glcFacilGen || !glcEntertainment || !glcTerritory || !glcSafety) {
+                if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory && !glcSafety) {
                     locationsArchive(glempAll);
                 }
                 else {
