@@ -4,6 +4,7 @@ localStorage.removeItem('glcAllocation');
 localStorage.removeItem('glcWorking');
 localStorage.removeItem('glcNature');
 localStorage.removeItem('glcFacilGen');
+localStorage.removeItem('glcFacilChildren');
 localStorage.removeItem('glcEntertainment');
 localStorage.removeItem('glcTerritory');
 localStorage.removeItem('glcSafety');
@@ -580,6 +581,7 @@ function sliderNumber(startMin, startMax, min, max) {
         filtrWorkingArchive(newgGempAll);
         filtrNatureArchive(newgGempAll);
         filtrFacilitiesGeneralArchive(newgGempAll);
+        filtrChildrenArchive(newgGempAll);
         filtrErtainmentArchive(newgGempAll);
         filtrTerritoryArchive(newgGempAll);
         filtrSafetyArchive(newgGempAll);
@@ -639,6 +641,7 @@ function removeAllFitrs() {
             localStorage.removeItem('glcWorking');
             localStorage.removeItem('glcNature');
             localStorage.removeItem('glcFacilGen');
+            localStorage.removeItem('glcFacilChildren');
             localStorage.removeItem('glcEntertainment');
             localStorage.removeItem('glcTerritory');
             localStorage.removeItem('glcSafety');
@@ -653,6 +656,7 @@ function removeAllFitrs() {
             filtrWorkingArchive(glempAll);
             filtrNatureArchive(glempAll);
             filtrFacilitiesGeneralArchive(glempAll);
+            filtrChildrenArchive(glempAll);
             filtrErtainmentArchive(glempAll);
             filtrTerritoryArchive(glempAll);
             filtrSafetyArchive(glempAll);
@@ -775,11 +779,25 @@ function itemsChange() {
         let glcWorking = localStorage.getItem('glcWorking');
         let glcNature = localStorage.getItem('glcNature');
         let glcFacilGen = localStorage.getItem('glcFacilGen');
+        let glcFacilChildren = localStorage.getItem('glcFacilChildren');
         let glcEntertainment = localStorage.getItem('glcEntertainment');
         let glcTerritory = localStorage.getItem('glcTerritory');
         let glcSafety = localStorage.getItem('glcSafety');
         let glcPrice = localStorage.getItem('glcPrice');
         let glcPriceSt = localStorage.getItem('glcPriceSt');
+
+        const names = [
+            'glcType',
+            'glcAllocation',
+            'glcWorking',
+            'glcNature',
+            'glcFacilGen',
+            'glcFacilChildren',
+            'glcEntertainment',
+            'glcTerritory',
+            'glcSafety'
+        ];
+        // let inputs = filtrItems.querySelectorAll('input');
 
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
@@ -787,7 +805,7 @@ function itemsChange() {
             sliderUpdatePrice(newgGempAll);
             // sliderUpdatePriceNew(glcPrice);
             let sliderValueStart = priceSliderOption(glempAll);
-            console.dir(sliderValueStart);
+            // console.dir(sliderValueStart);
 
             let priceObj = [];
             let glcPrice = localStorage.getItem('glcPrice');
@@ -817,19 +835,181 @@ function itemsChange() {
             }
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
-            console.dir(input.dataset.name);
+            // console.dir(input.dataset.name);
             if (input.dataset.name == 'glcRegion') {
-                locationsArchive(newgGempAll);
+                // locationsArchive(newgGempAll);
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
             }
 
-            if (input.dataset.name != 'glcRegion') {
-                // locationsArchive(newgGempAll);
-                if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory && !glcSafety) {
+            if (input.dataset.name == 'glcType') {
+                // if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
+                //     glcSafety) {
+                //     locationsArchive(newgGempAll);
+                // } else {
+                //     locationsArchive(glempAll);
+                // }
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
                     locationsArchive(glempAll);
                 }
-                else {
+
+                // filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcAllocation') {
+                if (itemsVal(inputs, names)) {
                     locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
                 }
+
+                filtrTypeArchive(newgGempAll);
+                // filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcWorking') {
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                // filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcNature') {
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                // filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcFacilGen') {
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                // filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcFacilChildren') {
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                // filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcEntertainment') {
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                // filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcTerritory') {
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                // filtrTerritoryArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAll);
+            }
+            if (input.dataset.name == 'glcSafety') {
+                if (itemsVal(inputs, names)) {
+                    locationsArchive(newgGempAll);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAll);
+                filtrNatureArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAll);
+                // filtrSafetyArchive(newgGempAll);
+            }
+
+
+            // if (input.dataset.name != 'glcRegion') {
+            //     if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory && !glcSafety) {
+            //         locationsArchive(glempAll);
+            //     }
+            //     else {
+            //         locationsArchive(newgGempAll);
+            //     }
 
                 // if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
                 //     glcSafety && glcPrice !== glcPriceSt) {
@@ -850,39 +1030,41 @@ function itemsChange() {
                 // else {
                 //     locationsArchive(glempAll);
                 // }
-            }
+            // }
             // else {
             //     locationsArchive(newgGempAll);
             // }
-            if (input.dataset.name != 'glcType') {
-                filtrTypeArchive(newgGempAll);
-            }
-            if (input.dataset.name != 'glcAllocation') {
-                filtrAllocationArchive(newgGempAll);
-            }
-            if (input.dataset.name != 'glcWorking') {
-                filtrWorkingArchive(newgGempAll);
-            }
-            if (input.dataset.name != 'glcNature') {
-                filtrNatureArchive(newgGempAll);
-            }
-            if (input.dataset.name != 'glcFacilGen') {
-                filtrFacilitiesGeneralArchive(newgGempAll);
-            }
-            if (input.dataset.name != 'glcEntertainment') {
-                filtrErtainmentArchive(newgGempAll);
-            }
-            if (input.dataset.name != 'glcTerritory') {
-                filtrTerritoryArchive(newgGempAll);
-            }
-            if (input.dataset.name != 'glcSafety') {
-                filtrSafetyArchive(newgGempAll);
-            }
+            // if (input.dataset.name != 'glcType') {
+            //     filtrTypeArchive(newgGempAll);
+            // }
+            // if (input.dataset.name != 'glcAllocation') {
+            //     filtrAllocationArchive(newgGempAll);
+            // }
+            // if (input.dataset.name != 'glcWorking') {
+            //     filtrWorkingArchive(newgGempAll);
+            // }
+            // if (input.dataset.name != 'glcNature') {
+            //     filtrNatureArchive(newgGempAll);
+            // }
+            // if (input.dataset.name != 'glcFacilGen') {
+            //     filtrFacilitiesGeneralArchive(newgGempAll);
+            // }
+            // if (input.dataset.name != 'glcEntertainment') {
+            //     filtrErtainmentArchive(newgGempAll);
+            // }
+            // if (input.dataset.name != 'glcTerritory') {
+            //     filtrTerritoryArchive(newgGempAll);
+            // }
+            // if (input.dataset.name != 'glcSafety') {
+            //     filtrSafetyArchive(newgGempAll);
+            // }
 
             glampingsMap.children[0].innerHTML = '';
             mapRender(mapPointTest(newgGempAll));
 
             chekAllFitrs();
+
+            console.dir(itemsVal(inputs, names));
         }
     });
 }
@@ -894,14 +1076,20 @@ itemsChange();
 //     console.dir('No');
 // }
 
-function itemsVal(inputs) {
+function itemsVal(inputs, names) {
     let inputChecked = [];
+    let inputCheckedName = [];
     inputs.forEach((input) => {
         if (input.checked == true) {
             inputChecked.push(input);
+            inputCheckedName.push(input.dataset.name);
         }
     });
-    return inputChecked;
+    // return inputChecked;
+    let checkedName = makeUniq(inputCheckedName);
+    let elExists = checkedName.some(el => names.includes(el));
+
+    return elExists;
 }
 
 function checkLocalCheng(item, lsName, filtrItemCount) {
@@ -1358,7 +1546,7 @@ function mapRender(geoData) {
 mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
 const mapPointTest = (glAll) => {
-    console.dir(glAll);
+    // console.dir(glAll);
     let points = [];
     glAll.forEach((item) => {
         let itemUrl = item.url;
@@ -1435,7 +1623,7 @@ const mapPointTest = (glAll) => {
         },
         features: points
     };
-    console.dir(geoData);
+    // console.dir(geoData);
     return geoData;
 }
 mapPointTest(JSON.parse(glamping_club_ajax.glAll));
