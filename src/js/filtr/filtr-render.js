@@ -819,7 +819,15 @@ function itemsChange() {
             checkLocalCheng(input, input.dataset.name, '');
             console.dir(input.dataset.name);
             if (input.dataset.name != 'glcRegion') {
-                locationsArchive(newgGempAll);
+                // locationsArchive(newgGempAll);
+                if (!glcType && !glcAllocation && !glcWorking && !glcNature && !glcFacilGen && !glcEntertainment && !glcTerritory &&
+                    !glcSafety) {
+                    locationsArchive(glempAll);
+                }
+                else {
+                    locationsArchive(newgGempAll);
+                }
+
                 // if (glcType || glcAllocation || glcWorking || glcNature || glcFacilGen || glcEntertainment || glcTerritory ||
                 //     glcSafety && glcPrice !== glcPriceSt) {
                 //     locationsArchive(newgGempAll);
@@ -840,12 +848,11 @@ function itemsChange() {
                 //     locationsArchive(glempAll);
                 // }
             }
-            else {
-                locationsArchive(newgGempAll);
-            }
+            // else {
+            //     locationsArchive(newgGempAll);
+            // }
             if (input.dataset.name != 'glcType') {
                 filtrTypeArchive(newgGempAll);
-                locationsArchive(newgGempAll);
             }
             if (input.dataset.name != 'glcAllocation') {
                 filtrAllocationArchive(newgGempAll);
