@@ -9,6 +9,9 @@ localStorage.removeItem('glcEntertainment');
 localStorage.removeItem('glcTerritory');
 localStorage.removeItem('glcSafety');
 localStorage.removeItem('glcPrice');
+localStorage.removeItem('glcPriceSt');
+localStorage.removeItem('glcPriceMin');
+localStorage.removeItem('glcPriceMax');
 
 const locationsArchive = (glempAll) => {
     const regionItem = document.querySelector('.filtr-item.region');
@@ -574,6 +577,8 @@ function sliderNumber(startMin, startMax, min, max) {
         let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
         glempRender(newgGempAll);
         localStorage.setItem('glcPrice', sliderValue.map(Number).map(elem => elem.toFixed()));
+        localStorage.setItem('glcPriceMin', Math.ceil(sliderValue[0]));
+        localStorage.setItem('glcPriceMax', Math.ceil(sliderValue[1]));
 
         let sliderValueStartStr = sliderValueStart.map(Number).join(',');
         let sliderValueStr = sliderValue.map(Number).join(',');
@@ -669,6 +674,10 @@ function removeAllFitrs() {
             localStorage.removeItem('glcTerritory');
             localStorage.removeItem('glcSafety');
             // localStorage.removeItem('glcPrice');
+            // localStorage.removeItem('glcPriceSt');
+            localStorage.removeItem('glcPriceMin');
+            localStorage.removeItem('glcPriceMax');
+            // localStorage.removeItem('glcPrice');
 
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             localStorage.setItem('glcPrice', priceSliderOption(glempAll));
@@ -762,8 +771,22 @@ function sliderUpdatePrice(arr) {
     let glempAll = JSON.parse(glamping_club_ajax.glAll);
     let currPrice = [];
     currPrice = localStorage.getItem('glcPrice').split(',').map(Number);
+    let currPriceMin = localStorage.getItem('glcPriceMin');
+    let currPriceMax = localStorage.getItem('glcPriceMax');
+    let stPriceMin = '';
+    let stPriceMax = '';
+    if (currPriceMin) {
+        stPriceMin = currPriceMin;
+    } else {
+        stPriceMin = currPrice[0];
+    }
+    if (currPriceMax) {
+        stPriceMax = currPriceMax;
+    } else {
+        stPriceMax = currPrice[1];
+    }
     slider.noUiSlider.updateOptions({
-        start: [currPrice[0], currPrice[1]],
+        start: [stPriceMin, stPriceMax],
         range: {
             'min': priceMin,
             'max': priceMax

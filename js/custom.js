@@ -457,6 +457,13 @@ const filrtMobile = () => {
 }
 filrtMobile();
 
+const noUiHandleLower = document.querySelector('.noUi-handle-lower');
+// console.dir(noUiHandleLower);
+noUiHandleLower.addEventListener('change', (e) => {
+    console.dir(noUiHandleLower);
+});
+
+
 // let w = document.documentElement.clientWidth;
 // let w2 = window.innerWidth;
 // console.dir(w);
