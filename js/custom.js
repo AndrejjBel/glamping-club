@@ -457,12 +457,27 @@ const filrtMobile = () => {
 }
 filrtMobile();
 
-const noUiHandleLower = document.querySelector('.noUi-handle-lower');
-// console.dir(noUiHandleLower);
-noUiHandleLower.addEventListener('change', (e) => {
-    console.dir(noUiHandleLower);
-});
+function conditionalFilesFront() {
+    const conditional = document.querySelectorAll('.conditional-parent input');
+    if (!conditional.length) return;
+    conditional.forEach((item) => {
+        console.dir(item.checked + ' - ' + item.value);
+        let child = item.value;
+        let cf = document.querySelector('.cmb-row.'+child+'');
+        if (item.checked && cf) {
+            cf.style.display = 'block';
+        }
 
+        item.addEventListener('change', (e) => {
+            if (item.checked && cf) {
+                cf.style.display = 'block';
+            } else {
+                document.querySelector('.cmb-row.'+item.dataset.child+'').style.display = '';
+            }
+        });
+    });
+}
+conditionalFilesFront();
 
 // let w = document.documentElement.clientWidth;
 // let w2 = window.innerWidth;

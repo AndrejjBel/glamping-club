@@ -1,5 +1,8 @@
 <?php
-add_action( 'cmb2_init', 'register_single_glampings_metabox_front' );
+if ( !is_admin() ) {
+	add_action( 'cmb2_init', 'register_single_glampings_metabox_front' );
+}
+
 function register_single_glampings_metabox_front() {
 	$single_glampings = new_cmb2_box( array(
 		'id'           => 'single_glampings_front',
@@ -12,21 +15,32 @@ function register_single_glampings_metabox_front() {
         'save_fields' => false
 	) );
 
-	// $single_glampings->add_field( array(
-	// 	'name' => esc_html__( 'Рекомендован', 'glamping-club' ),
-	// 	'id'   => 'glamping_recommended',
-	// 	'type'    => 'radio_inline',
-	// 	'options' => array(
-	// 		'no' => 'Нет',
-    //     	'yes' => 'Да'
-	// 	),
-	// 	'default' => 'no',
-	// 	'column' => array(
-	// 		'position' => 4,
-	// 		'name'     => 'Рекомендован',
-	// 	),
-	// 	'display_cb' => 'glamping_recommended_display',
-	// ) );
+    $single_glampings->add_field( array(
+		'name' => esc_html__( 'Заголовок', 'glamping-club' ),
+		'id'   => 'glamping_title',
+		'type' => 'text',
+        'classes' => 'glc-form-group'
+	) );
+
+    $single_glampings->add_field( array(
+		'name' => esc_html__( 'Описание глэмпинга', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
+		'id'   => 'glamping_description',
+		'type' => 'wysiwyg',
+        'options' => array(
+            'wpautop' => true, // use wpautop?
+            'media_buttons' => false, // show insert/upload button(s)
+            'textarea_name' => 'glamping_description', // set the textarea name to something different, square brackets [] can be used here
+            'textarea_rows' => 4, // rows="..."
+            // 'tabindex' => '',
+            // 'editor_css' => '', // intended for extra styles for both visual and HTML editors buttons, needs to include the `<style>` tags, can use "scoped".
+            // 'editor_class' => '', // add extra class(es) to the editor textarea
+            // 'teeny' => false, // output the minimal editor config used in Press This
+            // 'dfw' => false, // replace the default fullscreen with DFW (needs specific css)
+            // 'tinymce' => true, // load TinyMCE, can be used to pass settings directly to TinyMCE using an array()
+            'quicktags' => false // load Quicktags, can be used to pass settings directly to Quicktags using an array()
+        ),
+	) );
 
 	$single_glampings->add_field( array(
 		'name' => esc_html__( 'Тип места', 'glamping-club' ),
@@ -60,16 +74,16 @@ function register_single_glampings_metabox_front() {
         'classes' => 'glc-form-group'
 	) );
 
-	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Вместимость', 'glamping-club' ),
-		'id'   => 'glamping_capacity',
-		'type' => 'text',
-		'attributes' => array(
-			'type' => 'number',
-			'min'  => '1',
-		),
-        'classes' => 'glc-form-group'
-	) );
+	// $single_glampings->add_field( array(
+	// 	'name' => esc_html__( 'Вместимость', 'glamping-club' ),
+	// 	'id'   => 'glamping_capacity',
+	// 	'type' => 'text',
+	// 	'attributes' => array(
+	// 		'type' => 'number',
+	// 		'min'  => '1',
+	// 	),
+    //     'classes' => 'glc-form-group'
+	// ) );
 
 	$single_glampings->add_field( array(
 		'name' => esc_html__( 'Стоимость', 'glamping-club' ),

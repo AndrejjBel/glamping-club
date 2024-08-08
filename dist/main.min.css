@@ -72,6 +72,7 @@ body {
   @media (min-width: 1921px) {
     .container-ag {
       max-width: 1920px;
+      width: 100%;
       margin: 0 auto; }
       .container-ag.breadcrumbs-wrap .breadcrumbs {
         width: 1888px; } }
@@ -2898,6 +2899,13 @@ ul.item-options-checkbox {
   margin-bottom: 40px; }
   .favorites-main .glampings-items.card .glamping-item {
     background: var(--color-bg-dashboard); }
+
+.cmb-row.conditional-child {
+  display: none; }
+
+.cmb-row .cmb-th {
+  float: none;
+  padding: 0; }
 
 @media (max-width: 620px) {
   .hystmodal__wrap {

@@ -13,3 +13,12 @@
         background: var(--color-bg-dashboard);
     }
 }
+
+.cmb-row.conditional-child {
+    display: none;
+}
+
+.cmb-row .cmb-th {
+    float: none;
+    padding: 0;
+}
