@@ -631,6 +631,16 @@
         	border-top-color: var(--color-primary);
         }
     }
+
+    &.focus {
+        background: var(--color-primary);
+        color: #fff;
+        z-index: 99;
+
+        &:before {
+        	border-top-color: var(--color-primary);
+        }
+    }
 }
 
 // .glc-icon-content:before {

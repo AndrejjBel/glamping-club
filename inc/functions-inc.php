@@ -14,13 +14,20 @@ function glamping_club_admin_style() {
 add_filter( 'body_class', 'glamping_club_body_class_add' );
 function glamping_club_body_class_add( $classes ) {
     $theme_option = get_option( 'glc_options' );
+    $page_class = '';
     if ($theme_option) {
         $color = ( $theme_option['theme_color'] )? $theme_option['theme_color'] : 'theme-color-defolt';
     } else {
         $color = 'theme-color-defolt';
     }
+    if( PAGE_POST_EDIT ){
+        if( is_page( PAGE_POST_EDIT ) ){
+            $page_class = PAGE_POST_EDIT;
+        }
+    }
     foreach ( $classes as $index => $class ) {
         $classes[] = $color;
+        $classes[] = $page_class;
     }
     return $classes;
 }

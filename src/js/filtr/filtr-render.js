@@ -1506,9 +1506,6 @@ function mapRender(geoData) {
         }
 		map.geoObjects.events.add('mouseenter', function (e) {
 			let id = e.get('objectId');
-			// let geoObject = objectManager.objects.getById(id);
-            // console.dir(id);
-
             const markerst = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
             markerst.forEach((item) => {
                 if (item.id == id) {
@@ -1525,6 +1522,26 @@ function mapRender(geoData) {
                 }
             });
 		});
+
+        map.geoObjects.events.add('click', function (e) {
+			let id = e.get('objectId');
+            const markerst = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
+            markerst.forEach((item) => {
+                item.classList.remove('focus');
+            });
+            markerst.forEach((item) => {
+                if (item.id == id) {
+                    item.classList.add('focus');
+                }
+            });
+		});
+
+        map.geoObjects.events.add('balloonclose', function (e) {
+            const markerst = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
+            markerst.forEach((item) => {
+                item.classList.remove('focus');
+            });
+        });
 	}
     markersHover();
 }
@@ -1769,7 +1786,7 @@ const listCardMapMobile = () => {
                 mapRender(mapPointTest(newgGempAll));
                 btnMap.id = 'mapVision'
                 btnMap.innerText = 'Список'
-                Cookies.set('glcTemp', btnMap.id);                
+                Cookies.set('glcTemp', btnMap.id);
             } else if (btnMap.id == 'mapVision') {
                 glampingsItems.classList.remove('list');
                 glampingsItems.classList.add('card');

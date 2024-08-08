@@ -27,6 +27,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'glamping_description',
 		'type' => 'wysiwyg',
+        'classes' => 'glc-form-group',
         'options' => array(
             'wpautop' => true, // use wpautop?
             'media_buttons' => false, // show insert/upload button(s)
@@ -71,7 +72,7 @@ function register_single_glampings_metabox_front() {
 			'type' => 'number',
 			'min'  => '1',
 		),
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	// $single_glampings->add_field( array(
@@ -94,7 +95,7 @@ function register_single_glampings_metabox_front() {
 			'type' => 'number',
 			'min'  => '1',
 		),
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_field( array(
@@ -242,7 +243,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'year_construction',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -259,7 +260,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'phone_glamping',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -267,7 +268,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'whatsup_glamping',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -275,7 +276,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'viber_glamping',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -283,7 +284,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'telegram_glamping',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -291,7 +292,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'email_glamping',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -303,7 +304,7 @@ function register_single_glampings_metabox_front() {
 			'type' => 'number',
 			'min'  => '1',
 		),
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -341,7 +342,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'prepayment',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 		// 'attributes' => array(
 		// 	'type' => 'number',
 		// 	'min'  => '1',
@@ -379,14 +380,14 @@ function register_single_glampings_metabox_front() {
 		'name' => esc_html__( 'Промокод', 'glamping-club' ),
 		'id'   => 'promo_code',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field_discount, array(
 		'name' => esc_html__( 'Скидка', 'glamping-club' ),
 		'id'   => 'discount',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field_discount, array(
