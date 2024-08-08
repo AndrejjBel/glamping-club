@@ -1524,11 +1524,8 @@ function mapRender(geoData) {
 		});
 
         map.geoObjects.events.add('click', function (e) {
-			let id = e.get('objectId');
+			const id = e.get('objectId');
             const markerst = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
-            markerst.forEach((item) => {
-                item.classList.remove('focus');
-            });
             markerst.forEach((item) => {
                 if (item.id == id) {
                     item.classList.add('focus');
@@ -1537,9 +1534,12 @@ function mapRender(geoData) {
 		});
 
         map.geoObjects.events.add('balloonclose', function (e) {
+            const id = e.get('objectId');
             const markerst = document.querySelectorAll('.ymaps-2-1-79-map .glc-icon-content');
             markerst.forEach((item) => {
-                item.classList.remove('focus');
+                if (item.id == id) {
+                    item.classList.remove('focus');
+                }
             });
         });
 	}
