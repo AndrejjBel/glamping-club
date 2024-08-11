@@ -466,8 +466,8 @@ function get_contact_information_content() {
 function punycodeInCyrillic($url) {
     $host = parse_url($url, PHP_URL_HOST);
 
-	$host_new = (stripos($host, 'xn--')!==false) ? str_replace($host, idn_to_utf8($host), $url) : $host;
-    return 'https://' . $host_new;
+	$host_new = (stripos($host, 'xn--')!==false) ? str_replace($host, idn_to_utf8($host), $url) : $url;
+    return $host_new;
 }
 
 function coderurl($url) {
