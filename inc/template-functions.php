@@ -410,7 +410,7 @@ function get_contact_information_content() {
 		<div class="single-aside__content__item">
 			<div class="single-aside__content__item__title">Официальный сайт:</div>
 			<div class="single-aside__content__item__text">
-				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo coderurl($meta_obj['site_glamping']); ?></a>
+				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo punycodeInCyrillic($meta_obj['site_glamping']); ?></a>
 			</div>
 		</div>
 	<?php } ?>
@@ -461,6 +461,13 @@ function get_contact_information_content() {
 		</div>
 	<?php } ?>
 	<?php
+}
+
+function punycodeInCyrillic($url) {
+    $host = parse_url($url, PHP_URL_HOST);
+
+	$host_new = (stripos($host, 'xn--')!==false) ? str_replace($host, idn_to_utf8($host), $url) : $host;
+    return 'https://' . $host_new;
 }
 
 function coderurl($url) {
