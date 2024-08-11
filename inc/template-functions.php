@@ -470,7 +470,7 @@ function coderurl($url) {
 
 	$url=(stripos($url, 'xn--')!==false) ? idn_to_utf8($url) : $url;
 
-	echo $url;
+	return $url;
 }
 
 function get_rating_post($rating_value=0, $count_otziv=0) {
