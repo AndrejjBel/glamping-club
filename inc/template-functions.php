@@ -464,13 +464,8 @@ function get_contact_information_content() {
 }
 
 function coderurl($url) {
-	// require get_template_directory() . '/functions/idna_convert.class.php';
-	// $idn = new idna_convert(array('idn_version'=>2008));
-	// $url=(stripos($url, 'xn--')!==false) ? $idn->decode($url) : $idn->encode($url);
-
-	$url=(stripos($url, 'xn--')!==false) ? idn_to_utf8($url) : $url;
-
-	return $url;
+	$url_new=(stripos($url, 'xn--')!==false) ? idn_to_utf8($url) : $url;
+	return $url_new;
 }
 
 function get_rating_post($rating_value=0, $count_otziv=0) {
