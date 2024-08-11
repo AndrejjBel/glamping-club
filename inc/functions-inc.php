@@ -36,9 +36,10 @@ function glamping_club_body_class_add( $classes ) {
 add_action( 'wp_enqueue_scripts', 'glamping_club_main_scripts_old', 99 );
 function glamping_club_main_scripts_old() {
     global $user_ID;
-    $glempings = get_option('glampings_obj');
+    // $glempings = get_option('glampings_obj');
     $glempings_f = glamping_club_result_render();
     $glempings_map = glampings_map_render();
+    $glempings = get_option('glampings_obj');
     // if( is_front_page() ){
     //     $glempings = tripinglamp_home_location_list_json();
     // }
@@ -149,6 +150,7 @@ require get_template_directory() . '/functions/cmb2/init.php';
 require get_template_directory() . '/functions/cmb-settings.php';
 require get_template_directory() . '/functions/cmb-post-meta.php';
 require get_template_directory() . '/functions/cmb-glempedit.php';
+require get_template_directory() . '/functions/glamping-add-edit.php';
 require get_template_directory() . '/functions/glampings-options.php';
 require get_template_directory() . '/functions/template-functions.php';
 require get_template_directory() . '/functions/postviews.php';
@@ -223,3 +225,15 @@ function num_word($value, $words, $show = true) {
 	}
 	return $out;
 }
+
+// add_action( 'before_delete_post', 'my_func' );
+// function my_func( $postid ){
+// 	// Проверяем наш ли это тип записи удаляется
+// 	$post = get_post( $postid );
+// 	// если нет, выходим.
+// 	if( ! $post || $post->post_type !== 'glampings' )
+// 		return;
+//     global $wpdb;
+//     $wpdb->delete( $wpdb->postmeta, [ 'post_id'=>$postid ] );
+//     clean_post_cache( $post_id );
+// }

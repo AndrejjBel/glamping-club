@@ -228,6 +228,7 @@ $cur_user_id = get_current_user_id();
 //     echo wp_get_attachment_image_url( $key, 'glamping-club-thumb' );
 //     echo '<br>';
 // }
+// $all_img = glamping_all_img($post->ID);
 // echo '<pre>';
-// var_dump($post->glamping_type);
+// var_dump($all_img);
 // echo '<pre>';

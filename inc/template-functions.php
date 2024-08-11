@@ -410,7 +410,7 @@ function get_contact_information_content() {
 		<div class="single-aside__content__item">
 			<div class="single-aside__content__item__title">Официальный сайт:</div>
 			<div class="single-aside__content__item__text">
-				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo $meta_obj['site_glamping']; ?></a>
+				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo coderurl($meta_obj['site_glamping']); ?></a>
 			</div>
 		</div>
 	<?php } ?>
@@ -461,6 +461,16 @@ function get_contact_information_content() {
 		</div>
 	<?php } ?>
 	<?php
+}
+
+function coderurl($url) {
+	// require get_template_directory() . '/functions/idna_convert.class.php';
+	// $idn = new idna_convert(array('idn_version'=>2008));
+	// $url=(stripos($url, 'xn--')!==false) ? $idn->decode($url) : $idn->encode($url);
+
+	$url=(stripos($url, 'xn--')!==false) ? idn_to_utf8($url) : $url;
+
+	echo $url;
 }
 
 function get_rating_post($rating_value=0, $count_otziv=0) {

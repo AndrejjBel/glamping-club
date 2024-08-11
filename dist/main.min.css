@@ -57,10 +57,6 @@ body {
     .container {
       padding-right: 15px;
       padding-left: 15px; } }
-  @media (max-width: 479px) {
-    .container {
-      padding-right: 10px;
-      padding-left: 10px; } }
 
 .container-ag {
   padding-right: 16px;
@@ -2904,30 +2900,231 @@ ul.item-options-checkbox {
   .favorites-main .glampings-items.card .glamping-item {
     background: var(--color-bg-dashboard); }
 
+.glc-postedit .entry-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; }
+
+.glc-postedit .cmb2-wrap .cmb-row {
+  background: #fbfbfb;
+  border-radius: 12px;
+  overflow: hidden;
+  padding: 8px 10px; }
+  .glc-postedit .cmb2-wrap .cmb-row.cmb-repeat-group-wrap {
+    padding: 0;
+    background: none; }
+
+.glc-postedit .cmb-repeatable-group {
+  margin: 0; }
+  .glc-postedit .cmb-repeatable-group .postbox:not(:last-child) {
+    margin-bottom: 16px; }
+
 .glc-postedit .cmb-row.conditional-child {
   display: none; }
 
-.glc-postedit .cmb-row .cmb-th {
+.glc-postedit .cmb-th {
   float: none;
   padding: 0; }
+  .glc-postedit .cmb-th label {
+    font-size: 16px; }
+    .glc-postedit .cmb-th label span.required {
+      color: red; }
 
-.glc-postedit .cmb-row .cmb-th + .cmb-td {
+.glc-postedit .cmb-th + .cmb-td {
   float: none; }
 
-.glc-postedit .cmb-row .cmb-td {
+.glc-postedit .cmb-td {
   padding: 0; }
 
 .glc-postedit .glc-form-group {
   max-width: 800px;
   width: 100%; }
 
+.glc-postedit .glc-form-group-select {
+  max-width: 400px;
+  width: 100%; }
+  .glc-postedit .glc-form-group-select select {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #D7DCE3;
+    padding: 0 10px; }
+
 .glc-postedit .glc-form-group-number {
   max-width: 300px;
   width: 100%; }
 
-.glc-postedit .cmb-row.cmb-type-group .cmb-th + .cmb-td {
+.glc-postedit .glc-form-group-price {
+  max-width: 300px;
+  width: 100%; }
+  .glc-postedit .glc-form-group-price .cmb-td {
+    display: flex;
+    align-items: center;
+    gap: 8px; }
+
+.glc-postedit .glc-form-group-thumbnail {
+  max-width: 400px;
+  width: 100%; }
+
+.glc-postedit .cmb-type-group .cmb-th + .cmb-td {
   float: none;
   width: 100%; }
+
+.glc-postedit .cmb2-wrap .cmb-multicheck-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 8px;
+  color: var(--Gray-700, #344054);
+  border: 1px solid var(--Gray-300, #D0D5DD);
+  background: var(--White, #FFF);
+  margin-top: 0;
+  padding: 0 10px;
+  cursor: pointer; }
+  .glc-postedit .cmb2-wrap .cmb-multicheck-toggle:hover {
+    border: 1px solid var(--Gray-300, #D0D5DD);
+    background: var(--Gray-50, #F9FAFB); }
+
+.glc-postedit .cmb2-upload-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  height: auto;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 8px;
+  color: var(--Gray-700, #344054);
+  border: 1px solid var(--Gray-300, #D0D5DD);
+  background: var(--White, #FFF);
+  margin-top: 0;
+  padding: 4px 10px;
+  cursor: pointer; }
+  .glc-postedit .cmb2-upload-button:hover {
+    border: 1px solid var(--Gray-300, #D0D5DD);
+    background: var(--Gray-50, #F9FAFB); }
+
+.glc-postedit .cmb2-upload-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 8px;
+  color: var(--Gray-700, #344054);
+  border: 1px solid var(--Gray-300, #D0D5DD);
+  background: var(--White, #FFF);
+  margin-top: 0;
+  padding: 4px 10px;
+  cursor: pointer; }
+  .glc-postedit .cmb2-upload-list:hover {
+    border: 1px solid var(--Gray-300, #D0D5DD);
+    background: var(--Gray-50, #F9FAFB); }
+
+.glc-postedit button.cmb-add-group-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 8px;
+  color: var(--Gray-700, #344054);
+  border: 1px solid var(--Gray-300, #D0D5DD);
+  background: var(--White, #FFF);
+  margin-top: 0;
+  padding: 4px 10px;
+  cursor: pointer; }
+  .glc-postedit button.cmb-add-group-row:hover {
+    border: 1px solid var(--Gray-300, #D0D5DD);
+    background: var(--Gray-50, #F9FAFB); }
+
+.glc-postedit .cmb-repeatable-group .cmb-group-title {
+  background-color: #e9e9e9;
+  padding: 8px 12px 8px 2.2em;
+  margin: 0 -1.2em;
+  min-height: 1.5em;
+  font-size: 14px;
+  line-height: 1.6; }
+
+.glc-postedit .cmb-repeatable-group .postbox {
+  padding: 0 10px;
+  margin: 0; }
+
+.glc-postedit .cmb-repeatable-grouping {
+  border: none; }
+
+.glc-postedit input[type="submit"] {
+  display: none; }
+
+.glc-postedit .acc-options .cmb-repeatable-group .cmb-row:last-child {
+  background: none; }
+  .glc-postedit .acc-options .cmb-repeatable-group .cmb-row:last-child .cmb-add-row {
+    margin: 0; }
+
+.glc-postedit .cmb-repeatable-group.non-repeatable .cmb-group-title {
+  padding-left: 20px; }
+
+.glc-postedit .cmb-repeatable-group.repeatable .cmb-group-title {
+  min-height: 39px;
+  padding-left: 2.4em; }
+
+.glc-postedit .cmb-type-group .cmb-row:not(:last-of-type) {
+  border-bottom: none; }
+
+.glc-postedit .cmb-type-group .cmb-th {
+  width: 100%; }
+
+.glc-postedit .cmb2-wrap input.cmb2-timepicker {
+  height: 40px;
+  border-radius: 4px;
+  border: 1px solid #D7DCE3; }
+
+.glc-postedit span.cmb2-metabox-description {
+  display: block;
+  padding-top: .5em; }
+
+.glc-postedit button.cmb-remove-group-row-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 24px;
+  border-radius: 8px;
+  color: var(--White, #FFF);
+  border: 1px solid var(--Error-600, #D92D20);
+  background: var(--Error-600, #D92D20);
+  padding: 0 10px; }
+  .glc-postedit button.cmb-remove-group-row-button:hover {
+    border: 1px solid var(--Error-700, #B42318);
+    background: var(--Error-700, #B42318); }
+
+@media (max-width: 429px) {
+  .glc-postedit .media-modal label {
+    font-size: 10px; } }
+
+.glc-flex-box .cmb2-metabox.cmb-field-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px; }
+
+.glc-postedit-btn-edit {
+  max-width: 400px;
+  width: 100%;
+  margin: 0 auto; }
 
 @media (max-width: 620px) {
   .hystmodal__wrap {
