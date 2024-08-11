@@ -465,14 +465,8 @@ function get_contact_information_content() {
 
 function punycodeInCyrillic($url) {
     $host = parse_url($url, PHP_URL_HOST);
-
 	$host_new = (stripos($host, 'xn--')!==false) ? str_replace($host, idn_to_utf8($host), $url) : $url;
     return $host_new;
-}
-
-function coderurl($url) {
-	$url_new=(stripos($url, 'xn--')!==false) ? idn_to_utf8($url) : $url;
-	return $url_new;
 }
 
 function get_rating_post($rating_value=0, $count_otziv=0) {
