@@ -1575,16 +1575,20 @@ function mapRender(geoData) {
             });
 
             var swiper = new Swiper(".balloonPan", {
-                slidesPerView: 3,
+                slidesPerView: 1,
                 spaceBetween: 8,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
                 },
-                // pagination: {
-                //     el: ".swiper-pagination",
-                //     clickable: true,
-                // },
+                breakpoints: {
+                    340: {
+                        slidesPerView: 2,
+                    },
+                    414: {
+                        slidesPerView: 3,
+                    }
+                },
             });
         });
 
