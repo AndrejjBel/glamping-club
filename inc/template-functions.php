@@ -408,27 +408,33 @@ function get_contact_information_content() {
 		<!-- <span>Есть вопросы по глэмпингу?</span>
 		<span>Свяжитесь с координатором</span> -->
 	</div>
-	<?php if (array_key_exists('email_glamping', $meta_obj)) { ?>
+	<?php if (array_key_exists('email_glamping', $meta_obj)) {
+		if ($meta_obj['email_glamping']) {
+	?>
 		<div class="single-aside__content__item">
 			<div class="single-aside__content__item__title">E-mail:</div>
 			<div class="single-aside__content__item__text">
 				<a href="mailto:<?php echo $meta_obj['email_glamping']; ?>"><?php echo $meta_obj['email_glamping']; ?></a>
 			</div>
 		</div>
-	<?php } ?>
-	<?php if (array_key_exists('site_glamping', $meta_obj)) { ?>
+	<?php }} ?>
+	<?php if (array_key_exists('site_glamping', $meta_obj)) {
+		if ($meta_obj['site_glamping']) {
+	?>
 		<div class="single-aside__content__item">
 			<div class="single-aside__content__item__title">Официальный сайт:</div>
 			<div class="single-aside__content__item__text">
 				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo punycodeInCyrillic($meta_obj['site_glamping']); ?></a>
 			</div>
 		</div>
-	<?php } ?>
+	<?php }} ?>
 	<?php if (array_key_exists('whatsup_glamping', $meta_obj) || array_key_exists('viber_glamping', $meta_obj) || array_key_exists('telegram_glamping', $meta_obj)) { ?>
 		<div class="single-aside__content__item">
 			<span>Напишите нам в мессенджере:</span>
 		</div>
-		<?php if (array_key_exists('whatsup_glamping', $meta_obj)) { ?>
+		<?php if (array_key_exists('whatsup_glamping', $meta_obj)) {
+			if ($meta_obj['whatsup_glamping']) {
+		?>
 			<div class="single-aside__content__item messenger">
 				<div class="single-aside__content__item__text">
 					<a href="https://wa.me/<?php echo $meta_obj['whatsup_glamping']; ?>" target="_blank" title="WhatsApp">
@@ -438,8 +444,10 @@ function get_contact_information_content() {
 					</a>
 				</div>
 			</div>
-		<?php } ?>
-		<?php if (array_key_exists('viber_glamping', $meta_obj)) { ?>
+		<?php }} ?>
+		<?php if (array_key_exists('viber_glamping', $meta_obj)) {
+			if ($meta_obj['viber_glamping']) {
+		?>
 			<div class="single-aside__content__item messenger">
 				<div class="single-aside__content__item__text">
 					<a href="viber://chat?number=%2B<?php echo $meta_obj['viber_glamping']; ?>" target="_blank" title="Viber">
@@ -449,8 +457,10 @@ function get_contact_information_content() {
 					</a>
 				</div>
 			</div>
-		<?php } ?>
-		<?php if (array_key_exists('telegram_glamping', $meta_obj)) { ?>
+		<?php }} ?>
+		<?php if (array_key_exists('telegram_glamping', $meta_obj)) {
+			if ($meta_obj['telegram_glamping']) {
+		?>
 			<div class="single-aside__content__item messenger">
 				<div class="single-aside__content__item__text">
 					<a href="https://t.me/<?php echo $meta_obj['telegram_glamping']; ?>" target="_blank" title="Telegram">
@@ -460,16 +470,18 @@ function get_contact_information_content() {
 					</a>
 				</div>
 			</div>
-		<?php } ?>
+		<?php }} ?>
 	<?php } ?>
-	<?php if (array_key_exists('phone_glamping', $meta_obj)) { ?>
+	<?php if (array_key_exists('phone_glamping', $meta_obj)) {
+		if ($meta_obj['phone_glamping']) {
+	?>
 		<div class="single-aside__content__item">
 			<div class="single-aside__content__item__title">Или позвоните нам:</div>
 			<div class="single-aside__content__item__text">
 				<a href="tel:<?php echo $meta_obj['phone_glamping']; ?>"><?php echo $meta_obj['phone_glamping']; ?></a>
 			</div>
 		</div>
-	<?php } ?>
+	<?php }} ?>
 	<?php
 }
 
