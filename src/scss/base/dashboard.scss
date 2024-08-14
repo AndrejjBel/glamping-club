@@ -98,6 +98,11 @@
 
     &__content {
 
+        &__title {
+            font-size: 18px;
+            font-weight: 500;
+        }
+
         &.form-settings {
             max-width: 400px;
             padding: 20px;
@@ -121,6 +126,20 @@
 
         &__glamps {
 
+        }
+
+        &__add-glamp {
+            display: flex;
+            gap: 16px;
+            width: 100%;
+
+            &__application {
+                flex: 2;
+            }
+
+            &__btn-add {
+                flex: none;
+            }
         }
     }
 

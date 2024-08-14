@@ -1003,6 +1003,9 @@ strong, b {
   .dashboard-tab__title {
     font-size: 20px;
     font-weight: 500; }
+  .dashboard-tab__content__title {
+    font-size: 18px;
+    font-weight: 500; }
   .dashboard-tab__content.form-settings {
     max-width: 400px;
     padding: 20px;
@@ -1015,6 +1018,14 @@ strong, b {
       gap: 20px; }
       .dashboard-tab__content.form-settings form .button-link:hover {
         color: var(--link-color); }
+  .dashboard-tab__content__add-glamp {
+    display: flex;
+    gap: 16px;
+    width: 100%; }
+    .dashboard-tab__content__add-glamp__application {
+      flex: 2; }
+    .dashboard-tab__content__add-glamp__btn-add {
+      flex: none; }
   .dashboard-tab a.add-btn {
     display: flex;
     align-items: center;
@@ -2128,7 +2139,7 @@ a.secondary {
          break-inside: avoid-column;
     margin-bottom: 20px; }
     .facilities__item__content-item {
-      display: flex;
+      display: inline-block;
       gap: 8px;
       align-items: center;
       padding: 1px 0; }
