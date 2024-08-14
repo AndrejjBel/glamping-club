@@ -4,6 +4,10 @@ $cur_user_id = get_current_user_id();
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
+    <?php if ($post->post_status != 'publish') { ?>
+        <h3 class="post-pending">Глэмпинг находится на модерации</h3>
+    <?php } ?>
+
     <div class="images">
         <div id="single-thumbnail" class="images__gallery thumbnail-gallery">
             <?php glamping_single_thumbnail($post->ID); ?>

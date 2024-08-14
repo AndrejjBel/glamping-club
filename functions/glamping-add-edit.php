@@ -32,7 +32,7 @@ function glamping_club_add_post_glampings() {
         if ($_POST['action_type'] == 'add') {
             $post_data = array(
                 'post_author'   => $_POST['user_id'],
-                'post_status'   => 'publish',
+                'post_status'   => 'pending',
                 'post_type'     => 'glampings',
                 'post_title'    => sanitize_text_field( $_POST['glamping_title'] ),
     	        'post_content'  => $_POST['glamping_description']
@@ -41,7 +41,7 @@ function glamping_club_add_post_glampings() {
         } elseif ($_POST['action_type'] == 'edit') {
             $update_post = [
                 'ID' => $_POST['object_id'],
-                'post_status'   => 'publish',
+                'post_status'   => 'pending',
                 'post_type'     => 'glampings',
                 'post_title'    => sanitize_text_field( $_POST['glamping_title'] ),
     	        'post_content'  => $_POST['glamping_description']

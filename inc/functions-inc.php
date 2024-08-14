@@ -2,12 +2,16 @@
 // Adds a main styles and scripts within in Admin.
 add_action('admin_enqueue_scripts', 'glamping_club_admin_style');
 function glamping_club_admin_style() {
+    $bundle_admin_obj = [
+        'glOptions' => options_set_js() //get_option( 'glc_alloptions_page' )
+    ];
     wp_enqueue_style('admin-styles', get_stylesheet_directory_uri() . '/functions/admin/css/admin.css',	array(),
         filemtime( get_stylesheet_directory() . '/functions/admin/css/admin.css' )
     );
     wp_enqueue_script('admin-script', get_stylesheet_directory_uri() . '/functions/admin/js/admin.js',	array('jquery'),
         filemtime( get_stylesheet_directory() . '/functions/admin/js/admin.js' ), [ 'strategy' => 'defer' ]
     );
+    wp_add_inline_script( 'admin-script', 'const glamping_club_admin = ' . wp_json_encode( $bundle_admin_obj ), 'before' );
 }
 
 // Function for `body_class`
@@ -226,14 +230,14 @@ function num_word($value, $words, $show = true) {
 	return $out;
 }
 
-// add_action( 'before_delete_post', 'my_func' );
-// function my_func( $postid ){
-// 	// Проверяем наш ли это тип записи удаляется
-// 	$post = get_post( $postid );
-// 	// если нет, выходим.
-// 	if( ! $post || $post->post_type !== 'glampings' )
-// 		return;
-//     global $wpdb;
-//     $wpdb->delete( $wpdb->postmeta, [ 'post_id'=>$postid ] );
-//     clean_post_cache( $post_id );
-// }
+// add_action( 'before_delete_post', 'delete_postmeta_before_delete_post' );
+function delete_postmeta_before_delete_post( $postid ){
+	// Проверяем наш ли это тип записи удаляется
+	$post = get_post( $postid );
+	// если нет, выходим.
+	if( ! $post || $post->post_type !== 'glampings' )
+		return;
+    global $wpdb;
+    $wpdb->delete( $wpdb->postmeta, [ 'post_id'=>$postid ] );
+    clean_post_cache( $post_id );
+}

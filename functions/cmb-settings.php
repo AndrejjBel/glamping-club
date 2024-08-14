@@ -149,7 +149,7 @@ function glamping_club_register_main_options_metabox() {
 		'id'   => 'title',
 		'type' => 'text',
         'repeatable'  => true,
-	) );    
+	) );
 
     $facilities_options_home_group = $alloptions_glamping_options->add_field( array(
 		'id'          => 'facilities_options_home',
@@ -312,25 +312,6 @@ function glamping_club_register_main_options_metabox() {
 		'type' => 'text',
         'repeatable'  => true,
 	) );
-
-
-	/**
-	 * Registers tertiary options page, and set main item as parent.
-	 */
-	// $tertiary_options = new_cmb2_box( array(
-	// 	'id'           => 'glc_tertiary_options_page',
-	// 	'title'        => esc_html__( 'Tertiary Options', 'glamping-club' ),
-	// 	'object_types' => array( 'options-page' ),
-	// 	'option_key'   => 'glc_tertiary_options',
-	// 	'parent_slug'  => 'glc_options',
-	// ) );
-    //
-	// $tertiary_options->add_field( array(
-	// 	'name' => esc_html__( 'Поле для html', 'glamping-club' ),
-	// 	'desc' => esc_html__( 'field description (optional)', 'glamping-club' ),
-	// 	'id'   => 'textarea_code',
-	// 	'type' => 'textarea_code',
-	// ) );
 
 }
 

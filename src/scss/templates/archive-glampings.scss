@@ -273,6 +273,7 @@
 .balloon-content-body {
     display: flex;
     gap:  8px;
+    height: 100%;
 
     &__img {
         flex: none;
@@ -286,7 +287,8 @@
         flex: 2;
         display: flex;
         flex-direction: column;
-        gap: 6px;
+        gap: 4px;
+        line-height: 1.1;
 
         &__title {
             font-size: 120%;
@@ -305,6 +307,155 @@
             line-height: 1.5;
             color: var(--text-color-light);
         }
+
+        &__rating {
+            display: flex;
+            align-items: flex-end;
+            gap: 4px;
+        }
+    }
+
+    &__btns {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        // justify-content: flex-end;
+        width: 24px;
+        height: 100%;
+        padding: 0 2px;
+
+        &__fav-comp {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            height: 100%;
+
+            & button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                padding: 2px;
+
+                & svg {
+                    width: 100%;
+                    height: 100%;
+
+                    & path {
+                        fill: var(--text-color-light);
+                    }
+                }
+
+                &:hover {
+                    // background: var(--color-primary);
+
+                    & svg {
+                        & path {
+                            fill: var(--text-color); //#B42318;
+                        }
+
+                        &.add-claim {
+                            & path {
+                                fill: red;
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+
+                    & svg path {
+                        fill: #F04438;
+                    }
+
+                    &:hover {
+
+                        & svg path {
+                            fill: #B42318;
+                        }
+                    }
+                }
+
+                &.btn-add-fav {
+                    margin-top: auto;
+                }
+
+                &.btn-add-comp {}
+            }
+
+            & a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                padding: 2px;
+
+                & svg {
+                    width: 100%;
+                    height: 100%;
+
+                    & path {
+                        fill: var(--text-color-light);
+                    }
+                }
+
+                &:hover {
+                    // background: var(--color-primary);
+
+                    & svg {
+                        & path {
+                            fill: var(--text-color); //#B42318;
+                        }
+
+                        &.add-claim {
+                            & path {
+                                fill: red;
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+
+                    & svg path {
+                        fill: #F04438;
+                    }
+
+                    &:hover {
+
+                        & svg path {
+                            fill: #B42318;
+                        }
+                    }
+                }
+
+                &.glamp-phone {
+
+                    & svg {
+                        width: 100%;
+                        height: 100%;
+
+                        & path {
+                            fill: var(--color-primary-dop);
+                        }
+                    }
+                }
+
+                &.glamp-wa {
+
+                    & svg {
+                        width: 100%;
+                        height: 100%;
+
+                        & path {
+                            fill: var(--color-primary-dop);
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -313,26 +464,24 @@
     flex-direction: column;
     gap: 6px;
 
-    &__title {
-        font-size: 120%;
-        font-weight: 700;
-        color: var(--color-primary);
+    & .swiper-wrapper {
+        height: 140px;
     }
 
     &__img {
         position: relative;
         display: flex;
         gap: 4px;
-        width: fit-content;
+        // width: fit-content;
 
         & img {
             border-radius: 8px;
             overflow: hidden;
         }
 
-        & img:last-child {
-            filter: brightness(0.5);
-        }
+        // & img:last-child {
+        //     filter: brightness(0.5);
+        // }
 
         &__link {
             position: absolute;
@@ -356,19 +505,172 @@
     &__content {
         flex: 2;
         display: flex;
-        flex-direction: column;
         gap: 6px;
+        width: 100%;
 
-        &__price {
-            font-size: 120%;
-            font-weight: 700;
+        &__info {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+
+            &__title {
+                font-size: 120%;
+                font-weight: 700;
+                color: var(--color-primary);
+            }
+
+            &__rating {
+                display: flex;
+                // align-items: flex-end;
+                gap: 4px;
+            }
+
+            &__price {
+                font-size: 120%;
+                font-weight: 700;
+            }
+
+            &__address {
+                font-size: 12px;
+                font-weight: 400;
+                line-height: 1.5;
+                color: var(--text-color-light);
+            }
         }
 
-        &__address {
-            font-size: 12px;
-            font-weight: 400;
-            line-height: 1.5;
-            color: var(--text-color-light);
+        &__buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            width: 24px;
+            // height: 100%;
+
+            & button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                padding: 2px;
+
+                & svg {
+                    width: 100%;
+                    height: 100%;
+
+                    & path {
+                        fill: var(--text-color-light);
+                    }
+                }
+
+                &:hover {
+                    // background: var(--color-primary);
+
+                    & svg {
+                        & path {
+                            fill: var(--text-color); //#B42318;
+                        }
+
+                        &.add-claim {
+                            & path {
+                                fill: red;
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+
+                    & svg path {
+                        fill: #F04438;
+                    }
+
+                    &:hover {
+
+                        & svg path {
+                            fill: #B42318;
+                        }
+                    }
+                }
+
+                &.btn-add-fav {
+                    margin-top: auto;
+                }
+
+                &.btn-add-comp {}
+            }
+
+            & a {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 20px;
+                height: 20px;
+                padding: 2px;
+
+                & svg {
+                    width: 100%;
+                    height: 100%;
+
+                    & path {
+                        fill: var(--text-color-light);
+                    }
+                }
+
+                &:hover {
+                    // background: var(--color-primary);
+
+                    & svg {
+                        & path {
+                            fill: var(--text-color); //#B42318;
+                        }
+
+                        &.add-claim {
+                            & path {
+                                fill: red;
+                            }
+                        }
+                    }
+                }
+
+                &.active {
+
+                    & svg path {
+                        fill: #F04438;
+                    }
+
+                    &:hover {
+
+                        & svg path {
+                            fill: #B42318;
+                        }
+                    }
+                }
+
+                &.glamp-phone {
+
+                    & svg {
+                        width: 100%;
+                        height: 100%;
+
+                        & path {
+                            fill: var(--color-primary-dop);
+                        }
+                    }
+                }
+
+                &.glamp-wa {
+
+                    & svg {
+                        width: 100%;
+                        height: 100%;
+
+                        & path {
+                            fill: var(--color-primary-dop);
+                        }
+                    }
+                }
+            }
         }
     }
 }

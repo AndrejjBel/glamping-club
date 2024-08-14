@@ -63,6 +63,10 @@ article.type-glampings {
     // margin-top: 10px;
 }
 
+.post-pending {
+    color: red;
+}
+
 .images {
     display: flex;
     gap: 20px;
@@ -474,6 +478,7 @@ article.type-glampings {
             display: flex;
             gap: 8px;
             align-items: center;
+            padding: 1px 0;
 
             & svg {
                 flex: none;
@@ -493,6 +498,21 @@ article.type-glampings {
 
             & span {
                 display: flex;
+                gap: 4px;
+
+                & span.icon-text-green {
+                    background: green;
+                    color: #fff;
+                    padding: 0 4px;
+                    border-radius: 4px;
+                }
+
+                & span.icon-text-red {
+                    background: red;
+                    color: #fff;
+                    padding: 0 4px;
+                    border-radius: 4px;
+                }
             }
         }
     }

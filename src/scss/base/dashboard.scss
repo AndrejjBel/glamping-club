@@ -89,6 +89,7 @@
     flex-direction: column;
     gap: 20px;
     flex: none;
+    margin-bottom: 24px;
 
     &__title {
         font-size: 20px;
@@ -185,8 +186,11 @@
     &__item {
         display: flex;
         gap: 16px;
-        // max-width: 500px;
         width: 100%;
+
+        @media (max-width: 475px) {
+            flex-direction: column;
+        }
 
         &:nth-last-child(n+2) {
             padding-bottom: 16px;
@@ -195,13 +199,29 @@
 
         &__img {
             display: flex;
+            flex: none;
             width: 60px;
             height: 60px;
             border-radius: 8px;
             overflow: hidden;
+
+            @media (max-width: 475px) {
+                width: 100%;
+                height: auto;
+
+                & img {
+                    width: 100%;
+                    height: 200px;
+                    object-fit: cover;
+                }
+            }
         }
 
         &__info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 100%;
 
             &__title {
                 font-size: 18px;
@@ -209,12 +229,32 @@
             }
 
             &__options {
+                display: flex;
+                gap: 16px;
+                flex-wrap: wrap;
+
+                @media (max-width: 475px) {
+                    gap: 8px;
+                }
 
                 &__item {
                     display: flex;
                     gap: 8px;
                     align-items: center;
                     font-size: 14px;
+
+                    // &.item-date {
+                    //     margin-left: auto;
+                    // }
+
+                    & .post-status {
+                        display: block;
+                        color: green;
+
+                        &.pending {
+                            color: red;
+                        }
+                    }
                 }
             }
         }
@@ -225,16 +265,19 @@
             flex-direction: column;
             margin-left: auto;
 
+            @media (max-width: 475px) {
+                gap: 32px;
+                flex-direction: row;
+                margin-left: 0;
+                justify-content: center;
+            }
+
             & a {
                 display: flex;
 
                 &:hover svg path {
                     fill: var(--link-color);
                 }
-
-                // &:nth-last-child(1) {
-                //     margin-top: auto;
-                // }
             }
         }
     }

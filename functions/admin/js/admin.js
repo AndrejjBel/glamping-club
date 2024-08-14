@@ -94,4 +94,62 @@ jQuery( function( $ ) {
         replaceTitles();
     }
     replaceTitlesGen('accommodation_options', 'title');
+    replaceTitlesGen('glamping_paid_options', 'title');
 });
+
+function conditionalFilesPaidOptions() {
+    const cmbAddGroupBtn = document.querySelector('button.cmb-add-group-row');
+    if (!cmbAddGroupBtn) return;
+    console.dir(glamping_club_admin);
+    console.dir(glamping_club_admin.glOptions.glamping_facilities_general);
+
+    let selects = document.querySelectorAll('select');
+
+    cmbAddGroupBtn.addEventListener('click', (e) => {
+        setTimeout(function(){
+            let selectsN = document.querySelectorAll('select');
+            console.dir(selectsN);
+            selectsN.forEach((select) => {
+                select.addEventListener('change', (e) => {
+                    console.log("Changed to: " + e.target.value)
+                });
+            });
+        }, 400);
+    });
+
+    // selects.forEach((select) => {
+    //     select.addEventListener('change', (e) => {
+    //         let ul = e.target.parentElement.parentElement.nextElementSibling.children[1].children[1];
+    //         console.dir(e.target);
+    //         console.dir(e.target.parentElement.parentElement.nextElementSibling.children[1].children[1]);
+    //         console.log("Changed to: " + e.target.value);
+    //         let optionId = e.target.value;
+    //         console.dir(glamping_club_admin.glOptions.glamping_facilities_general);
+    //         console.dir(glamping_club_admin.glOptions[optionId]);
+    //
+    //         glamping_club_admin.glOptions[optionId].forEach((item) => {
+    //             console.dir(item);
+    //             ul.insertAdjacentHTML(
+    //                 "beforeend",
+    //                 `<option value="${item}">${item}</option>`
+    //                 `<li>
+    //                 <input type="checkbox" class="cmb2-option" name="paid_options[0][title_on_group][]" id="paid_options_0_title_on_group1" value="${item}">
+    //                 <label for="paid_options_0_title_on_group1">${item}</label>
+    //                 </li>`
+    //             )
+    //         });
+    //     });
+    // });
+
+}
+// conditionalFilesPaidOptions();
+
+// jQuery( function( $ ) {
+//     var $box = $( document.getElementById( 'glamping_paid_options' ) );
+//     console.dir($box)
+//     $box.on( 'cmb2_add_group_row_start cmb2_add_row cmb2_remove_row cmb2_shift_rows_complete', test );
+//
+//     var test = function() {
+//         console.dir('Yes');
+//     };
+// });

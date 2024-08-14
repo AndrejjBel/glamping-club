@@ -225,3 +225,8 @@ function glamping_club_special_page_mark( $post_states, $post ){
 	}
 	return $post_states;
 }
+
+function keep_me_logged_in_for_1_year($expirein) {
+  return 31556926; // 1 год в секундах
+}
+add_filter('auth_cookie_expiration', 'keep_me_logged_in_for_1_year');

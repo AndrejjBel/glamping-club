@@ -444,7 +444,8 @@ function register_single_glampings_metabox_front() {
             'url' => false, // Hide the text input for the url
         ),
 		'preview_size' => array( 220, 220 ),
-        'classes' => 'glc-form-group glc-form-group-thumbnail'
+        'classes' => 'glc-form-group glc-form-group-thumbnail',
+        'default_cb' => 'set_to_post_thumbnail'
 	) );
 
 	// Фото
@@ -628,4 +629,10 @@ function set_to_glamping_location_options($field_args, $field) {
         $term = $cur_terms[0]->term_id;
     }
     return $term;
+}
+
+function set_to_post_thumbnail($field_args, $field) {
+    $thumbnail_id = get_post_thumbnail_id($field->object_id);
+    $thumbnail_url = get_the_post_thumbnail_url($field->object_id);
+    return $thumbnail_url;
 }

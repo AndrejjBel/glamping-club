@@ -5,7 +5,6 @@ function type_options() {
     foreach ($site_options['glamping_type'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -15,7 +14,6 @@ function allocation_options() {
     foreach ($site_options['glamping_allocation'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -25,7 +23,6 @@ function facilities_options_general() {
     foreach ($site_options['glamping_facilities_general'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -35,7 +32,6 @@ function entertainment_options() {
     foreach ($site_options['glamping_entertainment'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -46,7 +42,6 @@ function nutrition_options() {
     foreach ($site_options['glamping_nutrition'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -56,7 +51,6 @@ function territory_options() {
     foreach ($site_options['glamping_territory'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -84,7 +78,6 @@ function facilities_options_home() {
     foreach ($site_options['facilities_options_home'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -94,7 +87,6 @@ function facilities_options_bathroom() {
     foreach ($site_options['facilities_options_bathroom'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -104,7 +96,6 @@ function facilities_options_kitchen() {
     foreach ($site_options['facilities_options_kitchen'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -114,7 +105,6 @@ function facilities_options_safety() {
     foreach ($site_options['facilities_options_safety'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -124,7 +114,6 @@ function facilities_options_children() {
     foreach ($site_options['facilities_options_children'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -134,7 +123,6 @@ function nature_around_options() {
     foreach ($site_options['glamping_nature_around'][0]['title'] as $key => $value) {
         $options[$value] = $value;
     }
-
     return $options;
 }
 
@@ -372,4 +360,166 @@ function options_set() {
     ];
 
     update_option( 'glc_alloptions_page', $site_options );
+
+    // return $site_options;
+}
+
+function options_set_js() {
+    $options_set_js = [
+    'glamping_facilities_general' => [
+        'Wi-Fi',
+        'Кондиционер',
+        'Парковка',
+        'Можно с животными',
+    ],
+
+    'facilities_options_home' => [
+        'Гардероб',
+        'Диван',
+        'Камин',
+        'Кондиционер',
+        'Мини-кухня',
+        'Обогреватель',
+        'Проектор',
+        'Санузел',
+        'Сейф',
+        'Стиральная машина',
+        'Стол',
+        'Стулья',
+        'Телевизор',
+        'Теплый пол',
+        'Утюг',
+        'Шкаф',
+        'Кухня (общая)',
+        'Музыкальная колонка',
+        'Санузел (общий)',
+        'Яндекс.Станция Алиса',
+    ],
+
+    'facilities_options_bathroom' => [
+        'Гель для душа',
+        'Душ',
+        'Душ (общий)',
+        'Мыло',
+        'Набор полотенец',
+        'Умывальник',
+        'Тапочки',
+        'Халат',
+        'Фен',
+        'Шампунь',
+    ],
+
+    'facilities_options_kitchen' => [
+        'Кофеварка',
+        'Кофемашина',
+        'Микроволновая печь',
+        'Мини-бар',
+        'Плита',
+        'Посуда',
+        'Посудомоечная машина',
+        'Тостер',
+        'Чайник',
+        'Холодильник',
+    ],
+
+    'glamping_nutrition' => [
+        'Доставка еды',
+        'Завтрак',
+        'Питьевая вода',
+        'Ресторан',
+        'Трехразовое питание',
+    ],
+
+    'facilities_options_children' => [
+        'Детский уголок',
+        'Детская площадка',
+        'Детская кроватка по запросу',
+    ],
+
+    'glamping_territory' => [
+        'Бассейн',
+        'Беседка',
+        'Гамак',
+        'Джакузи',
+        'Игровая зона',
+        'Качеля',
+        'Мангал',
+        'Терраса',
+        'Ферма',
+        'Шезлонг',
+        'Костровая зона',
+    ],
+
+    'facilities_options_safety]' => [
+        'Видеонаблюдение по территории',
+        'Датчик дыма',
+        'Охраняемая территория',
+        'Охраняемая парковка',
+    ],
+
+    'glamping_entertainment' => [
+        'Аквапарк',
+        'Аэрохоккей',
+        'Бадминтон',
+        'Багги',
+        'Баскетбол',
+        'Батут',
+        'Беговые лыжи',
+        'Библиотека',
+        'Вейкборд',
+        'Велосипед',
+        'Виндсерфинг',
+        'Волейбольная площадка',
+        'Гидроциклы',
+        'Горнолыжный курорт',
+        'Дартс',
+        'Йога',
+        'Караоке',
+        'Кайтсерфинг',
+        'Кинотеатр',
+        'Лазертаг',
+        'Лодка',
+        'Массаж',
+        'Мотосноуборды',
+        'Настольный теннис',
+        'Прогулки на лошадях',
+        'Рыбалка',
+        'САП-борд',
+        'Серфинг',
+        'Скалодром',
+        'Снегоход',
+        'Эко-тропа',
+        'Байдарки',
+        'Квадроциклы',
+        'Катамараны',
+        'Настольные игры',
+        'Веревочный парк',
+        'Каяки',
+        'Каток',
+        'Пляж',
+        'Приставка Dendi',
+        'Рафтинг',
+        'Теннисный корт',
+        'Тир',
+        'Тюбинги',
+        'Фотосессия',
+        'Фрисби',
+        'Футбольная площадка',
+        'Экскурсии',
+        'Эндуро',
+        'Яхтинг',
+        'PlayStation'
+    ],
+
+    'glamping_nature_around' => [
+        'Лес',
+        'Горы',
+        'Река',
+        'Озеро',
+        'Море',
+        'Поле',
+    ]
+];
+
+    return $options_set_js;
 }

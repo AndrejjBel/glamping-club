@@ -998,7 +998,8 @@ strong, b {
   display: flex;
   flex-direction: column;
   gap: 20px;
-  flex: none; }
+  flex: none;
+  margin-bottom: 24px; }
   .dashboard-tab__title {
     font-size: 20px;
     font-weight: 500; }
@@ -1053,28 +1054,64 @@ strong, b {
     display: flex;
     gap: 16px;
     width: 100%; }
+    @media (max-width: 475px) {
+      .user-glamps__item {
+        flex-direction: column; } }
     .user-glamps__item:nth-last-child(n+2) {
       padding-bottom: 16px;
       border-bottom: 1px solid var(--color-border-glemp); }
     .user-glamps__item__img {
       display: flex;
+      flex: none;
       width: 60px;
       height: 60px;
       border-radius: 8px;
       overflow: hidden; }
-    .user-glamps__item__info__title {
-      font-size: 18px;
-      font-weight: 500; }
-    .user-glamps__item__info__options__item {
+      @media (max-width: 475px) {
+        .user-glamps__item__img {
+          width: 100%;
+          height: auto; }
+          .user-glamps__item__img img {
+            width: 100%;
+            height: 200px;
+            -o-object-fit: cover;
+               object-fit: cover; } }
+    .user-glamps__item__info {
       display: flex;
-      gap: 8px;
-      align-items: center;
-      font-size: 14px; }
+      flex-direction: column;
+      justify-content: space-between;
+      width: 100%; }
+      .user-glamps__item__info__title {
+        font-size: 18px;
+        font-weight: 500; }
+      .user-glamps__item__info__options {
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap; }
+        @media (max-width: 475px) {
+          .user-glamps__item__info__options {
+            gap: 8px; } }
+        .user-glamps__item__info__options__item {
+          display: flex;
+          gap: 8px;
+          align-items: center;
+          font-size: 14px; }
+          .user-glamps__item__info__options__item .post-status {
+            display: block;
+            color: green; }
+            .user-glamps__item__info__options__item .post-status.pending {
+              color: red; }
     .user-glamps__item__links {
       display: flex;
       gap: 8px;
       flex-direction: column;
       margin-left: auto; }
+      @media (max-width: 475px) {
+        .user-glamps__item__links {
+          gap: 32px;
+          flex-direction: row;
+          margin-left: 0;
+          justify-content: center; } }
       .user-glamps__item__links a {
         display: flex; }
         .user-glamps__item__links a:hover svg path {
@@ -1836,6 +1873,9 @@ a.secondary {
           padding: 15px;
           bottom: 120px; } }
 
+.post-pending {
+  color: red; }
+
 .images {
   display: flex;
   gap: 20px; }
@@ -2071,7 +2111,8 @@ a.secondary {
     .facilities__item__content-item {
       display: flex;
       gap: 8px;
-      align-items: center; }
+      align-items: center;
+      padding: 1px 0; }
       .facilities__item__content-item svg {
         flex: none;
         width: 16px;
@@ -2081,7 +2122,18 @@ a.secondary {
         .facilities__item__content-item svg path {
           fill: var(--color-svg-single-icon); }
       .facilities__item__content-item span {
-        display: flex; }
+        display: flex;
+        gap: 4px; }
+        .facilities__item__content-item span span.icon-text-green {
+          background: green;
+          color: #fff;
+          padding: 0 4px;
+          border-radius: 4px; }
+        .facilities__item__content-item span span.icon-text-red {
+          background: red;
+          color: #fff;
+          padding: 0 4px;
+          border-radius: 4px; }
 
 .characteristics-glamping__title {
   font-weight: 500; }
@@ -2406,7 +2458,8 @@ a.secondary {
 
 .balloon-content-body {
   display: flex;
-  gap: 8px; }
+  gap: 8px;
+  height: 100%; }
   .balloon-content-body__img {
     flex: none;
     display: flex;
@@ -2418,7 +2471,8 @@ a.secondary {
     flex: 2;
     display: flex;
     flex-direction: column;
-    gap: 6px; }
+    gap: 4px;
+    line-height: 1.1; }
     .balloon-content-body__content__title {
       font-size: 120%;
       font-weight: 700;
@@ -2431,26 +2485,88 @@ a.secondary {
       font-weight: 400;
       line-height: 1.5;
       color: var(--text-color-light); }
+    .balloon-content-body__content__rating {
+      display: flex;
+      align-items: flex-end;
+      gap: 4px; }
+  .balloon-content-body__btns {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 24px;
+    height: 100%;
+    padding: 0 2px; }
+    .balloon-content-body__btns__fav-comp {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      height: 100%; }
+      .balloon-content-body__btns__fav-comp button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        padding: 2px; }
+        .balloon-content-body__btns__fav-comp button svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body__btns__fav-comp button svg path {
+            fill: var(--text-color-light); }
+        .balloon-content-body__btns__fav-comp button:hover svg path {
+          fill: var(--text-color); }
+        .balloon-content-body__btns__fav-comp button:hover svg.add-claim path {
+          fill: red; }
+        .balloon-content-body__btns__fav-comp button.active svg path {
+          fill: #F04438; }
+        .balloon-content-body__btns__fav-comp button.active:hover svg path {
+          fill: #B42318; }
+        .balloon-content-body__btns__fav-comp button.btn-add-fav {
+          margin-top: auto; }
+      .balloon-content-body__btns__fav-comp a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        padding: 2px; }
+        .balloon-content-body__btns__fav-comp a svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body__btns__fav-comp a svg path {
+            fill: var(--text-color-light); }
+        .balloon-content-body__btns__fav-comp a:hover svg path {
+          fill: var(--text-color); }
+        .balloon-content-body__btns__fav-comp a:hover svg.add-claim path {
+          fill: red; }
+        .balloon-content-body__btns__fav-comp a.active svg path {
+          fill: #F04438; }
+        .balloon-content-body__btns__fav-comp a.active:hover svg path {
+          fill: #B42318; }
+        .balloon-content-body__btns__fav-comp a.glamp-phone svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body__btns__fav-comp a.glamp-phone svg path {
+            fill: var(--color-primary-dop); }
+        .balloon-content-body__btns__fav-comp a.glamp-wa svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body__btns__fav-comp a.glamp-wa svg path {
+            fill: var(--color-primary-dop); }
 
 .balloon-content-body-pan {
   display: flex;
   flex-direction: column;
   gap: 6px; }
-  .balloon-content-body-pan__title {
-    font-size: 120%;
-    font-weight: 700;
-    color: var(--color-primary); }
+  .balloon-content-body-pan .swiper-wrapper {
+    height: 140px; }
   .balloon-content-body-pan__img {
     position: relative;
     display: flex;
-    gap: 4px;
-    width: -moz-fit-content;
-    width: fit-content; }
+    gap: 4px; }
     .balloon-content-body-pan__img img {
       border-radius: 8px;
       overflow: hidden; }
-    .balloon-content-body-pan__img img:last-child {
-      filter: brightness(0.5); }
     .balloon-content-body-pan__img__link {
       position: absolute;
       left: 0;
@@ -2468,16 +2584,85 @@ a.secondary {
   .balloon-content-body-pan__content {
     flex: 2;
     display: flex;
-    flex-direction: column;
-    gap: 6px; }
-    .balloon-content-body-pan__content__price {
-      font-size: 120%;
-      font-weight: 700; }
-    .balloon-content-body-pan__content__address {
-      font-size: 12px;
-      font-weight: 400;
-      line-height: 1.5;
-      color: var(--text-color-light); }
+    gap: 6px;
+    width: 100%; }
+    .balloon-content-body-pan__content__info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px; }
+      .balloon-content-body-pan__content__info__title {
+        font-size: 120%;
+        font-weight: 700;
+        color: var(--color-primary); }
+      .balloon-content-body-pan__content__info__rating {
+        display: flex;
+        gap: 4px; }
+      .balloon-content-body-pan__content__info__price {
+        font-size: 120%;
+        font-weight: 700; }
+      .balloon-content-body-pan__content__info__address {
+        font-size: 12px;
+        font-weight: 400;
+        line-height: 1.5;
+        color: var(--text-color-light); }
+    .balloon-content-body-pan__content__buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      width: 24px; }
+      .balloon-content-body-pan__content__buttons button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        padding: 2px; }
+        .balloon-content-body-pan__content__buttons button svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body-pan__content__buttons button svg path {
+            fill: var(--text-color-light); }
+        .balloon-content-body-pan__content__buttons button:hover svg path {
+          fill: var(--text-color); }
+        .balloon-content-body-pan__content__buttons button:hover svg.add-claim path {
+          fill: red; }
+        .balloon-content-body-pan__content__buttons button.active svg path {
+          fill: #F04438; }
+        .balloon-content-body-pan__content__buttons button.active:hover svg path {
+          fill: #B42318; }
+        .balloon-content-body-pan__content__buttons button.btn-add-fav {
+          margin-top: auto; }
+      .balloon-content-body-pan__content__buttons a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 20px;
+        height: 20px;
+        padding: 2px; }
+        .balloon-content-body-pan__content__buttons a svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body-pan__content__buttons a svg path {
+            fill: var(--text-color-light); }
+        .balloon-content-body-pan__content__buttons a:hover svg path {
+          fill: var(--text-color); }
+        .balloon-content-body-pan__content__buttons a:hover svg.add-claim path {
+          fill: red; }
+        .balloon-content-body-pan__content__buttons a.active svg path {
+          fill: #F04438; }
+        .balloon-content-body-pan__content__buttons a.active:hover svg path {
+          fill: #B42318; }
+        .balloon-content-body-pan__content__buttons a.glamp-phone svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body-pan__content__buttons a.glamp-phone svg path {
+            fill: var(--color-primary-dop); }
+        .balloon-content-body-pan__content__buttons a.glamp-wa svg {
+          width: 100%;
+          height: 100%; }
+          .balloon-content-body-pan__content__buttons a.glamp-wa svg path {
+            fill: var(--color-primary-dop); }
 
 .glamping-item {
   position: relative;
