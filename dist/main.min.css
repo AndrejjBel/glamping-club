@@ -1027,7 +1027,6 @@ strong, b {
     letter-spacing: 0.5px;
     text-transform: uppercase;
     color: var(--white);
-    margin-left: 40px;
     text-decoration: none;
     transition: all linear .3s; }
     .dashboard-tab a.add-btn svg path {
