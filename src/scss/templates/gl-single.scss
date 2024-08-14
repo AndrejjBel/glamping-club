@@ -475,7 +475,7 @@ article.type-glampings {
         // padding-right: 20px;
 
         &__content-item {
-            display: inline-block;
+            display: flex;
             gap: 8px;
             align-items: center;
             padding: 1px 0;
@@ -497,7 +497,7 @@ article.type-glampings {
             }
 
             & span {
-                display: flex;
+                display: inline-block;
                 gap: 4px;
 
                 & span.icon-text-green {

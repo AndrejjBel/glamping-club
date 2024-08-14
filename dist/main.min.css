@@ -2139,7 +2139,7 @@ a.secondary {
          break-inside: avoid-column;
     margin-bottom: 20px; }
     .facilities__item__content-item {
-      display: inline-block;
+      display: flex;
       gap: 8px;
       align-items: center;
       padding: 1px 0; }
@@ -2152,7 +2152,7 @@ a.secondary {
         .facilities__item__content-item svg path {
           fill: var(--color-svg-single-icon); }
       .facilities__item__content-item span {
-        display: flex;
+        display: inline-block;
         gap: 4px; }
         .facilities__item__content-item span span.icon-text-green {
           background: green;
