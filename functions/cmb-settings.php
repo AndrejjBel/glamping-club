@@ -151,17 +151,17 @@ function glamping_club_register_main_options_metabox() {
         'repeatable'  => true,
 	) );
 
-    $facilities_options_home_group = $alloptions_glamping_options->add_field( array(
-		'id'          => 'facilities_options_home',
+    $glamping_facilities_general_kitchen = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_general_kitchen',
 		'type'        => 'group',
 		'repeatable'  => false,
 		'options'     => array(
-			'group_title'    => esc_html__( 'Удобства в доме', 'cmb2' ),
+			'group_title'    => esc_html__( 'Кухня', 'cmb2' ),
 			'closed'         => true
 		),
 	) );
 
-	$alloptions_glamping_options->add_group_field( $facilities_options_home_group, array(
+	$alloptions_glamping_options->add_group_field( $glamping_facilities_general_kitchen, array(
 		'name' => esc_html__( 'Название', 'glamping-club' ),
 		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
 		'id'   => 'title',
@@ -169,17 +169,17 @@ function glamping_club_register_main_options_metabox() {
         'repeatable'  => true,
 	) );
 
-    $facilities_options_bathroom_group = $alloptions_glamping_options->add_field( array(
-		'id'          => 'facilities_options_bathroom',
+    $glamping_facilities_general_bathroom = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_general_bathroom',
 		'type'        => 'group',
 		'repeatable'  => false,
 		'options'     => array(
-			'group_title'    => esc_html__( 'Удобства в ванной комнате', 'cmb2' ),
+			'group_title'    => esc_html__( 'Ванная комната', 'cmb2' ),
 			'closed'         => true
 		),
 	) );
 
-	$alloptions_glamping_options->add_group_field( $facilities_options_bathroom_group, array(
+	$alloptions_glamping_options->add_group_field( $glamping_facilities_general_bathroom, array(
 		'name' => esc_html__( 'Название', 'glamping-club' ),
 		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
 		'id'   => 'title',
@@ -187,23 +187,7 @@ function glamping_club_register_main_options_metabox() {
         'repeatable'  => true,
 	) );
 
-    $facilities_options_kitchen_group = $alloptions_glamping_options->add_field( array(
-		'id'          => 'facilities_options_kitchen',
-		'type'        => 'group',
-		'repeatable'  => false,
-		'options'     => array(
-			'group_title'    => esc_html__( 'Удобства на кухне', 'cmb2' ),
-			'closed'         => true
-		),
-	) );
 
-	$alloptions_glamping_options->add_group_field( $facilities_options_kitchen_group, array(
-		'name' => esc_html__( 'Название', 'glamping-club' ),
-		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
-		'id'   => 'title',
-		'type' => 'text',
-        'repeatable'  => true,
-	) );
 
     $glamping_nutrition_group = $alloptions_glamping_options->add_field( array(
 		'id'          => 'glamping_nutrition',
@@ -306,6 +290,60 @@ function glamping_club_register_main_options_metabox() {
 	) );
 
 	$alloptions_glamping_options->add_group_field( $glamping_nature_around_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $facilities_options_home_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_home',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Удобства в доме (варианты размещений)', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_home_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $facilities_options_bathroom_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_bathroom',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Удобства в ванной комнате (варианты размещений)', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_bathroom_group, array(
+		'name' => esc_html__( 'Название', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+        'repeatable'  => true,
+	) );
+
+    $facilities_options_kitchen_group = $alloptions_glamping_options->add_field( array(
+		'id'          => 'facilities_options_kitchen',
+		'type'        => 'group',
+		'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Удобства на кухне (варианты размещений)', 'cmb2' ),
+			'closed'         => true
+		),
+	) );
+
+	$alloptions_glamping_options->add_group_field( $facilities_options_kitchen_group, array(
 		'name' => esc_html__( 'Название', 'glamping-club' ),
 		// 'desc' => esc_html__( 'Название  Типа места', 'glamping-club' ),
 		'id'   => 'title',

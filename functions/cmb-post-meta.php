@@ -27,7 +27,7 @@ function register_single_glampings_metabox() {
 	) );
 
 	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Тип места', 'glamping-club' ),
+		'name' => __( 'Тип места <span class="required">*</span>', 'glamping-club' ),
 		'id'   => 'glamping_type',
 		'type'    => 'multicheck_inline',
 		'options_cb' => 'type_options',
@@ -38,13 +38,17 @@ function register_single_glampings_metabox() {
 		// 	'private_sector'     => __( 'Частный сектор', 'glamping-club' ),
 		// ),
 		'default' => 'glamping',
+		'classes' => ['multicheck-required'],
+		'after_field' => 'multicheck_required_warn_text',
 	) );
 
 	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Тип размещения', 'glamping-club' ),
+		'name' => __( 'Тип размещения <span class="required">*</span>', 'glamping-club' ),
 		'id'   => 'glamping_allocation',
 		'type' => 'multicheck_inline',
+		'classes' => ['multicheck-required'],
 		'options_cb' => 'allocation_options',
+		'after_field' => 'multicheck_required_warn_text',
 	) );
 
     $single_glampings->add_field( array(
@@ -54,6 +58,7 @@ function register_single_glampings_metabox() {
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',
+			'required'    => 'required'
 		),
 	) );
 
@@ -64,6 +69,7 @@ function register_single_glampings_metabox() {
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',
+			'required'    => 'required'
 		),
 	) );
 
@@ -75,6 +81,7 @@ function register_single_glampings_metabox() {
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',
+			'required'    => 'required'
 		),
 	) );
 
@@ -109,25 +116,39 @@ function register_single_glampings_metabox() {
 	) );
 
 	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Удобства в доме', 'glamping-club' ),
-		'id'   => 'facilities_options_home',
+		'name' => esc_html__( 'Кухня', 'glamping-club' ),
+		'id'   => 'facilities_general_kitchen',
 		'type' => 'multicheck_inline',
-		'options_cb' => 'facilities_options_home',
+		'options_cb' => 'facilities_general_kitchen',
 	) );
 
 	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Удобства в ванной комнате', 'glamping-club' ),
-		'id'   => 'facilities_options_bathroom',
+		'name' => esc_html__( 'Ванная комната', 'glamping-club' ),
+		'id'   => 'facilities_general_bathroom',
 		'type' => 'multicheck_inline',
-		'options_cb' => 'facilities_options_bathroom',
+		'options_cb' => 'facilities_general_bathroom',
 	) );
 
-	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Удобства на кухне', 'glamping-club' ),
-		'id'   => 'facilities_options_kitchen',
-		'type' => 'multicheck_inline',
-		'options_cb' => 'facilities_options_kitchen',
-	) );
+	// $single_glampings->add_field( array(
+	// 	'name' => esc_html__( 'Удобства в доме', 'glamping-club' ),
+	// 	'id'   => 'facilities_options_home',
+	// 	'type' => 'multicheck_inline',
+	// 	'options_cb' => 'facilities_options_home',
+	// ) );
+	//
+	// $single_glampings->add_field( array(
+	// 	'name' => esc_html__( 'Удобства в ванной комнате', 'glamping-club' ),
+	// 	'id'   => 'facilities_options_bathroom',
+	// 	'type' => 'multicheck_inline',
+	// 	'options_cb' => 'facilities_options_bathroom',
+	// ) );
+	//
+	// $single_glampings->add_field( array(
+	// 	'name' => esc_html__( 'Удобства на кухне', 'glamping-club' ),
+	// 	'id'   => 'facilities_options_kitchen',
+	// 	'type' => 'multicheck_inline',
+	// 	'options_cb' => 'facilities_options_kitchen',
+	// ) );
 
 	$single_glampings->add_field( array(
 		'name' => esc_html__( 'Питание', 'glamping-club' ),
@@ -207,6 +228,10 @@ function register_single_glampings_metabox() {
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'address',
 		'type' => 'text',
+		'attributes' => array(
+			'data-validation' => 'required',
+			// 'required' => 'required'
+		),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -214,6 +239,10 @@ function register_single_glampings_metabox() {
 		'desc' => esc_html__( 'Координаты через запятую, например: 40.346544,-101.645507', 'glamping-club' ),
 		'id'   => 'coordinates',
 		'type' => 'text',
+		'attributes' => array(
+			'data-validation' => 'required',
+			// 'required' => 'required'
+		),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -229,6 +258,10 @@ function register_single_glampings_metabox() {
 		'id'   => 'site_glamping',
 		'type' => 'text_url',
 		'protocols' => array( 'http', 'https' ),
+		'attributes' => array(
+			'data-validation' => 'required',
+			// 'required'    => 'required'
+		),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -288,8 +321,10 @@ function register_single_glampings_metabox() {
 				'timeFormat' => 'H:mm',
 				'stepMinute' => 10, // 1 minute increments instead of the default 5
 			) ),
+			'data-validation' => 'required',
+			// 'required'    => 'required'
 		),
-		'time_format' => 'H:i',
+		'time_format' => 'H:i'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -303,8 +338,10 @@ function register_single_glampings_metabox() {
 				'timeFormat' => 'H:mm',
 				'stepMinute' => 10, // 1 minute increments instead of the default 5
 			) ),
+			'data-validation' => 'required',
+			// 'required'    => 'required'
 		),
-		'time_format' => 'H:i',
+		'time_format' => 'H:i'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -494,6 +531,12 @@ function glamping_recommended_display( $field_args, $field ) {
 	}
 	echo '<input type="checkbox" class="cmb2-option-cust glamping_recommended_list" name="glamping_recommended_list" id="glamping_recommended_list-' . $field->object_id . '" data-glamp="' . $field->object_id . '" ' . $chec_value . '>
 	<label for="glamping_recommended_list-' . $field->object_id . '">Рекомендовать</label>';
+}
+
+function multicheck_required_warn_text() {
+	return '<div class="required-warning"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+	<path d="M256 0C114.6 0 0 114.6 0 256s114.6 256 256 256s256-114.6 256-256S397.4 0 256 0zM256 464c-114.7 0-208-93.31-208-208S141.3 48 256 48s208 93.31 208 208S370.7 464 256 464zM256 304c13.25 0 24-10.75 24-24v-128C280 138.8 269.3 128 256 128S232 138.8 232 152v128C232 293.3 242.8 304 256 304zM256 337.1c-17.36 0-31.44 14.08-31.44 31.44C224.6 385.9 238.6 400 256 400s31.44-14.08 31.44-31.44C287.4 351.2 273.4 337.1 256 337.1z"/>
+	</svg><span>Выберите один или несколько вариантов</span></div>';
 }
 
 // function hook_in_and_add_default_group_value( $post_id, $updated, $cmb ) {

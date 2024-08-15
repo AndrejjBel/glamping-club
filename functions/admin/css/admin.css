@@ -1,3 +1,41 @@
 .cmb-row.conditional-child {
     display: none;
 }
+
+.cmb2-postbox .inside {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#single_glampings .cmb-row,
+#media_gallery .cmb-row,
+#cmb2-metabox-accommodation_options .cmb-row {
+    padding-left: 12px;
+    padding-right: 12px;
+}
+
+.required-warning {
+    display: none;
+    color: red;
+    font-weight: 500;
+}
+
+.required-warning svg {
+    width: 12px;
+    height: 12px;
+}
+
+.required-warning svg path {
+    fill: red;
+}
+
+.required-warning.active {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+#single_glampings span.required {
+    color: red;
+}

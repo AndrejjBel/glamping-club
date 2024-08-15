@@ -126,6 +126,24 @@ function nature_around_options() {
     return $options;
 }
 
+function facilities_general_kitchen() {
+    $site_options = get_option( 'glc_alloptions_page' );
+    $options = [];
+    foreach ($site_options['facilities_general_kitchen'][0]['title'] as $key => $value) {
+        $options[$value] = $value;
+    }
+    return $options;
+}
+
+function facilities_general_bathroom() {
+    $site_options = get_option( 'glc_alloptions_page' );
+    $options = [];
+    foreach ($site_options['facilities_general_bathroom'][0]['title'] as $key => $value) {
+        $options[$value] = $value;
+    }
+    return $options;
+}
+
 // Опции для настроек
 function options_set() {
     $site_options = get_option( 'glc_alloptions_page' );

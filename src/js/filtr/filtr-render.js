@@ -1480,7 +1480,7 @@ function mapRender(geoData) {
 
 		objectManager = new ymaps.ObjectManager({
 			clusterize: true,
-			gridSize: 64,
+			gridSize: 32,
             // viewportMargin: 50
 			// clusterDisableClickZoom: true
 		});
@@ -1545,34 +1545,35 @@ function mapRender(geoData) {
 
         map.geoObjects.events.add('balloonopen', function (e) {
             const id = e.get('objectId');
-            console.dir(id);
+            // console.dir(id);
             const addFavorites = document.querySelector('.ymaps-2-1-79-balloon__content #add-favorites');
             const addComparison = document.querySelector('.ymaps-2-1-79-balloon__content #add-comparison');
             const supFavorites = document.querySelectorAll('#sup-favorites');
             const supComparison = document.querySelectorAll('#sup-comparison');
-            console.dir(addFavorites);
 
             let glcFav = favoritesRenderNologin('glcFav');
             let glcCompar = favoritesRenderNologin('glcCompar');
 
-            if (glcFav.includes(addFavorites.dataset.postid)) {
-                addFavorites.classList.add('active');
-                addFavorites.attributes.title.value = 'Удалить из избранного';
+            if (addFavorites) {
+                if (glcFav.includes(addFavorites.dataset.postid)) {
+                    addFavorites.classList.add('active');
+                    addFavorites.attributes.title.value = 'Удалить из избранного';
+                }
+                addFavorites.addEventListener('click', (e) => {
+                    let addFavoritesBtnSingle = document.querySelector('button#add-favorites[data-postid="'+addFavorites.dataset.postid+'"]');
+                    mapFavComAction(addFavorites, addFavoritesBtnSingle, supFavorites, 'glcFav');
+                });
             }
-            if (glcCompar.includes(addComparison.dataset.postid)) {
-                addComparison.classList.add('active');
-                addComparison.attributes.title.value = 'Удалить из сравнения';
+            if (addComparison) {
+                if (glcCompar.includes(addComparison.dataset.postid)) {
+                    addComparison.classList.add('active');
+                    addComparison.attributes.title.value = 'Удалить из сравнения';
+                }
+                addComparison.addEventListener('click', (e) => {
+                    let addComparisonBtnSingle = document.querySelector('button#add-comparison[data-postid="'+addComparison.dataset.postid+'"]');
+                    mapFavComAction(addComparison, addComparisonBtnSingle, supComparison, 'glcCompar');
+                });
             }
-
-            addFavorites.addEventListener('click', (e) => {
-                let addFavoritesBtnSingle = document.querySelector('button#add-favorites[data-postid="'+addFavorites.dataset.postid+'"]');
-                mapFavComAction(addFavorites, addFavoritesBtnSingle, supFavorites, 'glcFav');
-            });
-
-            addComparison.addEventListener('click', (e) => {
-                let addComparisonBtnSingle = document.querySelector('button#add-comparison[data-postid="'+addComparison.dataset.postid+'"]');
-                mapFavComAction(addComparison, addComparisonBtnSingle, supComparison, 'glcCompar');
-            });
 
             var swiper = new Swiper(".balloonPan", {
                 slidesPerView: 1,

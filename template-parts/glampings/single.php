@@ -90,9 +90,8 @@ $cur_user_id = get_current_user_id();
     <div class="single-section facilities">
         <?php
         glamping_icons_facilities('glamping_facilities_general', 'Удобства общие');
-        glamping_icons_facilities('facilities_options_home', 'В доме');
-        glamping_icons_facilities('facilities_options_bathroom', 'В ванной');
-        glamping_icons_facilities('facilities_options_kitchen', 'На кухне');
+        glamping_icons_facilities('facilities_general_kitchen', 'Кухня');
+        glamping_icons_facilities('facilities_general_bathroom', 'Ванная комната');
         glamping_icons_facilities('facilities_options_children', 'Для детей');
         glamping_icons_facilities('glamping_nutrition', 'Питание');
         glamping_icons_facilities('glamping_territory', 'Территория');

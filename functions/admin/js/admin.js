@@ -116,40 +116,110 @@ function conditionalFilesPaidOptions() {
             });
         }, 400);
     });
-
-    // selects.forEach((select) => {
-    //     select.addEventListener('change', (e) => {
-    //         let ul = e.target.parentElement.parentElement.nextElementSibling.children[1].children[1];
-    //         console.dir(e.target);
-    //         console.dir(e.target.parentElement.parentElement.nextElementSibling.children[1].children[1]);
-    //         console.log("Changed to: " + e.target.value);
-    //         let optionId = e.target.value;
-    //         console.dir(glamping_club_admin.glOptions.glamping_facilities_general);
-    //         console.dir(glamping_club_admin.glOptions[optionId]);
-    //
-    //         glamping_club_admin.glOptions[optionId].forEach((item) => {
-    //             console.dir(item);
-    //             ul.insertAdjacentHTML(
-    //                 "beforeend",
-    //                 `<option value="${item}">${item}</option>`
-    //                 `<li>
-    //                 <input type="checkbox" class="cmb2-option" name="paid_options[0][title_on_group][]" id="paid_options_0_title_on_group1" value="${item}">
-    //                 <label for="paid_options_0_title_on_group1">${item}</label>
-    //                 </li>`
-    //             )
-    //         });
-    //     });
-    // });
-
 }
 // conditionalFilesPaidOptions();
 
-// jQuery( function( $ ) {
-//     var $box = $( document.getElementById( 'glamping_paid_options' ) );
-//     console.dir($box)
-//     $box.on( 'cmb2_add_group_row_start cmb2_add_row cmb2_remove_row cmb2_shift_rows_complete', test );
-//
-//     var test = function() {
-//         console.dir('Yes');
-//     };
-// });
+function multicheckRequired() {
+    const fieldGroupRequired = document.querySelectorAll('.multicheck-required');
+    if (!fieldGroupRequired) return;
+    const form = document.getElementById( 'post' );
+    form.addEventListener('submit', (e) => {
+        console.dir(fieldGroupRequired);
+        fieldGroupRequired.forEach((item) => {
+            let inputs = item.querySelectorAll('input');
+            console.dir(inputs);
+            let cr = 0;
+            inputs.forEach((input) => {
+                if (input.checked == true) {
+                    console.dir(input.checked);
+                    cr++;
+                }
+            });
+            console.dir(cr);
+            let wr = item.children[1].children[2];
+            console.dir(item.children[1].children[2]);
+            if (cr) {
+                console.dir('Yes');
+                wr.classList.remove('active');
+                item.style.background = '';
+            } else {
+                e.preventDefault();
+                wr.classList.add('active');
+                item.style.background = '#ffefef';
+            }
+        });
+    });
+}
+multicheckRequired();
+
+jQuery(document).ready(function($) {
+
+    $form = $( document.getElementById( 'post' ) );
+    $htmlbody = $( 'html, body' );
+    $toValidate = $( '[data-validation]' );
+
+    if ( ! $toValidate.length ) {
+        return;
+    }
+
+    function checkValidation( evt ) {
+        var labels = [];
+        var $first_error_row = null;
+        var $row = null;
+
+        function add_required( $row ) {
+            $row.css({ 'background-color': 'rgb(255, 170, 170)' });
+            $first_error_row = $first_error_row ? $first_error_row : $row;
+            labels.push( $row.find( '.cmb-th label' ).text() );
+        }
+
+        function remove_required( $row ) {
+            $row.css({ background: '' });
+        }
+
+        $toValidate.each( function() {
+            var $this = $(this);
+            var val = $this.val();
+            $row = $this.parents( '.cmb-row' );
+
+            if ( $this.is( '[type="button"]' ) || $this.is( '.cmb2-upload-file-id' ) ) {
+                return true;
+            }
+
+            if ( 'required' === $this.data( 'validation' ) ) {
+                if ( $row.is( '.cmb-type-file-list' ) ) {
+
+                    var has_LIs = $row.find( 'ul.cmb-attach-list li' ).length > 0;
+
+                    if ( ! has_LIs ) {
+                        add_required( $row );
+                    } else {
+                        remove_required( $row );
+                    }
+
+                } else {
+                    if ( ! val ) {
+                        add_required( $row );
+                    } else {
+                        remove_required( $row );
+                    }
+                }
+            }
+
+        });
+
+        if ( $first_error_row ) {
+            evt.preventDefault();
+            // alert( 'The following fields are required and highlighted below:' + labels.join( ', ' ) );
+            $htmlbody.animate({
+                scrollTop: ( $first_error_row.offset().top - 200 )
+            }, 1000);
+        } else {
+            // Feel free to comment this out or remove
+            alert( 'submission is good!' );
+        }
+
+    }
+
+    // $form.on( 'submit', checkValidation );
+});
