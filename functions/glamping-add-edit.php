@@ -38,7 +38,7 @@ function glamping_club_add_post_glampings() {
     	        'post_content'  => $_POST['glamping_description']
             );
             $post_id = wp_insert_post( $post_data );
-            $text = 'Опубликован глэмпинг.';
+            $text = 'Опубликован глэмпинг';
         } elseif ($_POST['action_type'] == 'edit') {
             $update_post = [
                 'ID' => $_POST['object_id'],
@@ -49,7 +49,7 @@ function glamping_club_add_post_glampings() {
             ];
             wp_update_post( wp_slash( $update_post ) );
             $post_id = $_POST['object_id'];
-            $text = 'Изменен глэмпинг.';
+            $text = 'Изменен глэмпинг';
         }
 
         if ($post_id) {
@@ -95,8 +95,9 @@ function glamping_club_add_post_glampings() {
             }
 
             $post_url = get_permalink($post_id);
+            $post_title = get_the_title($post_id);
 
-            $text_fin = $text . ' - ' . wp_unslash($post_url);
+            $text_fin = $text . ' - ' . $post_title . ' - ' . wp_unslash($post_url);
             message_to_telegram($text_fin, '477875115');
 
             $error['success'] = 'Success';
