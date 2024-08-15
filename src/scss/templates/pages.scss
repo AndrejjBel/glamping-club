@@ -208,6 +208,10 @@
         min-height: 1.5em;
         font-size: 14px;
         line-height: 1.6;
+
+        & span {
+            display: inline-block;
+        }
     }
 
     & .cmb-repeatable-group .postbox {

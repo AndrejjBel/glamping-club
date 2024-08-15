@@ -23,6 +23,14 @@ function glamping_club_add_post_glampings() {
             $error['empty_post_author'] = __( 'Error post author', 'glamping-club' );
         }
     }
+
+    $url = $_POST['additionally_field[0][site_glamping]'];
+    if ($url) {
+        if (filter_var($url, FILTER_VALIDATE_URL) === false) {
+            $error['empty_post_site_valid'] = __( 'Error post site valid', 'glamping-club' );
+        }
+    }
+
     if ( count( $error ) > 0 ) {
         $error['class'] = 'errors';
         $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);

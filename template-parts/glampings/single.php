@@ -50,14 +50,14 @@ $cur_user_id = get_current_user_id();
             <span class="characteristics-glamping__title">Тип размещения: </span>
             <span><?php echo get_glamping_allocation_content(); ?></span>
         </div>
-        <div class="characteristics-glamping">
-            <span class="characteristics-glamping__title">Окружение: </span>
-            <span><?php echo get_glamping_nature_around_content(); ?></span>
-        </div>
-        <div class="characteristics-glamping">
-            <span class="characteristics-glamping__title">Количество домиков: </span>
-            <span><?php echo $post->glamping_number_houses; ?></span>
-        </div>
+        <?php echo get_glamping_nature_around_content(); ?>
+
+        <?php if ($post->glamping_number_houses) { ?>
+            <div class="characteristics-glamping">
+                <span class="characteristics-glamping__title">Количество домиков: </span>
+                <span><?php echo $post->glamping_number_houses; ?></span>
+            </div>
+        <?php } ?>
         <!-- <div class="characteristics-glamping">
             <span class="characteristics-glamping__title">Вместимость: </span>
             <span><?php //echo $post->glamping_capacity; ?> чел.</span>
@@ -109,14 +109,7 @@ $cur_user_id = get_current_user_id();
         </div>
     </div>
 
-    <div class="single-section acc-options">
-        <div class="single-section__title">
-            <h3>Варианты размещения</h3>
-        </div>
-        <div class="single-section__content">
-            <?php get_accommodation_options(); ?>
-        </div>
-    </div>
+    <?php get_accommodation_options(); ?>
 
     <?php if ( get_additionally_meta('coordinates') ) { ?>
         <div id="map-container" class="single-section map">
@@ -231,7 +224,33 @@ $cur_user_id = get_current_user_id();
 //     echo wp_get_attachment_image_url( $key, 'glamping-club-thumb' );
 //     echo '<br>';
 // }
-// $all_img = glamping_all_img($post->ID);
+// $meta_object = get_post_meta($post->ID, 'acc_options');
+// $meta_object_n = $meta_object[0];
+// $meta_object_nn = '';
+// if (count($meta_object_n) > 1) {
+//
+// } else {
+//     $meta_object_nn = $meta_object[0][0];
+//     foreach ($meta_object_nn as $key => $value) {
+//         if (empty($value)) { //проверка на пустоту
+//             unset($meta_object_nn[$key]); // Удаляем ключ массива
+//         }
+//     }
+// }
+//
 // echo '<pre>';
-// var_dump($all_img);
+// var_dump($meta_object_n);
 // echo '<pre>';
+//
+// echo '<pre>';
+// if ($meta_object_nn) {
+//     var_dump($meta_object_nn);
+// }
+// echo '<pre>';
+
+// $url = 'http://dfdfdfdf.fd';
+// if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
+//   echo("$url is a valid URL");
+// } else {
+//   echo("$url is not a valid URL");
+// }

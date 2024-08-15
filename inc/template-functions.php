@@ -102,176 +102,223 @@ function get_additionally_content() {
         return false;
     }
 	if (isset($meta_obj['glc_notes'])) {
-		$glc_notes = apply_filters( 'the_content', $meta_obj['glc_notes'] );
+		if ($meta_obj['glc_notes']) {
+			$glc_notes = apply_filters( 'the_content', $meta_obj['glc_notes'] );
+		}
 	}
 	if (isset($meta_obj['checkin_glamping'])) {
-		echo '<div class="conditions__item">';
-		echo '<h5>Заезд: </h5><span>c ' . $meta_obj['checkin_glamping'] . ' ч.</span>';
-		echo '</div>';
+		if ($meta_obj['checkin_glamping']) {
+			echo '<div class="conditions__item">';
+			echo '<h5>Заезд: </h5><span>c ' . $meta_obj['checkin_glamping'] . ' ч.</span>';
+			echo '</div>';
+		}
 	}
 	if (isset($meta_obj['checkout_glamping'])) {
-		echo '<div class="conditions__item">';
-		echo '<h5>Выезд: </h5><span>до ' . $meta_obj['checkout_glamping'] . ' ч.</span>';
-		echo '</div>';
+		if ($meta_obj['checkout_glamping']) {
+			echo '<div class="conditions__item">';
+			echo '<h5>Выезд: </h5><span>до ' . $meta_obj['checkout_glamping'] . ' ч.</span>';
+			echo '</div>';
+		}
 	}
 	if (isset($meta_obj['cancel_reservation'])) {
-		echo '<div class="conditions__item">';
-		echo '<h5>Отмена бронирования: </h5><span>' . $meta_obj['cancel_reservation'] . '</span>';
-		echo '</div>';
+		if ($meta_obj['cancel_reservation']) {
+			echo '<div class="conditions__item">';
+			echo '<h5>Отмена бронирования: </h5><span>' . $meta_obj['cancel_reservation'] . '</span>';
+			echo '</div>';
+		}
 	}
 	if (isset($meta_obj['prepayment'])) {
-		echo '<div class="conditions__item">';
-		echo '<h5>Предоплата: </h5><span>' . $meta_obj['prepayment'] . '</span>';
-		echo '</div>';
+		if ($meta_obj['prepayment']) {
+			echo '<div class="conditions__item">';
+			echo '<h5>Предоплата: </h5><span>' . $meta_obj['prepayment'] . '</span>';
+			echo '</div>';
+		}
 	}
 	if (isset($meta_obj['glc_notes'])) {
-		echo '<div class="conditions__item">';
-		echo '<h5>Примечания </h5>';
-		echo '<div class="collapse-content">';
-		echo $glc_notes;
-		echo '</div>';
-		echo '<div class="collapse-content-btn">';
-		echo '<span>Развернуть</span>';
-		echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-		    <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
-		</svg>';
-		echo '</div>';
-		echo '</div>';
+		if ($meta_obj['glc_notes']) {
+			echo '<div class="conditions__item">';
+			echo '<h5>Примечания </h5>';
+			echo '<div class="collapse-content">';
+			echo $glc_notes;
+			echo '</div>';
+			echo '<div class="collapse-content-btn">';
+			echo '<span>Развернуть</span>';
+			echo '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+			    <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+			</svg>';
+			echo '</div>';
+			echo '</div>';
+		}
 	}
 }
 
 function get_accommodation_options() {
 	global $post;
     $meta_object = get_post_meta($post->ID, 'acc_options');
-    if (!empty($meta_object)) {
-        $meta_obj = $meta_object[0];
-    } else {
-        return false;
-    }
+	$meta_obj = $meta_object[0];
+    // if (!empty($meta_object)) {
+    //     $meta_obj = $meta_object[0];
+    // } else {
+    //     return false;
+    // }
 
-	$i = 1;
-	foreach ($meta_obj as $option) {
-		$media_gallery = $option['media_gallery'];
-		$media = '';
-		// foreach ($media_gallery as $key => $value) {
-		// 	$media .= '<div class="acc-media" data-src="' . wp_get_attachment_image_url( $key, 'full' ) . '">';
-		// 	$media .= '<img src="' . wp_get_attachment_image_url( $key, 'medium' ) . '" alt="">';
-		// 	$media .= '</div>';
-		// }
-
-		$it = 0;
-		$media .= '<div class="acc-gallery galery' . $i . '">';
-		$media .= '<div id="sw-' . $i . '" class="swiper-wrapper">';
-		foreach ( $media_gallery as $key => $value ) {
-			$url = wp_get_attachment_image_url( $key, 'medium' );
-			$url_full = wp_get_attachment_image_url( $key, 'full' );
-			$media .= '<div class="acc-gallery__item swiper-slide gallery-' . $i . '">';
-			$media .= '<a href="' . $url_full . '" class="acc-media">';
-			$media .= '<img src="' . $url . '" alt="" /></a>';
-			$media .= '</div>';
-			$it++;
+	$is_meta = 0;
+	$meta_object_n = $meta_object[0];
+	$meta_object_nn = '';
+	if (count($meta_object_n) > 1) {
+		$is_meta = 1;
+	} else {
+	    $meta_object_nn = $meta_object[0][0];
+	    foreach ($meta_object_nn as $key => $value) {
+	        if (empty($value)) { //проверка на пустоту
+	            unset($meta_object_nn[$key]); // Удаляем ключ массива
+	        }
+	    }
+		if ($meta_object_nn) {
+			$is_meta = 1;
 		}
-		// $media .= '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
-		// 	<span>Смотреть </span>
-		// 	<span id="gallery-item-count">' . $it . '</span>
-		// 	<span> фото</span>
-		// </button>';
-		$media .= '</div>';
-		$media .= '<div class="swiper-button-next"></div>
-    		<div class="swiper-button-prev"></div>';
-		$media .= '</div>';
-	?>
-		<div class="acc-options__item">
-			<div class="acc-options__item__content acc-option custom-scroll">
-				<?php echo $media; ?>
-				<?php if (array_key_exists('title', $option)) { ?>
-					<div class="acc-option__title">
-						<?php echo $option['title']; ?>
-					</div>
-				<?php } ?>
-				<div class="acc-option__options">
-					<?php if (array_key_exists('area', $option)) {
-						if ($option['area']) {
-					?>
-						<div class="acc-option__options__item">
-							<!-- <div class="acc-option__options__item__title">Площадь</div> -->
-							<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-								<path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm96 288l288 0c17.7 0 32-14.3 32-32l0-68.2c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1l0 84c0 17.7 14.3 32 32 32z"/>
-							</svg>
-							<div class="acc-option__options__item__value">
-								<?php echo $option['area']. 'м<sup>2</sup>'; ?>
-							</div>
-						</div>
-					<?php }} ?>
-					<?php if (array_key_exists('places', $option)) {
-						if ($option['places']) {
-					?>
-						<div class="acc-option__options__item">
-							<!-- <div class="acc-option__options__item__title">Мест</div> -->
-							<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
-								<path d="M32 32c17.7 0 32 14.3 32 32l0 256 224 0 0-160c0-17.7 14.3-32 32-32l224 0c53 0 96 43 96 96l0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-32-224 0-32 0L64 416l0 32c0 17.7-14.3 32-32 32s-32-14.3-32-32L0 64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/>
-							</svg>
-							<div class="acc-option__options__item__value">
-								<?php echo $option['places']; ?>
-							</div>
-						</div>
-					<?php }} ?>
-				</div>
-				<div class="acc-option__options__item__excerpt">
-					<?php if (array_key_exists('facilities_options_home', $option)) {
-						glamping_icons_facilities_options($option['facilities_options_home'], '', 3);
-					}
-					?>
-					<button class="primary-light ls js-btndetails" type="button" name="button">Подробнее</button>
-				</div>
-				<div class="acc-option__options__item price-btn">
-					<?php if (array_key_exists('price', $option)) { ?>
-						<div class="acc-option__options__item item-price">
-							<!-- <div class="acc-option__options__item__title">Стоимость</div> -->
-							<div class="acc-option__options__item__value value-price">
-								<?php echo number_format($option['price'], 0, ',', ' ') . 'р'; ?>
-							</div>
-						</div>
-					<?php } else { ?>
-						<div class="acc-option__options__item item-price">
-							<div class="acc-option__options__item__value value-price">Не установлена</div>
-						</div>
-					<?php } ?>
-					<a href="<?php echo get_post_meta($post->ID, 'additionally_field')[0][0]['site_glamping']?>"
-						class="primary ld btnvib"
-						target="_blank"
-						rel="nofollow">Выбрать</a>
-				</div>
-				<div class="collapse-height-content">
-					<?php if (array_key_exists('description', $option)) { ?>
-						<div class="acc-option__description">
-							<?php echo $option['description']; ?>
-						</div>
-					<?php } ?>
+	}
 
-					<div class="acc-option__facilities">
-						<div class="acc-option__facilities__title">
-							<h5>Удобства</h5>
+	if ($is_meta) {
+	?>
+	<div class="single-section acc-options">
+        <div class="single-section__title">
+            <h3>Варианты размещения</h3>
+        </div>
+        <div class="single-section__content">
+	<?php
+		$i = 1;
+		foreach ($meta_obj as $option) {
+			$media_gallery = $option['media_gallery'];
+			$media = '';
+			// foreach ($media_gallery as $key => $value) {
+			// 	$media .= '<div class="acc-media" data-src="' . wp_get_attachment_image_url( $key, 'full' ) . '">';
+			// 	$media .= '<img src="' . wp_get_attachment_image_url( $key, 'medium' ) . '" alt="">';
+			// 	$media .= '</div>';
+			// }
+
+			if ($media_gallery) {
+				$it = 0;
+				$media .= '<div class="acc-gallery galery' . $i . '">';
+				$media .= '<div id="sw-' . $i . '" class="swiper-wrapper">';
+				foreach ( $media_gallery as $key => $value ) {
+					$url = wp_get_attachment_image_url( $key, 'medium' );
+					$url_full = wp_get_attachment_image_url( $key, 'full' );
+					$media .= '<div class="acc-gallery__item swiper-slide gallery-' . $i . '">';
+					$media .= '<a href="' . $url_full . '" class="acc-media">';
+					$media .= '<img src="' . $url . '" alt="" /></a>';
+					$media .= '</div>';
+					$it++;
+				}
+				// $media .= '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
+				// 	<span>Смотреть </span>
+				// 	<span id="gallery-item-count">' . $it . '</span>
+				// 	<span> фото</span>
+				// </button>';
+				$media .= '</div>';
+				$media .= '<div class="swiper-button-next"></div>
+		    		<div class="swiper-button-prev"></div>';
+				$media .= '</div>';
+			}
+		?>
+			<div class="acc-options__item">
+				<div class="acc-options__item__content acc-option custom-scroll">
+					<?php echo $media; ?>
+					<?php if (array_key_exists('title', $option)) { ?>
+						<div class="acc-option__title">
+							<?php echo $option['title']; ?>
 						</div>
-						<div class="facilities">
-							<?php
-							if (array_key_exists('facilities_options_home', $option)) {
-								glamping_icons_facilities_options($option['facilities_options_home'], 'В доме');
-							}
-							if (array_key_exists('facilities_options_bathroom', $option)) {
-								glamping_icons_facilities_options($option['facilities_options_bathroom'], 'В ванной');
-							}
-							if (array_key_exists('facilities_options_kitchen', $option)) {
-								glamping_icons_facilities_options($option['facilities_options_kitchen'], 'На кухне');
-							}
-							?>
+					<?php } ?>
+					<div class="acc-option__options">
+						<?php if (array_key_exists('area', $option)) {
+							if ($option['area']) {
+						?>
+							<div class="acc-option__options__item">
+								<!-- <div class="acc-option__options__item__title">Площадь</div> -->
+								<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+									<path d="M64 64c0-17.7-14.3-32-32-32S0 46.3 0 64L0 400c0 44.2 35.8 80 80 80l400 0c17.7 0 32-14.3 32-32s-14.3-32-32-32L80 416c-8.8 0-16-7.2-16-16L64 64zm96 288l288 0c17.7 0 32-14.3 32-32l0-68.2c0-7.6-2.7-15-7.7-20.8l-65.8-76.8c-12.1-14.2-33.7-15-46.9-1.8l-21 21c-10 10-26.4 9.2-35.4-1.6l-39.2-47c-12.6-15.1-35.7-15.4-48.7-.6L135.9 215c-5.1 5.8-7.9 13.3-7.9 21.1l0 84c0 17.7 14.3 32 32 32z"/>
+								</svg>
+								<div class="acc-option__options__item__value">
+									<?php echo $option['area']. 'м<sup>2</sup>'; ?>
+								</div>
+							</div>
+						<?php }} ?>
+						<?php if (array_key_exists('places', $option)) {
+							if ($option['places']) {
+						?>
+							<div class="acc-option__options__item">
+								<!-- <div class="acc-option__options__item__title">Мест</div> -->
+								<svg class="acc-option__options__item__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512">
+									<path d="M32 32c17.7 0 32 14.3 32 32l0 256 224 0 0-160c0-17.7 14.3-32 32-32l224 0c53 0 96 43 96 96l0 224c0 17.7-14.3 32-32 32s-32-14.3-32-32l0-32-224 0-32 0L64 416l0 32c0 17.7-14.3 32-32 32s-32-14.3-32-32L0 64C0 46.3 14.3 32 32 32zm144 96a80 80 0 1 1 0 160 80 80 0 1 1 0-160z"/>
+								</svg>
+								<div class="acc-option__options__item__value">
+									<?php echo $option['places']; ?>
+								</div>
+							</div>
+						<?php }} ?>
+					</div>
+					<div class="acc-option__options__item__excerpt">
+						<?php if (array_key_exists('facilities_options_home', $option)) {
+							glamping_icons_facilities_options($option['facilities_options_home'], '', 3);
+						}
+						?>
+						<button class="primary-light ls js-btndetails" type="button" name="button">Подробнее</button>
+					</div>
+					<div class="acc-option__options__item price-btn">
+						<?php if (array_key_exists('price', $option)) {
+							if ($option['price']) {
+						?>
+							<div class="acc-option__options__item item-price">
+								<!-- <div class="acc-option__options__item__title">Стоимость</div> -->
+								<div class="acc-option__options__item__value value-price">
+									<?php echo number_format($option['price'], 0, ',', ' ') . 'р'; ?>
+								</div>
+							</div>
+						<?php }} else { ?>
+							<div class="acc-option__options__item item-price">
+								<div class="acc-option__options__item__value value-price">Не установлена</div>
+							</div>
+						<?php } ?>
+						<a href="<?php echo get_post_meta($post->ID, 'additionally_field')[0][0]['site_glamping']?>"
+							class="primary ld btnvib"
+							target="_blank"
+							rel="nofollow">Выбрать</a>
+					</div>
+					<div class="collapse-height-content">
+						<?php if (array_key_exists('description', $option)) { ?>
+							<div class="acc-option__description">
+								<?php echo $option['description']; ?>
+							</div>
+						<?php } ?>
+
+						<div class="acc-option__facilities">
+							<div class="acc-option__facilities__title">
+								<h5>Удобства</h5>
+							</div>
+							<div class="facilities">
+								<?php
+								if (array_key_exists('facilities_options_home', $option)) {
+									glamping_icons_facilities_options($option['facilities_options_home'], 'В доме');
+								}
+								if (array_key_exists('facilities_options_bathroom', $option)) {
+									glamping_icons_facilities_options($option['facilities_options_bathroom'], 'В ванной');
+								}
+								if (array_key_exists('facilities_options_kitchen', $option)) {
+									glamping_icons_facilities_options($option['facilities_options_kitchen'], 'На кухне');
+								}
+								?>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	<?php
-	$i++;
+		<?php
+		$i++;
+		}
+		?>
+	</div>
+</div>
+		<?php
 	}
 
 	// return $meta_obj;
@@ -305,7 +352,11 @@ function get_glamping_nature_around_content() {
 	global $post;
 	$nature_around = $post->glamping_nature_around;
 	if ($nature_around) {
-		return implode(", ", $nature_around);
+		// return implode(", ", $nature_around);
+		return '<div class="characteristics-glamping">
+            <span class="characteristics-glamping__title">Окружение: </span>
+            <span>' . implode(", ", $nature_around) . '</span>
+        </div>';
 	}
 }
 
@@ -402,6 +453,18 @@ function get_contact_information_content() {
     } else {
         return false;
     }
+	$whatsup_glamping = '';
+	if (array_key_exists('whatsup_glamping', $meta_obj)) {
+		$whatsup_glamping = $meta_obj['whatsup_glamping'];
+	}
+	$viber_glamping = '';
+	if (array_key_exists('viber_glamping', $meta_obj)) {
+		$viber_glamping = $meta_obj['viber_glamping'];
+	}
+	$telegram_glamping = '';
+	if (array_key_exists('telegram_glamping', $meta_obj)) {
+		$telegram_glamping = $meta_obj['telegram_glamping'];
+	}
 	?>
 	<div class="single-aside__content__title mt20 mt-smail-10">
 		<span>Контактная информация</span>
@@ -428,7 +491,7 @@ function get_contact_information_content() {
 			</div>
 		</div>
 	<?php }} ?>
-	<?php if (array_key_exists('whatsup_glamping', $meta_obj) || array_key_exists('viber_glamping', $meta_obj) || array_key_exists('telegram_glamping', $meta_obj)) { ?>
+	<?php if ($whatsup_glamping || $viber_glamping || $telegram_glamping) { ?>
 		<div class="single-aside__content__item">
 			<span>Напишите нам в мессенджере:</span>
 		</div>
@@ -801,23 +864,29 @@ function glampings_map_render() {
 		$thumbnail_pan = get_the_post_thumbnail( $post->ID, [60, 60], ['class' => "attachment-map-image-pan"] );
 		$rating = reviews_stars_items_average( 2.9, 4, 1 );
 		$media = array_unique(glamping_all_img($post->ID));
-        $media_urls = '<div class="swiper balloonPan">';
-		$media_urls .= '<div class="swiper-wrapper">';
-		$mi = 0;
-        foreach ( $media as $img ) {
-			// if ($mi <=2 ) {
-				$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
-				$media_urls .= '<div class="swiper-slide">';
-	            $media_urls .= '<img width="80" height="80" src="' . $url . '" class="attachment-map-image" alt="" decoding="async">';
-				$media_urls .= '</div>';
-				$mi++;
-			// }
-    	}
-		$media_urls .= '</div>';
-		$media_urls .= '<div class="swiper-button-next"></div>';
-    	$media_urls .= '<div class="swiper-button-prev"></div>';
-		$media_urls .= '</div>';
-		$thumbnail_new = '<img width="120" height="120" src="' . wp_get_attachment_image_url( $media[0], 'glamping-club-thumb' ) . '" class="attachment-map-image" alt="" decoding="async">';
+		$media_urls = '';
+		$thumbnail_new = '';
+		if (count($media) > 0) {
+			$media_urls = '<div class="swiper balloonPan">';
+			$media_urls .= '<div class="swiper-wrapper">';
+			$mi = 0;
+	        foreach ( $media as $img ) {
+				// if ($mi <=2 ) {
+					$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+					$media_urls .= '<div class="swiper-slide">';
+		            $media_urls .= '<img width="80" height="80" src="' . $url . '" class="attachment-map-image" alt="" decoding="async">';
+					$media_urls .= '</div>';
+					$mi++;
+				// }
+	    	}
+			$media_urls .= '</div>';
+			$media_urls .= '<div class="swiper-button-next"></div>';
+	    	$media_urls .= '<div class="swiper-button-prev"></div>';
+			$media_urls .= '</div>';
+
+			$thumbnail_new = '<img width="120" height="120" src="' . wp_get_attachment_image_url( $media[0], 'glamping-club-thumb' ) . '" class="attachment-map-image" alt="" decoding="async">';
+		}
+
 		$coord = explode(',', str_replace(" ", "", $coordinates));
 		// $coord = count($coord) > 1 ? [floatval($coord[0]), floatval($coord[1])] : [0.0, 0.0];
 		// $title = str_replace(["'", "\"", "«"], '', get_the_title( $post->ID ));

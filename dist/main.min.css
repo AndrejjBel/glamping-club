@@ -3275,6 +3275,8 @@ ul.item-options-checkbox {
   min-height: 1.5em;
   font-size: 14px;
   line-height: 1.6; }
+  .glc-postedit .cmb-repeatable-group .cmb-group-title span {
+    display: inline-block; }
 
 .glc-postedit .cmb-repeatable-group .postbox {
   padding: 0 10px;
