@@ -62,16 +62,16 @@ function register_single_glampings_metabox() {
 		),
 	) );
 
-	$single_glampings->add_field( array(
-		'name' => esc_html__( 'Вместимость', 'glamping-club' ),
-		'id'   => 'glamping_capacity',
-		'type' => 'text',
-		'attributes' => array(
-			'type' => 'number',
-			'min'  => '1',
-			'required'    => 'required'
-		),
-	) );
+	// $single_glampings->add_field( array(
+	// 	'name' => esc_html__( 'Вместимость', 'glamping-club' ),
+	// 	'id'   => 'glamping_capacity',
+	// 	'type' => 'text',
+	// 	'attributes' => array(
+	// 		'type' => 'number',
+	// 		'min'  => '1',
+	// 		'required'    => 'required'
+	// 	),
+	// ) );
 
 	$single_glampings->add_field( array(
 		'name' => esc_html__( 'Стоимость', 'glamping-club' ),
