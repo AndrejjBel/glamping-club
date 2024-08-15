@@ -96,6 +96,9 @@ function glamping_club_add_post_glampings() {
 
             $post_url = get_permalink($post_id);
 
+            $text_fin = $text . ' - ' . wp_unslash($post_url);
+            message_to_telegram($text_fin, '477875115');
+
             $error['success'] = 'Success';
             $error['post_id'] = $post_id;
             $error['post_url'] = wp_unslash($post_url);
@@ -103,9 +106,6 @@ function glamping_club_add_post_glampings() {
             echo $error_fin;
             wp_die();
         } else {
-            $text_fin = $text . ' - ' . $error['post_url'];
-            message_to_telegram($text_fin, '477875115');
-
             $error['error'] = 'Error';
             $error['post_id'] = $post_id;
             $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
