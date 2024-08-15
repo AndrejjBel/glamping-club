@@ -123,6 +123,7 @@ function multicheckRequired() {
     const fieldGroupRequired = document.querySelectorAll('.multicheck-required');
     if (!fieldGroupRequired) return;
     const form = document.getElementById( 'post' );
+    if (!form) return;
     form.addEventListener('submit', (e) => {
         console.dir(fieldGroupRequired);
         fieldGroupRequired.forEach((item) => {
