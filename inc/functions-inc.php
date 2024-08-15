@@ -241,3 +241,27 @@ function delete_postmeta_before_delete_post( $postid ){
     $wpdb->delete( $wpdb->postmeta, [ 'post_id'=>$postid ] );
     clean_post_cache( $post_id );
 }
+
+//Отправка в Телеграм
+define('TELEGRAM_TOKEN', '7361610914:AAFGZrr2JaYQEhBZxR6A2L3R1QEC_w7TnDE');
+// сюда нужно вписать ваш внутренний айдишник
+define('TELEGRAM_CHATID', '477875115');
+//message_to_telegram($msgotpravtel);
+
+function message_to_telegram($text, $chatid) {
+    $ch = curl_init();
+    curl_setopt_array(
+        $ch,
+        array(
+            CURLOPT_URL => 'https://api.telegram.org/bot' . TELEGRAM_TOKEN . '/sendMessage',
+            CURLOPT_POST => TRUE,
+            CURLOPT_RETURNTRANSFER => TRUE,
+            CURLOPT_TIMEOUT => 10,
+            CURLOPT_POSTFIELDS => array(
+                'chat_id' => $chatid, // TELEGRAM_CHATID
+                'text' => $text,
+            ),
+        )
+    );
+    curl_exec($ch);
+}
