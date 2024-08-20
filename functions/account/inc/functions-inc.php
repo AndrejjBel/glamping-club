@@ -221,7 +221,7 @@ function glamping_club_owner_identification() {
             $user = get_user_by( 'id', $_POST['user_id'] );
             $key = get_password_reset_key( $user );
             $user_hex = rawurlencode(encryptStringGlc($user->user_login));
-            $url = get_site_url( null, 'owner-identification/?key=' . $key . '&owner=' . $user_hex . '&glamp=' . $_POST['user_id'] );
+            $url = get_site_url( null, 'owner-identification/?key=' . $key . '&owner=' . $user_hex . '&glamp=' . $_POST['glamping_id'] );
             $site_name = get_bloginfo('name');
             $admin_email = get_bloginfo('admin_email');
             // $mailTo = $_POST['user_email'];
@@ -257,7 +257,7 @@ function glamping_club_owner_identif_action($key, $owner, $glamp) {
         $user = check_password_reset_key( $key, $user_login );
         if ( !is_wp_error($user) ) {
             $update_post = [
-                'ID' => $glamp,
+                'ID' => (int)$glamp,
                 'post_author' => $user->ID
             ];
             wp_update_post( wp_slash( $update_post ) );
