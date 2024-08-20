@@ -3,7 +3,8 @@ function glamping_club_result_render($location=0) {
     $args = array(
         'post_type' => 'glampings',
         'post_status' => 'publish',
-        'nopaging'  => true,
+        'posts_per_page' => -1,
+        // 'nopaging'  => true,
         'orderby' => 'meta_value date', //meta_value_num, title
         'meta_key' => 'glamping_recommended',
         'order' => 'DESC',
@@ -80,7 +81,7 @@ function glamping_club_result_render($location=0) {
     // } else {
     //     update_option( 'glampings_obj', $glampings_fin );
     // }
-    update_option( 'glampings_obj', $glampings_fin );
+    update_option( 'glampings_obj', $glampings_fin, false );
     return $glampings_fin;
 }
 // glamping_club_result_render();

@@ -23,6 +23,7 @@ function register_single_glampings_metabox_front() {
         'default_cb' => 'set_to_post_title',
         'attributes'  => array(
             'required'    => 'required',
+			'data-valid' => 'required-field'
         )
 	) );
 
@@ -32,7 +33,7 @@ function register_single_glampings_metabox_front() {
         'type' => 'select',
         'classes' => 'glc-form-group-select',
         'default_cb' => 'set_to_glamping_location_options',
-        'options_cb' => 'get_glamping_location_options',
+        'options_cb' => 'get_glamping_location_options'
     ) );
 
     $single_glampings->add_field( array(
@@ -79,7 +80,7 @@ function register_single_glampings_metabox_front() {
 	) );
 
     $single_glampings->add_field( array(
-		'name' => esc_html__( 'Количество домиков', 'glamping-club' ),
+		'name' => __( 'Количество домиков <span class="required">*</span>', 'glamping-club' ),
 		'id'   => 'glamping_number_houses',
 		'type' => 'text',
 		'attributes' => array(
@@ -257,7 +258,7 @@ function register_single_glampings_metabox_front() {
 		// 'description' => esc_html__( 'Группа полей', 'glamping-club' ),
 		'repeatable'  => false,
 		'options'     => array(
-			'group_title'    => esc_html__( 'Дополнительно', 'cmb2' ),
+			'group_title'    => __( 'Дополнительно <span class="required">(есть обязательные поля)</span>', 'cmb2' ),
 			'closed'         => true
 		),
 	) );
@@ -267,7 +268,10 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'address',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group',
+		'attributes' => array(
+            'data-valid' => 'required-field'
+		),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -275,15 +279,10 @@ function register_single_glampings_metabox_front() {
 		'desc' => esc_html__( 'Координаты через запятую, например: 40.346544,-101.645507', 'glamping-club' ),
 		'id'   => 'coordinates',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
-	) );
-
-	$single_glampings->add_group_field( $group_field, array(
-		'name' => esc_html__( 'Год постройки', 'glamping-club' ),
-		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
-		'id'   => 'year_construction',
-		'type' => 'text',
-        'classes' => 'glc-form-group glc-form-group-number'
+        'classes' => 'glc-form-group',
+		'attributes' => array(
+            'data-valid' => 'required-field'
+		),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -292,7 +291,51 @@ function register_single_glampings_metabox_front() {
 		'id'   => 'site_glamping',
 		'type' => 'text_url',
 		'protocols' => array( 'http', 'https' ),
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group',
+        'protocols' => array( 'http', 'https' ),
+		'attributes' => array(
+            'data-valid' => 'required-field'
+		),
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
+		'name' => __( 'Заезд: <span class="required">*</span>', 'glamping-club' ),
+		'desc' => esc_html__( 'после указанного времени', 'glamping-club' ),
+		'id'   => 'checkin_glamping',
+		'type' => 'text_time',
+		'attributes' => array(
+			'data-timepicker' => json_encode( array(
+				// 'timeOnlyTitle' => __( 'Choose your Time', 'cmb2' ),
+				'timeFormat' => 'H:mm',
+				'stepMinute' => 10, // 1 minute increments instead of the default 5
+			) ),
+			'data-valid' => 'required-field'
+		),
+		'time_format' => 'H:i',
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
+		'name' => __( 'Выезд: <span class="required">*</span>', 'glamping-club' ),
+		'desc' => esc_html__( 'до указанного времени', 'glamping-club' ),
+		'id'   => 'checkout_glamping',
+		'type' => 'text_time',
+		'attributes' => array(
+			'data-timepicker' => json_encode( array(
+				// 'timeOnlyTitle' => __( 'Choose your Time', 'cmb2' ),
+				'timeFormat' => 'H:mm',
+				'stepMinute' => 10, // 1 minute increments instead of the default 5
+			) ),
+			'data-valid' => 'required-field'
+		),
+		'time_format' => 'H:i',
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
+		'name' => esc_html__( 'Год постройки', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
+		'id'   => 'year_construction',
+		'type' => 'text',
+        'classes' => 'glc-form-group glc-form-group-number'
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -345,36 +388,6 @@ function register_single_glampings_metabox_front() {
 			'min'  => '1',
 		),
         'classes' => 'glc-form-group glc-form-group-number'
-	) );
-
-	$single_glampings->add_group_field( $group_field, array(
-		'name' => __( 'Заезд: <span class="required">*</span>', 'glamping-club' ),
-		'desc' => esc_html__( 'после указанного времени', 'glamping-club' ),
-		'id'   => 'checkin_glamping',
-		'type' => 'text_time',
-		'attributes' => array(
-			'data-timepicker' => json_encode( array(
-				// 'timeOnlyTitle' => __( 'Choose your Time', 'cmb2' ),
-				'timeFormat' => 'H:mm',
-				'stepMinute' => 10, // 1 minute increments instead of the default 5
-			) ),
-		),
-		'time_format' => 'H:i',
-	) );
-
-	$single_glampings->add_group_field( $group_field, array(
-		'name' => __( 'Выезд: <span class="required">*</span>', 'glamping-club' ),
-		'desc' => esc_html__( 'до указанного времени', 'glamping-club' ),
-		'id'   => 'checkout_glamping',
-		'type' => 'text_time',
-		'attributes' => array(
-			'data-timepicker' => json_encode( array(
-				// 'timeOnlyTitle' => __( 'Choose your Time', 'cmb2' ),
-				'timeFormat' => 'H:mm',
-				'stepMinute' => 10, // 1 minute increments instead of the default 5
-			) ),
-		),
-		'time_format' => 'H:i',
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -512,7 +525,11 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'title',
 		'type' => 'text',
-        'classes' => 'glc-form-group'
+        'classes' => 'glc-form-group required-field',
+        'attributes' => array(
+            'data-valid' => 'required-field',
+			'data-name' => 'title'
+		),
 	) );
 
 	$accommodation_options->add_group_field( $acc_options_group, array(
@@ -520,7 +537,7 @@ function register_single_glampings_metabox_front() {
 		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'description',
 		'type' => 'wysiwyg',
-        'classes' => 'glc-form-group',
+        'classes' => 'glc-form-group required-field',
         'options' => array(
             'wpautop' => true, // use wpautop?
             'media_buttons' => false, // show insert/upload button(s)
@@ -545,6 +562,8 @@ function register_single_glampings_metabox_front() {
 			'type' => 'number',
 			'min'  => '0.1',
 			'step' => '0.1',
+            'data-valid' => 'required-field',
+			'data-name' => 'area'
 		),
         'classes' => 'glc-form-group glc-form-group-number'
 	) );
@@ -557,6 +576,8 @@ function register_single_glampings_metabox_front() {
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',
+            'data-valid' => 'required-field',
+			'data-name' => 'places'
 		),
         'classes' => 'glc-form-group glc-form-group-number'
 	) );
@@ -570,6 +591,8 @@ function register_single_glampings_metabox_front() {
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',
+            'data-valid' => 'required-field',
+			'data-name' => 'price'
 		),
         'classes' => 'glc-form-group glc-form-group-price'
 	) );

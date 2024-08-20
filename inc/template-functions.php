@@ -52,35 +52,44 @@ function glamping_club_shortcode_page_compare() {
 
 function glamping_single_thumbnail($post_id) {
 	$media = array_unique(glamping_all_img($post_id), SORT_REGULAR);
-	$i = 1;
-	echo '<div class="thumbnail-gallery__first">';
-	foreach ( $media as $img ) {
-		$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
-		$url_full = wp_get_attachment_image_url( $img, 'full' );
-		if ($i == 1) {
-			echo '<a href="' . $url_full . '" class="item">';
-			echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
+	if (count($media) == 1) {
+		echo '<div class="thumbnail-gallery__first">';
+		$url = wp_get_attachment_image_url( $media[0], 'glamping-club-thumb' );
+		$url_full = wp_get_attachment_image_url( $media[0], 'full' );
+		echo '<a href="' . $url_full . '" class="item">';
+		echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
+		echo '</div>';
+	} else {
+		$i = 1;
+		echo '<div class="thumbnail-gallery__first">';
+		foreach ( $media as $img ) {
+			$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+			$url_full = wp_get_attachment_image_url( $img, 'full' );
+			if ($i == 1) {
+				echo '<a href="' . $url_full . '" class="item">';
+				echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
+			}
+			$i++;
 		}
-		$i++;
-	}
-	echo '</div>';
-	$it = 0;
-	echo '<div class="thumbnail-gallery__two">';
-	foreach ( $media as $img ) {
-		$url = wp_get_attachment_image_url( $img, 'medium' );
-		$url_full = wp_get_attachment_image_url( $img, 'full' );
-		if ($it > 0) {
-			echo '<a href="' . $url_full . '" class="item">';
-			echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
+		echo '</div>';
+		$it = 0;
+		echo '<div class="thumbnail-gallery__two">';
+		foreach ( $media as $img ) {
+			$url = wp_get_attachment_image_url( $img, 'medium' );
+			$url_full = wp_get_attachment_image_url( $img, 'full' );
+			if ($it > 0) {
+				echo '<a href="' . $url_full . '" class="item">';
+				echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
+			}
+			$it++;
 		}
-		$it++;
+		echo '</div>';
+		echo '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
+			<span>Смотреть </span>
+			<span id="gallery-item-count">' . $it . '</span>
+			<span> фото</span>
+		</button>';
 	}
-	echo '</div>';
-	echo '<button id="js-gallery-count" class="thumbnail-gallery__btn" type="button" name="button">
-		<span>Смотреть </span>
-		<span id="gallery-item-count">' . $it . '</span>
-		<span> фото</span>
-	</button>';
 }
 
 function get_additionally_meta($meta) {
@@ -189,7 +198,10 @@ function get_accommodation_options() {
 	<?php
 		$i = 1;
 		foreach ($meta_obj as $option) {
-			$media_gallery = $option['media_gallery'];
+			$media_gallery = '';
+			if (array_key_exists('media_gallery', $option)) {
+				$media_gallery = $option['media_gallery'];
+			}
 			$media = '';
 			// foreach ($media_gallery as $key => $value) {
 			// 	$media .= '<div class="acc-media" data-src="' . wp_get_attachment_image_url( $key, 'full' ) . '">';
@@ -276,7 +288,7 @@ function get_accommodation_options() {
 							</div>
 						<?php }} else { ?>
 							<div class="acc-option__options__item item-price">
-								<div class="acc-option__options__item__value value-price">Не установлена</div>
+								<div class="acc-option__options__item__value value-price">Стоимость не установлена</div>
 							</div>
 						<?php } ?>
 						<a href="<?php echo get_post_meta($post->ID, 'additionally_field')[0][0]['site_glamping']?>"
@@ -734,6 +746,15 @@ function glamping_all_img($post_id) {
 	}
 	if (has_post_thumbnail()) {
 		array_unshift($files, get_post_thumbnail_id());
+	}
+
+	if (!$files) {
+		$glc_options = get_option( 'glc_options' );
+		$no_foto_id = '';
+		if (array_key_exists('glamping_no_photo_id', $glc_options)) {
+			$no_foto_id = $glc_options['glamping_no_photo_id'];
+			array_push($files, $no_foto_id);
+		}
 	}
 	return $files;
 }

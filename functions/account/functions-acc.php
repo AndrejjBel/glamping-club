@@ -17,6 +17,9 @@ define( 'PAGE_FAVORITES_N', 'Favorites' );
 define( 'PAGE_COMPARE', 'compare' );
 define( 'PAGE_COMPARE_N', 'Compare' );
 
+define( 'PAGE_OWNER_IDENT', 'owner-identification' );
+define( 'PAGE_OWNER_IDENT_N', 'Owner identification' );
+
 require get_template_directory() . '/functions/account/inc/functions-inc.php';
 require get_template_directory() . '/functions/account/inc/functions-auth.php';
 require get_template_directory() . '/functions/account/inc/dashboard.php';
@@ -69,6 +72,7 @@ function create_page_on_theme_activation() {
 	create_page_postedit();
 	create_page_favorites();
 	create_page_compare();
+	create_page_owner_identification();
 }
 
 function create_page_login(){
@@ -197,6 +201,24 @@ function create_page_compare(){
     }
 }
 
+function create_page_owner_identification(){
+    $new_page_title     = PAGE_OWNER_IDENT_N;
+    $post_name          = PAGE_OWNER_IDENT;
+    $new_page_content   = '[glc-owner-ident-page]';
+    $page_check = url_to_postid('/' . $post_name);
+    $new_page = array(
+            'post_type'     => 'page',
+            'post_title'    => $new_page_title,
+            'post_content'  => $new_page_content,
+            'post_status'   => 'publish',
+            'post_author'   => 1,
+            'post_name'     => $post_name
+    );
+    if(!$page_check){
+        $new_page_id = wp_insert_post($new_page);
+    }
+}
+
 // Page tags
 add_filter( 'display_post_states', 'glamping_club_special_page_mark', 10, 2 );
 function glamping_club_special_page_mark( $post_states, $post ){
@@ -221,6 +243,9 @@ function glamping_club_special_page_mark( $post_states, $post ){
 		}
 		if( $post->post_name === PAGE_COMPARE ){
 			$post_states[] = PAGE_COMPARE_N . ' page';
+		}
+		if( $post->post_name === PAGE_OWNER_IDENT ){
+			$post_states[] = PAGE_OWNER_IDENT_N . ' page';
 		}
 	}
 	return $post_states;

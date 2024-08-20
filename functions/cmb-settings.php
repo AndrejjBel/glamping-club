@@ -86,6 +86,19 @@ function glamping_club_register_main_options_metabox() {
         'default' => 12
 	) );
 
+    $main_options->add_field( array(
+		'name' => esc_html__( 'Заглушка фото глэмпинга', 'glamping-club' ),
+		'desc' => esc_html__( 'Заглушка фото глэмпинга', 'glamping-club' ),
+		'id'   => 'glamping_no_photo',
+		'type' => 'file',
+        'options' => array(
+            'url' => false, // Hide the text input for the url
+        ),
+		// 'preview_size' => array( 220, 220 ),
+        // 'classes' => 'glc-form-group glc-form-group-thumbnail',
+        // 'default_cb' => 'set_to_post_thumbnail'
+	) );
+
 	/**
 	 * Registers secondary options page, and set main item as parent.
 	 */

@@ -1022,10 +1022,24 @@ strong, b {
     display: flex;
     gap: 16px;
     width: 100%; }
+    @media (max-width: 767px) {
+      .dashboard-tab__content__add-glamp {
+        flex-direction: column;
+        gap: 24px; } }
     .dashboard-tab__content__add-glamp__application {
       flex: 2; }
+      @media (max-width: 767px) {
+        .dashboard-tab__content__add-glamp__application {
+          flex: 1;
+          width: 100%;
+          order: 1; } }
     .dashboard-tab__content__add-glamp__btn-add {
       flex: none; }
+      @media (max-width: 767px) {
+        .dashboard-tab__content__add-glamp__btn-add {
+          flex: 1;
+          width: 100%;
+          order: 0; } }
   .dashboard-tab a.add-btn {
     display: flex;
     align-items: center;
@@ -1146,6 +1160,23 @@ strong, b {
         display: flex; }
         .user-glamps__item__links a:hover svg path {
           fill: var(--link-color); }
+
+.glamping-identification {
+  max-width: 80%;
+  width: 100%;
+  margin-top: 16px; }
+  @media (max-width: 767px) {
+    .glamping-identification {
+      max-width: 100%; } }
+  .glamping-identification select.post-list-identification {
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid #D7DCE3;
+    padding: 0 10px;
+    font-size: 15px; }
+  .glamping-identification__btn {
+    margin-top: 16px; }
 
 button {
   border: none;

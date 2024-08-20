@@ -10,6 +10,7 @@ $current_user = wp_get_current_user();
         <div class="dashboard-tab__content__add-glamp">
             <div class="dashboard-tab__content__add-glamp__application">
                 <div class="dashboard-tab__content__title">Заявка на глэмпинг</div>
+                <?php glamping_club_post_list_identification(); ?>
             </div>
 
             <div class="dashboard-tab__content__add-glamp__btn-add">

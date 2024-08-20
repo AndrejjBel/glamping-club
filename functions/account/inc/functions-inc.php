@@ -92,7 +92,7 @@ function dashboard_glamp_user() {
         'posts_per_page' => -1,
         'post_type' => 'glampings',
         'author' => get_current_user_id(),
-        'post_status' => ['publish', 'pending']
+        'post_status' => ['publish', 'pending', 'draft']
     ] );
     global $post;
     foreach( $glamps as $post ){
@@ -106,7 +106,19 @@ function dashboard_glamp_user() {
         ?>
         <div class="user-glamps__item">
             <div class="user-glamps__item__img">
-                <?php the_post_thumbnail(array(60, 60)); ?>
+                <?php
+                if( has_post_thumbnail() ) {
+                    the_post_thumbnail(array(60, 60));
+                } else {
+                    $glc_options = get_option( 'glc_options' );
+                    if (array_key_exists('glamping_no_photo_id', $glc_options)) {
+            			$url = wp_get_attachment_image_url( $glc_options['glamping_no_photo_id'], [60, 60] );
+                        echo '<img src="' . $url . '" />';
+            		} else {
+                        echo '<img src="' . get_template_part( 'assets/img' ) . '/no-foto.jpg" />';
+                    }
+                }
+                ?>
             </div>
             <div class="user-glamps__item__info">
                 <span class="user-glamps__item__info__title"><?php the_title(); ?></span>
@@ -157,4 +169,119 @@ function dashboard_glamp_user() {
     wp_reset_postdata();
 }
 
-function glamping_club_postedit() {}
+function glamping_club_post_list_identification($template=0) {
+    global $post;
+	$args = [
+		'posts_per_page' => -1,
+		'post_type' => 'glampings'
+	];
+	$glampings = get_posts( $args );
+    $content = '<form id="glamping-identification" class="glamping-identification">';
+    $content .= '<select name="glamping_id" class="post-list-identification">';
+    $content .= '<option value="0">Выберите свой глэмпинг</option>';
+	foreach ($glampings as $post) {
+		setup_postdata( $post );
+        $content .= '<option value="' . $post->ID . '">' . $post->post_title . '</option>';
+    }
+    $content .= '</select>';
+    $content .= '<div class="glamping-identification__btn">
+        <button id="user-glamping-identification" class="primary"type="button" name="button">Отправить заявку на глэмпинг</button>
+    </div>';
+    $content .= '</form>';
+    wp_reset_postdata();
+    if ($template) {
+        return $content;
+    } else {
+        echo $content;
+    }
+}
+
+add_action('wp_ajax_owner_identification', 'glamping_club_owner_identification');
+add_action('wp_ajax_nopriv_owner_identification', 'glamping_club_owner_identification');
+function glamping_club_owner_identification() {
+    $error = array();
+    if ( !wp_verify_nonce( $_POST['nonce'], 'glamping_club' ) ) {
+        $error['empty_nonce'] = __( 'Error nonce', 'glamping-club' );
+    }
+
+    if ( !$_POST['user_id'] ) {
+        $error['empty_user_id'] = __( 'Error user', 'glamping-club' );
+    }
+
+    if ( count( $error ) > 0 ) {
+        $error['type'] = 'errors';
+        $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+        echo $error_fin;
+        wp_die();
+    } else {
+        $post = get_post( $_POST['glamping_id'] );
+        $mailTo = $post->additionally_field[0]['email_glamping'];
+        if ($mailTo) {
+            $from_email = get_glc_option('glc_options', 'from_email');
+            $user = get_user_by( 'id', $_POST['user_id'] );
+            $key = get_password_reset_key( $user );
+            $user_hex = rawurlencode(encryptStringGlc($user->user_login));
+            $url = get_site_url( null, 'owner-identification/?key=' . $key . '&owner=' . $user_hex . '&glamp=' . $_POST['user_id'] );
+            $site_name = get_bloginfo('name');
+            $admin_email = get_bloginfo('admin_email');
+            // $mailTo = $_POST['user_email'];
+            $subject = 'Подтверждение владения глэмпингом ' . $site_name;
+            $headers = "MIME-Version: 1.0\r\n";
+            $headers .= "Content-type: text/html; charset=utf-8\r\n";
+            $headers .= "From: " . $from_email . " <" . $from_email . ">\r\n";
+            $message = '<p>Подтверждение владения глэмпингом на сайте ' . $site_name . '.</p>';
+            $message .= '<p>Чтобы подтвердить, перейдите по ссылке ниже: <a href="' . $url . '" target="blank">Подтвердить владение глэмпингом</a></p>';
+            $message .= '<p>Если Вы не запрашивали подтверждение владения глэмпингом на сайте ' . $site_name . ', просто проигнорируйте это письмо.</p>';
+            wp_mail($mailTo, $subject, $message, $headers);
+
+            $error['type'] = 'success';
+            $error['POST'] = $_POST;
+            $error['post'] = $post;
+            $error['email_glamping'] = $post->additionally_field[0]['email_glamping'];
+            $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+            echo $error_fin;
+            wp_die();
+        } else {
+            $error['type'] = 'errors';
+            $error['no_email'] = 'No E-mail in glamping';
+            $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+            echo $error_fin;
+            wp_die();
+        }
+    }
+}
+
+function glamping_club_owner_identif_action($key, $owner, $glamp) {
+    if ( isset( $key ) && isset( $owner ) && isset( $glamp ) ) {
+        $user_login = decryptStringGlc(rawurldecode($owner));
+        $user = check_password_reset_key( $key, $user_login );
+        if ( !is_wp_error($user) ) {
+            $update_post = [
+                'ID' => $glamp,
+                'post_author' => $user->ID
+            ];
+            wp_update_post( wp_slash( $update_post ) );
+            return true;
+        } else {
+            // echo $user->get_error_message();
+            return false;
+        }
+    } else {
+        return false;
+    }
+}
+
+define('ENCR_GLC_METHOD', 'AES-256-CBC');
+define('ENCR_GLC_KEY', 'glamping_club');
+define('ENCR_GLC_OPTIONS', 0);
+define('ENCR_GLC_IV', '1234567891011121');
+
+function encryptStringGlc($data) {
+    $encryptedData = openssl_encrypt($data, ENCR_GLC_METHOD, ENCR_GLC_KEY, ENCR_GLC_OPTIONS, ENCR_GLC_IV);
+    return $encryptedData;
+}
+
+function decryptStringGlc($encryptedData) {
+    $decryptedData = openssl_decrypt($encryptedData, ENCR_GLC_METHOD, ENCR_GLC_KEY, ENCR_GLC_OPTIONS, ENCR_GLC_IV);
+    return $decryptedData;
+}

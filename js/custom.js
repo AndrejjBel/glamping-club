@@ -514,6 +514,7 @@ const addEditGlemp = () => {
     if (!addEditBtns.length) return;
     addEditBtns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
+            clearValidate();
             const form = document.querySelector('#single_glampings_front');
             const formMedia = document.querySelector('#media_gallery_front');
             const formAccOptions = document.querySelector('#accommodation_options_front');
@@ -544,28 +545,122 @@ const addEditGlemp = () => {
             formData.append('action_type', btn.dataset.type);
             formData.append('action', 'add_post_glampings');
 
-            console.dir(Array.from(formData));
+            // console.dir(Array.from(formData));
 
             let optionsItems = document.querySelectorAll('#acc_options_repeat .cmb-repeatable-grouping');
             accOptionsRepeat(optionsItems, formData);
             jQuery(document).ready( function($){
-	        $.ajax({
-	            url: glamping_club_ajax.ajaxUrl,
-	            method: 'post',
-	            processData: false,
-	            contentType: false,
-	            data: formData,
-	            success: function (data) {
-	                // var data_json = JSON.parse(data);
-	                // console.dir(data_json);
-	                console.dir(data);
-                     window.location.href = '/dashboard/?tab=glemp';
-					// location.reload(); /dashboard/?tab=glemp
-	            },
-	            error: function (jqXHR, text, error) {}
-	        });
-	    });
+    	        $.ajax({
+    	            url: glamping_club_ajax.ajaxUrl,
+    	            method: 'post',
+    	            processData: false,
+    	            contentType: false,
+    	            data: formData,
+    	            success: function (data) {
+    	                var data_json = JSON.parse(data);
+    	                console.dir(data_json);
+    	                // console.dir(data);
+                        // console.dir(data_json.type);
+                        if (data_json.type == 'success') {
+                            window.location.href = '/dashboard/?tab=glemp';
+                        } else if (data_json.type == 'errors') {
+                            // for (var variable in data_json) {
+                            //     console.dir(variable);
+                            // }
 
+                            if (data_json.false_acc_options) {
+                                accOptionsValidate();
+                                if (typeof data_json.false_acc_options[0] == 'string') {
+                                    data_json.false_acc_options.forEach((item) => {
+                                        // console.dir(item);
+                                        if (item == 'description') {
+                                            document.querySelector('#wp-acc_options_0_description-wrap').style.border = '1px solid red';
+                                        } else {
+                                            document.querySelector('#acc_options_repeat input[data-name="'+item+'"]').style.border = '1px solid red';
+                                        }
+                                        document.querySelector('#cmb-group-acc_options-0 h3').style.background = '#ffebeb';
+                                        let elementPosition = document.querySelector('#cmb-group-acc_options-0').getBoundingClientRect().top;
+                                        let offsetPosition = elementPosition - 100;
+
+                                        window.scrollBy({
+                                            top: offsetPosition,
+                                            behavior: "smooth"
+                                        });
+                                    });
+
+                                } else if (typeof data_json.false_acc_options[0] == 'object') {
+                                    let i = 0;
+                                    data_json.false_acc_options.forEach((items) => {
+                                        // console.dir(items);
+                                        items.forEach((item) => {
+                                            if (item == 'description') {
+                                                document.querySelector('#wp-acc_options_'+i+'_description-wrap').style.border = '1px solid red';
+                                            } else {
+                                                document.querySelector('#acc_options_repeat input#acc_options_'+i+'_'+item+'').style.border = '1px solid red';
+                                            }
+                                            document.querySelector('#cmb-group-acc_options-'+i+' h3').style.background = '#ffebeb';
+                                        });
+                                        i++;
+                                        let elementPosition = document.querySelector('#cmb-group-acc_options-0').getBoundingClientRect().top;
+                                        let offsetPosition = elementPosition - 100;
+
+                                        window.scrollBy({
+                                            top: offsetPosition,
+                                            behavior: "smooth"
+                                        });
+                                    });
+                                }
+                            }
+
+                            if (data_json.additionally_field) {
+                                document.querySelector('[data-groupid="additionally_field"] h3').style.background = '#ffebeb';
+                                for (var variable in data_json.additionally_field) {
+                                    document.querySelector('#'+variable).style.border = '1px solid red';
+                                }
+                                let elementPosition = document.querySelector('.cmb2-id-additionally-field').getBoundingClientRect().top;
+                                let offsetPosition = elementPosition - 100;
+
+                                window.scrollBy({
+                                    top: offsetPosition,
+                                    behavior: "smooth"
+                                });
+                            }
+
+                            if (data_json.empty_description) {
+                                document.querySelector('.cmb2-id-glamping-description').style.background = '#ffebeb';
+                                document.querySelector('#page').scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
+                            if (data_json.inputs) {
+                                for (var variable in data_json.inputs) {
+                                    // document.querySelector('[name="'+variable+'"]').style.border = '1px solid red';
+                                    document.querySelector('[name="'+variable+'"]').parentElement.parentElement.style.background = '#ffebeb';
+                                }
+                                document.querySelector('#page').scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
+
+                            if (data_json.multicheck) {
+                                for (var variable in data_json.multicheck) {
+                                    document.querySelector('[for="'+variable+'"]').parentElement.parentElement.style.background = '#ffebeb';
+                                }
+                                document.querySelector('#page').scrollIntoView({
+                                    behavior: "smooth",
+                                    block: "start"
+                                });
+                            }
+                        }
+    	            },
+    	            error: function (jqXHR, text, error) {
+                        console.dir('Error');
+                        console.dir(error);
+                    }
+    	        });
+    	    });
         });
     });
 }
@@ -580,3 +675,172 @@ function accOptionsRepeat(optionsItems, formData) {
         formData.set(aoKey, content_acc_options);
     });
 }
+
+function accOptionsValidate() {
+    let optionsItems = document.querySelectorAll('#acc_options_repeat .cmb-repeatable-grouping');
+    console.dir(optionsItems);
+    // let accItemInputs = accItem.querySelectorAll('input[data-valid="required-field"]');
+
+    optionsItems.forEach((item) => {
+        console.dir(item);
+        let accItemInputs = item.querySelectorAll('input[data-valid="required-field"]');
+        console.dir(accItemInputs);
+        let noValid = inputValid(accItemInputs);
+        if (noValid) {
+            item.querySelector('h3').style.background = '#ffebeb';
+        }
+    });
+
+    function inputValid(inputs) {
+        let i = 0;
+        if (inputs.length) {
+            inputs.forEach((input) => {
+                if (!input.value) {
+                    console.dir(input);
+                    input.style.border = '1px solid red';
+                    i++;
+                }
+            });
+        }
+        return i;
+    }
+}
+// accOptionsValidate();
+
+function addEditGlempValidate() {
+    let optionsItems = document.querySelectorAll('#acc_options_repeat .cmb-repeatable-grouping');
+    let addGroupAccBtn = document.querySelector('.cmb-add-group-row[data-selector="acc_options_repeat"]');
+    if (!addGroupAccBtn) return;
+
+    addGroupAccBtn.addEventListener('click', (e) => {
+        // e.preventDefault();
+        let accItem = addGroupAccBtn.parentElement.parentElement.parentElement.previousElementSibling;
+        let accItemTitle = accItem.querySelector('h3');
+        console.dir(accItemTitle);
+        let numberItem = accItem.dataset.iterator;
+        let accItemInputs = accItem.querySelectorAll('input[data-valid="required-field"]');
+        let aoIdItem = 'acc_options_'+numberItem+'_description';
+
+        let aoItemNumber = 'acc_options['+numberItem+'][description]';
+        let content_acc_options = window.tinyMCE.get(aoIdItem).getContent();
+
+        let ivc = 0;
+        accItemInputs.forEach(input => {
+            if (!input.value) {
+                input.style.border = '1px solid red';
+                accItemTitle.style.background = '#ffebeb';
+                ivc++;
+            }
+        });
+
+        if (!content_acc_options) {
+            accItemTitle.style.background = '#ffebeb';
+        }
+
+        if (ivc || !content_acc_options) {
+            addGroupAccBtn.disabled = true;
+            accItemTitle.style.background = '#ffebeb';
+
+            let elementPosition = accItemTitle.getBoundingClientRect().top;
+            let offsetPosition = elementPosition - 100;
+
+            window.scrollBy({
+                top: offsetPosition,
+                behavior: "smooth"
+            });
+        }
+
+        btnActive(accItemInputs, addGroupAccBtn, aoIdItem, numberItem, accItemTitle);
+
+    });
+}
+addEditGlempValidate();
+
+function btnActive(accItemInputs, addGroupAccBtn, aoIdItem, numberItem, accItemTitle) {
+    accItemInputs.forEach((input) => {
+        input.addEventListener('input', (e) => {
+            input.style.border = '';
+            addGroupAccBtn.disabled = false;
+            accItemTitle.style.background = '';
+        });
+    });
+
+    setInterval(function(){
+        let content_acc_options = window.tinyMCE.get(aoIdItem).getContent();
+        let descriptionWrap = document.querySelector('#wp-acc_options_'+numberItem+'_description-wrap');
+        if (!content_acc_options) {
+            descriptionWrap.style.border = '1px solid red';
+            addGroupAccBtn.disabled = true;
+            // accItemTitle.style.background = '#ffebeb';
+        } else {
+            descriptionWrap.style.border = '';
+            addGroupAccBtn.disabled = false;
+            accItemTitle.style.background = '';
+        }
+    }, 500);
+}
+
+function clearValidate() {
+    const metaboxWrapItems = document.querySelectorAll('#cmb2-metabox-single_glampings_front .cmb-row');
+    const additionallyTitle = document.querySelector('.cmb2-id-additionally-field h3');
+    const additionallyInputs = document.querySelectorAll('.cmb2-id-additionally-field input');
+    const accOptions = document.querySelectorAll('#acc_options_repeat input');
+    const accTitle = document.querySelectorAll('#acc_options_repeat h3');
+    const accWpEditor = document.querySelectorAll('#acc_options_repeat wp-core-ui');
+    // console.dir(metaboxWrapItems);
+    metaboxWrapItems.forEach((item) => {
+        item.style.background = '';
+    });
+    additionallyTitle.style.background = '';
+    additionallyInputs.forEach((item) => {
+        item.style.border = '';
+    });
+
+    accTitle.forEach((item) => {
+        item.style.background = '';
+    });
+
+    accOptions.forEach((item) => {
+        item.style.border = '';
+    });
+
+    accWpEditor.forEach((item) => {
+        item.style.border = '';
+    });
+
+}
+
+function userGlampingIdentification() {
+    const form = document.querySelector('form#glamping-identification');
+    if (!form) return;
+    const btn = form.querySelector('button#user-glamping-identification');
+    btn.addEventListener('click', (e) => {
+        // console.dir(form.children[0].value);
+        if (+form.children[0].value) {
+            form.children[0].style.border = '';
+            let formData = new FormData(form);
+            formData.append('nonce', glamping_club_ajax.nonce);
+            formData.append('user_id', glamping_club_ajax.user_id);
+            formData.append('action', 'owner_identification');
+
+            jQuery(document).ready( function($){
+    	        $.ajax({
+    	            url: glamping_club_ajax.ajaxUrl,
+    	            method: 'post',
+    	            processData: false,
+    	            contentType: false,
+    	            data: formData,
+    	            success: function (data) {
+                        console.dir(data);
+                    },
+    	            error: function (jqXHR, text, error) {
+                        console.dir(error);
+                    }
+    	        });
+            });                        
+        } else {
+            form.children[0].style.border = '1px solid red';
+        }
+    });
+}
+userGlampingIdentification();

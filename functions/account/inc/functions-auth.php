@@ -74,7 +74,7 @@ function glamping_club_verifi_email() {
     	} elseif ( isset( $_GET['verifi'] ) ) {
     		if ( $_GET["verifi"] == '1' && isset( $_REQUEST['email'] ) && isset( $_REQUEST['user_login'] ) && isset( $_REQUEST['key'] ) ) {
     		    $user = check_password_reset_key( $_REQUEST['key'], $_REQUEST['user_login'] );
-    		    if ( $user ) {
+    		    if ( !is_wp_error($user) ) {
     		        update_user_meta( $user->ID, 'user_identified', 'yes' );
     			}
     		}

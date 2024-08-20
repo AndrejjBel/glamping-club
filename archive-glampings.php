@@ -22,9 +22,9 @@ if (!empty($_COOKIE['glcTemp'])) {
 }
 
 if (!empty($_COOKIE['glcSort'])) {
-	if ($_COOKIE['glcSort'] == 'new') {
-		$args['orderby'] = 'meta_value date';
-		$args['meta_key'] = 'glamping_recommended';
+	if ($_COOKIE['glcSort'] == 'new_items') {
+		$args['orderby'] = 'date';
+		// $args['meta_key'] = 'glamping_recommended';
 		$args['order'] = 'DESC';
 	} elseif ($_COOKIE['glcSort'] == 'rating') {
 		// $args['orderby'] = 'meta_value_num';

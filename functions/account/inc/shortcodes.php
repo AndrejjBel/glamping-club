@@ -34,3 +34,10 @@ function glamping_club_shortcode_page_postedit() {
     get_template_part( 'functions/account/templates/postedit' );
 	return ob_get_clean();
 }
+
+add_shortcode( 'glc-owner-ident-page', 'glamping_club_shortcode_owner_ident_page' );
+function glamping_club_shortcode_owner_ident_page() {
+    ob_start();
+    get_template_part( 'functions/account/templates/owner-ident' );
+	return ob_get_clean();
+}

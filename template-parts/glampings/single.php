@@ -238,19 +238,60 @@ $cur_user_id = get_current_user_id();
 //     }
 // }
 //
+
+// $media = array_unique(glamping_all_img($post->ID), SORT_REGULAR);
+
+// $imgs = glamping_all_img($post->ID);
+// $glc_options = get_option( 'glc_options' );
+
 // echo '<pre>';
-// var_dump($meta_object_n);
-// echo '<pre>';
-//
-// echo '<pre>';
-// if ($meta_object_nn) {
-//     var_dump($meta_object_nn);
-// }
+// var_dump($media);
 // echo '<pre>';
 
-// $url = 'http://dfdfdfdf.fd';
-// if (!filter_var($url, FILTER_VALIDATE_URL) === false) {
-//   echo("$url is a valid URL");
-// } else {
-//   echo("$url is not a valid URL");
+// $args = array(
+//     'post_type' => 'glampings',
+//     'post_status' => 'publish',
+//     'posts_per_page' => -1,
+//     // 'nopaging'  => true,
+//     'orderby' => 'date', //meta_value, meta_value_num, title
+//     // 'meta_key' => 'glamping_recommended',
+//     'order' => 'DESC',
+// );
+//
+// $gl_posts = get_posts( $args );
+//
+// $glampings = [];
+// $cur_terms = [];
+// foreach ($gl_posts as $post_gl) {
+//     // setup_postdata( $post );
+//     $cur_terms[] = get_the_terms( $post_gl->ID, 'location' );
 // }
+// wp_reset_postdata();
+//
+// echo '<pre>';
+// var_dump($gl_posts);
+// echo '<pre>';
+
+// $data = "owner-12";
+// $encryptedData = encryptStringGlc($data);
+// $decryptedData = decryptStringGlc($encryptedData);
+//
+// echo "Encrypted Data: ". $encryptedData. "\n";
+// echo '<br>';
+// echo "Decrypted Data: ". $decryptedData;
+
+// $data = 'Andrej';
+// echo rawurlencode(encryptStringGlc($data));
+// echo '<br>';
+//
+// $owner = rawurldecode('Rvnt6%2Bt8UefMoOG0izHK8Q%3D%3D');
+// $user_login = decryptStringGlc($owner);
+// echo $user_login;
+
+// $encryptedData = 'iaT8mRQTPe2AktypCFQ1sQ==';
+// echo decryptStringGlc($encryptedData);
+// explode('-', $date);
+//
+// echo '<pre>';
+// var_dump(explode('-', decryptStringGlc($encryptedData)));
+// echo '<pre>';
