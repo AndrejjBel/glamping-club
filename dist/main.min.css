@@ -1018,6 +1018,15 @@ strong, b {
       gap: 20px; }
       .dashboard-tab__content.form-settings form .button-link:hover {
         color: var(--link-color); }
+  .dashboard-tab__content__message span.success {
+    font-weight: 500;
+    color: green; }
+  .dashboard-tab__content__message span.warning {
+    font-weight: 500;
+    color: var(--Warning-500); }
+  .dashboard-tab__content__message span.error {
+    font-weight: 500;
+    color: red; }
   .dashboard-tab__content__add-glamp {
     display: flex;
     gap: 16px;
@@ -1164,7 +1173,8 @@ strong, b {
 .glamping-identification {
   max-width: 80%;
   width: 100%;
-  margin-top: 16px; }
+  margin-top: 16px;
+  margin-bottom: 16px; }
   @media (max-width: 767px) {
     .glamping-identification {
       max-width: 100%; } }

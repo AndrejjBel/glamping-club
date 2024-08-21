@@ -235,9 +235,9 @@ function glamping_club_owner_identification() {
             wp_mail($mailTo, $subject, $message, $headers);
 
             $error['type'] = 'success';
-            $error['POST'] = $_POST;
-            $error['post'] = $post;
-            $error['email_glamping'] = $post->additionally_field[0]['email_glamping'];
+            // $error['POST'] = $_POST;
+            // $error['post'] = $post;
+            // $error['email_glamping'] = $post->additionally_field[0]['email_glamping'];
             $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
             echo $error_fin;
             wp_die();

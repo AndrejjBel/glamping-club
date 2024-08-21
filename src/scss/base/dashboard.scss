@@ -124,6 +124,28 @@
             }
         }
 
+        &__message {
+
+            & span {
+
+                &.success {
+                    font-weight: 500;
+                    color: green;
+                }
+
+                &.warning {
+                    font-weight: 500;
+                    color: var(--Warning-500);
+                }
+
+                &.error {
+                    font-weight: 500;
+                    color: red;
+                }
+            }
+
+        }
+
         &__glamps {
 
         }
@@ -347,6 +369,7 @@
     max-width: 80%;
     width: 100%;
     margin-top: 16px;
+    margin-bottom: 16px;
 
     @media (max-width: 767px) {
         max-width: 100%;

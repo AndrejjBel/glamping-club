@@ -814,6 +814,7 @@ function userGlampingIdentification() {
     const form = document.querySelector('form#glamping-identification');
     if (!form) return;
     const btn = form.querySelector('button#user-glamping-identification');
+    const message = document.querySelector('.dashboard-tab__content__message');
     btn.addEventListener('click', (e) => {
         // console.dir(form.children[0].value);
         if (+form.children[0].value) {
@@ -832,15 +833,39 @@ function userGlampingIdentification() {
     	            data: formData,
     	            success: function (data) {
                         console.dir(data);
+                        var data_json = JSON.parse(data);
+                        if (data_json.type == 'success') {
+                            toastAll(false, 'На почту отправлено письмо для подтверждения', 'success', true, 6000);
+                            message.innerHTML = `<span class="success">На почту отправлено письмо для подтверждения</span>`;
+                            setTimeout(function(){
+                                message.innerHTML = '';
+                            }, 6000);
+                        } else if (data_json.type == 'errors') {
+                            if (data_json.no_email) {
+                                toastAll(false, 'В информации глэмпинга не указан E-mail. Свяжитесь с админом сайта.', 'warning', true, 6000);
+                                message.innerHTML = `<span class="warning">В информации глэмпинга не указан E-mail.<br>Свяжитесь с админом сайта.</span>`;
+                                setTimeout(function(){
+                                    message.innerHTML = '';
+                                }, 6000);
+                            } else {
+                                toastAll(false, 'Свяжитесь с админом сайта', 'error', true, 6000);
+                                message.innerHTML = `<span class="error">Свяжитесь с админом сайта</span>`;
+                                setTimeout(function(){
+                                    message.innerHTML = '';
+                                }, 6000);
+                            }
+                        }
                     },
     	            error: function (jqXHR, text, error) {
                         console.dir(error);
                     }
     	        });
-            });                        
+            });
         } else {
             form.children[0].style.border = '1px solid red';
         }
     });
 }
 userGlampingIdentification();
+
+console.dir(JSON.parse(glamping_club_ajax.glAll));

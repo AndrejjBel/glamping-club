@@ -34,6 +34,8 @@ function glamping_club_result_render($location=0) {
         // $statistic = glamping_club_reviews_statistic($post->ID);
         $address = get_additionally_meta('address');
         $coord = get_additionally_meta('coordinates');
+        $phone = get_additionally_meta('phone_glamping');
+        $whatsup = get_additionally_meta('whatsup_glamping');
         $post_date = get_the_date('U', $post->ID);
         $media = array_unique(glamping_all_img($post->ID));
         $media_urls = [];
@@ -70,7 +72,9 @@ function glamping_club_result_render($location=0) {
             'location_id' => $cur_terms[0]->term_id,
             'location_slug' => $cur_terms[0]->slug,
             'media' => $media,
-            'media_urls' => $media_urls
+            'media_urls' => $media_urls,
+            'phone' => $phone,
+            'whatsup' => $whatsup
         ];
     }
     wp_reset_postdata();

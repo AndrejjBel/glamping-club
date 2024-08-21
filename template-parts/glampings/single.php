@@ -216,9 +216,8 @@ $cur_user_id = get_current_user_id();
             myMap.behaviors.disable(['scrollZoom']);
         }
     </script>
-<?php } ?>
+<?php }
 
-<?php
 // $media = get_attached_media( 'image', $post->ID );
 // foreach ($media as $key => $value) {
 //     echo wp_get_attachment_image_url( $key, 'glamping-club-thumb' );
