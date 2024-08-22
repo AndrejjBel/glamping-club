@@ -290,7 +290,8 @@ $cur_user_id = get_current_user_id();
 // $encryptedData = 'iaT8mRQTPe2AktypCFQ1sQ==';
 // echo decryptStringGlc($encryptedData);
 // explode('-', $date);
-//
-// echo '<pre>';
-// var_dump(explode('-', decryptStringGlc($encryptedData)));
-// echo '<pre>';
+
+$media = array_unique(glamping_all_img($post->ID), SORT_REGULAR);
+echo '<pre>';
+var_dump($media);
+echo '<pre>';

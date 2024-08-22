@@ -2,8 +2,10 @@
 	<div class="compare-item__section">
 		<div class="compare-item__section__thumbnail">
 			<?php
-			if( has_post_thumbnail() ) {
-				the_post_thumbnail('glamping-club-thumb');
+			$media = array_unique(glamping_all_img($post->ID), SORT_REGULAR);
+			if( $media ) { //has_post_thumbnail()
+				echo wp_get_attachment_image( $media[0], 'glamping-club-thumb' );
+				// the_post_thumbnail('glamping-club-thumb');
 			} else {
 				$glc_options = get_option( 'glc_options' );
 				$no_foto_id = '';
