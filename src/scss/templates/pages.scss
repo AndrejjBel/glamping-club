@@ -307,3 +307,144 @@
     width: 100%;
     margin: 0 auto;
 }
+
+.compare-item {
+    height: 100%;
+    padding: 8px;
+    border-radius: 8px;
+
+    &.item-top {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        background: var(--color-bg-compare-slider-item);
+    }
+
+    &__section {
+
+        &.section-bottom-item-top {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            justify-content: space-between;
+        }
+
+        &__thumbnail {
+            position: relative;
+            height: 250px;
+            border-radius: 8px;
+            overflow: hidden;
+
+            @media (max-width: 899px) {
+                height: 200px;
+            }
+
+            @media (max-width: 376px) {
+                height: 150px;
+            }
+
+            & img {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+
+        &__info {
+
+            & .price-number {
+                display: block;
+                font-size: 18px;
+                font-weight: 500;
+            }
+        }
+
+        &__url-glemp {
+            font-weight: 500;
+            color: var(--link-color);
+
+            &:hover {
+                color: var(--link-color-hover);
+            }
+        }
+    }
+
+    &.item-options {
+        display: flex;
+        flex-direction: column;
+        gap:24px;
+    }
+}
+
+.slider-compare-navigation {
+    position: absolute;
+    width: 100%;
+    top: 46%;
+    left: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+
+    & button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #FFFFFF;
+        border: 1px solid var(--text-color-label);
+
+        & svg {
+            fill: var(--text-color-label);
+        }
+
+        &:hover {
+            background: var(--link-color-hover);
+            border: 1px solid var(--link-color-hover);
+
+            & svg {
+                fill: #FFFFFF;
+            }
+        }
+
+        &.slick-disabled {
+            visibility: hidden;
+            opacity: 0;
+            pointer-events: none;
+            border: 1px solid var(--text-color-file-help);
+
+            & svg {
+                fill: var(--text-color-file-help);
+            }
+        }
+    }
+}
+
+.swiper-button-next, .swiper-button-prev {
+    color: #000000;
+}
+
+.slider-top {
+    position: relative;
+    margin-bottom: 16px;
+}
+
+.slick {
+    overflow: hidden;
+
+    &-track {
+        display: flex;
+    }
+
+    &-slide {
+        height: auto;
+        margin: 0 10px;
+    }
+
+    &-list {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+}

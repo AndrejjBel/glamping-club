@@ -719,6 +719,34 @@ function favorites_render($posts, $type, $posts_per_page=-1) {
 	wp_reset_postdata();
 }
 
+function compares_render($posts, $type, $posts_per_page=-1) {
+	// $posts_arr = explode(",", $postsf);
+	global $post;
+	$posts_arr = get_posts( [
+		'posts_per_page' => $posts_per_page,
+		'post_type' => 'glampings',
+		'include' => $posts
+		] );
+	echo '<div class="slider-top">';
+	echo '<div class="slick mySlick1">';
+	foreach ($posts_arr as $post) {
+		setup_postdata( $post );
+		get_template_part( 'template-parts/pages/excerpt', 'compare' );
+		// get_template_part( 'template-parts/pages/excerpt', 'compare-next' );
+	}
+	echo '</div>';
+	echo '<div class="slider-compare-navigation"></div>';
+	echo '</div>';
+	echo '<div class="slick mySlick2">';
+	foreach ($posts_arr as $post) {
+		setup_postdata( $post );
+		// get_template_part( 'template-parts/pages/excerpt', 'compare' );
+		get_template_part( 'template-parts/pages/excerpt', 'compare-next' );
+	}
+	echo '</div>';
+	wp_reset_postdata();
+}
+
 function glamping_club_gl_thumbnail($size) {
 	if ( post_password_required() || is_attachment() || ! has_post_thumbnail() ) {
 		return;

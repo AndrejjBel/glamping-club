@@ -24,6 +24,7 @@
     --color-bg: #FFFFFF;
     --color-bg-dashboard: #fbfcfe;
     --color-border-glemp: #d3d3d3;
+    --color-bg-compare-slider-item: #e9e9e9;
 
     --color-svg-form: #9f9f9f;
     --color-svg-single-icon: #2196f3;
@@ -88,6 +89,8 @@
     --text-color-footer-light: #6e7985;
     --color-bg: #161616;
     --color-bg-dashboard: #141926;
+    --color-border-glemp: #d3d3d3;
+    --color-bg-compare-slider-item: #e9e9e9;
 
     --white: #FFFFFF;
     --gray: #777777;

@@ -3386,6 +3386,101 @@ ul.item-options-checkbox {
   width: 100%;
   margin: 0 auto; }
 
+.compare-item {
+  height: 100%;
+  padding: 8px;
+  border-radius: 8px; }
+  .compare-item.item-top {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    background: var(--color-bg-compare-slider-item); }
+  .compare-item__section.section-bottom-item-top {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: space-between; }
+  .compare-item__section__thumbnail {
+    position: relative;
+    height: 250px;
+    border-radius: 8px;
+    overflow: hidden; }
+    @media (max-width: 899px) {
+      .compare-item__section__thumbnail {
+        height: 200px; } }
+    @media (max-width: 376px) {
+      .compare-item__section__thumbnail {
+        height: 150px; } }
+    .compare-item__section__thumbnail img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover; }
+  .compare-item__section__info .price-number {
+    display: block;
+    font-size: 18px;
+    font-weight: 500; }
+  .compare-item__section__url-glemp {
+    font-weight: 500;
+    color: var(--link-color); }
+    .compare-item__section__url-glemp:hover {
+      color: var(--link-color-hover); }
+  .compare-item.item-options {
+    display: flex;
+    flex-direction: column;
+    gap: 24px; }
+
+.slider-compare-navigation {
+  position: absolute;
+  width: 100%;
+  top: 46%;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px; }
+  .slider-compare-navigation button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    border: 1px solid var(--text-color-label); }
+    .slider-compare-navigation button svg {
+      fill: var(--text-color-label); }
+    .slider-compare-navigation button:hover {
+      background: var(--link-color-hover);
+      border: 1px solid var(--link-color-hover); }
+      .slider-compare-navigation button:hover svg {
+        fill: #FFFFFF; }
+    .slider-compare-navigation button.slick-disabled {
+      visibility: hidden;
+      opacity: 0;
+      pointer-events: none;
+      border: 1px solid var(--text-color-file-help); }
+      .slider-compare-navigation button.slick-disabled svg {
+        fill: var(--text-color-file-help); }
+
+.swiper-button-next, .swiper-button-prev {
+  color: #000000; }
+
+.slider-top {
+  position: relative;
+  margin-bottom: 16px; }
+
+.slick {
+  overflow: hidden; }
+  .slick-track {
+    display: flex; }
+  .slick-slide {
+    height: auto;
+    margin: 0 10px; }
+  .slick-list {
+    margin-left: -10px;
+    margin-right: -10px; }
+
 @media (max-width: 620px) {
   .hystmodal__wrap {
     margin: 0 10px; } }

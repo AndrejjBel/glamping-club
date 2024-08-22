@@ -7,8 +7,9 @@ if ( !empty( $_COOKIE["glcCompar"] ) ) {
     		<?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
     	</header><!-- .entry-header -->
 
-        <div class="glampings-items card no-sidebar">
-            <?php favorites_render($_COOKIE["glcCompar"], 'compare'); ?>
+        <div class="glampings-itemss cards no-sidebars">
+            <?php compares_render($_COOKIE["glcCompar"], 'compare'); ?>
+            <!-- <div class="slider-compare-navigation"></div> -->
         </div>
     </article><!-- #post-<?php the_ID(); ?> -->
 

@@ -100,6 +100,9 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_style('nouislider', get_stylesheet_directory_uri() . '/assets/noUiSlider/nouislider.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/noUiSlider/nouislider.min.css' )
     );
+    wp_enqueue_style('slick', get_stylesheet_directory_uri() . '/assets/slick/slick.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/slick/slick.css' )
+    );
     wp_enqueue_style('main', get_stylesheet_directory_uri() . '/dist/main.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/dist/main.min.css' )
     );
@@ -131,6 +134,9 @@ function glamping_club_main_scripts_old() {
     );
     wp_enqueue_script('noUiSlider', get_stylesheet_directory_uri() . '/assets/noUiSlider/nouislider.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/noUiSlider/nouislider.min.js' ), [ 'strategy' => 'defer' ]
+    );
+    wp_enqueue_script('slick', get_stylesheet_directory_uri() . '/assets/slick/slick.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/slick/slick.min.js' ), [ 'strategy' => 'defer' ]
     );
 
     wp_enqueue_script('swiped-events', get_stylesheet_directory_uri() . '/assets/swiped-events.min.js',	array(),
