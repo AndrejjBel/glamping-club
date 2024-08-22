@@ -144,7 +144,7 @@ function glamping_club_register_post_types(){
 		'menu_icon'           => 'dashicons-star-filled',
 		'hierarchical'        => false,
 		'supports'            => [ 'title', 'editor', 'author', 'thumbnail', 'custom-fields', 'comments', 'revisions' ], // 'title','editor','author','thumbnail','excerpt','trackbacks','custom-fields','comments','revisions','page-attributes','post-formats'
-		'taxonomies'          => ['reviews-location'],
+		// 'taxonomies'          => ['reviews-location'],
 		'has_archive'         => true,
 		'rewrite'             => true,
 		'query_var'           => true,

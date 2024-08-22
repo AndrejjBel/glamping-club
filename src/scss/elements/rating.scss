@@ -92,3 +92,46 @@
 .rating-check.half-stars .rating-group input:hover ~ label svg {
     fill: #e9e9e9;
 }
+
+//
+.full-stars {
+    text-align: center;
+}
+.full-stars .rating-group {
+    display: inline-flex;
+}
+.full-stars input {
+    position: absolute;
+    left: -9999px;
+}
+.full-stars label {
+    margin: 0;
+    cursor: pointer;
+}
+.full-stars label svg {
+    margin: 2px;
+    height: 30px;
+    width: 30px;
+    fill: var(--reviews-color);
+    transition: fill 0.3s;
+}
+.full-stars input:checked ~ label svg {
+    fill: var(--color-svg-form);
+}
+.full-stars .rating-group:hover label svg {
+    fill: var(--reviews-color);
+}
+.full-stars .rating-group input:hover ~ label svg {
+    fill: var(--color-svg-form);
+}
+
+.full-stars .full-stars-warning {
+    display: none;
+    font-size: 10px;
+    color: red;
+}
+
+.review-success {
+    font-size: 18px;
+    font-weight: 600;
+}

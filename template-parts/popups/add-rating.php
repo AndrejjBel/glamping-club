@@ -54,13 +54,14 @@
                     <span class="full-stars-warning">Поставьте оценку</span>
                 </div>
                 <div class="form-add-reviews__fields">
-                    <input id="name" type="text" name="name" value="" placeholder="Ваше имя" />
-                    <input id="email" type="text" name="email" value="" placeholder="Ваш E-mail" />
+                    <?php //cmb2_metabox_form( 'single_reviews', 0 ); ?>
+                    <!-- <input id="name" type="text" name="name" value="" placeholder="Ваше имя" />
+                    <input id="email" type="text" name="email" value="" placeholder="Ваш E-mail" /> -->
                     <textarea id="text" name="text" rows="8" cols="80" placeholder="Текст отзыва"></textarea>
                 </div>
                 <span class="form-add-reviews__info">Все поля обязательны к заполнению</span>
                 <div class="form-add-reviews__button">
-                    <button id="btn-submit" type="button" name="button">Добавить отзыв</button>
+                    <button id="btn-submit" class="primary" type="button" name="button">Добавить отзыв</button>
                 </div>
             </div>
         </div>
