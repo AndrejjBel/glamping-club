@@ -120,9 +120,9 @@ $cur_user_id = get_current_user_id();
         </div>
     <?php } ?>
 
-    <div class="single-section reviews-button">
+    <!-- <div class="single-section reviews-button">
         <button data-modal="add-review" class="primary js-open-modal" type="button" name="button">Написать отзыв</button>
-    </div>
+    </div> -->
 
 </article><!-- #post-<?php the_ID(); ?> -->
 
@@ -221,7 +221,7 @@ $cur_user_id = get_current_user_id();
         }
     </script>
 <?php }
-get_template_part( 'template-parts/popups/add-rating' );
+// get_template_part( 'template-parts/popups/add-rating' );
 // $media = get_attached_media( 'image', $post->ID );
 // foreach ($media as $key => $value) {
 //     echo wp_get_attachment_image_url( $key, 'glamping-club-thumb' );
