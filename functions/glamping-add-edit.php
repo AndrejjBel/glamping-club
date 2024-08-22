@@ -219,8 +219,12 @@ function glamping_club_add_post_glampings() {
             $post_title = get_the_title($post_id);
 
             $text_fin = $text . ' - ' . $post_title . ' - ' . wp_unslash($post_url);
-            message_to_telegram($text_fin, '477875115');
-            message_to_telegram($text_fin, '504444402');
+            $glc_options = get_option( 'glc_options' );
+            if (array_key_exists('telegram_id', $glc_options)) {
+				foreach ($glc_options['telegram_id'] as $telegram_id) {
+                    message_to_telegram($text_fin, $telegram_id);
+                }
+			}
 
             $error['type'] = 'success';
             $error['post_id'] = $post_id;

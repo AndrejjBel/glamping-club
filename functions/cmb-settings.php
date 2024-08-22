@@ -99,6 +99,14 @@ function glamping_club_register_main_options_metabox() {
         // 'default_cb' => 'set_to_post_thumbnail'
 	) );
 
+    $main_options->add_field( array(
+		'name'    => esc_html__( 'Уведомления телеграм', 'glamping-club' ),
+		'desc'    => esc_html__( 'ID аккаунтов телеграм, кому отправлять уведомления', 'glamping-club' ),
+		'id'      => 'telegram_id',
+		'type'    => 'text',
+        'repeatable'  => true,
+	) );
+
 	/**
 	 * Registers secondary options page, and set main item as parent.
 	 */
