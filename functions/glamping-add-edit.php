@@ -220,6 +220,7 @@ function glamping_club_add_post_glampings() {
 
             $text_fin = $text . ' - ' . $post_title . ' - ' . wp_unslash($post_url);
             message_to_telegram($text_fin, '477875115');
+            message_to_telegram($text_fin, '504444402');
 
             $error['type'] = 'success';
             $error['post_id'] = $post_id;
