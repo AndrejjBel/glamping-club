@@ -291,7 +291,7 @@ $cur_user_id = get_current_user_id();
 // echo decryptStringGlc($encryptedData);
 // explode('-', $date);
 
-$media = array_unique(glamping_all_img($post->ID), SORT_REGULAR);
-echo '<pre>';
-var_dump($media);
-echo '<pre>';
+// $media = array_unique(glamping_all_img($post->ID), SORT_REGULAR);
+// echo '<pre>';
+// var_dump($media);
+// echo '<pre>';

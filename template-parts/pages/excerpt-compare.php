@@ -3,9 +3,8 @@
 		<div class="compare-item__section__thumbnail">
 			<?php
 			$media = array_unique(glamping_all_img($post->ID), SORT_REGULAR);
-			if( $media ) { //has_post_thumbnail()
+			if( $media ) {
 				echo wp_get_attachment_image( $media[0], 'glamping-club-thumb' );
-				// the_post_thumbnail('glamping-club-thumb');
 			} else {
 				$glc_options = get_option( 'glc_options' );
 				$no_foto_id = '';
