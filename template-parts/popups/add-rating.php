@@ -1,15 +1,16 @@
-<div class="modal modal-based-theme" data-modal="add-review">
+<div class="modal modal-based-theme add-review" data-modal="add-review">
     <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-    <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"></path>
+        <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"></path>
     </svg>
+    <?php if (is_user_logged_in()) { ?>
     <div id="add-rating-modal" class="modal-wrapper">
         <h3 class="modal__title">Добавить отзыв</h3>
         <div class="modal-content margin-top-20">
-            <div class="form-add-reviews">
+            <div id="glc-add-reviews" class="form-add-reviews">
                 <div class="form-add-reviews__stars full-stars">
                     <div class="rating-group">
                         <!-- по умолчанию 0 -->
-                        <input name="fst" value="0" type="radio" disabled checked />
+                        <input name="fst" id="fst-0" value="0" type="radio" disabled checked />
 
                         <!-- рейтинг 1 -->
                         <label for="fst-1">
@@ -50,20 +51,31 @@
                             </svg>
                         </label>
                         <input name="fst" id="fst-5" value="5" type="radio" />
+                        <span class="required">*</span>
                     </div>
                     <span class="full-stars-warning">Поставьте оценку</span>
                 </div>
                 <div class="form-add-reviews__fields">
-                    <?php //cmb2_metabox_form( 'single_reviews', 0 ); ?>
-                    <!-- <input id="name" type="text" name="name" value="" placeholder="Ваше имя" />
-                    <input id="email" type="text" name="email" value="" placeholder="Ваш E-mail" /> -->
-                    <textarea id="text" name="text" rows="8" cols="80" placeholder="Текст отзыва"></textarea>
+                    <label for="reviews_description">Текст отзыва <span class="require">*</span></label>
+                    <textarea id="reviews_description" name="reviews_description" rows="6" cols="80"></textarea>
+                    <?php cmb2_metabox_form( 'single_reviews' ); ?>
                 </div>
-                <span class="form-add-reviews__info">Все поля обязательны к заполнению</span>
-                <div class="form-add-reviews__button">
-                    <button id="btn-submit" class="primary" type="button" name="button">Добавить отзыв</button>
-                </div>
+            </div>
+            <span class="form-add-reviews__info">Обязательные поля помечены </span><span class="required"> *</span>
+            <div class="form-add-reviews__button">
+                <button id="btn-submit" class="primary" type="button" data-glempid="<?php echo $post->ID; ?>">Добавить отзыв</button>
             </div>
         </div>
     </div>
-  </div>
+    <?php } else { ?>
+    <div id="add-rating-modal" class="modal-wrapper">
+        <h3 class="modal__title">Для добавления отзыва необходимо авторизоваться</h3>
+        <div class="modal-content margin-top-20">
+            <div class="modal-content__buttons">
+                <a href="/login/" class="primary">Авторизация</a>
+                <a href="/registration/" class="primary">Регистрация</a>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+</div>

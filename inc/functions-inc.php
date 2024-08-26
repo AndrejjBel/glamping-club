@@ -155,6 +155,23 @@ function glamping_club_main_scripts_old() {
     wp_add_inline_script( 'bundle', 'const glamping_club_ajax = ' . wp_json_encode( $bundle_obj ), 'before' );
 }
 
+// add_action('wp', 'add_my_script_where_it_glamping_single');
+function add_my_script_where_it_glamping_single(){
+	if( is_singular('glampings') )
+		add_action( 'wp_enqueue_scripts', 'scripts_glamping_single' );
+}
+function scripts_glamping_single() {
+    wp_enqueue_style('filepond', get_stylesheet_directory_uri() . '/assets/filepond/filepond.min.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/filepond/filepond.min.css' )
+    );
+    wp_enqueue_script('filepond-esm', get_stylesheet_directory_uri() . '/assets/filepond/filepond.esm.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/filepond/filepond.esm.min.js' ), [ 'strategy' => 'defer' ]
+    );
+    wp_enqueue_script('filepond', get_stylesheet_directory_uri() . '/assets/filepond/filepond.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/filepond/filepond.min.js' ), [ 'strategy' => 'defer' ]
+    );
+}
+
 require get_template_directory() . '/functions/post-types.php';
 require get_template_directory() . '/functions/cmb2/init.php';
 require get_template_directory() . '/functions/cmb-settings.php';

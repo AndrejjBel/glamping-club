@@ -82,6 +82,13 @@ function initSliderGlempType(item) {
 }
 initSliderGlempType(20);
 
+function initSliderGlempReview(item) {
+    for (var i = 0; i < item; i++) {
+        sliderGlempType('.galery-review'+i, '#sw-review-'+i, 1, 2, 4, 5);
+    }
+}
+initSliderGlempReview(100);
+
 function optionsGallery(index) {
     const gallery = document.querySelector(index);
     const lg = lightGallery(gallery, {
@@ -103,6 +110,13 @@ function initOptionsGallery(item) {
     }
 }
 initOptionsGallery(20);
+
+function initOptionsGalleryReview(item) {
+    for (var i = 0; i < item; i++) {
+        optionsGallery('.galery-review'+i);
+    }
+}
+initOptionsGalleryReview(100);
 
 function toastAll(title, text, theme, autohide, interval) {
     new Toast({
@@ -981,4 +995,194 @@ jQuery(document).ready( function($){
 
 });
 
-console.dir(JSON.parse(glamping_club_ajax.glAll));
+function filepondReviews() {
+    const singleGlampings = document.querySelector('.single-glampings');
+    if (!singleGlampings) return;
+    const input = document.querySelector('input#filepondRev');
+    // FilePond.registerPlugin(FilePondPluginImagePreview);
+    FilePond.registerPlugin(
+        // FilePondPluginFileValidateType,
+        // FilePondPluginImageExifOrientation,
+        FilePondPluginImagePreview,
+        FilePondPluginImageCrop,
+        FilePondPluginImageResize,
+        // FilePondPluginImageTransform,
+        // FilePondPluginImageEdit
+    );
+
+    FilePond.create( input,
+        {
+            imagePreviewHeight: 170,
+            imageCropAspectRatio: '1:1',
+            imageResizeTargetWidth: 200,
+            imageResizeTargetHeight: 200,
+            stylePanelLayout: 'compact',
+            // imagePreviewTransparencyIndicator: 'grid'
+        }
+    );
+}
+// filepondReviews();
+
+function fileUploadWithPreviewReviews() {
+    const reviewsImg = document.querySelector('.reviews-img');
+    if (!reviewsImg) return;
+    const upload = new FileUploadWithPreview.FileUploadWithPreview(
+        'reviews-img',
+        {
+            maxFileCount: 9,
+            multiple: true,
+            accept: '.jpg, .jpeg, .png',
+            text: {
+                browse: 'Загрузить',
+                chooseFile: 'Выберите файлы...',
+                label: 'Выберите файлы для загрузки',
+                selectedCount: 'файлов выбрано'
+            }
+        }
+    );
+    const btn = document.querySelector('#btn-submit');
+    btn.addEventListener('click', (e) => {
+        const form = document.querySelector('#glc-add-reviews');
+        let formData = new FormData(form);
+        // console.dir(upload.cachedFileArray);
+        console.dir(formData);
+    });
+}
+fileUploadWithPreviewReviews();
+
+const addReviews = () => {
+    const form = document.querySelector('#single_reviews');
+    const btn = document.querySelector('#btn-submit');
+    if (!form) return;
+    const starsWarning = document.querySelector('.full-stars-warning');
+    const reviewsDescription = document.querySelector('#reviews_description');
+    btn.addEventListener('click', (e) => {
+        const reviewsDescription = document.querySelector('#reviews_description');
+        const ratingBtns = document.querySelectorAll('input[name="fst"]');;
+        let formData = new FormData(form);
+        ratingBtns.forEach((item) => {
+            if (item.checked) {
+                formData.append('review_rating', item.value);
+            }
+        });
+        formData.append('review_description', reviewsDescription.value);
+        formData.append('nonce', glamping_club_ajax.nonce);
+        formData.append('user_id', glamping_club_ajax.user_id);
+        formData.append('glempid', btn.dataset.glempid);
+        formData.append('action', 'add_reviews');
+
+        jQuery(document).ready( function($){
+            $.ajax({
+                url: glamping_club_ajax.ajaxUrl,
+                method: 'post',
+                processData: false,
+                contentType: false,
+                data: formData,
+                success: function (data) {
+                    console.dir(data);
+                    var data_json = JSON.parse(data);
+                    console.dir(data_json);
+                    if (data_json.type == 'success') {
+                        document.querySelector('.modal.active').classList.remove('active');
+                        document.querySelector('.js-overlay-modal').classList.remove('active');
+                        document.querySelector('body').style.overflowY = '';
+                        toastAll(false, 'Отзыв добавлен, после модерации он будет опубликован.', 'success', true, 10000);
+                        form.reset();
+                        document.querySelector('ul#reviews_media_gallery-status').innerHTML = '';
+                        reviewsDescription.value = '';
+                        ratingBtns.forEach((item) => {
+                            item.checked = false;
+                        });
+                        document.querySelector('input#fst-0').checked = true;
+                    } else if (data_json.type == 'errors') {
+                        if (data_json.empty_rating) {
+                            starsWarning.style.display = 'block';
+                            setTimeout(function(){
+                                starsWarning.style.display = '';
+                            }, 6000);
+                        }
+                        if (data_json.empty_description) {
+                            reviewsDescription.style.border = '1px solid red';
+                            setTimeout(function(){
+                                reviewsDescription.style.border = '';
+                            }, 6000);
+                        }
+                    }
+                },
+                error: function (jqXHR, text, error) {
+                    console.dir(error);
+                }
+            });
+        });
+
+    });
+}
+addReviews();
+
+const reviewsMore = () => {
+    const moreBtn = document.querySelector('.js-reviews-more');
+    if (moreBtn) {
+        const reviews = document.querySelector('.reviews-items');
+        // console.dir(moreBtn.dataset.count);
+        if (+moreBtn.dataset.count > 5) {
+            moreBtn.style.display = 'inline-block';
+        }
+        moreBtn.addEventListener('click', (e) => {
+            let formData = new FormData();
+            formData.append('nonce', glamping_club_ajax.nonce);
+            formData.append('action', 'reviews_more');
+            formData.append('offset', moreBtn.dataset.pagenum);
+            formData.append('post_id', moreBtn.dataset.post);
+            ( function( $ ) {
+                $.ajax({
+                    url: glamping_club_ajax.ajaxUrl,
+                    method: 'post',
+                    processData: false,
+                    contentType: false,
+                    data: formData,
+                    beforeSend: function () {},
+                    success: function (data) {
+                        // console.dir(data);
+                        reviews.insertAdjacentHTML('beforeEnd', data)
+                    },
+                    error: function (jqXHR, text, error) {
+                        console.log('Send error');
+                    }
+                });
+            }( jQuery ) );
+            moreBtn.dataset.pagenum = +moreBtn.dataset.pagenum+1;
+            if (+moreBtn.dataset.pagenum*5 >= +moreBtn.dataset.count) {
+                moreBtn.style.display = '';
+            }
+            // initSliderGlempReview(100);
+            setTimeout(function(){
+                initSliderGlempReview(100);
+                initOptionsGalleryReview(100);
+            }, 400);
+        });
+    }
+}
+reviewsMore();
+
+// console.dir(JSON.parse(glamping_club_ajax.glAll));
+
+function fileDown() {
+    let load = document.querySelector('#load');
+    if (!load) return;
+    document.querySelector('#file').addEventListener('change', function(e) {
+      let tgt = e.target || window.event.srcElement,
+            files = tgt.files;
+      // load.innerHTML = '';
+      if(files && files.length) {
+        for(let i = 0; i < files.length; i++) {
+            let $self = files[i],
+                    fr = new FileReader();
+            fr.onload = function(e) {
+            load.insertAdjacentHTML('beforeEnd', `<div class="load-img"><img src="${e.srcElement.result}"/></div>`);
+            // load.insertAdjacentHTML('beforeEnd', `<div class="load-img"><img src="${e.srcElement.result}"/><p>${$self.name}</p></div>`);
+            }
+            fr.readAsDataURL(files[i]);
+        };
+      }
+    });
+}

@@ -22,6 +22,7 @@ function toast(title, text, theme, autohide, interval) {
 const myModal = new HystModal({
     linkAttributeName: "data-hystmodal",
     catchFocus: false,
+    backscroll: false,
     // fixedSelectors: 'body',
     afterClose: function(modal){
         // console.log('Message after modal has closed');

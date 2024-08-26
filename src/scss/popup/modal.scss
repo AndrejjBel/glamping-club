@@ -14,6 +14,13 @@
    border-radius: 3px;
    background-color: #fff;
    transition: 0.3s all;
+   max-height: 94vh;
+   overflow: auto;
+
+   &.add-review {
+       max-width: 600px;
+       padding: 50px 20px;
+   }
 }
 
 .modal-based-theme h3 {
@@ -47,6 +54,14 @@
     opacity: 0.8;
 }
 
+.modal-content__buttons {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 36px;
+}
+
 .modal.active {
    opacity: 1;
    visibility: visible;
@@ -62,6 +77,17 @@
    cursor: pointer;
 }
 
+// .modal.add-review .modal-content {
+//     max-height: 60vh;
+//     overflow: auto;
+// }
+
+@media (max-width: 630px) {
+    .modal.add-review {
+        max-width: calc(100% - 30px);
+    }
+}
+
 @media (max-width: 539px) {
 	.modal {
 	   max-width: calc(100% - 30px);
@@ -71,6 +97,10 @@
 @media (max-width: 439px) {
 	.modal {
 	   padding: 30px 20px;
+
+       &.add-review {
+           padding: 20px 10px;
+       }
 	}
 
 	.modal__cross {

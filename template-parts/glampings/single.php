@@ -1,6 +1,7 @@
 <?php
 $cur_user_id = get_current_user_id();
 // $additionally_field = (object)$post->additionally_field[0];
+$statistics = glampings_reviews_statistic($post->ID);
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -120,9 +121,23 @@ $cur_user_id = get_current_user_id();
         </div>
     <?php } ?>
 
-    <!-- <div class="single-section reviews-button">
+    <div class="single-section reviews-button">
+        <div class="single-section__title">
+            <h3>Отзывы</h3>
+        </div>
         <button data-modal="add-review" class="primary js-open-modal" type="button" name="button">Написать отзыв</button>
-    </div> -->
+    </div>
+
+    <div class="single-section reviews-items">
+        <?php glampings_reviews_items(); ?>
+    </div>
+
+    <div class="reviews-items__button-more">
+        <button class="primary js-reviews-more" type="button" name="button"
+        data-count="<?php echo $statistics['count']; ?>"
+        data-pagenum="1"
+        data-post="<?php echo $post->ID; ?>">Показать еще</button>
+    </div>
 
 </article><!-- #post-<?php the_ID(); ?> -->
 
@@ -221,7 +236,7 @@ $cur_user_id = get_current_user_id();
         }
     </script>
 <?php }
-// get_template_part( 'template-parts/popups/add-rating' );
+get_template_part( 'template-parts/popups/add-rating' );
 // $media = get_attached_media( 'image', $post->ID );
 // foreach ($media as $key => $value) {
 //     echo wp_get_attachment_image_url( $key, 'glamping-club-thumb' );

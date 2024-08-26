@@ -242,3 +242,68 @@ function glamping_club_add_post_glampings() {
     }
     wp_die();
 }
+
+add_action('wp_ajax_add_reviews', 'glamping_club_add_post_reviews');
+add_action('wp_ajax_nopriv_add_reviews', 'glamping_club_add_post_reviews');
+function glamping_club_add_post_reviews() {
+    $error = array();
+    if ( !wp_verify_nonce( $_POST['nonce'], 'glamping_club' ) ) {
+        $error['empty_nonce'] = __( 'Error nonce', 'glamping-club' );
+    }
+
+    if ( !$_POST['user_id'] ) {
+        $error['empty_user_id'] = __( 'Error user', 'glamping-club' );
+    }
+
+    if ( !$_POST['review_description'] ) {
+        $error['empty_description'] = __( 'Error review description', 'glamping-club' );
+    }
+
+    if ( !$_POST['review_rating'] ) {
+        $error['empty_rating'] = __( 'Error review rating', 'glamping-club' );
+    }
+
+    if ( count( $error ) > 0 ) {
+        $error['type'] = 'errors';
+        $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+        echo $error_fin;
+        wp_die();
+    } else {
+        $user = get_user_by('id', $_POST['user_id']);
+        $html = array();
+        foreach (explode(PHP_EOL, $_POST['review_description']) as $row) {
+            $html[] = '<p>' . trim($row) . '</p>';
+        }
+        $review_description = implode(PHP_EOL, $html);
+        $post_data = array(
+            'post_author'   => $_POST['user_id'],
+            'post_status'   => 'draft',
+            'post_type'     => 'reviews',
+            'post_title'    => 'Отзыв - ' . $user->user_login . '(' . $_POST['user_id'] . ')',
+            'post_content'  => $review_description
+        );
+        $post_id = wp_insert_post( $post_data );
+
+        if ($post_id) {
+            update_post_meta( $post_id, 'glempid', $_POST['glempid'] );
+            update_post_meta( $post_id, 'rating', $_POST['review_rating'] );
+            update_post_meta( $post_id, 'photos', $_POST['reviews_media_gallery'] );
+        }
+
+        $text = 'Опубликован новый отзыв';
+        $text_fin = $text; //. ' - ' . $post_title . ' - ' . wp_unslash($post_url);
+        $glc_options = get_option( 'glc_options' );
+        if (array_key_exists('telegram_id', $glc_options)) {
+            foreach ($glc_options['telegram_id'] as $telegram_id) {
+                message_to_telegram($text_fin, $telegram_id);
+            }
+        }
+
+        $error['type'] = 'success';
+        $error['post_id'] = $post_id;
+        $error['post'] = $_POST;
+        $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
+        echo $error_fin;
+        wp_die();
+    }
+}

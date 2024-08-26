@@ -704,6 +704,48 @@ function reviews_stars_items_average( $average_rating, $count_otziv, $type=0 ) {
 	}
 }
 
+// Формирование звезд отдельного отзыва
+function reviews_stars_item_review( $average_rating, $type=0 ) {
+	$rating = $average_rating;
+	$star_full = '<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="var(--reviews-color)" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>';
+	$star_aver = '<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-primary" fill="var(--reviews-color)" d="M288 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.995 275.8 .0131 287.1-.0391L288 439.8zM433.2 512C432.1 512.1 431 512.1 429.9 512H433.2z"/>
+	<path class="fa-secondary" fill="#d7dbe3" d="M146.3 512C145.3 512.1 144.2 512.1 143.1 512H146.3zM288 439.8V-.0387L288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.1 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L288 439.8z"/>
+	</svg>';
+	$star_half = '<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="#d7dbe3" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>';
+	$content = '<div class="rating-stars">';
+	//$full_stars = $doc_meta->rating/$doc_meta->raitcol;
+	$empty_stars = floor( 5 - $average_rating );
+	while ( $average_rating > 0 ) {
+		if ( $average_rating > 0 && $average_rating - 1 >= 0 ) {
+			$content .= $star_full;
+		}
+		if ( $average_rating > 0 && $average_rating - 1 < 0 ) {
+			$content .= $star_aver;
+		}
+		$average_rating--;
+	}
+	while ( $empty_stars > 0 ) {
+		$content .= $star_half;
+
+		$empty_stars--;
+	}
+	$content .= '</div>';
+	// $content .= '<div class="rating-count">
+	// 	<div class="rating-count__rating">' . number_format(round($rating, 1), 1, ',', ' ') . '</div>
+	// </div>';
+
+	if ($type) {
+		return $content;
+	} else {
+		echo $content;
+	}
+}
+
 function roundHalf($val) {
     $val = round($val, 1);
     $intVal = (int)$val;
@@ -1041,4 +1083,192 @@ function glampings_map_render() {
 	];
 
 	return json_encode($geoData, JSON_UNESCAPED_UNICODE);
+}
+
+function glamping_review_img($post_id, $i) {
+	$media_gallery = get_post_meta( $post_id, 'photos', 1 );
+	if ($media_gallery) {
+		// foreach ($media_gallery as $key => $value) {
+			$it = 0;
+			$media = '<div class="acc-gallery galery-review' . $i . '">';
+			$media .= '<div id="sw-review-' . $i . '" class="swiper-wrapper">';
+			foreach ( $media_gallery as $key => $value ) {
+				$url = wp_get_attachment_image_url( $key, 'medium' );
+				$url_full = wp_get_attachment_image_url( $key, 'full' );
+				$media .= '<div class="acc-gallery__item swiper-slide gallery-' . $i . '">';
+				$media .= '<a href="' . $url_full . '" class="acc-media">';
+				$media .= '<img src="' . $url . '" alt="" /></a>';
+				$media .= '</div>';
+				$it++;
+			}
+			$media .= '</div>';
+			$media .= '<div class="swiper-button-next"></div>
+				<div class="swiper-button-prev"></div>';
+			$media .= '</div>';
+		// }
+
+		echo $media;
+	}
+}
+
+// Формирование отзывов
+function glampings_reviews_items() {
+    $post_id = get_the_ID();
+    $my_posts = get_posts( array(
+    	'posts_per_page' => 5,
+    	'post_type'   => 'reviews',
+    	'suppress_filters' => true,
+        'meta_query' => [
+    		[
+    			'key'   => 'glempid',
+    			'value' => $post_id,
+    		]
+    	],
+    ) );
+    global $post;
+    foreach( $my_posts as $i => $post ){
+    	setup_postdata( $post );
+		$user = get_user_by('id', $post->post_author);
+		?>
+        <div class="reviews-items__item">
+            <div class="reviews-items__item-rating">
+                <?php reviews_stars_item_review( $post->rating ); ?>
+            </div>
+            <div class="reviews-items__item-name">
+                <span><?php echo $user->display_name; ?></span>
+                <span class="reviews-items__item-name-date">
+                    <?php echo get_the_date('j F Y', $post); ?>
+                </span>
+            </div>
+			<div class="reviews-items__item-img">
+				<?php glamping_review_img($post->ID, $i); ?>
+			</div>
+            <div class="reviews-items__item-text">
+                <?php echo apply_filters( 'the_content', get_the_content($post) ); ?>
+            </div>
+        </div>
+    <?php }
+    wp_reset_postdata();
+    //wp_die();
+}
+
+add_action('wp_ajax_reviews_more', 'glampings_reviews_items_more');
+add_action('wp_ajax_nopriv_reviews_more', 'glampings_reviews_items_more');
+function glampings_reviews_items_more() {
+    $offset = $_POST['offset']*5;
+    $post_id = $_POST['post_id'];
+    $my_posts = get_posts( array(
+    	'posts_per_page' => 5,
+        'offset' => $offset,
+    	'post_type'   => 'reviews',
+    	'suppress_filters' => true,
+        'meta_query' => [
+    		[
+    			'key'   => 'glempid',
+    			'value' => $post_id,
+    		]
+    	],
+    ) );
+    global $post;
+    $content = '';
+	$i = $offset;
+    foreach( $my_posts as $post ){
+    	setup_postdata( $post );
+		$user = get_user_by('id', $post->post_author);
+		?>
+        <div class="reviews-items__item">
+            <div class="reviews-items__item-rating">
+                <?php reviews_stars_item_review( $post->rating ); ?>
+            </div>
+            <div class="reviews-items__item-name">
+                <span><?php echo $user->display_name; ?></span>
+                <span class="reviews-items__item-name-date">
+                    <?php echo get_the_date('j F Y', $post); ?>
+                </span>
+            </div>
+			<div class="reviews-items__item-img">
+				<?php glamping_review_img($post->ID, $i); ?>
+			</div>
+            <div class="reviews-items__item-text">
+                <?php echo apply_filters( 'the_content', get_the_content($post) ); ?>
+            </div>
+        </div>
+    <?php $i++; }
+    wp_reset_postdata();
+    echo $content;
+    wp_die();
+}
+
+// Формирование статситки отзывов
+function glampings_reviews_statistic($post_id) {
+    $my_posts = get_posts( array(
+    	'numberposts' => -1,
+    	'post_type'   => 'reviews',
+    	'suppress_filters' => true,
+        'meta_query' => [
+    		[
+    			'key'   => 'glempid',
+    			'value' => $post_id,
+    		]
+    	],
+    ) );
+    $star_all = 0;
+    foreach( $my_posts as $post ){
+    	//setup_postdata( $post );
+        $star_all += $post->rating;
+    }
+    $star5 = 0;
+    foreach( $my_posts as $post ){
+    	//setup_postdata( $post );
+        if ( $post->rating == 5 ) {
+            ++$star5;
+        }
+    }
+    $star4 = 0;
+    foreach( $my_posts as $post ){
+    	//setup_postdata( $post );
+        if ( $post->rating == 4 ) {
+            ++$star4;
+        }
+    }
+    $star3 = 0;
+    foreach( $my_posts as $post ){
+    	//setup_postdata( $post );
+        if ( $post->rating == 3 ) {
+            ++$star3;
+        }
+    }
+    $star2 = 0;
+    foreach( $my_posts as $post ){
+    	//setup_postdata( $post );
+        if ( $post->rating == 2 ) {
+            ++$star2;
+        }
+    }
+    $star1 = 0;
+    foreach( $my_posts as $post ){
+    	//setup_postdata( $post );
+        if ( $post->rating == 1 ) {
+            ++$star1;
+        }
+    }
+    wp_reset_postdata();
+
+    if ( $my_posts ) {
+        $average_rating = $star_all / count($my_posts);
+    } else {
+        $average_rating = 0;
+    }
+
+    return [
+        'count' => count($my_posts),
+        'star_all' => $star_all,
+        'average_rating' => round($average_rating, 1),
+        'r5' => $star5,
+        'r4' => $star4,
+        'r3' => $star3,
+        'r2' => $star2,
+        'r1' => $star1,
+    ];
+    wp_die();
 }
