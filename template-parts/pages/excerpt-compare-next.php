@@ -1,4 +1,4 @@
-<div id="post-<?php echo $post->ID; ?>" class="compare-item item-options" title="<?php echo get_the_title( $post->ID ); ?>">
+<div id="post-info-<?php echo $post->ID; ?>" class="compare-item item-options" title="<?php echo get_the_title( $post->ID ); ?>">
 	<div class="compare-item__section">
 		<div class="compare-item__section__info">
 			<?php echo implode(', ', $post->glamping_type); ?>

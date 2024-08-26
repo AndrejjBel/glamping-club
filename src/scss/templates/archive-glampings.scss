@@ -704,6 +704,12 @@
     background: #FFFFFF;
     overflow: hidden;
 
+    &.compare {
+        display: flex;
+        flex-direction: column;
+        background: var(--color-bg-dashboard);
+    }
+
     &:hover {
         // & img {
         //     transform: scale($scale);
@@ -745,7 +751,7 @@
         position: absolute;
         top: 5px;
         right: 5px;
-        z-index: 9;
+        z-index: 99;
 
         &__btn-add-fav {
             position: absolute;
@@ -776,6 +782,10 @@
         overflow: hidden;
         z-index: 4;
 
+        &.compare {
+            height: 200px;
+        }
+
         & img {
             position: absolute;
             top: 0px;
@@ -797,6 +807,10 @@
         gap: 12px;
         padding: 16px;
 
+        &.compare {
+            flex-direction: column;
+        }
+
         &__left {
             flex: 1;
             display: flex;
@@ -809,6 +823,12 @@
             flex-direction: column;
             gap: 6px;
             width: 124px;
+
+            &.compare {
+                width: 100%;
+                flex-direction: row;
+                justify-content: space-between;
+            }
 
             &__price {
                 display: flex;
@@ -833,6 +853,7 @@
             }
 
             &__btn {
+                z-index: 99;
 
                 & span {
                     display: block;

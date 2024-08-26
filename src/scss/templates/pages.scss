@@ -427,8 +427,12 @@
 }
 
 .slider-top {
-    position: relative;
+    position: sticky;
+    top: 0;
+    background: #FFFFFF;
+    // position: relative;
     margin-bottom: 16px;
+    z-index: 9;
 }
 
 .slick {
@@ -436,6 +440,7 @@
 
     &-track {
         display: flex;
+        margin: 0;
     }
 
     &-slide {

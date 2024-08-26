@@ -2808,6 +2808,10 @@ a.secondary {
   border-radius: 12px;
   background: #FFFFFF;
   overflow: hidden; }
+  .glamping-item.compare {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg-dashboard); }
   .glamping-item:hover button.btnvib {
     border: 1px solid var(--Primary-700, #3033D1);
     background: var(--Primary-700, #3033D1); }
@@ -2835,7 +2839,7 @@ a.secondary {
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 9; }
+    z-index: 99; }
     .glamping-item__btns-fav-comp__btn-add-fav {
       position: absolute;
       top: 5px;
@@ -2857,6 +2861,8 @@ a.secondary {
   .glamping-item__thumbnail {
     overflow: hidden;
     z-index: 4; }
+    .glamping-item__thumbnail.compare {
+      height: 200px; }
     .glamping-item__thumbnail img {
       position: absolute;
       top: 0px;
@@ -2873,6 +2879,8 @@ a.secondary {
     display: flex;
     gap: 12px;
     padding: 16px; }
+    .glamping-item__content.compare {
+      flex-direction: column; }
     .glamping-item__content__left {
       flex: 1;
       display: flex;
@@ -2883,6 +2891,10 @@ a.secondary {
       flex-direction: column;
       gap: 6px;
       width: 124px; }
+      .glamping-item__content__right.compare {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between; }
       .glamping-item__content__right__price {
         display: flex;
         flex-direction: column;
@@ -2896,10 +2908,12 @@ a.secondary {
           .glamping-item__content__right__price span.price-text {
             margin-top: auto;
             color: var(--text-color-light); }
-      .glamping-item__content__right__btn span {
-        display: block;
-        font-size: 12px;
-        color: var(--text-color-light); }
+      .glamping-item__content__right__btn {
+        z-index: 99; }
+        .glamping-item__content__right__btn span {
+          display: block;
+          font-size: 12px;
+          color: var(--text-color-light); }
     .glamping-item__content__title {
       font-weight: 600; }
     .glamping-item__content__rating {
@@ -3531,13 +3545,17 @@ ul.item-options-checkbox {
   color: #000000; }
 
 .slider-top {
-  position: relative;
-  margin-bottom: 16px; }
+  position: sticky;
+  top: 0;
+  background: #FFFFFF;
+  margin-bottom: 16px;
+  z-index: 9; }
 
 .slick {
   overflow: hidden; }
   .slick-track {
-    display: flex; }
+    display: flex;
+    margin: 0; }
   .slick-slide {
     height: auto;
     margin: 0 10px; }

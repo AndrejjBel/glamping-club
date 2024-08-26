@@ -1986,7 +1986,8 @@ const addFavCom = () => {
     const favoritesBtns = document.querySelectorAll('#add-favorites');
     const comparisonBtns = document.querySelectorAll('#add-comparison');
     const singleGlampings = document.querySelector('.single-glampings');
-    if (!singleGlampings) return;
+    const comparesMain = document.querySelector('.compares-main');
+    if (!singleGlampings && !comparesMain) return;
     if (favoritesBtns.length) {
         const supFavorites = document.querySelectorAll('#sup-favorites');
         favoritesBtns.forEach((btn) => {
@@ -2024,35 +2025,41 @@ const addFavCom = () => {
 }
 addFavCom();
 
-const deleteFavCom = () => {
-    const favoritesBtns = document.querySelectorAll('#delete-favorites');
-    const comparisonBtns = document.querySelectorAll('#delete-comparison');
-    if (favoritesBtns.length) {
-        const supFavorites = document.querySelectorAll('#sup-favorites');
-        favoritesBtns.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-                let glcFavCount = localCheng('glcFav', btn.dataset.postid);
-                btn.parentElement.parentElement.parentElement.parentElement.remove();
-                supFavorites.forEach((item) => {
-                    item.innerHTML = glcFavCount;
-                });
-            });
-        });
-    }
-    if (comparisonBtns.length) {
-        const supComparison = document.querySelectorAll('#sup-comparison');
-        comparisonBtns.forEach((btn) => {
-            btn.addEventListener('click', (e) => {
-                let glcComparCount = localCheng('glcCompar', btn.dataset.postid);
-                btn.parentElement.parentElement.parentElement.parentElement.remove();
-                supComparison.forEach((item) => {
-                    item.innerHTML = glcComparCount;
-                });
-            });
-        });
-    }
-}
-deleteFavCom();
+// const deleteFavCom = () => {
+//     const favoritesBtns = document.querySelectorAll('#delete-favorites');
+//     const comparisonBtns = document.querySelectorAll('#delete-comparison');
+//     if (favoritesBtns.length) {
+//         const supFavorites = document.querySelectorAll('#sup-favorites');
+//         favoritesBtns.forEach((btn) => {
+//             btn.addEventListener('click', (e) => {
+//                 let glcFavCount = localCheng('glcFav', btn.dataset.postid);
+//                 btn.parentElement.parentElement.parentElement.parentElement.remove();
+//                 supFavorites.forEach((item) => {
+//                     item.innerHTML = glcFavCount;
+//                 });
+//             });
+//         });
+//     }
+//     if (comparisonBtns.length) {
+//         const supComparison = document.querySelectorAll('#sup-comparison');
+//         comparisonBtns.forEach((btn) => {
+//             btn.addEventListener('click', (e) => {
+//                 let glcComparCount = localCheng('glcCompar', btn.dataset.postid);
+//                 btn.parentElement.parentElement.parentElement.parentElement.remove();
+//                 document.querySelector('#post-info-'+btn.parentElement.parentElement.parentElement.parentElement.dataset.info).remove();
+//                 // jQuery(document).ready( function($){
+//                 //     $('.mySlick1').slick('slickRemove', 6);
+//                 //     $('.mySlick2').slick('slickRemove', 6);
+//                 // });
+//                 supComparison.forEach((item) => {
+//                     item.innerHTML = glcComparCount;
+//                 });
+//                 location.reload();
+//             });
+//         });
+//     }
+// }
+// deleteFavCom();
 
 function buttonsFavChange() {
     const glampingsItems = document.querySelector('.glampings-items');

@@ -906,94 +906,97 @@ function slidersCompare(index) {
 // slidersCompare('.mySwiper1');
 // slidersCompare('.mySwiper2');
 
-jQuery(document).ready( function($){
-    const iconBtnNext = `<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-        <path d="M85.14 475.8c-3.438-3.141-5.156-7.438-5.156-11.75c0-3.891 1.406-7.781 4.25-10.86l181.1-197.1L84.23 58.86c-6-6.5-5.625-16.64 .9062-22.61c6.5-6 16.59-5.594 22.59 .8906l192 208c5.688 6.156 5.688 15.56 0 21.72l-192 208C101.7 481.3 91.64 481.8 85.14 475.8z"/>
-    </svg>`;
-    const iconBtnPrev = `<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-        <path d="M234.8 36.25c3.438 3.141 5.156 7.438 5.156 11.75c0 3.891-1.406 7.781-4.25 10.86L53.77 256l181.1 197.1c6 6.5 5.625 16.64-.9062 22.61c-6.5 6-16.59 5.594-22.59-.8906l-192-208c-5.688-6.156-5.688-15.56 0-21.72l192-208C218.2 30.66 228.3 30.25 234.8 36.25z"/>
-    </svg>`;
-    $('.mySlick1').slick({
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      asNavFor: '.mySlick2',
-      infinite: false,
-      speed: 200,
-      adaptiveHeight: true,
-      appendArrows: '.slider-compare-navigation',
-      prevArrow: '<button type="button" class="slick-prev">'+iconBtnPrev+'</button>',
-      nextArrow: '<button type="button" class="slick-next">'+iconBtnNext+'</button>',
-      responsive: [
-          {
-              breakpoint: 1024,
-              settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3,
-                  infinite: true,
-                  dots: true
+function slickSlider() {
+    jQuery(document).ready( function($){
+        const iconBtnNext = `<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <path d="M85.14 475.8c-3.438-3.141-5.156-7.438-5.156-11.75c0-3.891 1.406-7.781 4.25-10.86l181.1-197.1L84.23 58.86c-6-6.5-5.625-16.64 .9062-22.61c6.5-6 16.59-5.594 22.59 .8906l192 208c5.688 6.156 5.688 15.56 0 21.72l-192 208C101.7 481.3 91.64 481.8 85.14 475.8z"/>
+        </svg>`;
+        const iconBtnPrev = `<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
+            <path d="M234.8 36.25c3.438 3.141 5.156 7.438 5.156 11.75c0 3.891-1.406 7.781-4.25 10.86L53.77 256l181.1 197.1c6 6.5 5.625 16.64-.9062 22.61c-6.5 6-16.59 5.594-22.59-.8906l-192-208c-5.688-6.156-5.688-15.56 0-21.72l192-208C218.2 30.66 228.3 30.25 234.8 36.25z"/>
+        </svg>`;
+        $('.mySlick1').slick({
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          asNavFor: '.mySlick2',
+          infinite: false,
+          speed: 200,
+          adaptiveHeight: true,
+          appendArrows: '.slider-compare-navigation',
+          prevArrow: '<button type="button" class="slick-prev">'+iconBtnPrev+'</button>',
+          nextArrow: '<button type="button" class="slick-next">'+iconBtnNext+'</button>',
+          responsive: [
+              {
+                  breakpoint: 1024,
+                  settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3,
+                      infinite: true,
+                      dots: true
+                  }
+              },
+              {
+                  breakpoint: 767,
+                  settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                  }
+              },
+              {
+                  breakpoint: 480,
+                  settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                  }
               }
-          },
-          {
-              breakpoint: 767,
-              settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 2
+          ]
+        });
+
+        $('.mySlick2').slick({
+          slidesToShow: 4,
+          slidesToScroll: 1,
+          asNavFor: '.mySlick1',
+          infinite: false,
+          speed: 200,
+          arrows: false,
+          responsive: [
+              {
+                  breakpoint: 1024,
+                  settings: {
+                      slidesToShow: 3,
+                      slidesToScroll: 3
+                  }
+              },
+              {
+                  breakpoint: 767,
+                  settings: {
+                      slidesToShow: 2,
+                      slidesToScroll: 2
+                  }
+              },
+              {
+                  breakpoint: 480,
+                  settings: {
+                      slidesToShow: 1,
+                      slidesToScroll: 1
+                  }
               }
-          },
-          {
-              breakpoint: 480,
-              settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-              }
-          }
-      ]
+          ]
+        });
+
+        // $(".mySlick1").each(function() {
+        //     var highestSlide = 0;
+        //     var slider = $(this);
+        //     slider.find(".slick-slide").each(function() {
+        //         if ($(this).height() > highestSlide) {
+        //             highestSlide = $(this).height();
+        //         }
+        //     });
+        //     slider.find(".slick-slide").css("height", highestSlide + "px");
+        // });
+
     });
-
-    $('.mySlick2').slick({
-      slidesToShow: 4,
-      slidesToScroll: 1,
-      asNavFor: '.mySlick1',
-      infinite: false,
-      speed: 200,
-      arrows: false,
-      responsive: [
-          {
-              breakpoint: 1024,
-              settings: {
-                  slidesToShow: 3,
-                  slidesToScroll: 3
-              }
-          },
-          {
-              breakpoint: 767,
-              settings: {
-                  slidesToShow: 2,
-                  slidesToScroll: 2
-              }
-          },
-          {
-              breakpoint: 480,
-              settings: {
-                  slidesToShow: 1,
-                  slidesToScroll: 1
-              }
-          }
-      ]
-    });
-
-    // $(".mySlick1").each(function() {
-    //     var highestSlide = 0;
-    //     var slider = $(this);
-    //     slider.find(".slick-slide").each(function() {
-    //         if ($(this).height() > highestSlide) {
-    //             highestSlide = $(this).height();
-    //         }
-    //     });
-    //     slider.find(".slick-slide").css("height", highestSlide + "px");
-    // });
-
-});
+}
+slickSlider();
 
 function filepondReviews() {
     const singleGlampings = document.querySelector('.single-glampings');
@@ -1186,3 +1189,99 @@ function fileDown() {
       }
     });
 }
+
+const deleteFavCom = () => {
+    const favoritesBtns = document.querySelectorAll('#delete-favorites');
+    const comparisonBtns = document.querySelectorAll('#delete-comparison');
+    if (favoritesBtns.length) {
+        const supFavorites = document.querySelectorAll('#sup-favorites');
+        favoritesBtns.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                let glcFavCount = localChengC('glcFav', btn.dataset.postid);
+                btn.parentElement.parentElement.parentElement.parentElement.remove();
+                supFavorites.forEach((item) => {
+                    item.innerHTML = glcFavCount;
+                });
+            });
+        });
+    }
+    if (comparisonBtns.length) {
+        const supComparison = document.querySelectorAll('#sup-comparison');
+        comparisonBtns.forEach((btn) => {
+            btn.addEventListener('click', (e) => {
+                let glcComparCount = localChengC('glcCompar', btn.dataset.postid);
+                btn.parentElement.parentElement.parentElement.parentElement.remove();
+                document.querySelector('#post-info-'+btn.parentElement.parentElement.parentElement.parentElement.dataset.info).remove();
+                // jQuery(document).ready( function($){
+                //     $('.mySlick1').slick('slickRemove', 6);
+                //     $('.mySlick2').slick('slickRemove', 6);
+                // });
+                supComparison.forEach((item) => {
+                    item.innerHTML = glcComparCount;
+                });
+                location.reload();
+                // slickSlider();
+            });
+        });
+    }
+}
+deleteFavCom();
+
+function localChengC(name, value) {
+    let ls_obj = [];
+    if ( Cookies.get(name) ) { // localStorage.getItem(name)
+        let ls = Cookies.get(name); // localStorage.getItem(name)
+        ls_obj = ls.split(',');
+        if (ls_obj.includes(value)) {
+            ls_obj = ls_obj.filter((i) => i !== value);
+        } else {
+            ls_obj.push(value);
+        }
+    } else {
+        ls_obj = [];
+        ls_obj.push(value);
+    }
+    // localStorage.setItem(name, ls_obj);
+    // Cookies.remove('name')
+    Cookies.set(name, ls_obj);
+    return ls_obj.length;
+}
+
+// new Swiper('.slider-top', {
+//     slidesPerView: 2,
+//     // spaceBetween: 10,
+//     navigation: {
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev",
+//     },
+//     breakpoints: {
+//         376: {
+//             slidesPerView: 2,
+//         },
+//         768: {
+//             slidesPerView: 4,
+//         },
+//         1024: {
+//             slidesPerView: 5,
+//         },
+//     }
+// });
+// new Swiper('.slider-bottom', {
+//     slidesPerView: 2,
+//     // spaceBetween: 10,
+//     navigation: {
+//         nextEl: ".swiper-button-next",
+//         prevEl: ".swiper-button-prev",
+//     },
+//     breakpoints: {
+//         376: {
+//             slidesPerView: 2,
+//         },
+//         768: {
+//             slidesPerView: 4,
+//         },
+//         1024: {
+//             slidesPerView: 5,
+//         },
+//     }
+// });

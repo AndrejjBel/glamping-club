@@ -9,7 +9,6 @@ if ( !empty( $_COOKIE["glcCompar"] ) ) {
 
         <div class="glampings-itemss cards no-sidebars">
             <?php compares_render($_COOKIE["glcCompar"], 'compare'); ?>
-            <!-- <div class="slider-compare-navigation"></div> -->
         </div>
     </article><!-- #post-<?php the_ID(); ?> -->
 
