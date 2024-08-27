@@ -1285,3 +1285,13 @@ function localChengC(name, value) {
 //         },
 //     }
 // });
+
+const preloader = () => {
+    window.onload = function() {
+        const preload = document.querySelector('.preloader');
+        if ( preload ) {
+            preload.classList.add("preloader-remove");
+        }
+    };
+}
+preloader();

@@ -21,7 +21,11 @@
 </head>
 
 <body <?php body_class(); ?>>
-<?php wp_body_open(); ?>
+<?php wp_body_open();
+	if ( is_page('compare') ) {
+?>
+	<div class="preloader"><div class="load"><hr/><hr/><hr/><hr/></div></div>
+<?php } ?>
 <div id="page" class="site<?php echo glamping_club_page_class(); ?>">
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'glamping-club' ); ?></a>
 

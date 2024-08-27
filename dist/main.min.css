@@ -204,6 +204,67 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 .scroll-no::-webkit-scrollbar {
   width: 0; }
 
+.preloader {
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  z-index: 999999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  transition: all 0.3s;
+  opacity: 0.9; }
+
+.preloader-remove {
+  opacity: 0;
+  z-index: -10; }
+
+.load {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /*change these sizes to fit into your project*/
+  width: 100px;
+  height: 100px; }
+
+.load hr {
+  border: 0;
+  margin: 0;
+  width: 40%;
+  height: 40%;
+  position: absolute;
+  border-radius: 50%;
+  animation: spin 2s ease infinite; }
+
+.load :first-child {
+  background: var(--color-preloader-load1);
+  animation-delay: -1.5s; }
+
+.load :nth-child(2) {
+  background: var(--color-preloader-load2);
+  animation-delay: -1s; }
+
+.load :nth-child(3) {
+  background: var(--color-preloader-load3);
+  animation-delay: -0.5s; }
+
+.load :last-child {
+  background: var(--color-preloader-load4); }
+
+@keyframes spin {
+  0%, 100% {
+    transform: translate(0); }
+  25% {
+    transform: translate(160%); }
+  50% {
+    transform: translate(160%, 160%); }
+  75% {
+    transform: translate(0, 160%); } }
+
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
   font-weight: 700;
   font-family: "Roboto", sans-serif;
