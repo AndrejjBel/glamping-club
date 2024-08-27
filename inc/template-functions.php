@@ -793,12 +793,15 @@ function compares_render($posts, $type, $posts_per_page=-1) {
 	echo '</div>';
 	echo '<div class="slider-compare-navigation"></div>';
 	echo '</div>';
+	echo '<div class="slider-bottom">';
+	echo get_template_part( 'template-parts/pages/excerpt', 'compare-left' );
 	echo '<div class="slick mySlick2">';
 	foreach ($posts_arr as $post) {
 		setup_postdata( $post );
 		// get_template_part( 'template-parts/pages/excerpt', 'compare' );
 		get_template_part( 'template-parts/pages/excerpt', 'compare-next' );
 	}
+	echo '</div>';
 	echo '</div>';
 	wp_reset_postdata();
 }

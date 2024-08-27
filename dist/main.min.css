@@ -3560,6 +3560,18 @@ ul.item-options-checkbox {
     display: block;
     font-size: 18px;
     font-weight: 500; }
+  .compare-item__section__info__yes {
+    font-weight: 500;
+    color: green; }
+  .compare-item__section__info__no {
+    font-weight: 500;
+    color: red; }
+  .compare-item__section__info__text-green {
+    font-weight: 500;
+    color: green; }
+  .compare-item__section__info__text-red {
+    font-weight: 500;
+    color: red; }
   .compare-item__section__url-glemp {
     font-weight: 500;
     color: var(--link-color); }
@@ -3568,7 +3580,7 @@ ul.item-options-checkbox {
   .compare-item.item-options {
     display: flex;
     flex-direction: column;
-    gap: 24px; }
+    gap: 26px; }
 
 .slider-compare-navigation {
   position: absolute;
@@ -3761,6 +3773,31 @@ span.required {
   .cmb2-id-reviews-media-gallery input.button-secondary:hover {
     border: 1px solid var(--Gray-300, #D0D5DD);
     background: var(--Gray-50, #F9FAFB); }
+
+.slider-bottom {
+  position: relative; }
+
+.mySlick2 {
+  padding-top: 12px; }
+
+.compare-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+  .compare-left__items {
+    display: flex;
+    flex-direction: column;
+    gap: 26px; }
+    .compare-left__items__item {
+      font-size: 14px;
+      color: var(--color-primary);
+      font-weight: 500;
+      margin: 0 10px;
+      padding-top: 2px; }
+      .compare-left__items__item:not(:first-child) {
+        border-top: 1px solid var(--color-border); }
 
 @media (max-width: 620px) {
   .hystmodal__wrap {

@@ -1,3 +1,13 @@
+const preloader = () => {
+    window.onload = function() {
+        const preload = document.querySelector('.preloader');
+        if ( preload ) {
+            preload.classList.add("preloader-remove");
+        }
+    };
+}
+preloader();
+
 const singleThumbnailGallery = () => {
     const thumbGallery = document.querySelector('#single-thumbnail');
     if (!thumbGallery) return;
@@ -994,9 +1004,49 @@ function slickSlider() {
         //     slider.find(".slick-slide").css("height", highestSlide + "px");
         // });
 
+        // const sections = document.querySelectorAll('.compare-item__section');
+        // let highestSection = 0;
+        // sections.forEach((section) => {
+        //     if (section.classList.contains('section9')) {
+        //         console.dir(section.offsetHeight);
+        //         if (section.offsetHeight > highestSection) {
+        //             highestSection = section.offsetHeight;
+        //         }
+        //     }
+        // });
+        // sections.forEach((section) => {
+        //     if (section.classList.contains('section9')) {
+        //         section.style.height = highestSection+'px';
+        //     }
+        // });
+        // document.querySelector('.section-left9').style.height = highestSection+'px';
+        // console.dir(highestSection);
+
+        sectionAutoHeight(13);
+
     });
 }
 slickSlider();
+
+function sectionAutoHeight(items) {
+    const sections = document.querySelectorAll('.compare-item__section');
+    let highestSection = 0;
+    for (let i = 1; i <= items; i++) {
+        sections.forEach((section) => {
+            if (section.classList.contains('section'+i)) {
+                if (section.offsetHeight > highestSection) {
+                    highestSection = section.offsetHeight;
+                }
+            }
+        });
+        sections.forEach((section) => {
+            if (section.classList.contains('section'+i)) {
+                section.style.height = highestSection+'px';
+            }
+        });
+        document.querySelector('.section-left'+i).style.height = highestSection+'px';
+    }
+}
 
 function filepondReviews() {
     const singleGlampings = document.querySelector('.single-glampings');
@@ -1247,51 +1297,25 @@ function localChengC(name, value) {
     return ls_obj.length;
 }
 
-// new Swiper('.slider-top', {
-//     slidesPerView: 2,
-//     // spaceBetween: 10,
-//     navigation: {
-//         nextEl: ".swiper-button-next",
-//         prevEl: ".swiper-button-prev",
-//     },
-//     breakpoints: {
-//         376: {
-//             slidesPerView: 2,
-//         },
-//         768: {
-//             slidesPerView: 4,
-//         },
-//         1024: {
-//             slidesPerView: 5,
-//         },
+// const sections = document.querySelectorAll('.compare-item__section');
+// let highestSection = 0;
+// sections.forEach((section) => {
+//     if (section.classList.contains('section9')) {
+//         console.dir(section.offsetHeight);
+//         if (section.offsetHeight > highestSection) {
+//             highestSection = section.offsetHeight;
+//         }
 //     }
 // });
-// new Swiper('.slider-bottom', {
-//     slidesPerView: 2,
-//     // spaceBetween: 10,
-//     navigation: {
-//         nextEl: ".swiper-button-next",
-//         prevEl: ".swiper-button-prev",
-//     },
-//     breakpoints: {
-//         376: {
-//             slidesPerView: 2,
-//         },
-//         768: {
-//             slidesPerView: 4,
-//         },
-//         1024: {
-//             slidesPerView: 5,
-//         },
-//     }
-// });
+// console.dir(highestSection);
 
-const preloader = () => {
-    window.onload = function() {
-        const preload = document.querySelector('.preloader');
-        if ( preload ) {
-            preload.classList.add("preloader-remove");
-        }
-    };
-}
-preloader();
+// $(".mySlick1").each(function() {
+//     var highestSlide = 0;
+//     var slider = $(this);
+//     slider.find(".slick-slide").each(function() {
+//         if ($(this).height() > highestSlide) {
+//             highestSlide = $(this).height();
+//         }
+//     });
+//     slider.find(".slick-slide").css("height", highestSlide + "px");
+// });
