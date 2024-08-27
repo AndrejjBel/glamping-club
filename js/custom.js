@@ -1034,7 +1034,7 @@ function slickSlider() {
         // document.querySelector('.section-left9').style.height = highestSection+'px';
         // console.dir(highestSection);
 
-        sectionAutoHeight(13);
+        sectionAutoHeight(15);
 
     });
 }

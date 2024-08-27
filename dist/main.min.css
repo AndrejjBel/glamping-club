@@ -3016,6 +3016,9 @@ a.secondary {
       margin-top: auto;
       font-size: 12px;
       color: var(--text-color-light); }
+      .glamping-item__content__bottom.compare {
+        font-size: 16px;
+        color: var(--text-color); }
       .glamping-item__content__bottom__type {
         display: flex;
         align-items: center;
