@@ -59,10 +59,16 @@
 				</div>
 			</div>';
 		}
-		if (in_array('Можно с животными', $facilities_general)) {
+		if (in_array('Можно с животными - бесплатно', $facilities_general)) {
 			echo '<div class="compare-item__section section6">
 				<div class="compare-item__section__info">
-				<span class="compare-item__section__info__yes">+</span>
+				<span class="compare-item__section__info__text-green">Бесплатно</span>
+				</div>
+			</div>';
+		} elseif (in_array('Можно с животными - платно', $facilities_general)) {
+			echo '<div class="compare-item__section section6">
+				<div class="compare-item__section__info">
+				<span class="compare-item__section__info__text-red">Платно</span>
 				</div>
 			</div>';
 		} else {
