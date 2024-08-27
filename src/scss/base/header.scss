@@ -228,6 +228,11 @@
         position: relative;
         transition: all linear .3s;
 
+        &.search-page {
+            max-width: 500px;
+            margin: 0;
+        }
+
         @media (max-width: 1199px) {
             display: none;
             opacity: 0;
@@ -241,6 +246,12 @@
                 left: 0;
                 margin: 0;
                 padding: 0 20%;
+            }
+
+            &.search-page {
+                display: block;
+                opacity: 1;
+                visibility: visible;
             }
         }
 

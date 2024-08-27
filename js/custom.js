@@ -1030,21 +1030,23 @@ slickSlider();
 
 function sectionAutoHeight(items) {
     const sections = document.querySelectorAll('.compare-item__section');
-    let highestSection = 0;
-    for (let i = 1; i <= items; i++) {
-        sections.forEach((section) => {
-            if (section.classList.contains('section'+i)) {
-                if (section.offsetHeight > highestSection) {
-                    highestSection = section.offsetHeight;
+    if (sections.length) {
+        let highestSection = 0;
+        for (let i = 1; i <= items; i++) {
+            sections.forEach((section) => {
+                if (section.classList.contains('section'+i)) {
+                    if (section.offsetHeight > highestSection) {
+                        highestSection = section.offsetHeight;
+                    }
                 }
-            }
-        });
-        sections.forEach((section) => {
-            if (section.classList.contains('section'+i)) {
-                section.style.height = highestSection+'px';
-            }
-        });
-        document.querySelector('.section-left'+i).style.height = highestSection+'px';
+            });
+            sections.forEach((section) => {
+                if (section.classList.contains('section'+i)) {
+                    section.style.height = highestSection+'px';
+                }
+            });
+            document.querySelector('.section-left'+i).style.height = highestSection+'px';
+        }
     }
 }
 

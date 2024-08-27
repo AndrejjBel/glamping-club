@@ -2,6 +2,10 @@
     background: var(--chalk);
 }
 
+.post-type-archive-glampings.search .site {
+    background: var(--color-bg);
+}
+
 .archive-glampings {
     position: relative;
     display: flex;
@@ -751,7 +755,7 @@
         position: absolute;
         top: 5px;
         right: 5px;
-        z-index: 99;
+        z-index: 9;
 
         &__btn-add-fav {
             position: absolute;

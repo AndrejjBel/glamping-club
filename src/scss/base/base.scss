@@ -174,6 +174,14 @@ body {
     margin-bottom: 60px;
 }
 
+.site-main-search {
+    margin-bottom: 60px;
+
+    & .archive-glampings {
+        margin-top: 40px;
+    }
+}
+
 a {
     color: inherit;
     text-decoration: none;

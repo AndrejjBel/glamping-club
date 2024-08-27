@@ -100,6 +100,11 @@ body {
 .site-main {
   margin-bottom: 60px; }
 
+.site-main-search {
+  margin-bottom: 60px; }
+  .site-main-search .archive-glampings {
+    margin-top: 40px; }
+
 a {
   color: inherit;
   text-decoration: none; }
@@ -493,6 +498,9 @@ strong, b {
     margin: 0px 50px;
     position: relative;
     transition: all linear .3s; }
+    .header-generale__form.search-page {
+      max-width: 500px;
+      margin: 0; }
     @media (max-width: 1199px) {
       .header-generale__form {
         display: none;
@@ -505,7 +513,11 @@ strong, b {
           visibility: visible;
           left: 0;
           margin: 0;
-          padding: 0 20%; } }
+          padding: 0 20%; }
+        .header-generale__form.search-page {
+          display: block;
+          opacity: 1;
+          visibility: visible; } }
     @media (max-width: 767px) {
       .header-generale__form.active {
         padding: 0 62px; } }
@@ -2466,6 +2478,9 @@ a.secondary {
 .post-type-archive-glampings .site {
   background: var(--chalk); }
 
+.post-type-archive-glampings.search .site {
+  background: var(--color-bg); }
+
 .archive-glampings {
   position: relative;
   display: flex;
@@ -2900,7 +2915,7 @@ a.secondary {
     position: absolute;
     top: 5px;
     right: 5px;
-    z-index: 99; }
+    z-index: 9; }
     .glamping-item__btns-fav-comp__btn-add-fav {
       position: absolute;
       top: 5px;
