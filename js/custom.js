@@ -925,7 +925,7 @@ function slickSlider() {
             <path d="M234.8 36.25c3.438 3.141 5.156 7.438 5.156 11.75c0 3.891-1.406 7.781-4.25 10.86L53.77 256l181.1 197.1c6 6.5 5.625 16.64-.9062 22.61c-6.5 6-16.59 5.594-22.59-.8906l-192-208c-5.688-6.156-5.688-15.56 0-21.72l192-208C218.2 30.66 228.3 30.25 234.8 36.25z"/>
         </svg>`;
         $('.mySlick1').slick({
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
           asNavFor: '.mySlick2',
           infinite: false,
@@ -936,25 +936,30 @@ function slickSlider() {
           nextArrow: '<button type="button" class="slick-next">'+iconBtnNext+'</button>',
           responsive: [
               {
+                  breakpoint: 1349,
+                  settings: {
+                      slidesToShow: 4,
+                      slidesToScroll: 1
+                  }
+              },
+              {
                   breakpoint: 1024,
                   settings: {
                       slidesToShow: 3,
-                      slidesToScroll: 3,
-                      infinite: true,
-                      dots: true
+                      slidesToScroll: 1
                   }
               },
               {
                   breakpoint: 767,
                   settings: {
                       slidesToShow: 2,
-                      slidesToScroll: 2
+                      slidesToScroll: 1
                   }
               },
               {
                   breakpoint: 480,
                   settings: {
-                      slidesToShow: 1,
+                      slidesToShow: 2,
                       slidesToScroll: 1
                   }
               }
@@ -962,7 +967,7 @@ function slickSlider() {
         });
 
         $('.mySlick2').slick({
-          slidesToShow: 4,
+          slidesToShow: 5,
           slidesToScroll: 1,
           asNavFor: '.mySlick1',
           infinite: false,
@@ -970,23 +975,30 @@ function slickSlider() {
           arrows: false,
           responsive: [
               {
+                  breakpoint: 1349,
+                  settings: {
+                      slidesToShow: 4,
+                      slidesToScroll: 1
+                  }
+              },
+              {
                   breakpoint: 1024,
                   settings: {
                       slidesToShow: 3,
-                      slidesToScroll: 3
+                      slidesToScroll: 1
                   }
               },
               {
                   breakpoint: 767,
                   settings: {
                       slidesToShow: 2,
-                      slidesToScroll: 2
+                      slidesToScroll: 1
                   }
               },
               {
                   breakpoint: 480,
                   settings: {
-                      slidesToShow: 1,
+                      slidesToShow: 2,
                       slidesToScroll: 1
                   }
               }

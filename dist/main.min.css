@@ -2939,6 +2939,12 @@ a.secondary {
     z-index: 4; }
     .glamping-item__thumbnail.compare {
       height: 200px; }
+      @media (max-width: 576px) {
+        .glamping-item__thumbnail.compare {
+          height: 140px; } }
+      @media (max-width: 439px) {
+        .glamping-item__thumbnail.compare {
+          height: 120px; } }
     .glamping-item__thumbnail img {
       position: absolute;
       top: 0px;
@@ -2956,6 +2962,7 @@ a.secondary {
     gap: 12px;
     padding: 16px; }
     .glamping-item__content.compare {
+      gap: 4px;
       flex-direction: column; }
     .glamping-item__content__left {
       flex: 1;
@@ -2981,17 +2988,26 @@ a.secondary {
           .glamping-item__content__right__price span.price-number {
             font-size: 22px;
             font-weight: 700; }
+            @media (max-width: 439px) {
+              .glamping-item__content__right__price span.price-number.compare {
+                font-size: 18px; } }
           .glamping-item__content__right__price span.price-text {
             margin-top: auto;
             color: var(--text-color-light); }
       .glamping-item__content__right__btn {
         z-index: 99; }
+        .glamping-item__content__right__btn button.compare {
+          padding: 6px; }
         .glamping-item__content__right__btn span {
           display: block;
           font-size: 12px;
           color: var(--text-color-light); }
     .glamping-item__content__title {
       font-weight: 600; }
+
+@media (max-width: 439px) and (max-width: 439px) {
+  .glamping-item__content__title.compare {
+    font-size: 14px; } }
     .glamping-item__content__rating {
       display: flex;
       gap: 8px;

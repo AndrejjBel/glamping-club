@@ -788,6 +788,14 @@
 
         &.compare {
             height: 200px;
+
+            @media (max-width: 576px) {
+                height: 140px;
+            }
+
+            @media (max-width: 439px) {
+                height: 120px;
+            }
         }
 
         & img {
@@ -812,6 +820,7 @@
         padding: 16px;
 
         &.compare {
+            gap: 4px;
             flex-direction: column;
         }
 
@@ -847,6 +856,12 @@
                     &.price-number {
                         font-size: 22px;
                         font-weight: 700;
+
+                        @media (max-width: 439px) {
+                            &.compare {
+                                font-size: 18px;
+                            }
+                        }
                     }
 
                     &.price-text {
@@ -859,6 +874,10 @@
             &__btn {
                 z-index: 99;
 
+                & button.compare {
+                    padding: 6px;
+                }
+
                 & span {
                     display: block;
                     font-size: 12px;
@@ -869,6 +888,14 @@
 
         &__title {
             font-weight: 600;
+
+            @media (max-width: 439px) {
+                @media (max-width: 439px) {
+                    &.compare {
+                        font-size: 14px;
+                    }
+                }
+            }
         }
 
         &__rating {
