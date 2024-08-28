@@ -214,7 +214,7 @@ function get_accommodation_options() {
 				$media .= '<div class="acc-gallery galery' . $i . '">';
 				$media .= '<div id="sw-' . $i . '" class="swiper-wrapper">';
 				foreach ( $media_gallery as $key => $value ) {
-					$url = wp_get_attachment_image_url( $key, 'medium' );
+					$url = wp_get_attachment_image_url( $key, 'glamping-club-thumb' );
 					$url_full = wp_get_attachment_image_url( $key, 'full' );
 					$media .= '<div class="acc-gallery__item swiper-slide gallery-' . $i . '">';
 					$media .= '<a href="' . $url_full . '" class="acc-media">';

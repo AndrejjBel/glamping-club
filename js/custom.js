@@ -49,7 +49,7 @@ const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
     const swiperType = new Swiper(index, {
         slidesPerView: defolt,
         spaceBetween: 10,
-        // loop: true,
+        loop: true,
         pagination: {
             el: ".swiper-pagination",
             type: "progressbar",
