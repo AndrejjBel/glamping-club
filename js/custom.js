@@ -8,6 +8,22 @@ const preloader = () => {
 }
 preloader();
 
+const cookieHidden = () => {
+    const cookieBar = document.querySelector('.cookie-bar')
+    const btnCookie = document.querySelector('#cookie-yes')
+    if ( cookieBar ) {
+        let cookieUser = localStorage.getItem('climatCookieUser')
+        if ( cookieUser !== 'yes' ) {
+            cookieBar.classList.add('visible')
+        }
+        btnCookie.addEventListener('click', (e)=> {
+            localStorage.setItem('climatCookieUser', 'yes' )
+            cookieBar.classList.remove('visible')
+        })
+    }
+}
+cookieHidden();
+
 const singleThumbnailGallery = () => {
     const thumbGallery = document.querySelector('#single-thumbnail');
     if (!thumbGallery) return;

@@ -1010,6 +1010,40 @@ strong, b {
     .contact-item__item span {
       display: block; }
 
+.cookie-bar {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  background: var(--grey-color);
+  border-radius: 12px 12px 0 0;
+  padding: 20px 40px;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transition: 0.3s all; }
+  .cookie-bar__message p {
+    color: #FFFFFF;
+    font-size: 13px; }
+    .cookie-bar__message p a {
+      color: var(--link-color-dop); }
+      .cookie-bar__message p a:hover {
+        color: #FFFFFF; }
+  .cookie-bar__btn {
+    display: flex;
+    height: -moz-fit-content;
+    height: fit-content;
+    padding: 6px; }
+    .cookie-bar__btn svg {
+      transition: 0.3s all; }
+    .cookie-bar__btn:hover svg {
+      opacity: 0.4; }
+  .cookie-bar.visible {
+    opacity: 1;
+    visibility: visible; }
+
 .dashboard {
   position: relative;
   display: flex;

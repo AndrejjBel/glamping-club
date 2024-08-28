@@ -191,3 +191,51 @@
         }
     }
 }
+
+.cookie-bar {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    gap: 16px;
+    justify-content: space-between;
+    background: var(--grey-color);
+    border-radius: 12px 12px 0 0;
+    padding: 20px 40px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.3s all;
+
+    &__message p {
+        color: #FFFFFF;
+        font-size: 13px;
+
+        & a {
+            color: var(--link-color-dop);
+
+            &:hover {
+                color: #FFFFFF;
+            }
+        }
+    }
+
+    &__btn {
+        display: flex;
+        height: fit-content;
+        padding: 6px;
+
+        & svg {
+            transition: 0.3s all;
+        }
+
+        &:hover svg {
+            opacity: 0.4;
+        }
+    }
+
+    &.visible {
+        opacity: 1;
+        visibility: visible;
+    }
+}

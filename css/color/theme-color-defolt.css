@@ -13,6 +13,7 @@
 
     --footer-color: #080229;
     --footer-end-color: #0d0633;
+    --grey-color: #5E6D77;
 
     --text-color: #161616;
     --text-color-light: #555555;
@@ -45,6 +46,7 @@
     --link-color: #1921B1;
     --link-color-hover: #4D54D8;
     --chalk: #f5f5f5;
+    --link-color-dop: #aeb2ff;
 
     --color-primary-shadow: rgba(0, 0, 0, 0.1);
     --color-header-shadow: rgba(34, 60, 80, 0.12);
@@ -109,6 +111,7 @@
     --link-color: #1921B1;
     --link-color-hover: #4D54D8;
     --chalk: #f5f5f5;
+    --link-color-dop: #aeb2ff;
 
     --color-primary-shadow: rgba(0, 0, 0, 0.1);
     --color-header-shadow: rgba(34, 60, 80, 0.12);
