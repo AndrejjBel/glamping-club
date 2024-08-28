@@ -801,6 +801,9 @@
 
     &__current {
         font-weight: 600;
-        color: var(--color-primary);
+        color: #ffffff;
+        background: var(--color-primary);
+        padding: 0 4px;
+        border-radius: 4px;
     }
 }

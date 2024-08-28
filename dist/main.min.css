@@ -886,7 +886,10 @@ strong, b {
         fill: var(--text-color, #161616); }
   .breadcrumbs__current {
     font-weight: 600;
-    color: var(--color-primary); }
+    color: #ffffff;
+    background: var(--color-primary);
+    padding: 0 4px;
+    border-radius: 4px; }
 
 .site__footer {
   background: var(--footer-color);
