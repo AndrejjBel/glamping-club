@@ -221,7 +221,7 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
   justify-content: center;
   background: #fff;
   transition: all 0.3s;
-  opacity: 0.9; }
+  opacity: 1; }
 
 .preloader-remove {
   opacity: 0;
