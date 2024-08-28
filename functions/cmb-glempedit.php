@@ -292,10 +292,21 @@ function register_single_glampings_metabox_front() {
 		'type' => 'text_url',
 		'protocols' => array( 'http', 'https' ),
         'classes' => 'glc-form-group',
-        'protocols' => array( 'http', 'https' ),
 		'attributes' => array(
             'data-valid' => 'required-field'
 		),
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
+		'name' => __( 'Официальный сайт', 'glamping-club' ),
+		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
+		'id'   => 'site_glamping_ofic',
+		'type' => 'text_url',
+		'protocols' => array( 'http', 'https' ),
+		'classes' => 'glc-form-group',
+		// 'attributes' => array(
+		// 	'data-validation' => 'required'
+		// ),
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
@@ -431,36 +442,36 @@ function register_single_glampings_metabox_front() {
 	) );
 
 	// Скидка
-	$group_field_discount = $single_glampings->add_field( array(
-		'id'          => 'discount',
-		'type'        => 'group',
-		// 'description' => esc_html__( 'Группа полей', 'glamping-club' ),
-		'repeatable'  => false,
-		'options'     => array(
-			'group_title'    => esc_html__( 'Скидка', 'cmb2' ),
-			'closed'         => true
-		),
-	) );
-
-	$single_glampings->add_group_field( $group_field_discount, array(
-		'name' => esc_html__( 'Промокод', 'glamping-club' ),
-		'id'   => 'promo_code',
-		'type' => 'text',
-        'classes' => 'glc-form-group glc-form-group-number'
-	) );
-
-	$single_glampings->add_group_field( $group_field_discount, array(
-		'name' => esc_html__( 'Скидка', 'glamping-club' ),
-		'id'   => 'discount',
-		'type' => 'text',
-        'classes' => 'glc-form-group glc-form-group-number'
-	) );
-
-	$single_glampings->add_group_field( $group_field_discount, array(
-		'name' => esc_html__( 'Описание скидки', 'glamping-club' ),
-		'id'   => 'discount_text',
-		'type' => 'textarea',
-	) );
+	// $group_field_discount = $single_glampings->add_field( array(
+	// 	'id'          => 'discount',
+	// 	'type'        => 'group',
+	// 	// 'description' => esc_html__( 'Группа полей', 'glamping-club' ),
+	// 	'repeatable'  => false,
+	// 	'options'     => array(
+	// 		'group_title'    => esc_html__( 'Скидка', 'cmb2' ),
+	// 		'closed'         => true
+	// 	),
+	// ) );
+	//
+	// $single_glampings->add_group_field( $group_field_discount, array(
+	// 	'name' => esc_html__( 'Промокод', 'glamping-club' ),
+	// 	'id'   => 'promo_code',
+	// 	'type' => 'text',
+    //     'classes' => 'glc-form-group glc-form-group-number'
+	// ) );
+	//
+	// $single_glampings->add_group_field( $group_field_discount, array(
+	// 	'name' => esc_html__( 'Скидка', 'glamping-club' ),
+	// 	'id'   => 'discount',
+	// 	'type' => 'text',
+    //     'classes' => 'glc-form-group glc-form-group-number'
+	// ) );
+	//
+	// $single_glampings->add_group_field( $group_field_discount, array(
+	// 	'name' => esc_html__( 'Описание скидки', 'glamping-club' ),
+	// 	'id'   => 'discount_text',
+	// 	'type' => 'textarea',
+	// ) );
 
     $single_glampings->add_field( array(
 		'name' => esc_html__( 'Основное фото', 'glamping-club' ),

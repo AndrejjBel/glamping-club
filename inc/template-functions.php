@@ -507,13 +507,13 @@ function get_contact_information_content() {
 			</div>
 		</div>
 	<?php }} ?>
-	<?php if (array_key_exists('site_glamping', $meta_obj)) {
-		if ($meta_obj['site_glamping']) {
+	<?php if (array_key_exists('site_glamping_ofic', $meta_obj)) {
+		if ($meta_obj['site_glamping_ofic']) {
 	?>
 		<div class="single-aside__content__item">
 			<div class="single-aside__content__item__title">Официальный сайт:</div>
 			<div class="single-aside__content__item__text">
-				<a href="<?php echo $meta_obj['site_glamping']; ?>"><?php echo punycodeInCyrillic($meta_obj['site_glamping']); ?></a>
+				<a href="<?php echo $meta_obj['site_glamping_ofic']; ?>"><?php echo punycodeInCyrillic($meta_obj['site_glamping_ofic']); ?></a>
 			</div>
 		</div>
 	<?php }} ?>

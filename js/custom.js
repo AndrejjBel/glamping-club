@@ -1060,8 +1060,8 @@ slickSlider();
 function sectionAutoHeight(items) {
     const sections = document.querySelectorAll('.compare-item__section');
     if (sections.length) {
-        let highestSection = 0;
         for (let i = 1; i <= items; i++) {
+            let highestSection = 0;
             sections.forEach((section) => {
                 if (section.classList.contains('section'+i)) {
                     if (section.offsetHeight > highestSection) {

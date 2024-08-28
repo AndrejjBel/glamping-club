@@ -253,6 +253,18 @@ function register_single_glampings_metabox() {
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
+		'name' => esc_html__( 'Официальный сайт', 'glamping-club' ),
+		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
+		'id'   => 'site_glamping_ofic',
+		'type' => 'text_url',
+		'protocols' => array( 'http', 'https' ),
+		'attributes' => array(
+			'data-validation' => 'required',
+			// 'required'    => 'required'
+		),
+	) );
+
+	$single_glampings->add_group_field( $group_field, array(
 		'name' => esc_html__( 'Сайт для бронирования', 'glamping-club' ),
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'site_glamping',
