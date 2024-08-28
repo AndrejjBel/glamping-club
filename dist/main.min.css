@@ -3406,6 +3406,9 @@ ul.item-options-checkbox {
 
 .glc-postedit .cmb-td {
   padding: 0; }
+  .glc-postedit .cmb-td textarea {
+    width: 100%;
+    border: 1px solid #D7DCE3; }
 
 .glc-postedit .glc-form-group {
   max-width: 800px;

@@ -66,6 +66,11 @@
 
     & .cmb-td {
         padding: 0;
+
+        & textarea {
+            width: 100%;
+            border: 1px solid #D7DCE3;
+        }
     }
 
     & .glc-form-group {

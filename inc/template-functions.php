@@ -54,7 +54,7 @@ function glamping_single_thumbnail($post_id) {
 	$media = array_unique(glamping_all_img($post_id), SORT_REGULAR);
 	if (count($media) == 1) {
 		echo '<div class="thumbnail-gallery__first">';
-		$url = wp_get_attachment_image_url( $media[0], 'glamping-club-thumb' );
+		$url = wp_get_attachment_image_url( $media[0], 'full' );
 		$url_full = wp_get_attachment_image_url( $media[0], 'full' );
 		echo '<a href="' . $url_full . '" class="item">';
 		echo '<img src="' . $url . '" alt="" loading="lazy" /></a>';
@@ -63,7 +63,7 @@ function glamping_single_thumbnail($post_id) {
 		$i = 1;
 		echo '<div class="thumbnail-gallery__first">';
 		foreach ( $media as $img ) {
-			$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+			$url = wp_get_attachment_image_url( $img, 'full' );
 			$url_full = wp_get_attachment_image_url( $img, 'full' );
 			if ($i == 1) {
 				echo '<a href="' . $url_full . '" class="item">';
@@ -75,7 +75,7 @@ function glamping_single_thumbnail($post_id) {
 		$it = 0;
 		echo '<div class="thumbnail-gallery__two">';
 		foreach ( $media as $img ) {
-			$url = wp_get_attachment_image_url( $img, 'medium' );
+			$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
 			$url_full = wp_get_attachment_image_url( $img, 'full' );
 			if ($it > 0) {
 				echo '<a href="' . $url_full . '" class="item">';

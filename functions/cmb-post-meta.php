@@ -359,7 +359,7 @@ function register_single_glampings_metabox() {
 		'name' => esc_html__( 'Отмена бронирования:', 'glamping-club' ),
 		'desc' => esc_html__( 'например: за 7 дней - 100% возврат', 'glamping-club' ),
 		'id'   => 'cancel_reservation',
-		'type' => 'text',
+		'type' => 'textarea_small',
 	) );
 
 	$single_glampings->add_group_field( $group_field, array(
