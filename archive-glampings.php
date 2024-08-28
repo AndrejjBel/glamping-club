@@ -120,7 +120,7 @@ query_posts($args);
 			<div id="mapYandex" class="glampings-map__content"></div>
 		</div>
 		<div class="archive-glampings__btn-map-mobile">
-			<button id="<?php echo $btn_map_mobile_id; ?>" class="primary green lsm js-btn-map-mobile" type="button" name="button">
+			<button id="<?php echo $btn_map_mobile_id; ?>" class="primary lsm js-btn-map-mobile" type="button" name="button">
 				<?php echo $btn_map_mobile_text; ?>
 			</button>
 		</div>
