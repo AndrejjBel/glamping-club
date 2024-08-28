@@ -48,7 +48,7 @@ const singleAccOptionGallery = () => {
 const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
     const swiperType = new Swiper(index, {
         slidesPerView: defolt,
-        spaceBetween: 10,
+        spaceBetween: 4,
         loop: true,
         loopAddBlankSlides: true,
         pagination: {
