@@ -229,7 +229,7 @@ $statistics = glampings_reviews_statistic($post->ID);
     	        //iconCaption: title
                 hintContent: title
             }, {
-                preset: 'islands#greenMountainIcon',
+                preset: 'islands#darkBlueMountainIcon',
             });
             myMap.geoObjects.add(myPlacemark);
             myMap.behaviors.disable(['scrollZoom']);
