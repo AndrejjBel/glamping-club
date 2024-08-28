@@ -207,6 +207,10 @@
     visibility: hidden;
     transition: 0.3s all;
 
+    @media (max-width: 576px) {
+        padding: 10px;
+    }
+
     &__message p {
         color: #FFFFFF;
         font-size: 13px;

@@ -1024,6 +1024,9 @@ strong, b {
   opacity: 0;
   visibility: hidden;
   transition: 0.3s all; }
+  @media (max-width: 576px) {
+    .cookie-bar {
+      padding: 10px; } }
   .cookie-bar__message p {
     color: #FFFFFF;
     font-size: 13px; }
