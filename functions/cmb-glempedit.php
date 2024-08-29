@@ -483,7 +483,10 @@ function register_single_glampings_metabox_front() {
         ),
 		'preview_size' => array( 220, 220 ),
         'classes' => 'glc-form-group glc-form-group-thumbnail',
-        'default_cb' => 'set_to_post_thumbnail'
+        'default_cb' => 'set_to_post_thumbnail',
+		'query_args' => array(
+			'author' => get_current_user_id()
+		),
 	) );
 
 	// Фото
@@ -504,6 +507,9 @@ function register_single_glampings_metabox_front() {
 		'preview_size' => array( 100, 100 ),
 		'options' => array(
 			'url' => false, // Hide the text input for the url
+		),
+		'query_args' => array(
+			'author' => get_current_user_id()
 		),
 	) );
 
@@ -635,6 +641,9 @@ function register_single_glampings_metabox_front() {
 		'id'   => 'media_gallery',
 		'type' => 'file_list',
 		'preview_size' => array( 100, 100 ),
+		'query_args' => array(
+			'author' => get_current_user_id()
+		),
 	) );
 }
 
