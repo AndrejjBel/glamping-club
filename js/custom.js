@@ -1248,8 +1248,6 @@ const reviewsMore = () => {
 }
 reviewsMore();
 
-// console.dir(JSON.parse(glamping_club_ajax.glAll));
-
 function fileDown() {
     let load = document.querySelector('#load');
     if (!load) return;
@@ -1360,3 +1358,5 @@ function accFor(acc, item) {
         }
     });
 }
+
+console.dir(JSON.parse(glamping_club_ajax.glAll));
