@@ -30,7 +30,7 @@ if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 <div class="cookie-bar">
     <span class="cookie-bar__message">
         <p>Этот веб-сайт использует файлы cookies, чтобы обеспечить удобную работу пользователей с ними и функциональные возможности сайта.</p>
-        <p>Продолжив использование сайта, Вы соглашаетесь с условиями использования файлов cookies в соответствии с <a href="#">"Политикой обработки и обеспечения безопасности персональных данных"</a></p>
+        <p>Продолжив использование сайта, Вы соглашаетесь с условиями использования файлов cookies в соответствии с <a href="/privacy-policy/">"Политикой обработки и обеспечения безопасности персональных данных"</a></p>
     </span>
     <button id="cookie-yes" class="cookie-bar__btn" type="button" name="button">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
