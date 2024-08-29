@@ -145,6 +145,10 @@
     width: calc(100% - 288px);
     padding-right: 16px;
 
+    &.related-list {
+        width: 100%;
+    }
+
     @media (max-width: 1399px) {
         width: calc(100% - 240px);
     }
@@ -1058,4 +1062,17 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+}
+
+.related-wrap {
+    padding-top: 40px;
+    padding-bottom: 60px;
+    background: var(--chalk);
+}
+
+.related-list {
+
+    &__title {
+        width: 100%;
+    }
 }

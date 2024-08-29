@@ -1674,11 +1674,14 @@ a.btn-back-to-home {
 
 .btn-group {
   display: flex;
-  border-radius: 8px;
-  overflow: hidden; }
-  .btn-group button {
-    border-radius: 0;
-    padding: 8px 0; }
+  gap: 20px; }
+  .btn-group.btn-group-map {
+    gap: 0;
+    border-radius: 8px;
+    overflow: hidden; }
+    .btn-group.btn-group-map button {
+      border-radius: 0;
+      padding: 8px 0; }
 
 .btn-filter-clear {
   visibility: hidden;
@@ -2706,6 +2709,8 @@ a.secondary {
   flex-wrap: wrap;
   width: calc(100% - 288px);
   padding-right: 16px; }
+  .glampings-items.related-list {
+    width: 100%; }
   @media (max-width: 1399px) {
     .glampings-items {
       width: calc(100% - 240px); } }
@@ -3225,6 +3230,14 @@ a.secondary {
   height: 100%;
   -o-object-fit: cover;
      object-fit: cover; }
+
+.related-wrap {
+  padding-top: 40px;
+  padding-bottom: 60px;
+  background: var(--chalk); }
+
+.related-list__title {
+  width: 100%; }
 
 .glcf-scroll {
   height: 82vh;

@@ -6,7 +6,7 @@
  *
  * @package Glamping_club
  */
-
+global $post;
 get_header();
 ?>
 
@@ -15,6 +15,15 @@ get_header();
 		<?php get_template_part( 'template-parts/glampings/single'); ?>
 
 	</main><!-- #main -->
+
+	<div class="related-wrap">
+		<div class="glampings-items card related-list container">
+			<div class="related-list__title">
+	            <h3>Вам также может понравиться:</h3>
+	        </div>
+			<?php glampings_related_list($post->ID); ?>
+		</div>
+	</div>
 
 	<div class="contacts-mobail-btn">
 		<div class="contacts-mobail-btn__content">
