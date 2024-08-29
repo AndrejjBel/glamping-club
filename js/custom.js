@@ -12,12 +12,12 @@ const cookieHidden = () => {
     const cookieBar = document.querySelector('.cookie-bar')
     const btnCookie = document.querySelector('#cookie-yes')
     if ( cookieBar ) {
-        let cookieUser = localStorage.getItem('climatCookieUser')
+        let cookieUser = localStorage.getItem('glempCookieUser')
         if ( cookieUser !== 'yes' ) {
             cookieBar.classList.add('visible')
         }
         btnCookie.addEventListener('click', (e)=> {
-            localStorage.setItem('climatCookieUser', 'yes' )
+            localStorage.setItem('glempCookieUser', 'yes' )
             cookieBar.classList.remove('visible')
         })
     }
