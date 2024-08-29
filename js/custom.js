@@ -1352,7 +1352,7 @@ function accordion(btnSelector, afterClose=0) {
         });
     }
 }
-accordion('.faq-item__btn', 1);
+accordion('.faq-item__header', 1);
 
 function accFor(acc, item) {
     acc.forEach((el) => {

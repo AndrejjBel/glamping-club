@@ -237,6 +237,7 @@ $statistics = glampings_reviews_statistic($post->ID);
             myMap.behaviors.disable(['scrollZoom']);
         }
     </script>
+    
 <?php }
 get_template_part( 'template-parts/popups/add-rating' );
 // $media = get_attached_media( 'image', $post->ID );
