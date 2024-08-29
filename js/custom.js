@@ -1,5 +1,3 @@
-// import ItcAccordion from './assets/accordion/js/multilevel-accordion.js';
-
 const preloader = () => {
     window.onload = function() {
         const preload = document.querySelector('.preloader');
