@@ -39,6 +39,9 @@ function register_reviews_metabox() {
 			'url' => false, // Hide the text input for the url
 		),
 		'classes' => 'glc-form-reviews',
+		'query_args' => array(
+			'author' => get_current_user_id()
+		),
 	) );
 }
 
