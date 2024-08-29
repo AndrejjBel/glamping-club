@@ -32,7 +32,7 @@
             border-radius: 12px;
             right: 20px;
             bottom: 180px;
-            z-index: 9;
+            z-index: 999;
 
             @media (max-width: 576px) {
                 width: calc(100vw - 30px);
@@ -646,7 +646,7 @@ article.type-glampings {
         display: block;
         bottom: 100px;
         right: 20px;
-        z-index: 2;
+        z-index: 99;
     }
 
     @media (max-width: 476px) {
