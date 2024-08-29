@@ -1677,7 +1677,8 @@ a.btn-back-to-home {
   border-radius: 8px;
   overflow: hidden; }
   .btn-group button {
-    border-radius: 0; }
+    border-radius: 0;
+    padding: 8px 0; }
 
 .btn-filter-clear {
   visibility: hidden;
