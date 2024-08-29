@@ -11,9 +11,9 @@
         </svg>
     </button> -->
     <div class="filtr-item btn-map">
-        <div class="filtr-item__options btn-group pad12 js-btn-map">
-            <button id="mapClose" class="secondary fs12 w100<?php echo template_cookie_value()['btn_close']; ?>" type="button" name="button">Список</button>
-            <button id="mapVision" class="secondary fs12 w100<?php echo template_cookie_value()['btn_vision']; ?>" type="button" name="button">Карта</button>
+        <div class="filtr-item__options btn-group js-btn-map">
+            <button id="mapClose" class="secondary fs12 w100 map-close<?php echo template_cookie_value()['btn_close']; ?>" type="button" name="button">Список</button>
+            <button id="mapVision" class="secondary fs12 w100 map-vision<?php echo template_cookie_value()['btn_vision']; ?>" type="button" name="button">Карта</button>
         </div>
     </div>
 

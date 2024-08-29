@@ -1674,7 +1674,10 @@ a.btn-back-to-home {
 
 .btn-group {
   display: flex;
-  gap: 20px; }
+  border-radius: 8px;
+  overflow: hidden; }
+  .btn-group button {
+    border-radius: 0; }
 
 .btn-filter-clear {
   visibility: hidden;
@@ -3306,9 +3309,11 @@ a.secondary {
     padding: 0 12px 12px 12px; }
   .filtr-item__slider {
     padding: 0 26px 12px 26px; }
-  @media (max-width: 767px) {
-    .filtr-item.btn-map {
-      display: none; } }
+  .filtr-item.btn-map {
+    padding: 12px; }
+    @media (max-width: 767px) {
+      .filtr-item.btn-map {
+        display: none; } }
 
 .filtr-option {
   display: flex;
