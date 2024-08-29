@@ -1,3 +1,5 @@
+// import ItcAccordion from './assets/accordion/js/multilevel-accordion.js';
+
 const preloader = () => {
     window.onload = function() {
         const preload = document.querySelector('.preloader');
@@ -1328,25 +1330,35 @@ function localChengC(name, value) {
     return ls_obj.length;
 }
 
-// const sections = document.querySelectorAll('.compare-item__section');
-// let highestSection = 0;
-// sections.forEach((section) => {
-//     if (section.classList.contains('section9')) {
-//         console.dir(section.offsetHeight);
-//         if (section.offsetHeight > highestSection) {
-//             highestSection = section.offsetHeight;
-//         }
-//     }
-// });
-// console.dir(highestSection);
+function accordion(btnSelector, afterClose=0) {
+    const acc = document.querySelectorAll('.faq-item '+btnSelector);
+    if (acc.length) {
+        acc.forEach((item) => {
+            item.addEventListener('click', function() {
+                if (afterClose) {
+                    accFor(acc, item);
+                    if (item.classList.contains('active')) {
+                        item.classList.remove('active');
+                        item.nextElementSibling.classList.remove('active');
+                    } else {
+                        item.classList.add('active');
+                        item.nextElementSibling.classList.add('active');
+                    }
+                } else {
+                    item.classList.toggle('active');
+                    item.nextElementSibling.classList.toggle('active');
+                }
+            });
+        });
+    }
+}
+accordion('.faq-item__btn', 1);
 
-// $(".mySlick1").each(function() {
-//     var highestSlide = 0;
-//     var slider = $(this);
-//     slider.find(".slick-slide").each(function() {
-//         if ($(this).height() > highestSlide) {
-//             highestSlide = $(this).height();
-//         }
-//     });
-//     slider.find(".slick-slide").css("height", highestSlide + "px");
-// });
+function accFor(acc, item) {
+    acc.forEach((el) => {
+        if (el != item) {
+            el.nextElementSibling.classList.remove('active');
+            el.classList.remove('active');
+        }
+    });
+}

@@ -138,6 +138,9 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_script('slick', get_stylesheet_directory_uri() . '/assets/slick/slick.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/slick/slick.min.js' ), [ 'strategy' => 'defer' ]
     );
+    // wp_enqueue_script('accordion', get_stylesheet_directory_uri() . '/assets/accordion/js/accordion.js',	array(),
+    //     filemtime( get_stylesheet_directory() . '/assets/accordion/js/accordion.js' ), [ 'strategy' => 'defer' ]
+    // );
 
     wp_enqueue_script('swiped-events', get_stylesheet_directory_uri() . '/assets/swiped-events.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/swiped-events.min.js' ), [ 'strategy' => 'defer' ]

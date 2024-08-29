@@ -121,6 +121,8 @@ $statistics = glampings_reviews_statistic($post->ID);
         </div>
     <?php } ?>
 
+    <?php faq_item($post->faq_options); ?>
+
     <div class="single-section reviews-button">
         <div class="single-section__title">
             <h3>Отзывы</h3>
@@ -312,5 +314,5 @@ get_template_part( 'template-parts/popups/add-rating' );
 
 // $glc_options = get_option( 'glc_options' );
 // echo '<pre>';
-// var_dump($glc_options['telegram_id']);
+// var_dump($faq_options);
 // echo '<pre>';

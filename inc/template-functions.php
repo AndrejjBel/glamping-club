@@ -164,29 +164,27 @@ function get_additionally_content() {
 function get_accommodation_options() {
 	global $post;
     $meta_object = get_post_meta($post->ID, 'acc_options');
-	$meta_obj = $meta_object[0];
-    // if (!empty($meta_object)) {
-    //     $meta_obj = $meta_object[0];
-    // } else {
-    //     return false;
-    // }
-
+	// $meta_obj = $meta_object[0];
 	$is_meta = 0;
-	$meta_object_n = $meta_object[0];
-	$meta_object_nn = '';
-	if (count($meta_object_n) > 1) {
-		$is_meta = 1;
-	} else {
-	    $meta_object_nn = $meta_object[0][0];
-	    foreach ($meta_object_nn as $key => $value) {
-	        if (empty($value)) { //проверка на пустоту
-	            unset($meta_object_nn[$key]); // Удаляем ключ массива
-	        }
-	    }
-		if ($meta_object_nn) {
+    if (!empty($meta_object)) {
+        $meta_obj = $meta_object[0];
+
+		$meta_object_n = $meta_object[0];
+		$meta_object_nn = '';
+		if (count($meta_object_n) > 1) {
 			$is_meta = 1;
+		} else {
+		    $meta_object_nn = $meta_object[0][0];
+		    foreach ($meta_object_nn as $key => $value) {
+		        if (empty($value)) { //проверка на пустоту
+		            unset($meta_object_nn[$key]); // Удаляем ключ массива
+		        }
+		    }
+			if ($meta_object_nn) {
+				$is_meta = 1;
+			}
 		}
-	}
+    }
 
 	if ($is_meta) {
 	?>
@@ -1274,4 +1272,34 @@ function glampings_reviews_statistic($post_id) {
         'r1' => $star1,
     ];
     wp_die();
+}
+
+function faq_item($faq_options, $title='Часто задаваемые вопросы', $templ=1) {
+	if ($faq_options) {
+		$content = '<div class="single-section faq-section">';
+		$content .= '<div class="single-section__title">
+			<h3>' . $title . '</h3>
+		</div>';
+		$content .= '<div class="single-section__content faq-section__content">';
+		foreach ($faq_options as $key => $faq_option) {
+			$active = '';
+			if ($key == 0) {
+				$active = ' active';
+			}
+			$content .= '<div class="faq-item">
+				<button class="faq-item__btn' . $active . '">' . $faq_option["title"] . '</button>
+				<div class="faq-item__panel' . $active . '">
+					<p>' . $faq_option["text"] . '</p>
+				</div>
+			</div>';
+		}
+		$content .= '</div>';
+    	$content .= '</div>';
+
+		if ($templ) {
+			echo $content;
+		} else {
+			return $content;
+		}
+	}
 }
