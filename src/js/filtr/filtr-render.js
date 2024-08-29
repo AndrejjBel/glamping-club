@@ -1987,7 +1987,7 @@ const addFavCom = () => {
     const comparisonBtns = document.querySelectorAll('#add-comparison');
     const singleGlampings = document.querySelector('.single-glampings');
     const comparesMain = document.querySelector('.compares-main');
-    if (!singleGlampings && !comparesMain) return;
+    if (!comparesMain) return;
     if (favoritesBtns.length) {
         const supFavorites = document.querySelectorAll('#sup-favorites');
         favoritesBtns.forEach((btn) => {
