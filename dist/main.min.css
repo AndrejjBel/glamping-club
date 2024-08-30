@@ -3244,7 +3244,7 @@ a.secondary {
   overflow: auto;
   padding-right: 8px; }
   .glcf-scroll.height-auto {
-    height: 100vh; }
+    height: 100%; }
   @media (max-width: 767px) {
     .glcf-scroll {
       height: 100vh; } }
