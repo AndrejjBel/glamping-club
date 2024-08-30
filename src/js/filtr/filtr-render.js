@@ -735,8 +735,6 @@ function priceSliderRender(arr) {
         priceMin = +pricesObj;
         priceMax = +pricesObj;
     }
-    console.dir(arr);
-    console.dir(pricesObj);
     sliderNumber(priceMin, priceMax, priceMin, priceMax);
     return {priceMin: priceMin, priceMax: priceMax};
 }
@@ -756,8 +754,8 @@ function priceSliderOption(arr) {
         priceMax = Math.max.apply(null, pricesObj);
     } else {
         pricesObj = arr[0].price
-        priceMin = pricesObj;
-        priceMax = pricesObj;
+        priceMin = +pricesObj;
+        priceMax = +pricesObj;
     }
     return [priceMin, priceMax];
 }
