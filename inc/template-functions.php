@@ -879,6 +879,7 @@ function filtr_cookie_value($name='') {
 
 function template_cookie_value() {
 	$no_map = '';
+	$glcf_scroll = '';
 	$card_list = ' list';
 	$map = ' active';
 	$btn_vision = ' active';
@@ -886,6 +887,7 @@ function template_cookie_value() {
 	if ( !empty( $_COOKIE["glcTemp"] ) ) {
 		if ($_COOKIE["glcTemp"] == 'mapClose') {
 			$no_map = ' no-map';
+			$glcf_scroll = ' height-auto';
 			$card_list = ' card';
 			$map = '';
 			$btn_vision = '';
@@ -895,7 +897,7 @@ function template_cookie_value() {
 		// 	// code...
 		// }
 	}
-	return ['no_map' => $no_map, 'card_list' => $card_list, 'map' => $map, 'btn_vision' => $btn_vision, 'btn_close' => $btn_close];
+	return ['no_map' => $no_map, 'glcf_scroll' => $glcf_scroll, 'card_list' => $card_list, 'map' => $map, 'btn_vision' => $btn_vision, 'btn_close' => $btn_close];
 }
 
 function options_name($name) {

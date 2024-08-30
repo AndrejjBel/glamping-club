@@ -3123,7 +3123,7 @@ a.secondary {
             margin-top: auto;
             color: var(--text-color-light); }
       .glamping-item__content__right__btn {
-        z-index: 99; }
+        z-index: 9; }
         .glamping-item__content__right__btn button.compare {
           padding: 6px; }
         .glamping-item__content__right__btn span {
@@ -3243,6 +3243,8 @@ a.secondary {
   height: 82vh;
   overflow: auto;
   padding-right: 8px; }
+  .glcf-scroll.height-auto {
+    height: 100vh; }
   @media (max-width: 767px) {
     .glcf-scroll {
       height: 100vh; } }

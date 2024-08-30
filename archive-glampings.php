@@ -95,7 +95,7 @@ query_posts($args);
 
 	<main id="archive-glampings" class="archive-glampings container-ag">
 		<div class="archive-glampings__left<?php echo template_cookie_value()['no_map']; ?>">
-			<div class="glampings-filtr glcf-scroll custom-scroll">
+			<div class="glampings-filtr glcf-scroll custom-scroll<?php echo template_cookie_value()['glcf_scroll']; ?>">
 				<?php get_template_part( 'template-parts/glampings/archive-filtr' ); ?>
 			</div>
 			<?php if ( have_posts() ) : ?>

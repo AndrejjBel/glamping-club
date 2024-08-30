@@ -5,6 +5,10 @@
     overflow: auto;
     padding-right: 8px;
 
+    &.height-auto {
+        height: 100vh;
+    }
+
     @media (max-width: 767px) {
         height: 100vh;
     }

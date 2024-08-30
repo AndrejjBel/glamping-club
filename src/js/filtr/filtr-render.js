@@ -1851,6 +1851,7 @@ const listCardMap = () => {
     const glampingsItems = document.querySelector('#archive-glampings .glampings-items');
     const glampingsMap = document.querySelector('.glampings-map');
     const archGlampingsLeft = document.querySelector('.archive-glampings__left');
+    const glcfScroll = document.querySelector('.glcf-scroll');
     const btns = btnMap.querySelectorAll('button');
     btns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
@@ -1858,6 +1859,7 @@ const listCardMap = () => {
             btn.classList.add('active');
             if (btn.id == 'mapVision') {
                 archGlampingsLeft.classList.remove('no-map');
+                glcfScroll.classList.remove('height-auto');
                 glampingsItems.classList.remove('card');
                 glampingsItems.classList.add('list');
                 glampingsMap.classList.add('active');
@@ -1873,6 +1875,7 @@ const listCardMap = () => {
                 glampingsItems.classList.add('card');
                 glampingsMap.classList.remove('active');
                 archGlampingsLeft.classList.add('no-map');
+                glcfScroll.classList.add('height-auto');
             }
             Cookies.set('glcTemp', btn.id);
         });
