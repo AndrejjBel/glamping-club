@@ -1428,7 +1428,7 @@ function glampings_related_list($post_id) {
 
 function locations_list_filtr($exclude='') {
 	$terms = get_terms( array(
-		'hide_empty'  => 0,
+		'hide_empty'  => 1,
 		'orderby'     => 'name',
 		'order'       => 'ASC',
 		'taxonomy'    => 'location',
