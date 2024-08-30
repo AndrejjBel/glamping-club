@@ -284,7 +284,7 @@ function get_accommodation_options() {
 							<div class="acc-option__options__item item-price">
 								<!-- <div class="acc-option__options__item__title">Стоимость</div> -->
 								<div class="acc-option__options__item__value value-price">
-									<?php echo number_format($option['price'], 0, ',', ' ') . 'р'; ?>
+									<?php echo 'от ' . number_format($option['price'], 0, ',', ' ') . 'р'; ?>
 								</div>
 							</div>
 						<?php }} else { ?>
@@ -1416,7 +1416,7 @@ function glampings_related_list($post_id) {
 						<span class="price-text">за 1 ночь</span>
 					</div>
 					<div class="glamping-item__content__right__btn">
-						<button class="primary ld w100 btnvib" type="button" name="button">выбрать</button>
+						<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="primary ld w100 btnvib">выбрать</a>
 					</div>
 				</div>
 			</div>

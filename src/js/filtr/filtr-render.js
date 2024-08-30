@@ -1577,7 +1577,8 @@ function mapRender(geoData) {
 
             var swiper = new Swiper(".balloonPan", {
                 slidesPerView: 1,
-                spaceBetween: 8,
+                spaceBetween: 4,
+                loop: true,
                 navigation: {
                     nextEl: ".swiper-button-next",
                     prevEl: ".swiper-button-prev",
