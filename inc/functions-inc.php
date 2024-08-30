@@ -47,14 +47,16 @@ function glamping_club_main_scripts_old() {
     // if( is_front_page() ){
     //     $glempings = tripinglamp_home_location_list_json();
     // }
-    // if( is_post_type_archive( 'glampings' ) ){
-    //     $glempings = get_option('glampings_obj');
-    // }
-    // if( is_tax( 'location' ) ){
-    //     $category = get_queried_object();
-    //     $current_cat_id = $category->term_id;
-    //     $glempings = get_option('glampings_obj_'.$category->term_id);
-    // }
+    if( is_post_type_archive( 'glampings' ) ){
+        $glempings = get_option('glampings_obj');
+    }
+    if( is_tax( 'location' ) ){
+        $category = get_queried_object();
+        $current_cat_id = $category->term_id;
+        $glempings_loc = glamping_club_result_render($category->term_id);
+        $glempings = get_option('glampings_obj_'.$category->term_id);
+        $glempings_map = glampings_map_render($category->term_id);
+    }
     $yand_zoom = get_glc_option('glc_options', 'yand_zoom');
     $bundle_obj = [
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),

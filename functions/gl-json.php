@@ -78,13 +78,13 @@ function glamping_club_result_render($location=0) {
     }
     wp_reset_postdata();
     $glampings_fin = json_encode($glampings, JSON_HEX_TAG | JSON_HEX_APOS | JSON_HEX_QUOT | JSON_HEX_AMP | JSON_UNESCAPED_UNICODE);
-    // if ($location) {
-    //     $key = 'glampings_obj_' . $location;
-    //     update_option( $key, $glampings_fin );
-    // } else {
-    //     update_option( 'glampings_obj', $glampings_fin );
-    // }
-    update_option( 'glampings_obj', $glampings_fin, false );
+    if ($location) {
+        $key = 'glampings_obj_' . $location;
+        update_option( $key, $glampings_fin, false );
+    } else {
+        update_option( 'glampings_obj', $glampings_fin, false );
+    }
+    // update_option( 'glampings_obj', $glampings_fin, false );
     return $glampings_fin;
 }
 // glamping_club_result_render();

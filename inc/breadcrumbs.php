@@ -37,7 +37,7 @@ function breadcrumbs() {
 	$parent_id      = ( $post ) ? $post->post_parent : '';
 	$home_link      = sprintf( $link, $home_url, $text['home'], $text['home'], 1 );
 
-	$span           = '<span itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">';
+	$span           = '<span class="breadcrumbs__current" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">';
 	$span          .= '<span>%1$s</span>';
 	$span          .= '<meta itemprop="name" content="%2$s">';
 	$span          .= '<meta itemprop="position" content="%3$s" />';

@@ -1,8 +1,11 @@
 <?php
 global $user_ID;
 $container = 'container';
-if (is_post_type_archive('glampings') && !is_search()) {
+if (is_post_type_archive('glampings') || is_tax('location')) {
     $container = 'container-ag';
+}
+if (is_search()) {
+    $container = 'container';
 }
 ?>
 <header id="masthead" class="site__header">

@@ -6,6 +6,10 @@
     background: var(--color-bg);
 }
 
+.archive.tax-location .site {
+    background: var(--chalk);
+}
+
 .archive-glampings {
     position: relative;
     display: flex;
@@ -1074,5 +1078,27 @@
 
     &__title {
         width: 100%;
+    }
+}
+
+.region-loc {
+
+    &__options {
+        max-width: 300px;
+        overflow: auto;
+
+        & li {
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+
+            & a {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+            }
+        }
     }
 }

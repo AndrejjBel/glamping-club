@@ -2607,6 +2607,9 @@ a.secondary {
 .post-type-archive-glampings.search .site {
   background: var(--color-bg); }
 
+.archive.tax-location .site {
+  background: var(--chalk); }
+
 .archive-glampings {
   position: relative;
   display: flex;
@@ -3238,6 +3241,20 @@ a.secondary {
 
 .related-list__title {
   width: 100%; }
+
+.region-loc__options {
+  max-width: 300px;
+  overflow: auto; }
+  .region-loc__options li {
+    position: relative;
+    display: flex;
+    justify-content: space-between; }
+    .region-loc__options li a {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0; }
 
 .glcf-scroll {
   height: 82vh;

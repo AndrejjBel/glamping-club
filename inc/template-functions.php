@@ -931,12 +931,22 @@ function filtr_options_render($name) {
 	return $options;
 }
 
-function glampings_map_render() {
+function glampings_map_render($location=0) {
 	global $post;
 	$args = [
 		'posts_per_page' => -1,
 		'post_type' => 'glampings'
 	];
+	if( $location ) {
+        $term = $location;
+        $args[ 'tax_query' ] = [
+            [
+                'taxonomy' => 'location',
+                'field'    => 'id',
+                'terms'    => $term
+            ]
+        ];
+    }
 	$glampings = get_posts( $args );
 	foreach ($glampings as $post) {
 		setup_postdata( $post );
@@ -1414,4 +1424,26 @@ function glampings_related_list($post_id) {
         <?php
     }
     wp_reset_postdata();
+}
+
+function locations_list_filtr($exclude='') {
+	$terms = get_terms( array(
+		'hide_empty'  => 0,
+		'orderby'     => 'name',
+		'order'       => 'ASC',
+		'taxonomy'    => 'location',
+		'exclude'	  => $exclude,
+		'count'  	  => true
+	) );
+	$content = '';
+	if( $terms && ! is_wp_error( $terms ) ){
+		foreach( $terms as $term ){
+			$content .= '<li>';
+			$content .= '<a href="/location/'. esc_html( $term->slug ) .'/"></a>';
+			$content .= '<span>'. esc_html( $term->name ) .'</span>';
+			$content .= '<span>'. esc_html( $term->count ) .'</span>';
+			$content .= '</li>';
+		}
+	}
+	echo $content;
 }
