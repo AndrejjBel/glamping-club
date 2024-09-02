@@ -1393,7 +1393,7 @@ function accFor(acc, item) {
     });
 }
 
-// console.dir(JSON.parse(glamping_club_ajax.glAll));
+console.dir(JSON.parse(glamping_club_ajax.glAll));
 
 // const collapseContentTest = document.querySelector('.glampings .collapse-content');
 // const lineHeight = parseInt(window.getComputedStyle(collapseContentTest).lineHeight); // Определяем высоту строки

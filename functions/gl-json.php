@@ -23,10 +23,10 @@ function glamping_club_result_render($location=0) {
 
     $gl_posts = get_posts( $args );
 
-    global $post;
+    // global $post;
     $glampings = [];
     foreach ($gl_posts as $post) {
-        setup_postdata( $post );
+        // setup_postdata( $post );
         $cur_terms = get_the_terms( $post->ID, 'location' );
         $post_url = get_permalink($post->ID);
         $post_title = get_the_title( $post->ID );
@@ -34,10 +34,10 @@ function glamping_club_result_render($location=0) {
         $statistics = glampings_reviews_statistic($post->ID);
         $count_rating = $statistics['count'];
         $average_rating = $statistics['average_rating'];
-        $address = get_additionally_meta('address');
-        $coord = get_additionally_meta('coordinates');
-        $phone = get_additionally_meta('phone_glamping');
-        $whatsup = get_additionally_meta('whatsup_glamping');
+        $address = get_additionally_meta_map('address', $post->ID);
+        $coord = get_additionally_meta_map('coordinates', $post->ID);
+        $phone = get_additionally_meta_map('phone_glamping', $post->ID);
+        $whatsup = get_additionally_meta_map('whatsup_glamping', $post->ID);
         $post_date = get_the_date('U', $post->ID);
         $media = array_unique(glamping_all_img($post->ID));
         $media_urls = [];

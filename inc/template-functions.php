@@ -105,6 +105,19 @@ function get_additionally_meta($meta, $post_id=0) {
     }
 }
 
+function get_additionally_meta_map($meta, $post_id) {
+    // global $post;
+    $meta_object = get_post_meta($post_id, 'additionally_field');
+	// if ($post_id) {
+	// 	$meta_object = get_post_meta($post_id, 'additionally_field');
+	// }
+    if (isset($meta_object[0][0][$meta])) {
+        return $meta_object[0][0][$meta];
+    } else {
+        return false;
+    }
+}
+
 function get_additionally_content() {
     global $post;
     $meta_object = get_post_meta($post->ID, 'additionally_field');
