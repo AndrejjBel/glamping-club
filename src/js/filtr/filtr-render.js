@@ -1337,11 +1337,11 @@ function glempRender(glemps) {
             		</div>
             		<div class="glamping-item__content__right">
             			<div class="glamping-item__content__right__price">
-            				<span class="price-number">${price}</span>
+                        <div class="price-number"><span class="price-text">от</span> ${price} <span class="price-suff">₽</span></div>
             				<span class="price-text">за 1 ночь</span>
             			</div>
             			<div class="glamping-item__content__right__btn">
-            				<button class="primary ld w100 btnvib" type="button" name="button">выбрать</button>
+                            <a href="${glemp.url}" class="primary ld btnvib" target="_blank" rel="nofollow">Выбрать</a>
             			</div>
             		</div>
             	</div>
@@ -1363,8 +1363,8 @@ function currFormat(num) {
     let nf = Intl.NumberFormat(
         'ru-RU',
         {
-            'currency': 'RUB',
-            style:"currency",
+            // 'currency': 'RUB',
+            // style:"currency",
             minimumFractionDigits:0,
             maximumFractionDigits:0
         }

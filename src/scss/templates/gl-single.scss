@@ -175,9 +175,17 @@ article.type-glampings {
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
 
+    & p {
+        margin: 0;
+    }
+
     &.active {
         display: block;
         height: fit-content;
+
+        & p {
+            margin: 0 0 15px;
+        }
     }
 }
 

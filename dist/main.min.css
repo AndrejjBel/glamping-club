@@ -2203,10 +2203,14 @@ a.secondary {
   display: -webkit-box;
   -webkit-line-clamp: 4;
   -webkit-box-orient: vertical; }
+  .collapse-content p {
+    margin: 0; }
   .collapse-content.active {
     display: block;
     height: -moz-fit-content;
     height: fit-content; }
+    .collapse-content.active p {
+      margin: 0 0 15px; }
 
 .collapse-content-btn {
   display: flex;
@@ -2720,7 +2724,7 @@ a.secondary {
   gap: 16px;
   flex-wrap: wrap;
   width: calc(100% - 288px);
-  padding-right: 16px; }
+  padding-right: 8px; }
   .glampings-items.related-list {
     width: 100%; }
   @media (max-width: 1399px) {
@@ -3113,7 +3117,7 @@ a.secondary {
       display: flex;
       flex-direction: column;
       gap: 6px;
-      width: 124px; }
+      width: 130px; }
       .glamping-item__content__right.compare {
         width: 100%;
         flex-direction: row;
@@ -3125,15 +3129,19 @@ a.secondary {
         .glamping-item__content__right__price span {
           display: block;
           font-size: 12px; }
-          .glamping-item__content__right__price span.price-number {
-            font-size: 22px;
-            font-weight: 700; }
-            @media (max-width: 439px) {
-              .glamping-item__content__right__price span.price-number.compare {
-                font-size: 18px; } }
-          .glamping-item__content__right__price span.price-text {
-            margin-top: auto;
-            color: var(--text-color-light); }
+        .glamping-item__content__right__price .price-number {
+          font-size: 22px;
+          font-weight: 700; }
+          @media (max-width: 439px) {
+            .glamping-item__content__right__price .price-number.compare {
+              font-size: 18px; } }
+        .glamping-item__content__right__price .price-text {
+          display: inline-block;
+          margin-top: auto;
+          color: var(--text-color-light); }
+        .glamping-item__content__right__price .price-suff {
+          display: inline-block;
+          font-size: 18px; }
       .glamping-item__content__right__btn {
         z-index: 9; }
         .glamping-item__content__right__btn button.compare {

@@ -1,3 +1,15 @@
+window.addEventListener('load', () => {
+    const isBackForward = window.performance && performance.navigation && performance.navigation.type === 2;
+    const inputs = document.querySelectorAll('.filtr-item input[type="checkbox"]');
+    if (inputs.length) {
+        if (isBackForward) {
+            inputs.forEach((input) => {
+                input.checked = false;
+            });
+        }
+    }
+});
+
 const preloader = () => {
     window.onload = function() {
         const preload = document.querySelector('.preloader');
@@ -1359,4 +1371,9 @@ function accFor(acc, item) {
     });
 }
 
-console.dir(JSON.parse(glamping_club_ajax.glAll));
+// console.dir(JSON.parse(glamping_club_ajax.glAll));
+
+const collapseContentTest = document.querySelector('.glampings .collapse-content');
+const lineHeight = parseInt(window.getComputedStyle(collapseContentTest).lineHeight); // Определяем высоту строки
+const lineCount = Math.ceil(collapseContentTest.scrollHeight / lineHeight);
+console.dir(lineCount);
