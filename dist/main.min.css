@@ -1231,6 +1231,29 @@ strong, b {
     gap: 12px;
     font-size: 14px;
     text-decoration: none; }
+    .dashboard-sidebar-nav__item a.logout-url {
+      align-items: center;
+      justify-content: space-between; }
+      .dashboard-sidebar-nav__item a.logout-url span.logout-text {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--chalk);
+        width: 40px;
+        height: 40px;
+        font-weight: 600;
+        transition: all linear .3s; }
+      .dashboard-sidebar-nav__item a.logout-url svg {
+        display: flex; }
+        .dashboard-sidebar-nav__item a.logout-url svg path {
+          stroke: #6e7985;
+          fill: none; }
+      .dashboard-sidebar-nav__item a.logout-url:hover {
+        color: var(--text-color); }
+        .dashboard-sidebar-nav__item a.logout-url:hover svg path {
+          stroke: var(--text-color);
+          fill: none; }
     .dashboard-sidebar-nav__item a:hover {
       color: var(--text-color); }
       .dashboard-sidebar-nav__item a:hover svg path {
@@ -2212,13 +2235,27 @@ a.secondary {
     .collapse-content.active p {
       margin: 0 0 15px; }
 
+.collapse-content-descr {
+  visibility: hidden;
+  opacity: 0;
+  height: 0;
+  transition: all 0.3s; }
+  .collapse-content-descr.active {
+    display: block;
+    visibility: visible;
+    opacity: 1;
+    height: -moz-fit-content;
+    height: fit-content; }
+
 .collapse-content-btn {
   display: flex;
   gap: 8px;
   align-items: center;
   color: var(--color-primary);
   margin-top: 8px;
-  cursor: pointer; }
+  cursor: pointer;
+  width: -moz-fit-content;
+  width: fit-content; }
   .collapse-content-btn span {
     display: flex;
     font-size: 12px;

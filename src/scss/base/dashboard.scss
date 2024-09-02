@@ -225,6 +225,41 @@
             font-size: 14px;
             text-decoration: none;
 
+            &.logout-url {
+                align-items: center;
+                justify-content: space-between;
+
+                & span.logout-text {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    background: var(--chalk);
+                    width: 40px;
+                    height: 40px;
+                    font-weight: 600;
+                    transition: all linear .3s;
+                }
+
+                & svg {
+                    display: flex;
+
+                    & path {
+                        stroke: #6e7985;
+                        fill: none;
+                    }
+                }
+
+                &:hover {
+                    color: var(--text-color);
+
+                    & svg path {
+                        stroke: var(--text-color);
+                        fill: none;
+                    }
+                }
+            }
+
             &:hover {
                 color: var(--text-color);
 

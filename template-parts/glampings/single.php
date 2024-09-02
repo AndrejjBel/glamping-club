@@ -1,7 +1,20 @@
 <?php
+$maxchar = 180;
+if (!empty($_COOKIE['mediaQuery'])) {
+    if ($_COOKIE['mediaQuery'] > 767) {
+        $maxchar = 400;
+    } elseif ($_COOKIE['mediaQuery'] > 567) {
+        $maxchar = 280;
+    } elseif ($_COOKIE['mediaQuery'] > 429) {
+        $maxchar = 220;
+    }
+}
 $cur_user_id = get_current_user_id();
 // $additionally_field = (object)$post->additionally_field[0];
 $statistics = glampings_reviews_statistic($post->ID);
+$count_rating = $statistics['count'];
+$average_rating = $statistics['average_rating'];
+// get_post_rating($post->ID)['count']
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -21,7 +34,7 @@ $statistics = glampings_reviews_statistic($post->ID);
 
     <div class="meta mt10 mt-smail-10">
         <div class="meta__item item-rating">
-            <?php get_rating_post(2.94, 4); // рейтинг / отзывы ?>
+            <?php get_rating_post($average_rating, $count_rating); ?>
         </div>
 
         <div class="meta__item item-views" title="Просмотры">
@@ -77,10 +90,15 @@ $statistics = glampings_reviews_statistic($post->ID);
         <div class="single-section__title">
             <h3>Описание - Или изменить текст или убрать совсем???</h3>
         </div>
-        <div class="single-section__content collapse-content">
+        <div class="single-section__content collapse-content-descr">
             <?php the_content(); ?>
         </div>
-        <div class="collapse-content-btn">
+        <div class="single-section__content collapse-content-descr active">
+            <?php echo kama_excerpt([ 'maxchar' => $maxchar, 'autop' => false ]);
+            // echo mb_strlen(kama_excerpt([ 'maxchar' => $maxchar, 'autop' => false ]));
+            ?>
+        </div>
+        <div class="collapse-content-btn js-btn-descr">
             <span>Развернуть</span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
                 <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>

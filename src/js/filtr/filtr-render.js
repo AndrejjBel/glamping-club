@@ -1286,7 +1286,7 @@ function glempRender(glemps) {
         glemp.media_urls.forEach((item) => {
             slider += `<div class="swiper-slide"><img src="${item}" alt="" loading="lazy" /></div>`;
         });
-        let rating = reviews_stars_items_average( 2.9, 4 );
+        let rating = reviews_stars_items_average( glemp.average_rating, glemp.count_rating );
 
         glampingsItems.insertAdjacentHTML(
             "beforeEnd",

@@ -1,3 +1,6 @@
+<?php
+$current_user = wp_get_current_user();
+?>
 <aside id="dashboard-sidebar" class="dashboard__sidebar">
     <div id="dashboard-logo" class="dashboard__sidebar__logo">
         <a href="/">
@@ -46,6 +49,15 @@
                         <path d="M394.3 3.745C401.1 9.425 401.9 19.52 396.3 26.29L308.9 130.4L532.8 397.2C540 405.8 544 416.7 544 428V464C544 490.5 522.5 512 496 512H80C53.49 512 32 490.5 32 464V428C32 416.7 35.98 405.8 43.23 397.2L267.1 130.4L179.7 26.29C174.1 19.52 174.9 9.425 181.7 3.745C188.5-1.936 198.6-1.054 204.3 5.715L287.1 105.5L371.7 5.715C377.4-1.054 387.5-1.936 394.3 3.745H394.3zM64 428V464C64 472.8 71.16 480 80 480H129.9L275.4 294.1C278.4 290.3 283.1 288 288 288C292.9 288 297.6 290.3 300.6 294.1L446.1 480H496C504.8 480 512 472.8 512 464V428C512 424.2 510.7 420.6 508.3 417.7L288 155.3L67.74 417.7C65.33 420.6 64 424.2 64 428zM170.6 480H405.4L288 329.1L170.6 480z"></path>
                     </svg>
                     <span>Все глэмпинги</span>
+                </a>
+            </li>
+            <li class="dashboard-sidebar-nav__item">
+                <a href="<?php echo wp_logout_url( home_url() ); ?>" class="logout-url" title="Выход">
+                    <span>Выйти</span>
+                    <!-- <span class="logout-text"><?php //echo user_initials($current_user->display_name); ?></span> -->
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+                        <path d="M7.5 17.5H4.16667C3.72464 17.5 3.30072 17.3244 2.98816 17.0118C2.67559 16.6993 2.5 16.2754 2.5 15.8333V4.16667C2.5 3.72464 2.67559 3.30072 2.98816 2.98816C3.30072 2.67559 3.72464 2.5 4.16667 2.5H7.5M13.3333 14.1667L17.5 10M17.5 10L13.3333 5.83333M17.5 10H7.5" stroke="#98A2B3" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"></path>
+                    </svg>
                 </a>
             </li>
         </ul>

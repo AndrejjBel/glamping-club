@@ -286,6 +286,7 @@ function glamping_club_add_post_reviews() {
 
         if ($post_id) {
             update_post_meta( $post_id, 'glempid', $_POST['glempid'] );
+            update_post_meta( $post_id, 'author', $user->display_name );
             update_post_meta( $post_id, 'rating', $_POST['review_rating'] );
             update_post_meta( $post_id, 'photos', $_POST['reviews_media_gallery'] );
         }

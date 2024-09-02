@@ -264,7 +264,7 @@ collapseViews();
 
 const collapseHeightViews = () => {
     const btndetails = document.querySelectorAll('.glampings .js-btndetails');
-    const collapseHeightContent = document.querySelectorAll('.glampings .collapse-height-content');
+    const collapseContent = document.querySelectorAll('.glampings .collapse-content');
     if (btndetails.length) {
         btndetails.forEach((item) => {
             item.addEventListener('click', (e) => {
@@ -280,6 +280,28 @@ const collapseHeightViews = () => {
     }
 }
 collapseHeightViews();
+
+const collapseViewsContent = () => {
+    const btndetails = document.querySelectorAll('.glampings .js-btn-descr');
+    const collapseContent = document.querySelectorAll('.glampings .collapse-content-descr');
+    if (btndetails.length) {
+        console.dir(collapseContent);
+        btndetails.forEach((item) => {
+            item.addEventListener('click', (e) => {
+                item.classList.toggle('active');
+                collapseContent.forEach((el) => {
+                    el.classList.toggle('active');
+                });
+                if (item.classList.contains('active')) {
+                    item.children[0].innerText = 'Свернуть';
+                } else {
+                    item.children[0].innerText = 'Развернуть';
+                }
+            });
+        });
+    }
+}
+collapseViewsContent();
 
 // const addFavCom = () => {
 //     const favoritesBtns = document.querySelectorAll('#add-favorites');
@@ -1373,7 +1395,9 @@ function accFor(acc, item) {
 
 // console.dir(JSON.parse(glamping_club_ajax.glAll));
 
-const collapseContentTest = document.querySelector('.glampings .collapse-content');
-const lineHeight = parseInt(window.getComputedStyle(collapseContentTest).lineHeight); // Определяем высоту строки
-const lineCount = Math.ceil(collapseContentTest.scrollHeight / lineHeight);
-console.dir(lineCount);
+// const collapseContentTest = document.querySelector('.glampings .collapse-content');
+// const lineHeight = parseInt(window.getComputedStyle(collapseContentTest).lineHeight); // Определяем высоту строки
+// const lineCount = Math.ceil(collapseContentTest.scrollHeight / lineHeight);
+// console.dir(lineCount);
+
+Cookies.set('mediaQuery', window.innerWidth);

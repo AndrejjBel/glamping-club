@@ -1,3 +1,8 @@
+<?php
+$statistics = glampings_reviews_statistic($post->ID);
+$count_rating = $statistics['count'];
+$average_rating = $statistics['average_rating'];
+?>
 <div id="post-<?php the_ID(); ?>" class="glamping-item" title="<?php the_title(); ?>">
 	<a href="<?php echo esc_url( get_permalink() ); ?>" class="glamping-item__url" rel="bookmark"></a>
 	<?php if ($post->glamping_recommended == 'yes') { ?>
@@ -24,7 +29,7 @@
 			<?php the_title( '<div class="glamping-item__content__title">', '</div>' ); ?>
 
 			<div class="glamping-item__content__rating">
-				<?php reviews_stars_items_average( 2.94, 4 ); ?>
+				<?php reviews_stars_items_average( $average_rating, $count_rating ); ?>
 			</div>
 
 			<div class="glamping-item__content__bottom">

@@ -189,13 +189,42 @@ article.type-glampings {
     }
 }
 
+.collapse-content-descr {
+    // display: none;
+    visibility: hidden;
+    opacity: 0;
+    height: 0;
+    transition: all 0.3s;
+    // height: 96px;
+    // overflow: hidden;
+    // display: -webkit-box;
+    // -webkit-line-clamp: 4;
+    // -webkit-box-orient: vertical;
+    //
+    // & p {
+    //     margin: 0;
+    // }
+
+    &.active {
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        height: fit-content;
+
+        // & p {
+        //     margin: 0 0 15px;
+        // }
+    }
+}
+
 .collapse-content-btn {
     display: flex;
     gap: 8px;
     align-items: center;
     color: var(--color-primary);
     margin-top: 8px;
-    cursor: pointer;
+    cursor: pointer;    
+    width: fit-content;
 
     & span {
         display: flex;

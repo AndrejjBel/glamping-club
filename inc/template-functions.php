@@ -694,7 +694,7 @@ function reviews_stars_items_average( $average_rating, $count_otziv, $type=0 ) {
 	}
 	$content .= '</div>
 	<div class="rating-count">
-		<div class="rating-count__rating">' . number_format(round($rating, 1), 1, ',', ' ') . '</div>
+		<div class="rating-count__rating">' . number_format(round($rating, 1), 1, '.', ' ') . '</div>
 		<div class="rating-count__otziv">' . num_word($count_otziv, array('отзыв', 'отзыва', 'отзывов')) . '</div>
 	</div>';
 
@@ -761,6 +761,24 @@ function roundHalf($val) {
     return (float)$res;
 }
 
+function get_post_rating($post_id) {
+	$posts_reviews = get_posts( [
+		'posts_per_page' => -1,
+		'post_type' => 'reviews',
+		'meta_query' => [ [
+			'key' => 'glempid',
+			'value' => $post_id,
+			'type'    => 'numeric'
+		] ]
+	] );
+	$rating = 0;
+	foreach ($posts_reviews as $post) {
+		$rating += $post->rating;
+	}
+	wp_reset_postdata();
+	return ['count' => count($posts_reviews), 'rating' => $rating];
+}
+
 function favorites_render($posts, $type, $posts_per_page=-1) {
 	// $posts_arr = explode(",", $postsf);
 	global $post;
@@ -768,7 +786,7 @@ function favorites_render($posts, $type, $posts_per_page=-1) {
 		'posts_per_page' => $posts_per_page,
 		'post_type' => 'glampings',
 		'include' => $posts
-		] );
+	] );
 	foreach ($posts_arr as $post) {
 		setup_postdata( $post );
 		get_template_part( 'template-parts/pages/excerpt', $type );
@@ -932,7 +950,7 @@ function filtr_options_render($name) {
 }
 
 function glampings_map_render($location=0) {
-	global $post;
+	// global $post;
 	$args = [
 		'posts_per_page' => -1,
 		'post_type' => 'glampings'
@@ -949,7 +967,7 @@ function glampings_map_render($location=0) {
     }
 	$glampings = get_posts( $args );
 	foreach ($glampings as $post) {
-		setup_postdata( $post );
+		// setup_postdata( $post );
 
 		$meta_object = get_post_meta($post->ID, 'additionally_field')[0][0];
 		if (isset($meta_object['coordinates'])) {
@@ -983,7 +1001,11 @@ function glampings_map_render($location=0) {
 		$link_title = '<a href="' . $url_link . '">' . $title . '</a>';
 		$thumbnail = get_the_post_thumbnail( $post->ID, [120, 120], ['class' => "attachment-map-image"] );
 		$thumbnail_pan = get_the_post_thumbnail( $post->ID, [60, 60], ['class' => "attachment-map-image-pan"] );
-		$rating = reviews_stars_items_average( 2.9, 4, 1 );
+		$statistics = glampings_reviews_statistic($post->ID);
+		// $count_rating = $statistics['count'];
+		// $average_rating = $statistics['average_rating'];
+		$rating = reviews_stars_items_average( $statistics['average_rating'], $statistics['count'], 1 );
+		// $rating = reviews_stars_items_average( 2.9, 4, 1 );
 		$media = array_unique(glamping_all_img($post->ID));
 		$media_urls = '';
 		$thumbnail_new = '';
@@ -1229,42 +1251,42 @@ function glampings_reviews_statistic($post_id) {
     	],
     ) );
     $star_all = 0;
-    foreach( $my_posts as $post ){
+    foreach( $my_posts as $post_gl ){
     	//setup_postdata( $post );
-        $star_all += $post->rating;
+        $star_all += $post_gl->rating;
     }
     $star5 = 0;
-    foreach( $my_posts as $post ){
+    foreach( $my_posts as $post_gl ){
     	//setup_postdata( $post );
-        if ( $post->rating == 5 ) {
+        if ( $post_gl->rating == 5 ) {
             ++$star5;
         }
     }
     $star4 = 0;
-    foreach( $my_posts as $post ){
+    foreach( $my_posts as $post_gl ){
     	//setup_postdata( $post );
-        if ( $post->rating == 4 ) {
+        if ( $post_gl->rating == 4 ) {
             ++$star4;
         }
     }
     $star3 = 0;
-    foreach( $my_posts as $post ){
+    foreach( $my_posts as $post_gl ){
     	//setup_postdata( $post );
-        if ( $post->rating == 3 ) {
+        if ( $post_gl->rating == 3 ) {
             ++$star3;
         }
     }
     $star2 = 0;
-    foreach( $my_posts as $post ){
+    foreach( $my_posts as $post_gl ){
     	//setup_postdata( $post );
-        if ( $post->rating == 2 ) {
+        if ( $post_gl->rating == 2 ) {
             ++$star2;
         }
     }
     $star1 = 0;
-    foreach( $my_posts as $post ){
+    foreach( $my_posts as $post_gl ){
     	//setup_postdata( $post );
-        if ( $post->rating == 1 ) {
+        if ( $post_gl->rating == 1 ) {
             ++$star1;
         }
     }

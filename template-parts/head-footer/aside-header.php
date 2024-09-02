@@ -26,7 +26,7 @@
             if ( function_exists( 'glamping_club_menu_admin' ) ) glamping_club_menu_admin();
             ?>
         </div>
-        
+
         <div class="sidebar-nav__content__profile">
             <?php if ( function_exists( 'glamping_club_user_dname_sidebar' ) ) glamping_club_user_dname_sidebar(); ?>
         </div>
