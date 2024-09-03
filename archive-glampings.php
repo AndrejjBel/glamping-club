@@ -12,10 +12,22 @@ get_header();
 global $query_string;
 parse_str($query_string, $args);
 
-$btn_map_mobile_id = 'mapClose';
-$btn_map_mobile_text = 'Карта';
+$btn_map_mobile_id = 'mapVision';
+$btn_map_mobile_text = 'Список';
+// if (!empty($_COOKIE['mediaQuery'])) {
+//     if ($_COOKIE['mediaQuery'] > 767) {
+//         $maxchar = 400;
+//     } elseif ($_COOKIE['mediaQuery'] > 567) {
+//         $maxchar = 280;
+//     } elseif ($_COOKIE['mediaQuery'] > 429) {
+//         $maxchar = 220;
+//     }
+// }
 if (!empty($_COOKIE['glcTemp'])) {
-	if ($_COOKIE['glcTemp'] == 'mapVision') {
+	if ($_COOKIE['glcTemp'] == 'mapClose') {
+		$btn_map_mobile_id = 'mapClose';
+		$btn_map_mobile_text = 'Карта';
+	} elseif ($_COOKIE['glcTemp'] == 'mapVision') {
 		$btn_map_mobile_id = 'mapVision';
 		$btn_map_mobile_text = 'Список';
 	}
