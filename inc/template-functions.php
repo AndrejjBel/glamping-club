@@ -774,24 +774,6 @@ function roundHalf($val) {
     return (float)$res;
 }
 
-function get_post_rating($post_id) {
-	$posts_reviews = get_posts( [
-		'posts_per_page' => -1,
-		'post_type' => 'reviews',
-		'meta_query' => [ [
-			'key' => 'glempid',
-			'value' => $post_id,
-			'type'    => 'numeric'
-		] ]
-	] );
-	$rating = 0;
-	foreach ($posts_reviews as $post) {
-		$rating += $post->rating;
-	}
-	wp_reset_postdata();
-	return ['count' => count($posts_reviews), 'rating' => $rating];
-}
-
 function favorites_render($posts, $type, $posts_per_page=-1) {
 	// $posts_arr = explode(",", $postsf);
 	global $post;
@@ -1180,13 +1162,17 @@ function glampings_reviews_items() {
     foreach( $my_posts as $i => $post ){
     	setup_postdata( $post );
 		$user = get_user_by('id', $post->post_author);
+		$review_author = $user->display_name;
+		if ($post->review_author) {
+			$review_author = $post->review_author;
+		}
 		?>
         <div class="reviews-items__item">
             <div class="reviews-items__item-rating">
                 <?php reviews_stars_item_review( $post->rating ); ?>
             </div>
             <div class="reviews-items__item-name">
-                <span><?php echo $user->display_name; ?></span>
+                <span><?php echo $review_author; ?></span>
                 <span class="reviews-items__item-name-date">
                     <?php echo get_the_date('j F Y', $post); ?>
                 </span>
@@ -1322,6 +1308,24 @@ function glampings_reviews_statistic($post_id) {
         'r1' => $star1,
     ];
     wp_die();
+}
+
+function get_post_rating($post_id) {
+	$posts_reviews = get_posts( [
+		'posts_per_page' => -1,
+		'post_type' => 'reviews',
+		'meta_query' => [ [
+			'key' => 'glempid',
+			'value' => $post_id,
+			'type'    => 'numeric'
+		] ]
+	] );
+	$rating = 0;
+	foreach ($posts_reviews as $post) {
+		$rating += $post->rating;
+	}
+	wp_reset_postdata();
+	return ['count' => count($posts_reviews), 'rating' => $rating];
 }
 
 function faq_item($faq_options, $title='Часто задаваемые вопросы', $templ=1) {
