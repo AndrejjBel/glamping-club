@@ -666,7 +666,7 @@ function get_rating_post($rating_value=0, $count_otziv=0) {
 
 	<div class="rating-count">
 		<div class="rating-count__rating">
-			<?php echo number_format(round($rating_value, 1), 1, ',', ' '); ?>
+			<?php echo number_format(round($rating_value, 1), 1, '.', ' '); ?>
 		</div>
 		<div class="rating-count__otziv">
 			<span>/ <?php echo num_word($count_otziv, array('отзыв', 'отзыва', 'отзывов')); ?></span>
