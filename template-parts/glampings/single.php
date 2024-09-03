@@ -14,7 +14,7 @@ $cur_user_id = get_current_user_id();
 $statistics = glampings_reviews_statistic($post->ID);
 $count_rating = $statistics['count'];
 $average_rating = $statistics['average_rating'];
-// get_post_rating($post->ID)['count']
+$count_content_symbol = mb_strlen(get_the_content());
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
@@ -94,16 +94,16 @@ $average_rating = $statistics['average_rating'];
             <?php the_content(); ?>
         </div>
         <div class="single-section__content collapse-content-descr active">
-            <?php echo kama_excerpt([ 'maxchar' => $maxchar, 'autop' => false ]);
-            // echo mb_strlen(kama_excerpt([ 'maxchar' => $maxchar, 'autop' => false ]));
-            ?>
+            <?php echo kama_excerpt([ 'maxchar' => $maxchar, 'autop' => false ]); ?>
         </div>
-        <div class="collapse-content-btn js-btn-descr">
-            <span>Развернуть</span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
-            </svg>
-        </div>
+        <?php if ($count_content_symbol > 400) {?>
+            <div class="collapse-content-btn js-btn-descr">
+                <span>Развернуть</span>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
+                </svg>
+            </div>
+        <?php } ?>
     </div>
 
     <div class="single-section facilities">
