@@ -1342,7 +1342,7 @@ function glempRender(glemps) {
             				<span class="price-text">за 1 ночь</span>
             			</div>
             			<div class="glamping-item__content__right__btn">
-                            <a href="${glemp.url}" class="primary ld btnvib" target="_blank" rel="nofollow">Выбрать</a>
+                            <a href="${glemp.url}" class="primary ld btnvib" target="_blank" rel="nofollow">подробнее</a>
             			</div>
             		</div>
             	</div>

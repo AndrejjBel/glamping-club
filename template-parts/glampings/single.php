@@ -87,9 +87,9 @@ $count_content_symbol = mb_strlen(get_the_content());
     </div>
 
     <div class="single-section description">
-        <div class="single-section__title">
+        <!-- <div class="single-section__title">
             <h3>Описание - Или изменить текст или убрать совсем???</h3>
-        </div>
+        </div> -->
         <div class="single-section__content collapse-content-descr">
             <?php the_content(); ?>
         </div>

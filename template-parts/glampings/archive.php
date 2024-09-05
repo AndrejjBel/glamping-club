@@ -57,7 +57,7 @@ $average_rating = $statistics['average_rating'];
 				<span class="price-text">за 1 ночь</span>
 			</div>
 			<div class="glamping-item__content__right__btn">
-				<a href="<?php echo esc_url( get_permalink() ); ?>" class="primary ld w100 btnvib">выбрать</a>
+				<a href="<?php echo esc_url( get_permalink() ); ?>" class="primary ld w100 btnvib">подробнее</a>
 			</div>
 		</div>
 	</div>
