@@ -58,7 +58,7 @@ function register_single_glampings_metabox() {
 		'attributes' => array(
 			'type' => 'number',
 			'min'  => '1',
-			'required'    => 'required'
+			// 'required'    => 'required'
 		),
 	) );
 

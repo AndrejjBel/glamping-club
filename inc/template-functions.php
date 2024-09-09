@@ -1394,10 +1394,9 @@ function glampings_related_list($post_id) {
         ) );
     }
     foreach( $my_posts as $post_rel ){
-        // $statistics = tripinglamp_reviews_statistic($post_rel->ID);
-        // $separator = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-        // <path d="M8.99854 11.8577C8.99854 11.0248 9.26181 10.3403 9.78835 9.80418C10.3245 9.26806 11.0329 9 11.9137 9C12.7849 9 13.4933 9.26327 14.039 9.78982C14.5847 10.3068 14.8575 11.0104 14.8575 11.9008V12.4321C14.8575 13.265 14.5943 13.9447 14.0677 14.4713C13.5412 14.9978 12.8279 15.2611 11.928 15.2611C11.0377 15.2611 10.3245 14.9978 9.78835 14.4713C9.26181 13.9352 8.99854 13.2459 8.99854 12.4034V11.8577Z" fill="var(--separator-coror)"/>
-        // </svg>';
+		$statistics = glampings_reviews_statistic($post_rel->ID);
+		$count_rating = $statistics['count'];
+		$average_rating = $statistics['average_rating'];
         ?>
 		<div id="post-<?php echo $post_rel->ID; ?>" class="glamping-item" title="<?php echo get_the_title($post_rel->ID); ?>">
 			<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
@@ -1427,7 +1426,7 @@ function glampings_related_list($post_id) {
 					</div>
 
 					<div class="glamping-item__content__rating">
-						<?php reviews_stars_items_average( 2.94, 4 ); ?>
+						<?php reviews_stars_items_average( $average_rating, $count_rating ); ?>
 					</div>
 
 					<div class="glamping-item__content__bottom">
@@ -1455,7 +1454,7 @@ function glampings_related_list($post_id) {
 						<span class="price-text">за 1 ночь</span>
 					</div>
 					<div class="glamping-item__content__right__btn">
-						<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="primary ld w100 btnvib">выбрать</a>
+						<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="primary ld w100 btnvib">подробнее</a>
 					</div>
 				</div>
 			</div>
