@@ -3174,7 +3174,6 @@ a.secondary {
               font-size: 18px; } }
         .glamping-item__content__right__price .price-text {
           display: inline-block;
-          margin-top: auto;
           color: var(--text-color-light); }
         .glamping-item__content__right__price .price-suff {
           display: inline-block;

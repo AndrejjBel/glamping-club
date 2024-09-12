@@ -1,5 +1,5 @@
 <?php
-add_action( 'cmb2_admin_init', 'register_single_glampings_metabox' );
+add_action( 'cmb2_init', 'register_single_glampings_metabox' );
 function register_single_glampings_metabox() {
 	$single_glampings = new_cmb2_box( array(
 		'id'           => 'single_glampings',
@@ -8,6 +8,7 @@ function register_single_glampings_metabox() {
 		'context'      => 'normal',
 		'priority'     => 'high',
         'classes'      => 'flex-box',
+		'show_in_rest' => true
 	) );
 
 	$single_glampings->add_field( array(
@@ -419,6 +420,7 @@ function register_single_glampings_metabox() {
 		'context'      => 'normal',
 		'priority'     => 'high',
         'classes'      => 'flex-box',
+		'show_in_rest' => true
 	) );
 
 	$media_gallery->add_field( array(
@@ -440,6 +442,7 @@ function register_single_glampings_metabox() {
 		'context'      => 'normal',
 		'priority'     => 'high',
         'classes'      => 'flex-box',
+		'show_in_rest' => true
 	) );
 
 	$acc_options_group = $accommodation_options->add_field( array(
@@ -542,6 +545,7 @@ function register_single_glampings_metabox() {
 		'context'      => 'normal',
 		'priority'     => 'high',
         'classes'      => 'flex-box',
+		'show_in_rest' => true
 	) );
 
 	$faq_options_group = $faq_options->add_field( array(
