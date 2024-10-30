@@ -1336,13 +1336,13 @@ function glempRender(glemps) {
             		        </div>
             			</div>
             		</div>
-            		<div class="glamping-item__content__right">
+                    <div class="glamping-item__content__right">
             			<div class="glamping-item__content__right__price">
-                        <div class="price-number"><span class="price-text">от</span> ${price} <span class="price-suff">₽</span></div>
+            				<span class="price-number">От ${price} р.</span>
             				<span class="price-text">за 1 ночь</span>
             			</div>
             			<div class="glamping-item__content__right__btn">
-                            <a href="${glemp.url}" class="primary ld btnvib" target="_blank" rel="nofollow">подробнее</a>
+            				<a href="${glemp.url}" class="primary-light green nxl ntext w100 btnvib">Подробнее</a>
             			</div>
             		</div>
             	</div>

@@ -30,7 +30,7 @@ html {
 
 body {
     position: relative;
-    font-family: "Roboto", sans-serif;
+    font-family: $ff-inter; //"Roboto", sans-serif;
     font-size: 16px;
     font-weight: 400;
     line-height: 1.5;
@@ -206,7 +206,7 @@ a, button {
 }
 
 a:hover {
-    color: var(--link-color-hover);
+    color: var(--green-link, #467A3C);
     text-decoration: none;
 }
 
@@ -228,6 +228,11 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 .w100 {
     width: 100%;
 }
+
+.w-200 {
+    width: 200px;
+}
+
 @media (min-width: 577px) {
     .mt6 {
         margin-top: 6px;

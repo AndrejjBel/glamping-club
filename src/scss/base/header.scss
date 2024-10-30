@@ -780,6 +780,8 @@
     align-items: center;
     padding: 10px 0;
     font-size: 12px;
+    font-weight: 600;
+    line-height: 100%;
 
     & span {
         display: flex;
@@ -801,8 +803,8 @@
 
     &__current {
         font-weight: 600;
-        color: #ffffff;
-        background: var(--color-primary);
+        color: var(--green-link, #467A3C);
+        // background: var(--color-primary);
         padding: 0 4px;
         border-radius: 4px;
     }

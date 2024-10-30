@@ -8,7 +8,10 @@ if (!empty($_GET['glc-postid'])) {
     if ($cur_user_id == $post_glamp->post_author) {
         cmb2_metabox_form( 'single_glampings_front', $post_id );
         cmb2_metabox_form( 'media_gallery_front', $post_id );
+        echo '<h5>Варианты размещения</h5>';
         cmb2_metabox_form( 'accommodation_options_front', $post_id );
+        echo '<h5>Часто задаваемые вопросы</h5>';
+        cmb2_metabox_form( 'faq_options_front', $post_id );
         echo '<div class="glc-postedit-btn-edit">
             <button id="btn-edit" class="primary w100 js-btn-add-edit" data-type="edit" type="button" name="button">Сохранить</button>
         </div>';
@@ -20,6 +23,8 @@ if (!empty($_GET['glc-postid'])) {
     cmb2_metabox_form( 'media_gallery_front' );
     echo '<h5>Варианты размещения</h5>';
     cmb2_metabox_form( 'accommodation_options_front' );
+    echo '<h5>Часто задаваемые вопросы</h5>';
+    cmb2_metabox_form( 'faq_options_front', $post_id );
     echo '<div class="glc-postedit-btn-edit">
         <button id="btn-add" class="primary w100 js-btn-add-edit" data-type="add" type="button" name="button">Сохранить</button>
     </div>';

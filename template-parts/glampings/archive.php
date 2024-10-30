@@ -53,11 +53,11 @@ $average_rating = $statistics['average_rating'];
 
 		<div class="glamping-item__content__right">
 			<div class="glamping-item__content__right__price">
-				<div class="price-number"><span class="price-text">от</span> <?php echo number_format(round($post->glamping_price, 1), 0, ',', ' '); ?> <span class="price-suff">₽</span></div>
+				<span class="price-number">От <?php echo number_format(round($post->glamping_price, 1), 0, ',', ' '); ?> р.</span>
 				<span class="price-text">за 1 ночь</span>
 			</div>
 			<div class="glamping-item__content__right__btn">
-				<a href="<?php echo esc_url( get_permalink() ); ?>" class="primary ld w100 btnvib">подробнее</a>
+				<a href="<?php echo esc_url( get_permalink() ); ?>" class="primary-light green nxl ntext w100 btnvib">Подробнее</a>
 			</div>
 		</div>
 	</div>

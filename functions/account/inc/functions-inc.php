@@ -83,7 +83,8 @@ function user_initials($fullName) {
     $arFirstLetters = array_map(function ($item){
         return mb_substr($item, 0, 1);
     }, $arName);
-    $strFirstLetter = implode('', $arFirstLetters);
+    // $strFirstLetter = implode('', $arFirstLetters);
+    $strFirstLetter = $arFirstLetters[0];
     return $strFirstLetter;
 }
 

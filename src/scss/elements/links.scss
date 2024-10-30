@@ -12,6 +12,22 @@ a.primary {
 	background: var(--Primary-600, #3B44E5);
 	box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
 
+    &.golden {
+        // border: 1px solid var(--golden-link);
+        border: none;
+    	background: var(--golden-link);
+
+        &:hover {
+            // border: 1px solid var(--golden-link);
+            border: none;
+            background: var(--golden-link);
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
+
     &.fs12 {
         font-size: 12px;
     }
@@ -26,6 +42,10 @@ a.primary {
 
     &.xl {
         padding: 10px 18px;
+    }
+
+    &.nxl {
+        padding: 13px 10px;
     }
 
     &.big {
@@ -53,6 +73,13 @@ a.primary {
         background: var(--Primary-200, #C7D7FE);
         cursor: default;
     }
+
+    &.ntext {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
 }
 
 a.primary-light {
@@ -66,6 +93,21 @@ a.primary-light {
 	color: var(--Gray-700, #344054);
     border: 1px solid var(--Gray-300, #D0D5DD);
     background: var(--White, #FFF);
+
+    &.green {
+        border: 1px solid var(--green-link);
+        color: var(--green-link);
+
+        &:hover {
+            background: var(--White, #FFF);
+            border: 1px solid var(--green-link);
+            color: var(--green-link);
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+    }
 
     &.fs12 {
         font-size: 12px;
@@ -81,6 +123,10 @@ a.primary-light {
 
     &.xl {
         padding: 10px 18px;
+    }
+
+    &.nxl {
+        padding: 13px 10px;
     }
 
     &.active {
@@ -103,6 +149,13 @@ a.primary-light {
         border: 1px solid var(--Gray-200, #E4E7EC);
         background: var(--White, #FFF);
         cursor: default;
+    }
+
+    &.ntext {
+        font-size: 14px;
+        font-weight: 600;
+        line-height: 100%;
+        letter-spacing: 0%;
     }
 }
 

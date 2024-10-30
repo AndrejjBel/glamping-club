@@ -81,7 +81,8 @@ const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
         loopAddBlankSlides: true,
         pagination: {
             el: ".swiper-pagination",
-            type: "progressbar",
+            clickable: true,
+            // type: "progressbar",
         },
         navigation: {
             nextEl: ".swiper-button-next",
@@ -116,7 +117,7 @@ const sliderGlempType = ( index, indexItem, defolt, mob, tablet, decstop ) => {
 
 function initSliderGlempType(item) {
     for (var i = 0; i < item; i++) {
-        sliderGlempType('.galery'+i, '#sw-'+i, 1, 2, 4, 5);
+        sliderGlempType('.galery'+i, '#sw-'+i, 1, 1, 1, 1);
     }
 }
 initSliderGlempType(20);
@@ -136,8 +137,14 @@ function optionsGallery(index) {
         plugins: [lgThumbnail],
     });
     const btn = document.querySelector(index+' #js-gallery-count');
+    const btnR = document.querySelector(index+' .galery-review-list__count');
     if (btn) {
         btn.addEventListener('click', (e) => {
+            lg.openGallery();
+        });
+    }
+    if (btnR) {
+        btnR.addEventListener('click', (e) => {
             lg.openGallery();
         });
     }
@@ -149,6 +156,13 @@ function initOptionsGallery(item) {
     }
 }
 initOptionsGallery(20);
+
+function initOptionsGalleryRev(item) {
+    for (var i = 0; i < item; i++) {
+        optionsGallery('.list-'+i);
+    }
+}
+initOptionsGalleryRev(20);
 
 function initOptionsGalleryReview(item) {
     for (var i = 0; i < item; i++) {
@@ -281,11 +295,22 @@ const collapseHeightViews = () => {
 }
 collapseHeightViews();
 
+const collapseHeightViewsAcc = () => {
+    const btndetails = document.querySelectorAll('.glampings .js-btndetails-acc');
+    if (!btndetails.length) return;
+    btndetails.forEach((item) => {
+        item.addEventListener('click', (e) => {
+            console.dir(item);
+        });
+    });
+}
+collapseHeightViewsAcc();
+
 const collapseViewsContent = () => {
     const btndetails = document.querySelectorAll('.glampings .js-btn-descr');
     const collapseContent = document.querySelectorAll('.glampings .collapse-content-descr');
     if (btndetails.length) {
-        console.dir(collapseContent);
+        // console.dir(collapseContent);
         btndetails.forEach((item) => {
             item.addEventListener('click', (e) => {
                 item.classList.toggle('active');
@@ -293,9 +318,9 @@ const collapseViewsContent = () => {
                     el.classList.toggle('active');
                 });
                 if (item.classList.contains('active')) {
-                    item.children[0].innerText = 'Свернуть';
+                    item.children[0].innerText = 'Свернуть описание';
                 } else {
-                    item.children[0].innerText = 'Развернуть';
+                    item.children[0].innerText = 'Развернуть описание';
                 }
             });
         });
@@ -582,6 +607,7 @@ jQuery( function( $ ) {
         replaceTitles();
     }
     replaceTitlesGen('acc_options_repeat', 'title');
+    replaceTitlesGen('faq_options_repeat', 'title');
 });
 
 const addEditGlemp = () => {
@@ -1261,7 +1287,9 @@ const reviewsMore = () => {
                     beforeSend: function () {},
                     success: function (data) {
                         // console.dir(data);
-                        reviews.insertAdjacentHTML('beforeEnd', data)
+                        reviews.insertAdjacentHTML('beforeEnd', data);
+                        btnWievsOverflows('.reviews-items__item-text');
+                        collapseViewsReviews();
                     },
                     error: function (jqXHR, text, error) {
                         console.log('Send error');
@@ -1364,7 +1392,7 @@ function accordion(btnSelector, afterClose=0) {
     const acc = document.querySelectorAll('.faq-item '+btnSelector);
     if (acc.length) {
         acc.forEach((item) => {
-            item.addEventListener('click', function() {
+            item.addEventListener('click', (e) => {
                 if (afterClose) {
                     accFor(acc, item);
                     if (item.classList.contains('active')) {
@@ -1395,9 +1423,65 @@ function accFor(acc, item) {
 
 console.dir(JSON.parse(glamping_club_ajax.glAll));
 
-// const collapseContentTest = document.querySelector('.glampings .collapse-content');
-// const lineHeight = parseInt(window.getComputedStyle(collapseContentTest).lineHeight); // Определяем высоту строки
-// const lineCount = Math.ceil(collapseContentTest.scrollHeight / lineHeight);
-// console.dir(lineCount);
+const collapseViewsReviews = () => {
+    const btns = document.querySelectorAll('.reviews-items__item-btn button');
+    if (!btns.length) return;
+    btns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            btn.parentElement.previousElementSibling.classList.toggle('active');
+            btn.children[1].classList.toggle('active');
+            if (btn.children[1].classList.contains('active')) {
+                btn.children[0].innerText = 'Скрыть';
+            } else {
+                btn.children[0].innerText = 'Показать полностью';
+            }
+        });
+    });
+}
+collapseViewsReviews();
+
+const facilitiesMore = () => {
+    const btn = document.querySelector('.js-facilities-more');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+        if (btn.dataset.type == 'no') {
+            for (var variable of btn.parentElement.children[0].children) {
+                variable.style.display = 'block';
+            }
+            btn.innerText = 'Скрыть';
+            btn.dataset.type = 'yes';
+        } else {
+            for (var variable of btn.parentElement.children[0].children) {
+                variable.style.display = '';
+            }
+            btn.innerText = 'Показать все удобства';
+            btn.dataset.type = 'no';
+        }
+
+
+        // btn.parentElement.previousElementSibling.classList.toggle('active');
+        // btn.children[1].classList.toggle('active');
+        // if (btn.children[1].classList.contains('active')) {
+        //     btn.children[0].innerText = 'Скрыть';
+        // } else {
+        //     btn.children[0].innerText = 'Показать полностью';
+        // }
+    });
+}
+facilitiesMore();
+
+function btnWievsOverflows(elem) {
+    const elems = document.querySelectorAll(elem);
+    elems.forEach((el) => {
+        if (multiLineOverflows(el)) {
+            el.nextElementSibling.classList.add('active');
+        }
+    });
+}
+btnWievsOverflows('.reviews-items__item-text');
+
+function multiLineOverflows(el) {
+    return el.scrollHeight > el.clientHeight;
+}
 
 Cookies.set('mediaQuery', window.innerWidth);

@@ -1,10 +1,10 @@
 .thumbnail-gallery {
     position: relative;
     width: 100%;
-    height: 380px;
+    height: 425px;
     display: flex;
     gap: 2px;
-    border-radius: $border-radius-single;
+    // border-radius: $br-single-image;
     overflow: hidden;
 
     @media (max-width: 767px) {
@@ -16,7 +16,7 @@
     }
 
     &__first {
-        flex-basis: 100%;
+        flex-basis: 794px;
         position: relative;
 
         & a {
@@ -25,6 +25,7 @@
             overflow: hidden;
             width: 100%;
             height: 100%;
+            border-radius: $br-single-image;
 
             & img {
                 position: absolute;
@@ -44,11 +45,12 @@
 
     &__two {
         display: flex;
-        flex-direction: column;
-        gap: 2px;
-        flex-basis: 204px;
+        // flex-direction: column;
+        gap: 4px;
+        flex-basis: 452px;
         flex-shrink: 0;
         flex-grow: 0;
+        flex-wrap: wrap;
 
         @media (max-width: 639px) {
             display: none;
@@ -58,10 +60,11 @@
             position: relative;
             display: flex;
             overflow: hidden;
-            width: 100%;
-            height: 100%;
+            width: calc((100% - 4px) / 2);
+            height: auto;
+            border-radius: $br-single-image;
 
-            &:nth-child(n+3) {
+            &:nth-child(n+5) {
                 display: none;
             }
 
@@ -83,10 +86,12 @@
 
     &__btn {
         position: absolute;
+        height: 26px;
         bottom: 10px;
         right: 10px;
         background: #fff;
-        padding: 2px 6px;
-        border-radius: 4px;
+        padding: 6px;
+        border-radius: 3px;
+        font-size: 14px;
     }
 }

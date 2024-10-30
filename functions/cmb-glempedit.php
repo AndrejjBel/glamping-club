@@ -645,6 +645,45 @@ function register_single_glampings_metabox_front() {
 			'author' => get_current_user_id()
 		),
 	) );
+
+	// Часто задаваемые вопросы
+	$faq_options = new_cmb2_box( array(
+		'id'           => 'faq_options_front',
+		'title'        => esc_html__( 'Часто задаваемые вопросы', 'glamping-club' ),
+		'object_types' => array( 'glampings' ), // Post type
+		'context'      => 'normal',
+		'priority'     => 'high',
+		'classes'      => 'flex-box',
+		'show_in_rest' => true
+	) );
+
+	$faq_options_group = $faq_options->add_field( array(
+		'id'          => 'faq_options',
+		'type'        => 'group',
+		// 'description' => esc_html__( 'Группа полей', 'glamping-club' ),
+		// 'repeatable'  => false,
+		'options'     => array(
+			'group_title'    => esc_html__( 'Вопрос', 'cmb2' ),
+			'add_button'     => __( 'Добавить вопрос', 'cmb2' ),
+			'remove_button'  => __( 'Удалить вопрос', 'cmb2' ),
+			'sortable'       => true,
+			'closed'         => true
+		),
+	) );
+
+	$faq_options->add_group_field( $faq_options_group, array(
+		'name' => esc_html__( 'Текст вопроса', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+	) );
+
+	$faq_options->add_group_field( $faq_options_group, array(
+		'name' => esc_html__( 'Текст ответа', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
+		'id'   => 'text',
+		'type' => 'textarea_small',
+	) );
 }
 
 function set_to_post_title($field_args, $field) {
