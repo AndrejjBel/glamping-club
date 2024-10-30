@@ -96,6 +96,7 @@ jQuery( function( $ ) {
     replaceTitlesGen('accommodation_options', 'title');
     replaceTitlesGen('glamping_paid_options', 'title');
     replaceTitlesGen('faq_options', 'title');
+    replaceTitlesGen('wtd_options', 'title');
 });
 
 function conditionalFilesPaidOptions() {

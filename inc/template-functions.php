@@ -1625,6 +1625,39 @@ function faq_item($faq_options, $title='Частые вопросы и отве�
 	}
 }
 
+function wtd_item($wtd_options, $title='Чем заняться', $templ=1) {
+	if ($wtd_options) {
+		$content = '<div class="single-section wtd-section">';
+		$content .= '<div class="single-section__title">
+			<h3>' . $title . '</h3>
+		</div>';
+		$content .= '<div class="single-section__content wtd-section__content">';
+		foreach ($wtd_options as $key => $wtd_option) {
+			$content .= '<div class="wtd-item">
+		        <div class="wtd-item__header">
+		            <span class="wtd-item__header__title">' . $wtd_option["title"] . '</span>
+		            <button aria-label="Раскрыть" class="wtd-item__header__btn">
+					<svg width="14" height="7" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M1 1L8 8L15 1" stroke="#161616" stroke-width="1.5"/>
+					</svg>
+		            </button>
+		        </div>
+		        <div class="wtd-item__panel">
+		            <p>' . $wtd_option["text"] . '</p>
+		        </div>
+		    </div>';
+		}
+		$content .= '</div>';
+    	$content .= '</div>';
+
+		if ($templ) {
+			echo $content;
+		} else {
+			return $content;
+		}
+	}
+}
+
 function glampings_related_list($post_id) {
     $terms = get_the_terms( $post_id, 'location' );
     $term_id = $terms[0]->term_id;
