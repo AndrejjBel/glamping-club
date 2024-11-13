@@ -1600,6 +1600,7 @@ article.type-glampings {
     }
 
     &.swiper-slide {
+        height: auto;
         text-align: left;
         justify-content: unset;
         align-items: unset;
@@ -1621,6 +1622,7 @@ article.type-glampings {
             width:100%;
             order: 2;
             height: 200px;
+            margin-top: auto;
         }
 
         & img {

@@ -3618,6 +3618,7 @@ a.secondary {
     .wtd-item {
       flex-wrap: wrap; } }
   .wtd-item.swiper-slide {
+    height: auto;
     text-align: left;
     justify-content: unset;
     align-items: unset;
@@ -3635,7 +3636,8 @@ a.secondary {
       .wtd-item__img {
         width: 100%;
         order: 2;
-        height: 200px; } }
+        height: 200px;
+        margin-top: auto; } }
     .wtd-item__img img {
       width: 100%;
       height: 100%;
