@@ -182,6 +182,8 @@ require get_template_directory() . '/functions/cmb2/init.php';
 require get_template_directory() . '/functions/cmb-settings.php';
 require get_template_directory() . '/functions/cmb-post-meta.php';
 require get_template_directory() . '/functions/cmb-post-meta-reviews.php';
+require get_template_directory() . '/functions/cmb-stocks-meta.php';
+require get_template_directory() . '/functions/cmb-stocks-front.php';
 require get_template_directory() . '/functions/cmb-glempedit.php';
 require get_template_directory() . '/functions/glamping-add-edit.php';
 require get_template_directory() . '/functions/glampings-options.php';

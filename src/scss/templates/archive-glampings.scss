@@ -147,19 +147,21 @@
     gap: 16px;
     flex-wrap: wrap;
     width: calc(100% - 288px);
-    padding-right: 8px;
 
     &.related-list {
+        position: relative;
         width: 100%;
+        padding-right: 0;
     }
 
     @media (max-width: 1399px) {
         width: calc(100% - 240px);
+        padding-right: 10px;
     }
 
     @media (max-width: 767px) {
         width: 100%;
-        padding-right: 0;
+        padding-right: 10px;
     }
 
     &.no-sidebar {
@@ -198,13 +200,17 @@
             flex-direction: column;
             width: calc((100% - 48px) / 4);
             background: #FFFFFF;
+            text-align: left;
+            height: auto;
 
-            @media (max-width: 1199px) {
-                width: calc((100% - 32px) / 3);
+            @media (max-width: 1024px) {
+                // width: calc((100% - 32px) / 3);
+                width: 40%;
             }
 
             @media (max-width: 767px) {
-                width: calc((100% - 16px) / 2);
+                // width: calc((100% - 16px) / 2);
+                width: 60%;
             }
 
             @media (max-width: 499px) {
@@ -244,6 +250,40 @@
                     }
                 }
             }
+        }
+    }
+}
+
+.related-list-swrapper {
+    align-items: stretch;
+}
+
+.related-list .swiper-nav {
+    position: absolute;
+    z-index: 99;
+    width: 100%;
+    left: 0;
+    top: 52%;
+
+    & .swiper-nav-btn {
+
+        @media (max-width: 1329px) {
+            display: none;
+        }
+
+        &.swiperm-button-next {
+            position: absolute;
+            right: -18px;
+        }
+
+        &.swiperm-button-prev {
+            position: absolute;
+            left: -18px;
+        }
+
+        &.swiper-button-disabled {
+            pointer-events: none;
+            opacity: .4;
         }
     }
 }
@@ -1114,17 +1154,32 @@
     padding-top: 40px;
     padding-bottom: 60px;
     background: var(--chalk);
+
+    @media (max-width: 649px) {
+        padding-top: 30px;
+        padding-bottom: 36px;
+    }
 }
 
 .related-list {
 
     &__title {
         width: 100%;
+        margin-bottom: 30px;
+
+        @media (max-width: 649px) {
+            margin-bottom: 24px;
+        }
 
         & h3 {
             font-size: 20px;
             font-weight: 600;
             line-height: 100%;
+            margin: 0;
+
+            @media (max-width: 649px) {
+                font-size: 17px;
+            }
         }
     }
 }

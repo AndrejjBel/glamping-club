@@ -7,6 +7,11 @@
     gap: 4px;
     font-size: 14px;
     font-weight: 400;
+    line-height: 1;
+
+    @media (max-width: 476px) {
+        font-size: 11px;
+    }
 
     &__rating {}
 

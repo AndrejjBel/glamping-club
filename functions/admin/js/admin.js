@@ -2,7 +2,7 @@ function conditionalFiles() {
     const conditional = document.querySelectorAll('.conditional-parent input');
     if (!conditional.length) return;
     conditional.forEach((item) => {
-        console.dir(item.checked + ' - ' + item.value);
+        // console.dir(item.checked + ' - ' + item.value);
         let child = item.value;
         let cf = document.querySelector('.cmb-row.'+child+'');
         if (item.checked && cf) {

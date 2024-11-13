@@ -33,7 +33,15 @@ $count_content_symbol = mb_strlen(get_the_content());
 
         <div class="meta mt10 mt-smail-10">
             <div class="meta__item item-rating">
-                <?php get_rating_post($average_rating, $count_rating); ?>
+                <?php if ($count_rating) { ?>
+                    <a href="#reviews-section">
+                        <?php get_rating_post($average_rating, $count_rating); ?>
+                    </a>
+                <?php
+                } else {
+                    get_rating_post($average_rating, $count_rating);
+                }
+                ?>
             </div>
 
             <!-- <div class="meta__item item-views" title="Просмотры">
@@ -45,148 +53,153 @@ $count_content_symbol = mb_strlen(get_the_content());
         </div>
     </div>
 
-    <div class="single-content">
-        <div class="single-section title">
-            <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
-            <div class="title__address mb10">
-                <a href="#map-container" title="На карте">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.87827 2 7.84344 2.84285 6.34315 4.34315C4.84285 5.84344 4 7.87827 4 10C4 13.0981 6.01574 16.1042 8.22595 18.4373C9.31061 19.5822 10.3987 20.5195 11.2167 21.1708C11.5211 21.4133 11.787 21.6152 12 21.7726C12.213 21.6152 12.4789 21.4133 12.7833 21.1708C13.6013 20.5195 14.6894 19.5822 15.774 18.4373C17.9843 16.1042 20 13.0981 20 10C20 7.87827 19.1571 5.84344 17.6569 4.34315C16.1566 2.84285 14.1217 2 12 2ZM12 23C11.4453 23.8321 11.445 23.8319 11.4448 23.8317L11.4419 23.8298L11.4352 23.8253L11.4123 23.8098C11.3928 23.7966 11.3651 23.7776 11.3296 23.753C11.2585 23.7038 11.1565 23.6321 11.0278 23.5392C10.7705 23.3534 10.4064 23.0822 9.97082 22.7354C9.10133 22.043 7.93939 21.0428 6.77405 19.8127C4.48426 17.3958 2 13.9019 2 10C2 7.34784 3.05357 4.8043 4.92893 2.92893C6.8043 1.05357 9.34784 0 12 0C14.6522 0 17.1957 1.05357 19.0711 2.92893C20.9464 4.8043 22 7.34784 22 10C22 13.9019 19.5157 17.3958 17.226 19.8127C16.0606 21.0428 14.8987 22.043 14.0292 22.7354C13.5936 23.0822 13.2295 23.3534 12.9722 23.5392C12.8435 23.6321 12.7415 23.7038 12.6704 23.753C12.6349 23.7776 12.6072 23.7966 12.5877 23.8098L12.5648 23.8253L12.5581 23.8298L12.556 23.8312C12.5557 23.8314 12.5547 23.8321 12 23ZM12 23L12.5547 23.8321C12.2188 24.056 11.7807 24.0556 11.4448 23.8317L12 23Z" fill="black"></path>
-                        <path fill-rule="evenodd" clip-rule="evenodd" d="M12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8ZM8 10C8 7.79086 9.79086 6 12 6C14.2091 6 16 7.79086 16 10C16 12.2091 14.2091 14 12 14C9.79086 14 8 12.2091 8 10Z" fill="black"></path>
-                    </svg>
-                    <?php echo get_additionally_meta('address'); ?>
-                </a>
-            </div>
-        </div>
+    <div class="single-content-wrap">
 
-        <div class="single-section description">
-            <div class="single-section__content collapse-content-descr">
-                <?php the_content(); ?>
-            </div>
-            <div class="single-section__content collapse-content-descr active">
-                <?php echo kama_excerpt([ 'maxchar' => $maxchar, 'autop' => false ]); ?>
-            </div>
-            <?php if ($count_content_symbol > 400) {?>
-                <div class="collapse-content-btn js-btn-descr">
-                    <span>Развернуть описание</span>
-                    <svg width="15" height="7" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 1L8 8L15 1" stroke="#161616" stroke-width="1.5"/>
-					</svg>
-                    <!-- <svg width="15" height="7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                        <path d="M4.251 181.1C7.392 177.7 11.69 175.1 16 175.1c3.891 0 7.781 1.406 10.86 4.25l197.1 181.1l197.1-181.1c6.5-6 16.64-5.625 22.61 .9062c6 6.5 5.594 16.59-.8906 22.59l-208 192c-6.156 5.688-15.56 5.688-21.72 0l-208-192C-1.343 197.7-1.749 187.6 4.251 181.1z"/>
-                    </svg> -->
-                </div>
-            <?php } ?>
-        </div>
-
-        <div class="single-section facilities-wrap">
-            <div class="facilities">
-                <?php
-                glamping_icons_facilities('glamping_facilities_general', 'Удобства общие');
-                glamping_icons_facilities('glamping_territory', 'Территория');
-                glamping_icons_facilities('glamping_entertainment', 'Развлечения');
-                glamping_icons_facilities('glamping_nutrition', 'Питание');
-                glamping_icons_facilities('facilities_general_kitchen', 'Кухня');
-                glamping_icons_facilities('facilities_general_bathroom', 'Ванная комната');
-                glamping_icons_facilities('facilities_options_children', 'Для детей');
-                glamping_icons_facilities('glamping_facilities_safety', 'Безопасность');
-                ?>
-            </div>
-            <button class="primary-light green nxl ntext w-200 js-facilities-more" data-type="no">Показать все удобства</button>
-        </div>
-
-        <div class="single-section conditions">
-            <div class="single-section__title">
-                <h3>Условия размещения</h3>
-            </div>
-            <div class="single-section__content">
-                <?php get_additionally_content(); ?>
-            </div>
-        </div>
-
-        <?php get_accommodation_options_new(); ?>
-
-        <!-- <?php //if ( get_additionally_meta('coordinates') ) { ?>
-            <div id="map-container" class="single-section map">
-                <div class="single-section__title">
-                    <h3>Карта</h3>
-                </div>
-                <div id="map" class="single-section__content"></div>
-            </div>
-        <?php //} ?> -->
-
-        <?php wtd_item($post->wtd_options); ?>
-
-        <?php faq_item($post->faq_options); ?>
-
-        <div class="single-section reviews">
-            <div class="single-section__title">
-                <div class="single-section__title">
-                    <h3>Отзывы</h3>
-                </div>
-                <div class="reviews-items">
-                    <?php glampings_reviews_items(); ?>
-                </div>
-            </div>
-        </div>
-
-        <div class="reviews-items__button-more">
-            <button class="primary-light green nxl ntext w-200 js-reviews-more mb-10" type="button" name="button"
-            data-count="<?php echo $statistics['count']; ?>"
-            data-pagenum="1"
-            data-post="<?php echo $post->ID; ?>">Показать еще отзывы</button>
-        </div>
-        <button data-modal="add-review" class="primary golden nxl ntext w-200 js-open-modal" type="button" name="button">Написать отзыв</button>
-    </div>
-
-    <aside class="single-aside">
-        <div id="aside-content" class="single-aside__content">
-            <div class="single-aside__content__item aside-item">
-                <div class="btn-group add-favorites-comparison">
-                    <button id="add-favorites" data-postid="<?php the_ID(); ?>" class="round-sup-red single" type="button" name="button" title="Добавить в избранное">
-                        <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                            <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+        <div class="single-content">
+            <div class="single-section title">
+                <?php the_title( '<h1 class="entry-title">', '</h1>' ); ?>
+                <div class="title__address mb10">
+                    <a href="https://yandex.ru/maps/?rtext=~<?php echo get_additionally_meta('coordinates'); ?>"
+                        target="_blank"
+        				rel="nofollow"
+                        title="Построить маршрут">
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.87827 2 7.84344 2.84285 6.34315 4.34315C4.84285 5.84344 4 7.87827 4 10C4 13.0981 6.01574 16.1042 8.22595 18.4373C9.31061 19.5822 10.3987 20.5195 11.2167 21.1708C11.5211 21.4133 11.787 21.6152 12 21.7726C12.213 21.6152 12.4789 21.4133 12.7833 21.1708C13.6013 20.5195 14.6894 19.5822 15.774 18.4373C17.9843 16.1042 20 13.0981 20 10C20 7.87827 19.1571 5.84344 17.6569 4.34315C16.1566 2.84285 14.1217 2 12 2ZM12 23C11.4453 23.8321 11.445 23.8319 11.4448 23.8317L11.4419 23.8298L11.4352 23.8253L11.4123 23.8098C11.3928 23.7966 11.3651 23.7776 11.3296 23.753C11.2585 23.7038 11.1565 23.6321 11.0278 23.5392C10.7705 23.3534 10.4064 23.0822 9.97082 22.7354C9.10133 22.043 7.93939 21.0428 6.77405 19.8127C4.48426 17.3958 2 13.9019 2 10C2 7.34784 3.05357 4.8043 4.92893 2.92893C6.8043 1.05357 9.34784 0 12 0C14.6522 0 17.1957 1.05357 19.0711 2.92893C20.9464 4.8043 22 7.34784 22 10C22 13.9019 19.5157 17.3958 17.226 19.8127C16.0606 21.0428 14.8987 22.043 14.0292 22.7354C13.5936 23.0822 13.2295 23.3534 12.9722 23.5392C12.8435 23.6321 12.7415 23.7038 12.6704 23.753C12.6349 23.7776 12.6072 23.7966 12.5877 23.8098L12.5648 23.8253L12.5581 23.8298L12.556 23.8312C12.5557 23.8314 12.5547 23.8321 12 23ZM12 23L12.5547 23.8321C12.2188 24.056 11.7807 24.0556 11.4448 23.8317L12 23Z" fill="black"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8ZM8 10C8 7.79086 9.79086 6 12 6C14.2091 6 16 7.79086 16 10C16 12.2091 14.2091 14 12 14C9.79086 14 8 12.2091 8 10Z" fill="black"></path>
                         </svg>
-                    </button>
-                    <button id="add-comparison" data-postid="<?php the_ID(); ?>" class="round-sup-red single" type="button" name="button" title="Добавить к сравнению">
-                        <svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                            <path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
-                        </svg>
-                    </button>
-
-                    <script src="https://yastatic.net/share2/share.js"></script>
-                    <style media="screen">
-                        .ya-share2__container_size_m .ya-share2__item_more.ya-share2__item_has-pretty-view .ya-share2__link_more.ya-share2__link_more-button-type_short {
-                            display: flex;
-                            border: 1px solid rgb(94, 109, 119);
-                            background: rgb(255, 255, 255);
-                        }
-                    </style>
-                    <div class="ya-share2" data-curtain data-shape="round" data-limit="0"
-                        data-more-button-type="short"
-                        data-services="vkontakte,odnoklassniki" title="Поделиться"></div>
+                        <?php echo get_additionally_meta('address'); ?>
+                    </a>
                 </div>
             </div>
 
-            <!-- <div class="single-aside__content__item aside-item mt20 mt-smail-10">
-                <div class="single-aside__content__title mb6">
-                    <span>Копировать ссылку</span>
+            <div class="single-section description">
+                <div class="single-section__content collapse-content-descr">
+                    <?php the_content(); ?>
                 </div>
-                <div class="aside-item__content copy-group">
-                    <div class="copy-group__text to-copy">
-                        <?php //the_permalink(); ?>
+                <div class="single-section__content collapse-content-descr active">
+                    <?php echo kama_excerpt([ 'maxchar' => $maxchar ]); ?>
+                </div>
+                <?php if ($count_content_symbol > 400) {?>
+                    <div class="collapse-content-btn js-btn-descr">
+                        <span>Развернуть описание</span>
+                        <svg width="15" height="7" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M1 1L8 8L15 1" stroke="#161616" stroke-width="1.5"/>
+                        </svg>
                     </div>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
-                        <path d="M3.33301 10.5H2.66634C2.31272 10.5 1.97358 10.3596 1.72353 10.1095C1.47348 9.85947 1.33301 9.52033 1.33301 9.16671V3.16671C1.33301 2.81309 1.47348 2.47395 1.72353 2.2239C1.97358 1.97385 2.31272 1.83337 2.66634 1.83337H8.66634C9.01996 1.83337 9.3591 1.97385 9.60915 2.2239C9.8592 2.47395 9.99967 2.81309 9.99967 3.16671V3.83337M7.33301 6.50004H13.333C14.0694 6.50004 14.6663 7.09699 14.6663 7.83337V13.8334C14.6663 14.5698 14.0694 15.1667 13.333 15.1667H7.33301C6.59663 15.1667 5.99967 14.5698 5.99967 13.8334V7.83337C5.99967 7.09699 6.59663 6.50004 7.33301 6.50004Z" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
-                    </svg>
-                    <button class="copy-group__btn copy-btns" type="button" name="button" title="Копировать ссылку"></button>
+                <?php } ?>
+            </div>
+
+            <div class="single-section facilities-wrap">
+                <div class="facilities">
+                    <?php
+                    glamping_icons_facilities('glamping_facilities_general', 'Удобства общие');
+                    glamping_icons_facilities('glamping_territory', 'Территория');
+                    glamping_icons_facilities('glamping_entertainment', 'Развлечения');
+                    glamping_icons_facilities('glamping_nutrition', 'Питание');
+                    glamping_icons_facilities('facilities_general_kitchen', 'Кухня');
+                    glamping_icons_facilities('facilities_general_bathroom', 'Ванная комната');
+                    glamping_icons_facilities('facilities_options_children', 'Для детей');
+                    glamping_icons_facilities('glamping_facilities_safety', 'Безопасность');
+                    ?>
                 </div>
-            </div> -->
+                <button class="primary-light green nxl ntext w-200 js-facilities-more" data-type="no">Показать все удобства</button>
+            </div>
 
-            <?php get_contact_information_content(); ?>
+            <div class="single-section conditions">
+                <div class="single-section__title">
+                    <h3>Условия размещения</h3>
+                </div>
+                <div class="single-section__content">
+                    <?php get_additionally_content(); ?>
+                </div>
+            </div>
 
+            <?php get_accommodation_options_new(); ?>
+
+            <!-- <?php //if ( get_additionally_meta('coordinates') ) { ?>
+                <div id="map-container" class="single-section map">
+                    <div class="single-section__title">
+                        <h3>Карта</h3>
+                    </div>
+                    <div id="map" class="single-section__content"></div>
+                </div>
+            <?php //} ?> -->
+
+            <?php wtd_item($post->wtd_options); ?>
+            <?php faq_item($post->faq_options); ?>
+            <?php glemp_stocs($post->ID); ?>
+
+            <div id="reviews-section" class="single-section reviews">
+                <div class="single-section__title">
+                    <div class="single-section__title">
+                        <h3>Отзывы</h3>
+                    </div>
+                    <div class="reviews-items">
+                        <?php glampings_reviews_items(); ?>
+                    </div>
+                </div>
+            </div>
+
+            <div class="reviews-items__button-more">
+                <button class="primary-light green nxl ntext w-200 js-reviews-more mb-10" type="button" name="button"
+                data-count="<?php echo $statistics['count']; ?>"
+                data-pagenum="1"
+                data-post="<?php echo $post->ID; ?>">Показать еще отзывы</button>
+            </div>
+            <button data-modal="add-review" class="primary golden nxl ntext w-200 js-open-modal" type="button" name="button">Написать отзыв</button>
         </div>
-    </aside>
+
+        <aside class="single-aside">
+            <div id="aside-content" class="single-aside__content">
+                <div class="single-aside__content__item aside-item">
+                    <div class="btn-group add-favorites-comparison">
+                        <button id="add-favorites" data-postid="<?php the_ID(); ?>" class="round-sup-red single" type="button" name="button" title="Добавить в избранное">
+                            <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                                <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+                            </svg>
+                        </button>
+                        <button id="add-comparison" data-postid="<?php the_ID(); ?>" class="round-sup-red single comparison-btn" type="button" name="button" title="Добавить к сравнению">
+                            <svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                                <path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+                            </svg>
+                        </button>
+
+                        <script src="https://yastatic.net/share2/share.js"></script>
+                        <style media="screen">
+                            .ya-share2__container_size_m .ya-share2__item_more.ya-share2__item_has-pretty-view .ya-share2__link_more.ya-share2__link_more-button-type_short {
+                                display: flex;
+                                border: 1px solid rgb(94, 109, 119);
+                                /* border: 1px solid #F1A539; */
+                                background: rgb(255, 255, 255);
+                            }
+                        </style>
+                        <div class="ya-share2" data-curtain data-shape="round" data-limit="0"
+                            data-more-button-type="short"
+                            data-services="vkontakte,odnoklassniki" title="Поделиться"></div>
+                    </div>
+                </div>
+
+                <!-- <div class="single-aside__content__item aside-item mt20 mt-smail-10">
+                    <div class="single-aside__content__title mb6">
+                        <span>Копировать ссылку</span>
+                    </div>
+                    <div class="aside-item__content copy-group">
+                        <div class="copy-group__text to-copy">
+                            <?php //the_permalink(); ?>
+                        </div>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="17" viewBox="0 0 16 17" fill="none">
+                            <path d="M3.33301 10.5H2.66634C2.31272 10.5 1.97358 10.3596 1.72353 10.1095C1.47348 9.85947 1.33301 9.52033 1.33301 9.16671V3.16671C1.33301 2.81309 1.47348 2.47395 1.72353 2.2239C1.97358 1.97385 2.31272 1.83337 2.66634 1.83337H8.66634C9.01996 1.83337 9.3591 1.97385 9.60915 2.2239C9.8592 2.47395 9.99967 2.81309 9.99967 3.16671V3.83337M7.33301 6.50004H13.333C14.0694 6.50004 14.6663 7.09699 14.6663 7.83337V13.8334C14.6663 14.5698 14.0694 15.1667 13.333 15.1667H7.33301C6.59663 15.1667 5.99967 14.5698 5.99967 13.8334V7.83337C5.99967 7.09699 6.59663 6.50004 7.33301 6.50004Z" stroke="#667085" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                        </svg>
+                        <button class="copy-group__btn copy-btns" type="button" name="button" title="Копировать ссылку"></button>
+                    </div>
+                </div> -->
+
+                <?php get_contact_information_content(); ?>
+
+            </div>
+        </aside>
+
+    </div>
 
 </article><!-- #post-<?php the_ID(); ?> -->
 
@@ -236,9 +249,15 @@ $count_content_symbol = mb_strlen(get_the_content());
 <?php //}
 get_template_part( 'template-parts/popups/add-rating' );
 
-// $media_gallery = get_post_meta( 181, 'photos', 1 );
-// $name = glamping_review_img_list(181);
-// echo count($media_gallery);
+// $text = 'Индивидуальная ванная комната';
+// $value_pl = explode(' ', $text);
+// $num_el = count($value_pl)-1;
+// $end_el = $value_pl[$num_el];
+// array_pop($value_pl);
+// $value_text = '<span>';
+// $value_text .= implode(" ", $value_pl) . '<span>' . $end_el . '</span> <span class="icon-text-red">₽</span>';
+// $value_text .= '</span>';
+//
 // echo '<pre>';
-// var_dump($media_gallery);
+// var_dump($value_text);
 // echo '<pre>';

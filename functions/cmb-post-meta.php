@@ -606,8 +606,7 @@ function register_single_glampings_metabox() {
 	) );
 
 	$what_to_do->add_group_field( $wtd_options_group, array(
-		'name' => esc_html__( 'Описание', 'glamping-club' ),
-		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
+		'name' => esc_html__( 'Платно/бесплатно', 'glamping-club' ),
 		'id'   => 'type_price',
 		'type'    => 'radio_inline',
 		'options' => array(
@@ -619,9 +618,8 @@ function register_single_glampings_metabox() {
 
 	$what_to_do->add_group_field( $wtd_options_group, array(
 		'name' => esc_html__( 'Описание', 'glamping-club' ),
-		// 'desc' => esc_html__( 'Год постройки глэмпинга', 'glamping-club' ),
 		'id'   => 'text',
-		'type' => 'textarea_small',
+		'type' => 'wysiwyg',
 	) );
 
 	$what_to_do->add_group_field( $wtd_options_group, array(

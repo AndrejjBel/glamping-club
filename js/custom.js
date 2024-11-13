@@ -157,12 +157,12 @@ function initOptionsGallery(item) {
 }
 initOptionsGallery(20);
 
-function initOptionsGalleryRev(item) {
-    for (var i = 0; i < item; i++) {
+function initOptionsGalleryRev(item, i=0) {
+    for (i; i < item; i++) {
         optionsGallery('.list-'+i);
     }
 }
-initOptionsGalleryRev(20);
+initOptionsGalleryRev(100);
 
 function initOptionsGalleryReview(item) {
     for (var i = 0; i < item; i++) {
@@ -231,9 +231,9 @@ const contactsMobailVision = () => {
     const svgClose = document.querySelector('svg.close');
     btn.addEventListener('click', (e) => {
         singleAside.classList.toggle('active');
-        iconPhone.classList.toggle('active');
-        iconMessage.classList.toggle('active');
-        svgClose.classList.toggle('active');
+        // iconPhone.classList.toggle('active');
+        // iconMessage.classList.toggle('active');
+        // svgClose.classList.toggle('active');
     });
 
     document.addEventListener( 'click', (e) => {
@@ -241,18 +241,18 @@ const contactsMobailVision = () => {
         const withinsingleBtn = e.composedPath().includes(btn);
         if ( ! withinsingleAside && !withinsingleBtn ) {
             singleAside.classList.remove('active');
-            iconPhone.classList.remove('active');
-            iconMessage.classList.remove('active');
-            svgClose.classList.remove('active');
+            // iconPhone.classList.remove('active');
+            // iconMessage.classList.remove('active');
+            // svgClose.classList.remove('active');
         }
     });
 
     document.addEventListener('keydown', function(e) {
         if( e.keyCode == 27 ) {
             singleAside.classList.remove('active');
-            iconPhone.classList.remove('active');
-            iconMessage.classList.remove('active');
-            svgClose.classList.remove('active');
+            // iconPhone.classList.remove('active');
+            // iconMessage.classList.remove('active');
+            // svgClose.classList.remove('active');
         }
     });
 }
@@ -608,6 +608,7 @@ jQuery( function( $ ) {
     }
     replaceTitlesGen('acc_options_repeat', 'title');
     replaceTitlesGen('faq_options_repeat', 'title');
+    replaceTitlesGen('wtd_options_repeat', 'title');
 });
 
 const addEditGlemp = () => {
@@ -619,10 +620,15 @@ const addEditGlemp = () => {
             const form = document.querySelector('#single_glampings_front');
             const formMedia = document.querySelector('#media_gallery_front');
             const formAccOptions = document.querySelector('#accommodation_options_front');
+            const formFaqOptions = document.querySelector('#faq_options_front');
+            const formWtdOptions = document.querySelector('#wtd_options');
 
             let formData = new FormData(form);
             let formDataMedia = new FormData(formMedia);
             let formDataAccOptions = new FormData(formAccOptions);
+            let formDataFaqOptions = new FormData(formFaqOptions);
+            let formDataWtdOptions = new FormData(formWtdOptions);
+
             let content = window.tinyMCE.get('glamping_description').getContent();
             let content_glc_notes = window.tinyMCE.get('additionally_field_0_glc_notes').getContent();
             formData.set('glamping_description', content);
@@ -641,6 +647,16 @@ const addEditGlemp = () => {
                     formData.set(item[0], item[1]);
                 }
             });
+            Array.from(formDataFaqOptions).forEach((item) => {
+                if (item[0] != 'object_id') {
+                    formData.set(item[0], item[1]);
+                }
+            });
+            Array.from(formDataWtdOptions).forEach((item) => {
+                if (item[0] != 'object_id') {
+                    formData.set(item[0], item[1]);
+                }
+            });
             formData.append('nonce', glamping_club_ajax.nonce);
             formData.append('user_id', glamping_club_ajax.user_id);
             formData.append('action_type', btn.dataset.type);
@@ -649,7 +665,9 @@ const addEditGlemp = () => {
             // console.dir(Array.from(formData));
 
             let optionsItems = document.querySelectorAll('#acc_options_repeat .cmb-repeatable-grouping');
+            let wtdOptionsItems = document.querySelectorAll('#wtd_options_repeat .cmb-repeatable-grouping');
             accOptionsRepeat(optionsItems, formData);
+            wtdOptionsRepeat(wtdOptionsItems, formData)
             jQuery(document).ready( function($){
     	        $.ajax({
     	            url: glamping_club_ajax.ajaxUrl,
@@ -772,6 +790,16 @@ function accOptionsRepeat(optionsItems, formData) {
     optionsItems.forEach((item, i) => {
         let aoId = 'acc_options_'+i+'_description';
         let aoKey = 'acc_options['+i+'][description]';
+        let content_acc_options = window.tinyMCE.get(aoId).getContent();
+        formData.set(aoKey, content_acc_options);
+    });
+}
+
+function wtdOptionsRepeat(optionsItems, formData) {
+    if (!optionsItems.length) return;
+    optionsItems.forEach((item, i) => {
+        let aoId = 'wtd_options_'+i+'_text';
+        let aoKey = 'wtd_options['+i+'][text]';
         let content_acc_options = window.tinyMCE.get(aoId).getContent();
         formData.set(aoKey, content_acc_options);
     });
@@ -992,6 +1020,33 @@ function slidersCompare(index) {
 }
 // slidersCompare('.mySwiper1');
 // slidersCompare('.mySwiper2');
+
+function relListSwiper(index) {
+    const slider = document.querySelector(index);
+    new Swiper(slider, {
+        slidesPerView: 1,
+        spaceBetween: 22,
+        navigation: {
+            nextEl: ".swiper-nav .swiperm-button-next",
+            prevEl: ".swiper-nav .swiperm-button-prev",
+        },
+        breakpoints: {
+            320: {
+                slidesPerView: 1,
+            },
+            380: {
+                slidesPerView: 'auto',
+            },
+            1024: {
+                slidesPerView: 3,
+            },
+            1330: {
+                slidesPerView: 4,
+            },
+        }
+    });
+}
+relListSwiper('.relListSwiper');
 
 function slickSlider() {
     jQuery(document).ready( function($){
@@ -1277,6 +1332,7 @@ const reviewsMore = () => {
             formData.append('action', 'reviews_more');
             formData.append('offset', moreBtn.dataset.pagenum);
             formData.append('post_id', moreBtn.dataset.post);
+            let numList = +moreBtn.dataset.pagenum;
             ( function( $ ) {
                 $.ajax({
                     url: glamping_club_ajax.ajaxUrl,
@@ -1289,7 +1345,9 @@ const reviewsMore = () => {
                         // console.dir(data);
                         reviews.insertAdjacentHTML('beforeEnd', data);
                         btnWievsOverflows('.reviews-items__item-text');
-                        collapseViewsReviews();
+                        // collapseViewsReviews();
+                        initOptionsGalleryRev(100, numList*5);
+                        countImgRev();
                     },
                     error: function (jqXHR, text, error) {
                         console.log('Send error');
@@ -1301,10 +1359,11 @@ const reviewsMore = () => {
                 moreBtn.style.display = '';
             }
             // initSliderGlempReview(100);
-            setTimeout(function(){
-                initSliderGlempReview(100);
-                initOptionsGalleryReview(100);
-            }, 400);
+            // setTimeout(function(){
+            //     initSliderGlempReview(100);
+            //     initOptionsGalleryReview(100);
+            //     initOptionsGalleryRev(100, numList*5);
+            // }, 400);
         });
     }
 }
@@ -1423,11 +1482,12 @@ function accFor(acc, item) {
 
 console.dir(JSON.parse(glamping_club_ajax.glAll));
 
-const collapseViewsReviews = () => {
+function collapseViewsReviews() {
     const btns = document.querySelectorAll('.reviews-items__item-btn button');
     if (!btns.length) return;
     btns.forEach((btn) => {
         btn.addEventListener('click', (e) => {
+            // console.dir(btn);
             btn.parentElement.previousElementSibling.classList.toggle('active');
             btn.children[1].classList.toggle('active');
             if (btn.children[1].classList.contains('active')) {
@@ -1438,17 +1498,37 @@ const collapseViewsReviews = () => {
         });
     });
 }
-collapseViewsReviews();
+// collapseViewsReviews();
+
+function collapseReviews(btn) {
+    btn.parentElement.previousElementSibling.classList.toggle('active');
+    btn.children[1].classList.toggle('active');
+    if (btn.children[1].classList.contains('active')) {
+        btn.children[0].innerText = 'Скрыть';
+    } else {
+        btn.children[0].innerText = 'Показать полностью';
+    }
+}
 
 const facilitiesMore = () => {
     const btn = document.querySelector('.js-facilities-more');
     if (!btn) return;
+    let elems = btn.previousElementSibling.children;
+    let elNone = 0;
+    for (var elem of elems) {
+        if (getComputedStyle(elem).display == 'none') {
+            elNone++;
+        }
+    }
+    if (elNone > 0) {
+        btn.classList.add('activate');
+    }
     btn.addEventListener('click', (e) => {
         if (btn.dataset.type == 'no') {
             for (var variable of btn.parentElement.children[0].children) {
                 variable.style.display = 'block';
             }
-            btn.innerText = 'Скрыть';
+            btn.innerText = 'Свернуть';
             btn.dataset.type = 'yes';
         } else {
             for (var variable of btn.parentElement.children[0].children) {
@@ -1457,15 +1537,6 @@ const facilitiesMore = () => {
             btn.innerText = 'Показать все удобства';
             btn.dataset.type = 'no';
         }
-
-
-        // btn.parentElement.previousElementSibling.classList.toggle('active');
-        // btn.children[1].classList.toggle('active');
-        // if (btn.children[1].classList.contains('active')) {
-        //     btn.children[0].innerText = 'Скрыть';
-        // } else {
-        //     btn.children[0].innerText = 'Показать полностью';
-        // }
     });
 }
 facilitiesMore();
@@ -1480,8 +1551,112 @@ function btnWievsOverflows(elem) {
 }
 btnWievsOverflows('.reviews-items__item-text');
 
+function btnWievsWtd(elem) {
+    const elems = document.querySelectorAll(elem);
+    if (!elems.length) return;
+    elems.forEach((elem) => {
+        let el = elem.previousElementSibling
+        if (multiLineOverflows(el)) {
+            el.classList.add('is-button');
+            elem.classList.add('active');
+        }
+    });
+
+    var wtdSwiper = new Swiper(".wtdSwiper", {
+        pagination: {
+            el: ".swiper-pagination",
+            type: "fraction",
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+}
+btnWievsWtd('.js-btndetails-wtd');
+
+const collapseViewsStocks = () => {
+    const btns = document.querySelectorAll('button.js-stocks-more');
+    if (!btns.length) return;
+    btns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            btn.parentElement.previousElementSibling.children[2].classList.toggle('activate');
+            btn.parentElement.classList.toggle('activate');
+            if (btn.parentElement.classList.contains('activate')) {
+                btn.innerText = 'Свернуть';
+            } else {
+                btn.innerText = 'Подробнее';
+            }
+        });
+    });
+}
+collapseViewsStocks();
+
+const collapseAccMobile = () => {
+    const btn = document.querySelector('button.js-acc-more-all');
+    if (!btn) return;
+    btn.addEventListener('click', (e) => {
+        btn.classList.toggle('active');
+        let items = btn.parentElement.previousElementSibling.children;
+        for (var item of items) {
+            item.classList.toggle('active');
+        }
+        if (btn.classList.contains('active')) {
+            btn.innerText = 'Свернуть';
+        } else {
+            btn.innerText = 'Все варианты';
+        }
+
+    });
+}
+collapseAccMobile();
+
 function multiLineOverflows(el) {
     return el.scrollHeight > el.clientHeight;
 }
+
+const countImgRev = () => {
+    const reviews = document.querySelectorAll('.reviews-items__item');
+    if (!reviews.length) return;
+    reviews.forEach((item, i) => {
+        if (item.children[2].children[0]) {
+            let elNone = 0;
+            for (var variable of item.children[2].children[0].children) {
+                if (variable.classList.contains('galery-review-list__item')) {
+                    if (getComputedStyle(variable).display == 'none') {
+                        elNone++;
+                    }
+                }
+            }
+            if (+elNone > 0) {
+                item.children[2].children[0].lastElementChild.children[1].innerText = elNone;
+                item.children[2].children[0].lastElementChild.classList.add('active');
+            }
+        }
+    });
+
+    window.addEventListener('resize', (e) => {
+        reviews.forEach((item, i) => {
+            if (item.children[2].children[0]) {
+                let elNone = 0;
+                for (var variable of item.children[2].children[0].children) {
+                    if (variable.classList.contains('galery-review-list__item')) {
+                        if (getComputedStyle(variable).display == 'none') {
+                            elNone++;
+                        }
+                    }
+                }
+                if (+elNone > 0) {
+                    item.children[2].children[0].lastElementChild.children[1].innerText = elNone;
+                    item.children[2].children[0].lastElementChild.classList.add('active');
+                } else {
+                    item.children[2].children[0].lastElementChild.children[1].innerText = elNone;
+                    item.children[2].children[0].lastElementChild.classList.remove('active');
+                }
+            }
+        });
+    });
+}
+countImgRev();
 
 Cookies.set('mediaQuery', window.innerWidth);

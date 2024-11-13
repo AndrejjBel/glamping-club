@@ -21,10 +21,10 @@ if( !is_user_logged_in() ){
 
 add_action( 'template_redirect', 'glamping_club_template_redirect' );
 function glamping_club_template_redirect(){
-    if( is_page( array(PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD) ) && is_user_logged_in() ){
+    if( is_page( [PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD] ) && is_user_logged_in() ){
         wp_redirect( home_url( '/' . PAGE_DASHBOARD . '/' ) );
         exit();
-    } elseif (is_page(PAGE_DASHBOARD)  && !is_user_logged_in()) {
+    } elseif (is_page([PAGE_DASHBOARD, PAGE_POST_EDIT])  && !is_user_logged_in()) {
         wp_redirect( home_url( '/' ) );
         exit();
     }

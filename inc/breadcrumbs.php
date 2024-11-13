@@ -17,7 +17,7 @@ function breadcrumbs() {
 
 	$wrap_before    = '<div class="breadcrumbs" itemscope itemtype="http://schema.org/BreadcrumbList">'; // открывающий тег обертки
 	$wrap_after     = '</div><!-- .breadcrumbs -->'; // закрывающий тег обертки
-	$sep            = '<span class="breadcrumbs__separator"> ' . $separator . ' </span>'; // разделитель между "крошками"
+	$sep            = '<span class="breadcrumbs__separator">' . $separator . '</span>'; // разделитель между "крошками"
 	$before         = '<span class="breadcrumbs__current" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">'; // тег перед текущей "крошкой"
 	$after          = '</span>'; // тег после текущей "крошки"
 

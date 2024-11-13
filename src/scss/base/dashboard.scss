@@ -96,6 +96,11 @@
         font-weight: 500;
     }
 
+    &__btn {
+        display: flex;
+        justify-content: flex-end;
+    }
+
     &__content {
 
         &__title {

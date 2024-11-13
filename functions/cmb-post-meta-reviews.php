@@ -61,3 +61,24 @@ function filter_quicktags_settings( $qtinit, $editor_id ){
 	return $qtinit;
 }
 add_filter('teeny_mce_buttons', 'filter_quicktags_settings', 10, 2);
+
+add_filter( 'manage_' . 'reviews' . '_posts_columns', 'add_reviews_column', 4 );
+function add_reviews_column( $columns ) {
+	$num = 2; // после какой по счету колонки вставлять новые
+
+	$new_columns = [
+		'parent_glemp' => 'Глэмпинг',
+	];
+
+	return array_slice( $columns, 0, $num ) + $new_columns + array_slice( $columns, $num );
+}
+
+add_action( 'manage_' . 'reviews' . '_posts_custom_column', 'fill_reviews_column', 5, 2 );
+function fill_reviews_column( $colname, $post_id ) {
+	if( $colname === 'parent_glemp' ){
+		$parent_glemp = get_post_meta( $post_id, 'glempid', 1 );
+		$title = get_the_title( $parent_glemp );
+		$link = get_permalink( $parent_glemp );
+		echo '<a href="' . $link . '">' . $title . '</a>';
+	}
+}

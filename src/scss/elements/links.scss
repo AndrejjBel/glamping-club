@@ -20,7 +20,8 @@ a.primary {
         &:hover {
             // border: 1px solid var(--golden-link);
             border: none;
-            background: var(--golden-link);
+            background: #DF8F20;
+            text-decoration: none;
         }
 
         &:focus {
@@ -99,9 +100,9 @@ a.primary-light {
         color: var(--green-link);
 
         &:hover {
-            background: var(--White, #FFF);
-            border: 1px solid var(--green-link);
-            color: var(--green-link);
+            background: #467A3C;
+            border: 1px solid #467A3C;
+            color: #FFFFFF;
         }
 
         &:focus {
@@ -155,7 +156,14 @@ a.primary-light {
         font-size: 14px;
         font-weight: 600;
         line-height: 100%;
-        letter-spacing: 0%;
+    }
+
+    &.bg-none {
+        background: none;
+
+        &:hover {
+            background: none;
+        }
     }
 }
 

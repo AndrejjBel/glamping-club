@@ -41,7 +41,7 @@ button.primary {
 
         &:hover {
             border: none;
-            background: var(--golden-link);
+            background: #DF8F20;
         }
 
         &:focus {
@@ -128,13 +128,23 @@ button.primary-light {
         color: var(--green-link);
 
         &:hover {
-            background: var(--White, #FFF);
-            border: 1px solid var(--green-link);
-            color: var(--green-link);
+            background: #467A3C;
+            border: 1px solid #467A3C;
+            color: #FFFFFF;
         }
 
         &:focus {
             box-shadow: none;
+        }
+
+        &.bg-none {
+            background: none;
+
+            &:hover {
+                background: #467A3C;
+                border: 1px solid #467A3C;
+                color: #FFFFFF;
+            }
         }
     }
 
@@ -210,7 +220,10 @@ button.primary-light {
         font-size: 14px;
         font-weight: 600;
         line-height: 100%;
-        letter-spacing: 0%;
+
+        @media (max-width: 476px) {
+            font-size: 13px;
+        }
     }
 }
 
@@ -521,6 +534,12 @@ a.btn-back-to-home {
     border-radius: 50%;
     background: var(--chalk);
 
+    @media (max-width: 767px) {
+        width: 25px;
+        height: 25px;
+        padding: 6px;
+    }
+
     &.single {
         border: 1px solid rgb(94, 109, 119);
         background: rgb(255, 255, 255);
@@ -528,8 +547,16 @@ a.btn-back-to-home {
         &.active {
             border: 1px solid #F04438;
 
+            &.comparison-btn {
+                border: 1px solid #F1A539;
+            }
+
             &:hover {
                 border: 1px solid #B42318;
+
+                &.comparison-btn {
+                    border: 1px solid #DF8F20;
+                }
             }
         }
     }
@@ -586,11 +613,23 @@ a.btn-back-to-home {
             fill: #F04438;
         }
 
+        &.comparison-btn {
+            & svg path {
+                fill: #F1A539;
+            }
+        }
+
         &:hover {
             // background: var(--chalk);
 
             & svg path {
                 fill: #B42318;
+            }
+
+            &.comparison-btn {
+                & svg path {
+                    fill: #DF8F20;
+                }
             }
         }
     }
@@ -599,6 +638,10 @@ a.btn-back-to-home {
 .btn-group {
     display: flex;
     gap: 20px;
+
+    @media (max-width: 1023px) {
+        display: none;
+    }
 
     &.btn-group-map {
         gap: 0;

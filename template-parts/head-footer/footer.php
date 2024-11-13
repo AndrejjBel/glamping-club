@@ -1,11 +1,15 @@
 <?php
 $site_options = get_option( 'glc_options' );
 $container = 'container';
+$footer_style = '';
 if (is_post_type_archive('glampings')) {
     $container = 'container-ag';
 }
+if (is_singular('glampings')) {
+    $footer_style = ' single-glampings-footer';
+}
 ?>
-<footer id="colophon" class="site__footer">
+<footer id="colophon" class="site__footer<?php echo $footer_style;?>">
     <div class="footer-generale">
         <div class="<?php echo $container; ?>">
             <?php if ( get_option( '_subscr_show' ) == 'yes' ) { ?>

@@ -12,7 +12,8 @@
 #media_gallery .cmb-row,
 #cmb2-metabox-accommodation_options .cmb-row,
 #cmb2-metabox-faq_options .cmb-row,
-#cmb2-metabox-wtd_options .cmb-row {
+#cmb2-metabox-wtd_options .cmb-row,
+#cmb2-metabox-single_stocks .cmb-row {
     padding-left: 12px;
     padding-right: 12px;
 }

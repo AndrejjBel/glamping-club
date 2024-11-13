@@ -438,7 +438,7 @@ function get_accommodation_options_new() {
 						}
 						?>
 					</div>
-					<button class="link js-btndetails-acc js-open-modal" type="button"  data-modal="acc-details<?php echo $i;?>">Подробнее</button>
+					<!-- <button class="link js-btndetails-acc js-open-modal" type="button"  data-modal="acc-details<?php //echo $i;?>">Подробнее</button> -->
 					<div class="acc-option__options__item price-btn">
 						<?php if (array_key_exists('price', $option)) {
 							if ($option['price']) {
@@ -453,45 +453,45 @@ function get_accommodation_options_new() {
 								<div class="acc-option__options__item__value value-price">Стоимость не установлена</div>
 							</div>
 						<?php } ?>
-						<a href="<?php echo get_post_meta($post->ID, 'additionally_field')[0][0]['site_glamping']?>"
+						<!-- <a href="<?php //echo get_post_meta($post->ID, 'additionally_field')[0][0]['site_glamping']?>"
 							class="primary golden nxl ntext w-200 btnvib"
 							target="_blank"
-							rel="nofollow">Забронировать</a>
+							rel="nofollow">Забронировать</a> -->
+						<button class="primary-light green bg-none nxl ntext w-200 js-btndetails-acc js-open-modal" type="button"  data-modal="acc-details<?php echo $i;?>">Подробнее</button>
 					</div>
 
 					</div>
 				</div>
-			</div>
-
-			<div class="modal modal-based-theme acc-details custom-scroll" data-modal="acc-details<?php echo $i;?>">
-			    <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-			        <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"></path>
-			    </svg>
-				<div class="modal-content">
-				    <div class="acc-details__title">Описание</div>
-				    <div class="acc-details__description">
-						<?php if (array_key_exists('description', $option)) { ?>
-							<div class="acc-option__description">
-								<?php echo $option['description']; ?>
+				<div class="modal modal-based-theme acc-details custom-scroll" data-modal="acc-details<?php echo $i;?>">
+				    <svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+				        <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"></path>
+				    </svg>
+					<div class="modal-content">
+					    <div class="acc-details__title">Описание</div>
+					    <div class="acc-details__description">
+							<?php if (array_key_exists('description', $option)) { ?>
+								<div class="acc-option__description">
+									<?php echo $option['description']; ?>
+								</div>
+							<?php } ?>
+					    </div>
+						<div class="acc-details__facilities">
+							<div class="acc-option__facilities__title">
+								<div class="acc-details__title">Все удобства</div>
 							</div>
-						<?php } ?>
-				    </div>
-					<div class="acc-details__facilities">
-						<div class="acc-option__facilities__title">
-							<div class="acc-details__title">Все удобства</div>
-						</div>
-						<div class="facilities acc-details-facilities">
-							<?php
-							if (array_key_exists('facilities_options_home', $option)) {
-								glamping_list_facilities_options($option['facilities_options_home'], 'В доме');
-							}
-							if (array_key_exists('facilities_options_bathroom', $option)) {
-								glamping_list_facilities_options($option['facilities_options_bathroom'], 'В ванной');
-							}
-							if (array_key_exists('facilities_options_kitchen', $option)) {
-								glamping_list_facilities_options($option['facilities_options_kitchen'], 'На кухне');
-							}
-							?>
+							<div class="facilities acc-details-facilities">
+								<?php
+								if (array_key_exists('facilities_options_home', $option)) {
+									glamping_list_facilities_options($option['facilities_options_home'], 'В доме');
+								}
+								if (array_key_exists('facilities_options_bathroom', $option)) {
+									glamping_list_facilities_options($option['facilities_options_bathroom'], 'В ванной');
+								}
+								if (array_key_exists('facilities_options_kitchen', $option)) {
+									glamping_list_facilities_options($option['facilities_options_kitchen'], 'На кухне');
+								}
+								?>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -499,7 +499,15 @@ function get_accommodation_options_new() {
 		<?php
 		$i++;
 		}
+		if ($i > 3) {
+			$btn_mobile = ' btn-views';
+		} else {
+			$btn_mobile = '';
+		}
 		?>
+	</div>
+	<div class="acc-options__btn-mobile<?php echo $btn_mobile;?>">
+		<button class="js-acc-more-all" type="button" name="button">Все варианты</button>
 	</div>
 </div>
 		<?php
@@ -555,13 +563,34 @@ function glamping_icons_facilities($type_facilities, $title) {
 		foreach ($facilities as $value) {
 			$value = explode(' - ', $value);
 			if (count($value) >= 2) {
-				if ($value[1] == 'бесплатно') {
-					$value_text = $value[0] . ' <span class="icon-text-green">₽</span>';
-				} elseif ($value[1] == 'платно') {
-					$value_text = $value[0] . ' <span class="icon-text-red">₽</span>';
+				// if ($value[1] == 'бесплатно') {
+				// 	$value_text = '<span>' . $value[0] . ' </span> <span class="icon-text-green">₽</span>';
+				// } elseif ($value[1] == 'платно') {
+				// 	$value_text = '<span>' . $value[0] . '</span> <span class="icon-text-red">₽</span>';
+				// }
+
+				if ($value[1] == 'платно') {
+					$value_pl = explode(' ', $value[0]);
+					if (count($value_pl) > 1) {
+						$num_el = count($value_pl)-1;
+						$end_el = $value_pl[$num_el];
+						array_pop($value_pl);
+						$value_text = '<span>';
+						$value_text .= implode(" ", $value_pl) . ' <span class="text-no-wrap">' . $end_el . '&nbsp;&nbsp;<span class="icon-text-red">₽</span></span>';
+						$value_text .= '</span>';
+
+						// foreach ($value_pl as $key => $value) {
+						// 	$value_text .= $value;
+						// }
+						// $value_text = '<span>' . $value[0] . '</span> <span class="icon-text-red">₽</span>';
+					} else {
+						$value_text = '<span>' . $value[0] . '</span> <span class="icon-text-red">₽</span>';
+					}
+				} else {
+					$value_text = '<span>' . $value[0] . '</span>';
 				}
 			} else {
-				$value_text = $value[0];
+				$value_text = '<span>' . $value[0] . '</span>';
 			}
 			if (array_key_exists($value[0], $icons)) {
 				$icon = $icons[ $value[0] ];
@@ -573,6 +602,7 @@ function glamping_icons_facilities($type_facilities, $title) {
 			echo '<div class="facilities__item__content-item">';
 			echo $icon;
 			echo '<span>' . $value_text . '</span>';
+			// echo $value_text;
 			echo '</div>';
 		}
 		echo '</div>
@@ -720,7 +750,7 @@ function get_contact_information_content($title='Контактная инфор
 		</div>
 	<?php }} ?>
 	<?php if ($whatsup_glamping || $viber_glamping || $telegram_glamping) { ?>
-		<div class="single-aside__content__item">
+		<div class="single-aside__content__item messengers">
 			<div class="single-aside__content__item__title">Мессенджеры:</div>
 		</div>
 		<?php if (array_key_exists('whatsup_glamping', $meta_obj)) {
@@ -743,8 +773,8 @@ function get_contact_information_content($title='Контактная инфор
 			<div class="single-aside__content__item messenger">
 				<div class="single-aside__content__item__text">
 					<a href="viber://chat?number=%2B<?php echo $viber_glamping; ?>" target="_blank" title="Viber">
-						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-							<path d="M444 49.9C431.3 38.2 379.9 .9 265.3 .4c0 0-135.1-8.1-200.9 52.3C27.8 89.3 14.9 143 13.5 209.5c-1.4 66.5-3.1 191.1 117 224.9h.1l-.1 51.6s-.8 20.9 13 25.1c16.6 5.2 26.4-10.7 42.3-27.8 8.7-9.4 20.7-23.2 29.8-33.7 82.2 6.9 145.3-8.9 152.5-11.2 16.6-5.4 110.5-17.4 125.7-142 15.8-128.6-7.6-209.8-49.8-246.5zM457.9 287c-12.9 104-89 110.6-103 115.1-6 1.9-61.5 15.7-131.2 11.2 0 0-52 62.7-68.2 79-5.3 5.3-11.1 4.8-11-5.7 0-6.9 .4-85.7 .4-85.7-.1 0-.1 0 0 0-101.8-28.2-95.8-134.3-94.7-189.8 1.1-55.5 11.6-101 42.6-131.6 55.7-50.5 170.4-43 170.4-43 96.9 .4 143.3 29.6 154.1 39.4 35.7 30.6 53.9 103.8 40.6 211.1zm-139-80.8c.4 8.6-12.5 9.2-12.9 .6-1.1-22-11.4-32.7-32.6-33.9-8.6-.5-7.8-13.4 .7-12.9 27.9 1.5 43.4 17.5 44.8 46.2zm20.3 11.3c1-42.4-25.5-75.6-75.8-79.3-8.5-.6-7.6-13.5 .9-12.9 58 4.2 88.9 44.1 87.8 92.5-.1 8.6-13.1 8.2-12.9-.3zm47 13.4c.1 8.6-12.9 8.7-12.9 .1-.6-81.5-54.9-125.9-120.8-126.4-8.5-.1-8.5-12.9 0-12.9 73.7 .5 133 51.4 133.7 139.2zM374.9 329v.2c-10.8 19-31 40-51.8 33.3l-.2-.3c-21.1-5.9-70.8-31.5-102.2-56.5-16.2-12.8-31-27.9-42.4-42.4-10.3-12.9-20.7-28.2-30.8-46.6-21.3-38.5-26-55.7-26-55.7-6.7-20.8 14.2-41 33.3-51.8h.2c9.2-4.8 18-3.2 23.9 3.9 0 0 12.4 14.8 17.7 22.1 5 6.8 11.7 17.7 15.2 23.8 6.1 10.9 2.3 22-3.7 26.6l-12 9.6c-6.1 4.9-5.3 14-5.3 14s17.8 67.3 84.3 84.3c0 0 9.1 .8 14-5.3l9.6-12c4.6-6 15.7-9.8 26.6-3.7 14.7 8.3 33.4 21.2 45.8 32.9 7 5.7 8.6 14.4 3.8 23.6z" fill="#8f5db7"/>
+						<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+							<path d="M 44.78125 13.15625 C 44 10.367188 42.453125 8.164063 40.1875 6.605469 C 37.328125 4.632813 34.039063 3.9375 31.199219 3.511719 C 27.269531 2.925781 23.710938 2.84375 20.316406 3.257813 C 17.136719 3.648438 14.742188 4.269531 12.558594 5.273438 C 8.277344 7.242188 5.707031 10.425781 4.921875 14.734375 C 4.539063 16.828125 4.28125 18.71875 4.132813 20.523438 C 3.789063 24.695313 4.101563 28.386719 5.085938 31.808594 C 6.046875 35.144531 7.722656 37.527344 10.210938 39.09375 C 10.84375 39.492188 11.65625 39.78125 12.441406 40.058594 C 12.886719 40.214844 13.320313 40.367188 13.675781 40.535156 C 14.003906 40.6875 14.003906 40.714844 14 40.988281 C 13.972656 43.359375 14 48.007813 14 48.007813 L 14.007813 49 L 15.789063 49 L 16.078125 48.71875 C 16.269531 48.539063 20.683594 44.273438 22.257813 42.554688 L 22.472656 42.316406 C 22.742188 42.003906 22.742188 42.003906 23.019531 42 C 25.144531 41.957031 27.316406 41.875 29.472656 41.757813 C 32.085938 41.617188 35.113281 41.363281 37.964844 40.175781 C 40.574219 39.085938 42.480469 37.355469 43.625 35.035156 C 44.820313 32.613281 45.527344 29.992188 45.792969 27.019531 C 46.261719 21.792969 45.929688 17.257813 44.78125 13.15625 Z M 35.382813 33.480469 C 34.726563 34.546875 33.75 35.289063 32.597656 35.769531 C 31.753906 36.121094 30.894531 36.046875 30.0625 35.695313 C 23.097656 32.746094 17.632813 28.101563 14.023438 21.421875 C 13.277344 20.046875 12.761719 18.546875 12.167969 17.09375 C 12.046875 16.796875 12.054688 16.445313 12 16.117188 C 12.050781 13.769531 13.851563 12.445313 15.671875 12.046875 C 16.367188 11.890625 16.984375 12.136719 17.5 12.632813 C 18.929688 13.992188 20.058594 15.574219 20.910156 17.347656 C 21.28125 18.125 21.113281 18.8125 20.480469 19.390625 C 20.347656 19.511719 20.210938 19.621094 20.066406 19.730469 C 18.621094 20.816406 18.410156 21.640625 19.179688 23.277344 C 20.492188 26.0625 22.671875 27.933594 25.488281 29.09375 C 26.230469 29.398438 26.929688 29.246094 27.496094 28.644531 C 27.574219 28.566406 27.660156 28.488281 27.714844 28.394531 C 28.824219 26.542969 30.4375 26.726563 31.925781 27.78125 C 32.902344 28.476563 33.851563 29.210938 34.816406 29.917969 C 36.289063 31 36.277344 32.015625 35.382813 33.480469 Z M 26.144531 15 C 25.816406 15 25.488281 15.027344 25.164063 15.082031 C 24.617188 15.171875 24.105469 14.804688 24.011719 14.257813 C 23.921875 13.714844 24.289063 13.199219 24.835938 13.109375 C 25.265625 13.035156 25.707031 13 26.144531 13 C 30.476563 13 34 16.523438 34 20.855469 C 34 21.296875 33.964844 21.738281 33.890625 22.164063 C 33.808594 22.652344 33.386719 23 32.90625 23 C 32.851563 23 32.796875 22.996094 32.738281 22.984375 C 32.195313 22.894531 31.828125 22.378906 31.917969 21.835938 C 31.972656 21.515625 32 21.1875 32 20.855469 C 32 17.628906 29.371094 15 26.144531 15 Z M 31 21 C 31 21.550781 30.550781 22 30 22 C 29.449219 22 29 21.550781 29 21 C 29 19.347656 27.652344 18 26 18 C 25.449219 18 25 17.550781 25 17 C 25 16.449219 25.449219 16 26 16 C 28.757813 16 31 18.242188 31 21 Z M 36.710938 23.222656 C 36.605469 23.6875 36.191406 24 35.734375 24 C 35.660156 24 35.585938 23.992188 35.511719 23.976563 C 34.972656 23.851563 34.636719 23.316406 34.757813 22.777344 C 34.902344 22.140625 34.976563 21.480469 34.976563 20.816406 C 34.976563 15.957031 31.019531 12 26.160156 12 C 25.496094 12 24.835938 12.074219 24.199219 12.21875 C 23.660156 12.34375 23.125 12.003906 23.003906 11.464844 C 22.878906 10.925781 23.21875 10.390625 23.757813 10.269531 C 24.539063 10.089844 25.347656 10 26.160156 10 C 32.125 10 36.976563 14.851563 36.976563 20.816406 C 36.976563 21.628906 36.886719 22.4375 36.710938 23.222656 Z"></path>
 						</svg>
 					</a>
 				</div>
@@ -776,11 +806,81 @@ function get_contact_information_content($title='Контактная инфор
 				target="_blank"
 				rel="nofollow">Построить маршрут</a>
 			<a href="<?php echo get_post_meta($post->ID, 'additionally_field')[0][0]['site_glamping']?>"
-				class="primary golden nxl ntext w-200 btnvib"
+				class="primary golden nxl ntext w-200 btnvib book-link"
 				target="_blank"
 				rel="nofollow">Забронировать</a>
 		</div>
 	<?php } ?>
+	<?php
+}
+
+function get_messages_icons() {
+	global $post;
+    $meta_object = get_post_meta($post->ID, 'additionally_field');
+    if (!empty($meta_object)) {
+        $meta_obj = $meta_object[0][0];
+    } else {
+        return false;
+    }
+	$whatsup_glamping = '';
+	if (array_key_exists('whatsup_glamping', $meta_obj)) {
+		// $whatsup_glamping = str_replace(' ', '', $meta_obj['whatsup_glamping']);
+		$whatsup_glamping = preg_replace('![^0-9]+!', '', $meta_obj['whatsup_glamping']);
+	}
+	$viber_glamping = '';
+	if (array_key_exists('viber_glamping', $meta_obj)) {
+		// $viber_glamping = str_replace(' ', '', $meta_obj['viber_glamping']);
+		$viber_glamping = preg_replace('![^0-9]+!', '', $meta_obj['viber_glamping']);
+	}
+	$telegram_glamping = '';
+	if (array_key_exists('telegram_glamping', $meta_obj)) {
+		$telegram_glamping = $meta_obj['telegram_glamping'];
+	}
+	?>
+	<?php if (array_key_exists('whatsup_glamping', $meta_obj)) {
+		if ($meta_obj['whatsup_glamping']) {
+	?>
+		<div class="mobile-nav__left__icons__item">
+			<a href="https://wa.me/<?php echo $whatsup_glamping; ?>" target="_blank" title="WhatsApp">
+				<svg width="15.000000" height="15.000000" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<path id="Vector" d="M7.5 0C11.64 0 15 3.35 15 7.5C15 11.64 11.64 15 7.5 15C6.17 15 4.87 14.65 3.72 13.98L0 15L1.01 11.27C0.34 10.12 -0.01 8.82 0 7.5C0 3.35 3.35 0 7.5 0ZM4.94 3.97L4.79 3.98C4.69 3.98 4.6 4.01 4.51 4.05C4.43 4.1 4.35 4.15 4.29 4.22C4.2 4.31 4.15 4.38 4.09 4.45C3.82 4.81 3.67 5.26 3.67 5.71C3.67 6.08 3.77 6.44 3.92 6.77C4.22 7.45 4.73 8.16 5.39 8.83C5.55 8.99 5.71 9.15 5.88 9.3C6.71 10.02 7.7 10.55 8.76 10.83L9.19 10.9C9.33 10.9 9.47 10.89 9.6 10.89C9.82 10.87 10.04 10.82 10.23 10.71C10.33 10.66 10.42 10.61 10.52 10.55C10.52 10.55 10.55 10.53 10.61 10.48C10.71 10.4 10.77 10.35 10.86 10.26C10.92 10.2 10.97 10.12 11.02 10.04C11.07 9.92 11.13 9.68 11.16 9.49C11.17 9.34 11.17 9.26 11.17 9.21C11.16 9.13 11.1 9.04 11.02 9.01L10.59 8.81C10.59 8.81 9.94 8.53 9.54 8.35C9.5 8.33 9.45 8.32 9.4 8.32C9.35 8.31 9.3 8.32 9.25 8.33C9.2 8.35 9.16 8.38 9.12 8.41C9.12 8.41 9.07 8.45 8.52 9.11C8.49 9.15 8.45 9.18 8.4 9.2C8.35 9.22 8.3 9.22 8.25 9.21C8.2 9.19 8.15 9.18 8.11 9.16C8.01 9.12 7.98 9.1 7.92 9.08C7.49 8.89 7.09 8.64 6.74 8.33C6.64 8.24 6.55 8.15 6.46 8.07C6.17 7.78 5.91 7.46 5.7 7.11L5.65 7.04C5.62 7 5.6 6.94 5.58 6.89C5.55 6.78 5.62 6.69 5.62 6.69C5.62 6.69 5.81 6.49 5.89 6.38C5.97 6.28 6.04 6.18 6.09 6.1C6.18 5.96 6.2 5.82 6.16 5.7C5.95 5.19 5.73 4.68 5.51 4.17C5.46 4.07 5.33 4 5.21 3.98C5.17 3.98 5.13 3.98 5.09 3.97C4.99 3.97 4.89 3.97 4.79 3.98L4.94 3.97Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="nonzero"/>
+				</svg>
+			</a>
+		</div>
+	<?php }}
+	if (array_key_exists('viber_glampingNO', $meta_obj)) {
+		if ($meta_obj['viber_glamping']) {
+	?>
+		<div class="mobile-nav__left__icons__item">
+			<a href="viber://chat?number=%2B<?php echo $viber_glamping; ?>" target="_blank" title="Viber">
+				<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="20" height="20" viewBox="0 0 50 50">
+					<path d="M 44.78125 13.15625 C 44 10.367188 42.453125 8.164063 40.1875 6.605469 C 37.328125 4.632813 34.039063 3.9375 31.199219 3.511719 C 27.269531 2.925781 23.710938 2.84375 20.316406 3.257813 C 17.136719 3.648438 14.742188 4.269531 12.558594 5.273438 C 8.277344 7.242188 5.707031 10.425781 4.921875 14.734375 C 4.539063 16.828125 4.28125 18.71875 4.132813 20.523438 C 3.789063 24.695313 4.101563 28.386719 5.085938 31.808594 C 6.046875 35.144531 7.722656 37.527344 10.210938 39.09375 C 10.84375 39.492188 11.65625 39.78125 12.441406 40.058594 C 12.886719 40.214844 13.320313 40.367188 13.675781 40.535156 C 14.003906 40.6875 14.003906 40.714844 14 40.988281 C 13.972656 43.359375 14 48.007813 14 48.007813 L 14.007813 49 L 15.789063 49 L 16.078125 48.71875 C 16.269531 48.539063 20.683594 44.273438 22.257813 42.554688 L 22.472656 42.316406 C 22.742188 42.003906 22.742188 42.003906 23.019531 42 C 25.144531 41.957031 27.316406 41.875 29.472656 41.757813 C 32.085938 41.617188 35.113281 41.363281 37.964844 40.175781 C 40.574219 39.085938 42.480469 37.355469 43.625 35.035156 C 44.820313 32.613281 45.527344 29.992188 45.792969 27.019531 C 46.261719 21.792969 45.929688 17.257813 44.78125 13.15625 Z M 35.382813 33.480469 C 34.726563 34.546875 33.75 35.289063 32.597656 35.769531 C 31.753906 36.121094 30.894531 36.046875 30.0625 35.695313 C 23.097656 32.746094 17.632813 28.101563 14.023438 21.421875 C 13.277344 20.046875 12.761719 18.546875 12.167969 17.09375 C 12.046875 16.796875 12.054688 16.445313 12 16.117188 C 12.050781 13.769531 13.851563 12.445313 15.671875 12.046875 C 16.367188 11.890625 16.984375 12.136719 17.5 12.632813 C 18.929688 13.992188 20.058594 15.574219 20.910156 17.347656 C 21.28125 18.125 21.113281 18.8125 20.480469 19.390625 C 20.347656 19.511719 20.210938 19.621094 20.066406 19.730469 C 18.621094 20.816406 18.410156 21.640625 19.179688 23.277344 C 20.492188 26.0625 22.671875 27.933594 25.488281 29.09375 C 26.230469 29.398438 26.929688 29.246094 27.496094 28.644531 C 27.574219 28.566406 27.660156 28.488281 27.714844 28.394531 C 28.824219 26.542969 30.4375 26.726563 31.925781 27.78125 C 32.902344 28.476563 33.851563 29.210938 34.816406 29.917969 C 36.289063 31 36.277344 32.015625 35.382813 33.480469 Z M 26.144531 15 C 25.816406 15 25.488281 15.027344 25.164063 15.082031 C 24.617188 15.171875 24.105469 14.804688 24.011719 14.257813 C 23.921875 13.714844 24.289063 13.199219 24.835938 13.109375 C 25.265625 13.035156 25.707031 13 26.144531 13 C 30.476563 13 34 16.523438 34 20.855469 C 34 21.296875 33.964844 21.738281 33.890625 22.164063 C 33.808594 22.652344 33.386719 23 32.90625 23 C 32.851563 23 32.796875 22.996094 32.738281 22.984375 C 32.195313 22.894531 31.828125 22.378906 31.917969 21.835938 C 31.972656 21.515625 32 21.1875 32 20.855469 C 32 17.628906 29.371094 15 26.144531 15 Z M 31 21 C 31 21.550781 30.550781 22 30 22 C 29.449219 22 29 21.550781 29 21 C 29 19.347656 27.652344 18 26 18 C 25.449219 18 25 17.550781 25 17 C 25 16.449219 25.449219 16 26 16 C 28.757813 16 31 18.242188 31 21 Z M 36.710938 23.222656 C 36.605469 23.6875 36.191406 24 35.734375 24 C 35.660156 24 35.585938 23.992188 35.511719 23.976563 C 34.972656 23.851563 34.636719 23.316406 34.757813 22.777344 C 34.902344 22.140625 34.976563 21.480469 34.976563 20.816406 C 34.976563 15.957031 31.019531 12 26.160156 12 C 25.496094 12 24.835938 12.074219 24.199219 12.21875 C 23.660156 12.34375 23.125 12.003906 23.003906 11.464844 C 22.878906 10.925781 23.21875 10.390625 23.757813 10.269531 C 24.539063 10.089844 25.347656 10 26.160156 10 C 32.125 10 36.976563 14.851563 36.976563 20.816406 C 36.976563 21.628906 36.886719 22.4375 36.710938 23.222656 Z"></path>
+				</svg>
+			</a>
+		</div>
+	<?php }} ?>
+	<?php if (array_key_exists('telegram_glamping', $meta_obj)) {
+		if ($meta_obj['telegram_glamping']) {
+	?>
+		<div class="mobile-nav__left__icons__item">
+			<a href="https://t.me/<?php echo $meta_obj['telegram_glamping']; ?>" target="_blank" title="Telegram">
+				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+					<path d="M29.919 6.163l-4.225 19.925c-0.319 1.406-1.15 1.756-2.331 1.094l-6.438-4.744-3.106 2.988c-0.344 0.344-0.631 0.631-1.294 0.631l0.463-6.556 11.931-10.781c0.519-0.462-0.113-0.719-0.806-0.256l-14.75 9.288-6.35-1.988c-1.381-0.431-1.406-1.381 0.288-2.044l24.837-9.569c1.15-0.431 2.156 0.256 1.781 2.013z" fill="#0088cc"/>
+				</svg>
+			</a>
+		</div>
+	<?php }} ?>
+	<?php if (array_key_exists('phone_glamping', $meta_obj)) {
+		if ($meta_obj['phone_glamping']) {
+	?>
+		<div class="mobile-nav__left__icons__item">
+			<a href="tel:<?php echo preg_replace('![^0-9]+!', '', $meta_obj['phone_glamping']); ?>">
+				<svg width="14.000000" height="14.000000" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+					<path id="Vector" d="M10.29 13.99C9.28 13.96 6.42 13.56 3.43 10.56C0.43 7.57 0.03 4.71 0 3.7C-0.06 2.16 1.12 0.66 2.48 0.08C2.65 0.01 2.83 -0.02 3 0C3.18 0.02 3.35 0.09 3.5 0.19C4.62 1.01 5.39 2.25 6.06 3.22C6.2 3.43 6.27 3.69 6.23 3.95C6.2 4.2 6.07 4.44 5.88 4.61L4.51 5.63C4.44 5.67 4.4 5.74 4.38 5.82C4.36 5.9 4.37 5.99 4.41 6.06C4.72 6.62 5.27 7.46 5.9 8.09C6.53 8.72 7.41 9.31 8.01 9.65C8.09 9.7 8.18 9.71 8.26 9.69C8.35 9.66 8.42 9.61 8.47 9.54L9.36 8.18C9.52 7.97 9.76 7.82 10.03 7.78C10.3 7.73 10.57 7.8 10.8 7.95C11.78 8.63 12.94 9.39 13.78 10.47C13.89 10.62 13.96 10.79 13.99 10.98C14.01 11.16 13.98 11.35 13.91 11.51C13.32 12.88 11.84 14.05 10.29 13.99Z" fill="#FFFFFF" fill-opacity="1.000000" fill-rule="evenodd"/>
+				</svg>
+			</a>
+		</div>
+	<?php }} ?>
 	<?php
 }
 
@@ -1345,14 +1445,14 @@ function glamping_review_img_list($post_id, $i) {
 	if ($media) {
 		$media_count = count($media)-$media_wievs_count;
 		if ($media_count) {
-			// $media_count = count($media)-$media_wievs_count;
-			$content_count = '<div class="galery-review-list__count">';
-			$content_count .= '<span>+</span>';
-			$content_count .= '<span class="galery-review-list__count__value">' . $media_count . '</span>';
-			$content_count .= '</div>';
+			$content_count_style = ' active';
 		} else {
-			$content_count = '';
+			$content_count_style = '';
 		}
+		$content_count = '<div class="galery-review-list__count' . $content_count_style . '">';
+		$content_count .= '<span>+</span>';
+		$content_count .= '<span class="galery-review-list__count__value">' . $media_count . '</span>';
+		$content_count .= '</div>';
 		$it = 0;
 		$content = '<div class="galery-review-list list-' . $i . '">';
 		foreach ( $media as $key => $value ) {
@@ -1418,7 +1518,7 @@ function glampings_reviews_items() {
                 <?php echo apply_filters( 'the_content', get_the_content($post) ); ?>
             </div>
 			<div class="reviews-items__item-btn">
-				<button type="button" name="button">
+				<button type="button" name="button" onclick="collapseReviews(this)">
 					<span>Показать полностью</span>
 					<svg width="12" height="6" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1 1L8 8L15 1" stroke="#161616" stroke-width="1.5"></path>
@@ -1458,7 +1558,8 @@ function glampings_reviews_items_more() {
 		if ($post->review_author) {
 			$review_author = $post->review_author;
 		}
-		$images = glamping_review_img($post->ID, $i);
+		// $images = glamping_review_img($post->ID, $i);
+		$images = glamping_review_img_list($post->ID, $i);
 		$is_images = '';
 		if ($images) {
 			$is_images = ' is-images';
@@ -1482,7 +1583,7 @@ function glampings_reviews_items_more() {
                 <?php echo apply_filters( 'the_content', get_the_content($post) ); ?>
             </div>
 			<div class="reviews-items__item-btn">
-				<button type="button" name="button">
+				<button type="button" name="button" onclick="collapseReviews(this)">
 					<span>Показать полностью</span>
 					<svg width="12" height="6" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
 						<path d="M1 1L8 8L15 1" stroke="#161616" stroke-width="1.5"></path>
@@ -1631,29 +1732,80 @@ function wtd_item($wtd_options, $title='Чем заняться', $templ=1) {
 		$content .= '<div class="single-section__title">
 			<h3>' . $title . '</h3>
 		</div>';
-		$content .= '<div class="single-section__content wtd-section__content">';
+		$content .= '<div class="swiper wtdSwiper">';
+		$content .= '<div class="swiper-wrapper">';
 		foreach ($wtd_options as $key => $wtd_option) {
-			$content .= '<div class="wtd-item">
-		        <div class="wtd-item__header">
-		            <span class="wtd-item__header__title">' . $wtd_option["title"] . '</span>
-		            <button aria-label="Раскрыть" class="wtd-item__header__btn">
-					<svg width="14" height="7" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M1 1L8 8L15 1" stroke="#161616" stroke-width="1.5"/>
-					</svg>
-		            </button>
-		        </div>
-		        <div class="wtd-item__panel">
-		            <p>' . $wtd_option["text"] . '</p>
-		        </div>
-		    </div>';
+			if (isset($wtd_option["title"])) {
+				if (isset($wtd_option["wtd_img"])) {
+					if ($wtd_option["wtd_img"]) {
+						$img_wrap = '<div class="wtd-item__img">
+							<img src="' . $wtd_option["wtd_img"] . '" alt="">
+						</div>';
+						$text_class = '';
+					} else {
+						$img_wrap = '';
+						$text_class = ' no-img';
+					}
+				} else {
+					$img_wrap = '';
+					$text_class = ' no-img';
+				}
+				$content .= '<div class="wtd-item swiper-slide">';
+	            $content .= $img_wrap;
+	            $content .= '<div class="wtd-item__text">
+	                    <div class="wtd-item__text__type-price">' . $wtd_option["type_price"] . '</div>
+	                    <div class="wtd-item__text__title">' . $wtd_option["title"] . '</div>
+	                    <div class="wtd-item__text__text' . $text_class . '">' . $wtd_option["text"] . '</div>
+	                    <button class="link js-btndetails-wtd js-open-modal" type="button"  data-modal="wtd-details' . $key . '">Подробнее</button>
+	                </div>
+	            </div>';
+			}
 		}
 		$content .= '</div>';
+    	$content .= '<div class="sw-pag-wrap">
+	            <div class="swiper-button-next"></div>
+	            <div class="swiper-button-prev"></div>
+	        </div>';
+		$content .= '<div class="swiper-pagination"></div>';
     	$content .= '</div>';
+		$content .= '</div>';
 
-		if ($templ) {
-			echo $content;
-		} else {
-			return $content;
+		$it_count = 0;
+		foreach ($wtd_options as $key => $wtd_option) {
+			if (isset($wtd_option["title"])) {
+				if (isset($wtd_option["wtd_img"])) {
+					if ($wtd_option["wtd_img"]) {
+						$img_wrap = '<div class="wtd-item__img">
+							<img src="' . $wtd_option["wtd_img"] . '" alt="">
+						</div>';
+					} else {
+						$img_wrap = '';
+					}
+				} else {
+					$img_wrap = '';
+				}
+				$content .= '<div class="modal modal-based-theme acc-details custom-scroll" data-modal="wtd-details' . $key . '">
+					<svg class="modal__cross js-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+						<path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"></path>
+					</svg>
+					<div class="modal-content">
+						<div class="acc-details__title">' . $wtd_option["title"] . '</div>
+						<div class="acc-details__description wtd-description">
+							<div class="acc-option__description">' . $wtd_option["text"] . '</div>
+						</div>
+						' . $img_wrap . '
+					</div>
+				</div>';
+				$it_count++;
+			}
+		}
+
+		if ($it_count) {
+			if ($templ) {
+				echo $content;
+			} else {
+				return $content;
+			}
 		}
 	}
 }
@@ -1674,7 +1826,7 @@ function glampings_related_list($post_id) {
     		]
     	],
         'orderby'	=> 'rand',
-        'showposts' => 4,
+        'posts_per_page' => -1,
     ) );
 
     if ( count($my_posts) < 4 ) {
@@ -1683,7 +1835,7 @@ function glampings_related_list($post_id) {
             'exclude' => $post_id,
         	'suppress_filters' => true,
             'orderby'	=> 'rand',
-            'showposts' => 4,
+            'posts_per_page' => -1,
         ) );
     }
     foreach( $my_posts as $post_rel ){
@@ -1691,7 +1843,7 @@ function glampings_related_list($post_id) {
 		$count_rating = $statistics['count'];
 		$average_rating = $statistics['average_rating'];
         ?>
-		<div id="post-<?php echo $post_rel->ID; ?>" class="glamping-item" title="<?php echo get_the_title($post_rel->ID); ?>">
+		<div id="post-<?php echo $post_rel->ID; ?>" class="glamping-item swiper-slide" title="<?php echo get_the_title($post_rel->ID); ?>">
 			<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
 			<?php if ($post_rel->glamping_recommended == 'yes') { ?>
 				<div class="glamping-item__recommended">Рекомендуем</div>
@@ -1786,4 +1938,68 @@ function colorInitial($initial) {
 	} else {
 		echo 'style="background: ' . $colors['Z'] . ';"';
 	}
+}
+
+function glemp_stocs($glemp_id, $title='Акции', $templ=1) {
+	$args = array(
+        'post_type' => 'stocks',
+        'post_status' => 'publish',
+        'posts_per_page' => -1,
+		'meta_query' => [ [
+			'key' => 'parent_glemp',
+			'value' => $glemp_id,
+		] ],
+        // 'orderby' => 'meta_value date', //meta_value_num, title
+        // 'meta_key' => 'glamping_recommended',
+        // 'order' => 'DESC',
+    );
+    $stocks = get_posts( $args );
+	$stocks_item = '';
+	if ($stocks) {
+		foreach ($stocks as $stock) {
+			$description = '';
+			$button = '';
+			if ($stock->post_content) {
+				$description = '<div class="stocks__items__item__left__description">' . wpautop($stock->post_content) . '</div>';
+				$button = '<div class="stocks__items__item__btn">
+					<button class="primary-light green bg-none nxl ntext w-160 js-stocks-more">Подробнее</button>
+				</div>';
+			}
+			$stocks_item .= '<div class="stocks__items__item">';
+			$stocks_item .= '<div class="stocks__items__item__left">';
+			$stocks_item .= '<div class="stocks__items__item__left__title">' . $stock->post_title . '</div>';
+			$stocks_item .= '<div class="stocks__items__item__left__validity-period">';
+			// $stocks_item .= '<div class="stocks__items__item__left__validity-period__label">Срок действия:</div>';
+			$stocks_item .= '<div class="stocks__items__item__left__validity-period__text">Срок действия: ' . $stock->validity_period . '</div>';
+			$stocks_item .= '</div>';
+			$stocks_item .= $description;
+			$stocks_item .= '</div>';
+			$stocks_item .= $button;
+			$stocks_item .= '</div>';
+		}
+		wp_reset_postdata();
+		$content = '<div class="single-section stocks-section">';
+		$content .= '<div class="single-section__title">
+			<h3>' . $title . '</h3>
+		</div>';
+		$content .= '<div class="stocks__items">';
+		$content .= $stocks_item;
+		$content .= '</div>';
+		$content .= '</div>';
+		if ($templ) {
+			echo $content;
+		} else {
+			return $content;
+		}
+	}
+}
+
+function term_glemp($post_id) {
+	$term_obj = get_the_terms( $post_id, 'location' );
+    if ($term_obj) {
+        $term = $term_obj[0]->slug;
+    } else {
+        $term = '';
+    }
+	return $term;
 }

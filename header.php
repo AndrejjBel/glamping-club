@@ -16,7 +16,7 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="profile" href="https://gmpg.org/xfn/11">
-	
+
 	<?php wp_head(); ?>
 </head>
 
@@ -33,6 +33,8 @@
 <?php
 if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 	get_template_part( 'template-parts/head-footer/header-login' );
+} elseif (is_singular('glampings')) {
+	get_template_part( 'template-parts/head-footer/header-single-glemp' );
 } elseif (!is_page([PAGE_DASHBOARD])) {
 	get_template_part( 'template-parts/head-footer/header' );
 	// get_template_part( 'template-parts/head-footer/filtr-items' );

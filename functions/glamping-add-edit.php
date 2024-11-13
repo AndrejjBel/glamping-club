@@ -229,6 +229,7 @@ function glamping_club_add_post_glampings() {
             $error['type'] = 'success';
             $error['post_id'] = $post_id;
             $error['post_url'] = wp_unslash($post_url);
+            $error['postObj'] = $_POST;
             $error_fin = json_encode($error, JSON_UNESCAPED_UNICODE);
             echo $error_fin;
             wp_die();

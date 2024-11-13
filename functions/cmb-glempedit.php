@@ -684,6 +684,74 @@ function register_single_glampings_metabox_front() {
 		'id'   => 'text',
 		'type' => 'textarea_small',
 	) );
+
+	// Чем заняться
+	$what_to_do = new_cmb2_box( array(
+		'id'           => 'wtd_options',
+		'title'        => esc_html__( 'Чем заняться', 'glamping-club' ),
+		'object_types' => array( 'glampings' ), // Post type
+		'context'      => 'normal',
+		'priority'     => 'high',
+		'classes'      => 'flex-box',
+		'show_in_rest' => true
+	) );
+
+	$wtd_options_group = $what_to_do->add_field( array(
+		'id'          => 'wtd_options',
+		'type'        => 'group',
+		'options'     => array(
+			'group_title'    => esc_html__( 'Вариант чем заняться', 'cmb2' ),
+			'add_button'     => __( 'Добавить вариант', 'cmb2' ),
+			'remove_button'  => __( 'Удалить вариант', 'cmb2' ),
+			'sortable'       => true,
+			'closed'         => true
+		),
+	) );
+
+	$what_to_do->add_group_field( $wtd_options_group, array(
+		'name' => esc_html__( 'Заголовок', 'glamping-club' ),
+		'id'   => 'title',
+		'type' => 'text',
+	) );
+
+	$what_to_do->add_group_field( $wtd_options_group, array(
+		'name' => esc_html__( 'Платно/бесплатно', 'glamping-club' ),
+		'id'   => 'type_price',
+		'type'    => 'radio_inline',
+		'options' => array(
+			'Бесплатно' => __( 'Бесплатно', 'glamping-club' ),
+			'Оплачивается отдельно'   => __( 'Оплачивается отдельно', 'glamping-club' ),
+		),
+		'default' => 'Бесплатно',
+	) );
+
+	$what_to_do->add_group_field( $wtd_options_group, array(
+		'name' => esc_html__( 'Описание', 'glamping-club' ),
+		'id'   => 'text',
+		'type' => 'wysiwyg',
+		'options' => array(
+            'wpautop' => true,
+            'media_buttons' => false,
+            'textarea_name' => 'text',
+            'textarea_rows' => 6,
+            'quicktags' => false
+        ),
+	) );
+
+	$what_to_do->add_group_field( $wtd_options_group, array(
+		'name' => esc_html__( 'Фото', 'glamping-club' ),
+		// 'desc' => esc_html__( 'Фото', 'glamping-club' ),
+		'id'   => 'wtd_img',
+		'type' => 'file',
+		'options' => array(
+			'url' => false, // Hide the text input for the url
+		),
+		'preview_size' => array( 220, 220 ),
+		'classes' => 'glc-form-group glc-form-group-thumbnail',
+		'query_args' => array(
+			'author' => get_current_user_id()
+		),
+	) );
 }
 
 function set_to_post_title($field_args, $field) {

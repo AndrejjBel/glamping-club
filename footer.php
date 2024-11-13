@@ -17,11 +17,12 @@ if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 } elseif (is_post_type_archive('glampings')) {
 	get_template_part( 'template-parts/head-footer/footer' );
 	get_template_part( 'template-parts/head-footer/aside-header' );
-	get_template_part( 'template-parts/head-footer/nav-mobile' );
 } else {
 	get_template_part( 'template-parts/head-footer/footer' );
 	get_template_part( 'template-parts/head-footer/aside-header' );
-	get_template_part( 'template-parts/head-footer/nav-mobile' );
+	if (is_singular('glampings')) {
+		get_template_part( 'template-parts/head-footer/nav-mobile-single' );
+	}
 }
 ?>
 

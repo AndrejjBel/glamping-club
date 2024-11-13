@@ -262,6 +262,24 @@
         }
     }
 
+    & .cmb2-id-wtd-options .cmb-repeatable-group input[type="text"] {
+        width: 100%;
+        height: 40px;
+        font-size: 16px;
+        box-shadow: none;
+        border-radius: 4px;
+        border: 1px solid #D7DCE3;
+        padding: 0.5rem 1rem;
+    }
+
+    & .cmb2-id-wtd-options .cmb-repeatable-group .cmb-row:last-child {
+        background: none;
+
+        & .cmb-add-row {
+            margin: 0;
+        }
+    }
+
     & .cmb-repeatable-group.non-repeatable .cmb-group-title {
         padding-left: 20px;
     }
@@ -322,6 +340,29 @@
         display: flex;
         flex-direction: column;
         gap: 16px;
+    }
+
+    & p.cmb2-metabox-description {
+        font-size: 12px;
+    }
+
+    & span.cmb2-metabox-description  {
+        font-size: 12px;
+    }
+
+    &.two-columns .cmb2-metabox.cmb-field-list {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
+        flex-wrap: wrap;
+
+        & .two-columns-item {
+            width: calc((100% - 16px) / 2);
+
+            & input {
+                width: 200px;
+            }
+        }
     }
 }
 

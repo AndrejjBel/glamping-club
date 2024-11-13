@@ -6,8 +6,12 @@ function navScroll(elementId) {
     window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
-            let headHeight = masthead.offsetHeight+20;
-            masthead.style.top = "0";
+            if (masthead) {
+                let headHeight = masthead.offsetHeight+20;
+                masthead.style.top = "0";
+            } else {
+                headHeight = 20;
+            }
             if (asideContent) {
                 asideContent.style.top = headHeight+"px";
             }
@@ -15,8 +19,10 @@ function navScroll(elementId) {
                 btnFiltrVisionMobile.style.top = '';
             }
         } else {
-            if (prevScrollpos > masthead.offsetHeight) { //clientHeight
-                masthead.style.top = '-'+masthead.offsetHeight+'px';
+            if (masthead) {
+                if (prevScrollpos > masthead.offsetHeight) { //clientHeight
+                    masthead.style.top = '-'+masthead.offsetHeight+'px';
+                }
             }
             if (asideContent) {
                 asideContent.style.top = '24px';
