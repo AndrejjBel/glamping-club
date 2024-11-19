@@ -2742,7 +2742,6 @@ a.secondary {
         font-size: 20px; } }
   .single-section.title a {
     font-size: 14px;
-    font-weight: 500;
     line-height: 1.4; }
     @media (max-width: 476px) {
       .single-section.title a {
