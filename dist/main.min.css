@@ -2851,8 +2851,7 @@ a.secondary {
 .collapse-content-descr {
   visibility: hidden;
   opacity: 0;
-  height: 0;
-  transition: all 0.3s; }
+  height: 0; }
   .collapse-content-descr.active {
     display: block;
     visibility: visible;
@@ -2898,8 +2897,7 @@ a.secondary {
   height: 0;
   visibility: hidden;
   opacity: 0;
-  margin-top: 8px;
-  transition: all 0.4s; }
+  margin-top: 8px; }
   .collapse-height-content.active {
     display: block;
     height: auto;

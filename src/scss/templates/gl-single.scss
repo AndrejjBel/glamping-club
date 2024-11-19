@@ -376,7 +376,7 @@ article.type-glampings {
     visibility: hidden;
     opacity: 0;
     height: 0;
-    transition: all 0.3s;
+    // transition: all 0.3s;
     // height: 96px;
     // overflow: hidden;
     // display: -webkit-box;
@@ -454,7 +454,7 @@ article.type-glampings {
     visibility: hidden;
     opacity: 0;
     margin-top: 8px;
-    transition: all 0.4s;
+    // transition: all 0.4s;
 
     &.active {
         display: block;
