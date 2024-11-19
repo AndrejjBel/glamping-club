@@ -425,6 +425,10 @@ article.type-glampings {
         // fill: var(--green-link, #467A3C);
         stroke: var(--green-link, #467A3C);
 
+        & path {
+            stroke: var(--green-link, #467A3C);
+        }
+
         @media (max-width: 476px) {
             width: 10px;
             height: 5px;

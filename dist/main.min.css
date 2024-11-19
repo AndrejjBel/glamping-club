@@ -2879,6 +2879,8 @@ a.secondary {
     width: 15px;
     height: 7px;
     stroke: var(--green-link, #467A3C); }
+    .collapse-content-btn svg path {
+      stroke: var(--green-link, #467A3C); }
     @media (max-width: 476px) {
       .collapse-content-btn svg {
         width: 10px;
