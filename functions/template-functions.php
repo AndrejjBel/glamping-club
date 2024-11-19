@@ -128,6 +128,22 @@ function kama_excerpt( $args = '' ){
 	return $text;
 }
 
+function replace_quotes($text) {
+	$text = htmlspecialchars_decode($text, ENT_QUOTES);
+	$text = str_replace(array('«', '»'), '"', $text);
+	return preg_replace_callback('/(([\"]{2,})|(?![^\W])(\"))|([^\s][\"]+(?![\w]))/u', 'replace_quotes_callback', $text);
+}
+
+function replace_quotes_callback($matches) {
+	if (count($matches) == 3) {
+		return '«»';
+	} elseif (!empty($matches[1])) {
+		return str_replace('"', '«', $matches[1]);
+	} else {
+		return str_replace('"', '»', $matches[4]);
+	}
+}
+
 function glamping_club_user_dname($name=true) {
 	if( is_user_logged_in() ) {
 		$current_user = wp_get_current_user();

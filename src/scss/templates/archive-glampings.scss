@@ -827,6 +827,20 @@
             &.page-favorites {
                 top: 5px;
             }
+
+            &.active {
+
+                & svg path {
+                    fill: #F1A539;
+                }
+
+                &:hover {
+
+                    & svg path {
+                        fill: #DF8F20;
+                    }
+                }
+            }
         }
     }
 
@@ -893,15 +907,14 @@
             }
 
             &__price {
-                display: flex;
-                gap: 4px;
-                align-items: center;
-                // flex-direction: column;
-                // margin-bottom: 6px;
-                height: 100%;
+                // display: flex;
+                // gap: 4px;
+                // align-items: flex-end;
+                height: fit-content;
+                margin-top: auto;
 
                 & span {
-                    display: block;
+                    display: inline-block;
                     font-size: 12px;
                 }
 
@@ -909,6 +922,7 @@
                     font-size: 16px;
                     font-weight: 600;
                     line-height: 100%;
+                    margin-bottom: 4px;
 
                     @media (max-width: 439px) {
                         &.compare {

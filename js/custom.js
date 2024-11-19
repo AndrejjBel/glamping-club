@@ -44,6 +44,9 @@ const singleThumbnailGallery = () => {
         selector: '.item',
         download: false,
         plugins: [lgThumbnail],
+        mobileSettings: {
+            showCloseIcon: true
+        }
     });
     if (btn) {
         btn.addEventListener('click', (e) => {
@@ -135,6 +138,9 @@ function optionsGallery(index) {
         selector: '.acc-media',
         download: false,
         plugins: [lgThumbnail],
+        mobileSettings: {
+            showCloseIcon: true
+        }
     });
     const btn = document.querySelector(index+' #js-gallery-count');
     const btnR = document.querySelector(index+' .galery-review-list__count');
@@ -229,7 +235,9 @@ const contactsMobailVision = () => {
     const iconPhone = document.querySelector('.icon-phone');
     const iconMessage = document.querySelector('.icon-message');
     const svgClose = document.querySelector('svg.close');
+    overlay      = document.querySelector('.js-overlay-modal'),
     btn.addEventListener('click', (e) => {
+        overlay.classList.add('active');
         singleAside.classList.toggle('active');
         // iconPhone.classList.toggle('active');
         // iconMessage.classList.toggle('active');
@@ -241,6 +249,19 @@ const contactsMobailVision = () => {
         const withinsingleBtn = e.composedPath().includes(btn);
         if ( ! withinsingleAside && !withinsingleBtn ) {
             singleAside.classList.remove('active');
+            overlay.classList.remove('active');
+            // iconPhone.classList.remove('active');
+            // iconMessage.classList.remove('active');
+            // svgClose.classList.remove('active');
+        }
+    });
+
+    overlay.addEventListener( 'click', (e) => {
+        const withinsingleAside = e.composedPath().includes(singleAside);
+        const withinsingleBtn = e.composedPath().includes(btn);
+        if ( ! withinsingleAside && !withinsingleBtn ) {
+            singleAside.classList.remove('active');
+            overlay.classList.remove('active');
             // iconPhone.classList.remove('active');
             // iconMessage.classList.remove('active');
             // svgClose.classList.remove('active');
@@ -250,6 +271,7 @@ const contactsMobailVision = () => {
     document.addEventListener('keydown', function(e) {
         if( e.keyCode == 27 ) {
             singleAside.classList.remove('active');
+            overlay.classList.remove('active');
             // iconPhone.classList.remove('active');
             // iconMessage.classList.remove('active');
             // svgClose.classList.remove('active');
@@ -368,7 +390,7 @@ const addFavCom = () => {
         });
     }
 }
-addFavCom();
+// addFavCom();
 
 // const deleteFavCom = () => {
 //     const favoritesBtns = document.querySelectorAll('#delete-favorites');
@@ -1539,7 +1561,7 @@ const facilitiesMore = () => {
         }
     });
 }
-facilitiesMore();
+// facilitiesMore();
 
 function btnWievsOverflows(elem) {
     const elems = document.querySelectorAll(elem);

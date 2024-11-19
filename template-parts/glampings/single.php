@@ -74,10 +74,10 @@ $count_content_symbol = mb_strlen(get_the_content());
 
             <div class="single-section description">
                 <div class="single-section__content collapse-content-descr">
-                    <?php the_content(); ?>
+                    <?php echo apply_filters( 'the_content', get_the_content() ); ?>
                 </div>
                 <div class="single-section__content collapse-content-descr active">
-                    <?php echo kama_excerpt([ 'maxchar' => $maxchar ]); ?>
+                    <?php echo replace_quotes(kama_excerpt([ 'maxchar' => $maxchar ])); ?>
                 </div>
                 <?php if ($count_content_symbol > 400) {?>
                     <div class="collapse-content-btn js-btn-descr">
@@ -151,7 +151,7 @@ $count_content_symbol = mb_strlen(get_the_content());
 
         <aside class="single-aside">
             <div id="aside-content" class="single-aside__content">
-                <div class="single-aside__content__item aside-item">
+                <div class="single-aside__content__item aside-item favorites-comparison">
                     <div class="btn-group add-favorites-comparison">
                         <button id="add-favorites" data-postid="<?php the_ID(); ?>" class="round-sup-red single" type="button" name="button" title="Добавить в избранное">
                             <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -169,7 +169,6 @@ $count_content_symbol = mb_strlen(get_the_content());
                             .ya-share2__container_size_m .ya-share2__item_more.ya-share2__item_has-pretty-view .ya-share2__link_more.ya-share2__link_more-button-type_short {
                                 display: flex;
                                 border: 1px solid rgb(94, 109, 119);
-                                /* border: 1px solid #F1A539; */
                                 background: rgb(255, 255, 255);
                             }
                         </style>

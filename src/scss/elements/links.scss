@@ -80,6 +80,10 @@ a.primary {
         font-weight: 600;
         line-height: 100%;
         letter-spacing: 0%;
+
+        @media (max-width: 375px) {
+            font-size: 13px;
+        }
     }
 }
 
@@ -103,6 +107,7 @@ a.primary-light {
             background: #467A3C;
             border: 1px solid #467A3C;
             color: #FFFFFF;
+            text-decoration: none;
         }
 
         &:focus {
@@ -208,6 +213,7 @@ a.primary-red{
     &:hover {
         border: 1px solid var(--Error-700, #B42318);
         background: var(--Error-700, #B42318);
+        text-decoration: none;
     }
 
     &:focus {

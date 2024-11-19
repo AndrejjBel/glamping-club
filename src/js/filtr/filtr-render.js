@@ -1830,7 +1830,7 @@ function reviews_stars_items_average( average_rating, count_otziv ) {
 	content += `</div>
         <div class="rating-count__otziv">`;
 
-	content += `<span>/ `;
+	content += `<span> / `;
     content += count_otziv+' '+num_word(+count_otziv, ['отзыв', 'отзыва', 'отзывов']);
     content += `</span>`;
 	content += `</div>

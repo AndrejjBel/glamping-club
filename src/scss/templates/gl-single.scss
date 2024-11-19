@@ -36,7 +36,7 @@
             background: #ffffff;
             // box-shadow: 0 6px 30px 0 rgba(32,43,61,.3);
             width: calc(100vw - 20px);
-            max-width: 300px;
+            max-width: 340px;
             padding: 20px;
             border: 1px solid #c8c8c8;
             border-radius: 10px;
@@ -502,6 +502,10 @@ article.type-glampings {
 
     &__item {
 
+        &:nth-last-child(n+2) {
+            margin-bottom: 10px;
+        }
+
         & h4 {
             display: inline-block;
             width: 200px;
@@ -512,7 +516,7 @@ article.type-glampings {
             display: inline-block;
             width: auto;
             margin-top: 0;
-            margin-bottom: 10px;
+            margin-bottom: 0;
             margin-right: 4px;
             font-size: 16px;
             font-weight: 600;
@@ -703,6 +707,7 @@ article.type-glampings {
                         font-size: 12px;
                         font-weight: 500;
                         line-height: 100%;
+                        white-space: nowrap;
                     }
                 }
             }
@@ -803,7 +808,15 @@ article.type-glampings {
             height: 250px;
             // border-radius: $border-radius-single;
 
-            @media (max-width: 476px) {
+            @media (max-width: 1329px) {
+                height: 196px;
+            }
+
+            @media (max-width: 1023px) {
+                height: 210px;
+            }
+
+            @media (max-width: 375px) {
                 height: 196px;
             }
 
@@ -841,7 +854,7 @@ article.type-glampings {
         column-count: 2;
     }
 
-    @media (max-width: 476px) {
+    @media (max-width: 340px) {
         column-count: 1;
     }
 
@@ -851,9 +864,9 @@ article.type-glampings {
         margin-bottom: 30px;
         // padding-right: 20px;
 
-        &:nth-child(n+5) {
-            display: none;
-        }
+        // &:nth-child(n+5) {
+        //     display: none;
+        // }
 
         &__title {
             margin-bottom: 20px;
@@ -937,7 +950,7 @@ article.type-glampings {
     &__content {
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 12px;
 
         @media (max-width: 476px) {
             gap: 12px;
@@ -987,7 +1000,7 @@ article.type-glampings {
             & span {
                 display: block;
                 font-size: 18px;
-                font-weight: 500;
+                font-weight: 600;
 
                 @media (max-width: 399px) {
                     font-size: 16px;
@@ -1003,6 +1016,12 @@ article.type-glampings {
 
             &:not(:last-child) {
                 margin-bottom: 20px;
+            }
+
+            &.favorites-comparison {
+                @media (max-width: 1023px) {
+                    display: none;
+                }
             }
 
             &__title {
@@ -1029,6 +1048,7 @@ article.type-glampings {
             }
 
             &.messengers {
+                margin-bottom: 10px;
 
                 @media (max-width: 1023px) {
                     display: none;
@@ -1036,15 +1056,16 @@ article.type-glampings {
             }
 
             &.messenger {
-                display: inline-block;
+                display: flex;
+                margin-bottom: 0;
 
                 @media (max-width: 1023px) {
                     display: none;
                 }
 
-                &:not(:last-child) {
-                    margin-right: 10px;
-                }
+                // &:not(:last-child) {
+                //     margin-right: 10px;
+                // }
 
                 & a {
                     display: flex;
@@ -1052,9 +1073,21 @@ article.type-glampings {
                     justify-content: center;
                     width: 34px;
                     height: 34px;
-                    border: 1px solid rgb(70, 122, 60);
+                    // border: 1px solid rgb(70, 122, 60);
                     border-radius: 20px;
-                    background: rgb(70, 122, 60);
+                    // background: rgb(70, 122, 60);
+
+                    &.whatsapp-link {
+                        background: #27D061;
+                    }
+
+                    &.viber-link {
+                        background: #7360f2;
+                    }
+
+                    &.telegram-link {
+                        background: #1D98DC;
+                    }
 
                     & svg {
                         width: 15px;
@@ -1065,13 +1098,13 @@ article.type-glampings {
                         }
                     }
 
-                    &:hover {
-                        background: #FFFFFF;
-
-                        & svg path {
-                            fill: rgb(70, 122, 60);
-                        }
-                    }
+                    // &:hover {
+                    //     background: #FFFFFF;
+                    //
+                    //     & svg path {
+                    //         fill: rgb(70, 122, 60);
+                    //     }
+                    // }
                 }
             }
 
@@ -1081,6 +1114,12 @@ article.type-glampings {
                     display: none;
                 }
             }
+        }
+
+        & .messengers-items {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
         }
     }
 }
@@ -1241,6 +1280,7 @@ article.type-glampings {
 
         &-rating {
             display: flex;
+            align-items: center;
         }
 
         &-name {
@@ -1275,6 +1315,7 @@ article.type-glampings {
                 font-size: 12px;
                 color: var(--text-color-rating-date, #737373);
                 margin-left: 10px;
+                line-height: 1;
             }
         }
 
@@ -1304,7 +1345,7 @@ article.type-glampings {
             & p {
                 font-size: 14px;
                 // line-height: 1.3;
-                margin: 0 0 4px;
+                margin: 0 0 15px;
 
                 @media (max-width: 649px) {
                     font-size: 13px;
@@ -1376,7 +1417,7 @@ article.type-glampings {
     // justify-content: center;
     // min-height: 55px;
     // padding: 18px 16px;
-    border-radius: $br-single;
+    border-radius: $br-single-image;
     background: var(--color-bg-elems, #F4F4F4);
     transition: all .3s;
     overflow: hidden;
@@ -1396,9 +1437,9 @@ article.type-glampings {
             }
         }
 
-        // &:hover > &__title {
-        //     color: var(--color-primary);
-        // }
+        &:hover > &__btn {
+            background: #EAEAEA;
+        }
 
         &__title {
             font-weight: 500;
@@ -1413,10 +1454,9 @@ article.type-glampings {
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 40px;
-            // height: 40px;
-            // background-color: #ebedf0;
-            border-radius: 8px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
 
             & svg {
                 width: 14px;
@@ -1446,7 +1486,7 @@ article.type-glampings {
             font-size: 14px;
 
             @media (max-width: 649px) {
-                font-size: 12px;
+                font-size: 13px;
             }
         }
 
@@ -1620,9 +1660,9 @@ article.type-glampings {
 
         @media (max-width: 649px) {
             width:100%;
-            order: 2;
             height: 200px;
-            margin-top: auto;
+            // order: 2;
+            // margin-top: auto;
         }
 
         & img {
@@ -1640,7 +1680,7 @@ article.type-glampings {
     &__text {
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        // justify-content: space-between;
         height: 300px;
         padding: 40px;
 
@@ -1750,14 +1790,14 @@ article.type-glampings {
             background: var(--color-bg-elems, #F4F4F4);
             padding: 26px;
 
-            @media (max-width: 649px) {
-                gap: 20px;
-            }
-
-            @media (max-width: 767px) {
+            @media (max-width: 1329px) {
                 flex-direction: column;
                 align-items: flex-start;
                 padding: 20px;
+            }
+
+            @media (max-width: 649px) {
+                gap: 20px;
             }
 
             &__left {
@@ -1780,6 +1820,10 @@ article.type-glampings {
                     font-weight: 400;
                     line-height: 150%;
 
+                    @media (max-width: 375px) {
+                        font-size: 13px;
+                    }
+
                     &__label {}
 
                     &__text {}
@@ -1794,8 +1838,8 @@ article.type-glampings {
                     line-height: 150%;
                     transition: all .3s;
 
-                    @media (max-width: 649px) {
-                        font-size: 12px;
+                    @media (max-width: 375px) {
+                        font-size: 13px;
                     }
 
                     &.activate {
@@ -1810,6 +1854,10 @@ article.type-glampings {
                         font-weight: 400;
                         line-height: 150%;
                         margin-bottom: 10px;
+
+                        @media (max-width: 375px) {
+                            font-size: 13px;
+                        }
                     }
 
                     & ul, ol {

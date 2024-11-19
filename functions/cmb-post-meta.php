@@ -361,7 +361,7 @@ function register_single_glampings_metabox() {
 		'name' => esc_html__( 'Предоплата:', 'glamping-club' ),
 		// 'desc' => esc_html__( 'сайт для бронирования глэмпинга', 'glamping-club' ),
 		'id'   => 'prepayment',
-		'type' => 'text',
+		'type' => 'textarea_small',
 		// 'attributes' => array(
 		// 	'type' => 'number',
 		// 	'min'  => '1',

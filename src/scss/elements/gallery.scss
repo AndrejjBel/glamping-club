@@ -7,11 +7,23 @@
     // border-radius: $br-single-image;
     overflow: hidden;
 
-    @media (max-width: 1023px) {
+    @media (max-width: 1329px) {
         height: 364px;
     }
 
+    // @media (max-width: 1023px) {
+    //     height: 364px;
+    // }
+
     @media (max-width: 567px) {
+        height: 280px;
+    }
+
+    @media (max-width: 414px) {
+        height: 260px;
+    }
+
+    @media (max-width: 375px) {
         height: 180px;
     }
 
@@ -55,6 +67,10 @@
         flex-shrink: 0;
         flex-grow: 0;
         flex-wrap: wrap;
+
+        @media (max-width: 1329px) {
+            flex-basis: 364px;
+        }
 
         @media (max-width: 1023px) {
             flex-basis: 180px;

@@ -18,7 +18,7 @@ get_header();
 
 	<div class="related-wrap">
 		<div class="related-list__title container">
-			<h3>Вам также может понравиться:</h3>
+			<h3>Места отдыха рядом:</h3>
 		</div>
 		<div class="container">
 			<div class="glampings-items card related-list">
