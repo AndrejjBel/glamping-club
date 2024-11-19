@@ -164,12 +164,6 @@ $count_content_symbol = mb_strlen(get_the_content());
                             </svg>
                         </button>
 
-                        <!-- <button id="yand-share" type="button" name="button">
-                            <svg width="15.000000" height="17.000000" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-                                <path id="Vector" d="M12.5 17C11.8 17 11.21 16.75 10.72 16.25C10.24 15.75 10 15.15 10 14.44C10 14.36 10.02 14.16 10.06 13.85L4.2 10.36C3.98 10.58 3.72 10.75 3.43 10.86C3.14 10.99 2.83 11.05 2.5 11.05C1.8 11.05 1.21 10.8 0.72 10.3C0.24 9.81 0 9.2 0 8.5C0 7.79 0.24 7.18 0.72 6.69C1.21 6.19 1.8 5.94 2.5 5.94C2.83 5.94 3.14 6 3.43 6.13C3.72 6.25 3.98 6.41 4.2 6.63L10.06 3.14C10.03 3.04 10.01 2.95 10.01 2.85C10 2.76 10 2.66 10 2.55C10 1.84 10.24 1.24 10.72 0.74C11.21 0.24 11.8 0 12.5 0C13.19 0 13.78 0.24 14.27 0.74C14.75 1.24 15 1.84 15 2.55C15 3.25 14.75 3.86 14.27 4.35C13.78 4.85 13.19 5.09 12.5 5.09C12.16 5.09 11.85 5.03 11.56 4.91C11.27 4.79 11.01 4.63 10.79 4.41L4.93 7.9C4.96 8 4.98 8.09 4.99 8.19C4.99 8.28 5 8.38 5 8.5C4.99 8.61 4.99 8.71 4.99 8.8C4.98 8.9 4.96 8.99 4.93 9.09L10.79 12.58C11.01 12.36 11.27 12.2 11.56 12.08C11.85 11.96 12.16 11.9 12.5 11.9C13.19 11.9 13.78 12.14 14.27 12.64C14.75 13.13 15 13.74 15 14.44C15 15.15 14.75 15.75 14.27 16.25C13.78 16.75 13.19 17 12.5 17Z" fill="#5E6D77" fill-opacity="1.000000" fill-rule="evenodd"/>
-                            </svg>
-                        </button> -->
-
                         <script src="https://yastatic.net/share2/share.js"></script>
                         <style media="screen">
                             .ya-share2__container_size_m .ya-share2__item_more.ya-share2__item_has-pretty-view .ya-share2__link_more.ya-share2__link_more-button-type_short {
@@ -209,6 +203,8 @@ $count_content_symbol = mb_strlen(get_the_content());
 
     </div>
 
+    <!-- <button data-modal="map-modal" class="primary golden nxl ntext w-200 js-open-modal" type="button" name="button">Открыть карту</button> -->
+
 </article><!-- #post-<?php the_ID(); ?> -->
 
 <div class="modal modal-based-theme acc-details" data-modal="acc-details-test">
@@ -226,11 +222,23 @@ $count_content_symbol = mb_strlen(get_the_content());
     </div>
 </div>
 
-<?php //if ( get_additionally_meta('coordinates') ) { ?>
-    <!-- <script type="text/javascript">
-        var coords = '<?php //echo get_additionally_meta('coordinates'); ?>';
-        var title = '<?php //the_title(); ?>';
-        var adress = '<?php //echo get_additionally_meta('address'); ?>';
+<div class="modal map-modal" data-modal="map-modal">
+    <svg class="modal__cross js-modal-close map-modal-close" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+        <path d="M23.954 21.03l-9.184-9.095 9.092-9.174-2.832-2.807-9.09 9.179-9.176-9.088-2.81 2.81 9.186 9.105-9.095 9.184 2.81 2.81 9.112-9.192 9.18 9.1z"></path>
+    </svg>
+    <!-- <h3 class="modal__title">Карта</h3> -->
+    <div class="modal-content margin-top-20">
+        <div id="map-container" class="single-section map">
+            <div id="map" class="single-section__content map-modal-container"></div>
+        </div>
+    </div>
+</div>
+
+<?php if ( get_additionally_meta('coordinates') ) { ?>
+    <script type="text/javascript">
+        var coords = '<?php echo get_additionally_meta('coordinates'); ?>';
+        var title = '<?php the_title(); ?>';
+        var adress = '<?php echo get_additionally_meta('address'); ?>';
         var zoomNum = (glamping_club_ajax.yand_zoom) ? glamping_club_ajax.yand_zoom : 12;
         coords = coords.split(',');
         ymaps.ready(init);
@@ -252,9 +260,15 @@ $count_content_symbol = mb_strlen(get_the_content());
             });
             myMap.geoObjects.add(myPlacemark);
             myMap.behaviors.disable(['scrollZoom']);
+
+            var control = myMap.controls.get('routeButtonControl');
+            control.routePanel.state.set({
+                from: '',
+                to: adress
+            });
         }
-    </script> -->
-<?php //}
+    </script>
+<?php }
 get_template_part( 'template-parts/popups/add-rating' );
 
 // $text = 'Индивидуальная ванная комната';

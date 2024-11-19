@@ -35,6 +35,12 @@
            margin-bottom: 30px;
        }
    }
+
+   &.map-modal {
+       max-width: 96%;
+       // max-width: 1600px;
+       padding: 4px;
+   }
 }
 
 .acc-details {
@@ -154,6 +160,15 @@
    right: 20px;
    fill: #444;
    cursor: pointer;
+
+   &.map-modal-close {
+       z-index: 9;
+       // top: 60px;
+   }
+}
+
+.ymaps-2-1-79-controls__toolbar_right {
+    margin-top: 40px;
 }
 
 // .modal.add-review .modal-content {

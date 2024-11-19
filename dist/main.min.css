@@ -3220,6 +3220,8 @@ a.secondary {
   height: 400px;
   border-radius: 12px;
   overflow: hidden; }
+  #map.map-modal-container {
+    height: 600px; }
 
 .single-aside__content {
   position: sticky;
@@ -5390,6 +5392,9 @@ span.required {
       font-weight: 600;
       line-height: 120%;
       margin-bottom: 30px; }
+  .modal.map-modal {
+    max-width: 96%;
+    padding: 4px; }
 
 .acc-details__title {
   font-size: 18px;
@@ -5481,6 +5486,11 @@ span.required {
   right: 20px;
   fill: #444;
   cursor: pointer; }
+  .modal__cross.map-modal-close {
+    z-index: 9; }
+
+.ymaps-2-1-79-controls__toolbar_right {
+  margin-top: 40px; }
 
 @media (max-width: 730px) {
   .modal.acc-details {

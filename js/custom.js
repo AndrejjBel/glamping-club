@@ -249,7 +249,7 @@ const contactsMobailVision = () => {
         const withinsingleBtn = e.composedPath().includes(btn);
         if ( ! withinsingleAside && !withinsingleBtn ) {
             singleAside.classList.remove('active');
-            overlay.classList.remove('active');
+            // overlay.classList.remove('active');
             // iconPhone.classList.remove('active');
             // iconMessage.classList.remove('active');
             // svgClose.classList.remove('active');
@@ -1680,16 +1680,5 @@ const countImgRev = () => {
     });
 }
 countImgRev();
-
-const yandShareAction = () => {
-    const yandShare = document.querySelector('#yand-share');
-    if (!yandShare) return;
-    yandShare.addEventListener('click', (e) => {
-        console.dir(yandShare);
-        document.querySelector('.ya-share2__link.ya-share2__link_more.ya-share2__link_more-button-type_short').click();
-        // button.click();
-    });
-}
-yandShareAction();
 
 Cookies.set('mediaQuery', window.innerWidth);

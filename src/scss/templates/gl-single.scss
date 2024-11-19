@@ -974,6 +974,10 @@ article.type-glampings {
     height: 400px;
     border-radius: $border-radius-single;
     overflow: hidden;
+
+    &.map-modal-container {
+        height: 600px;
+    }
 }
 
 .single-aside {
