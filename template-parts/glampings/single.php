@@ -164,12 +164,21 @@ $count_content_symbol = mb_strlen(get_the_content());
                             </svg>
                         </button>
 
+                        <!-- <button id="yand-share" type="button" name="button">
+                            <svg width="15.000000" height="17.000000" viewBox="0 0 15 17" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <path id="Vector" d="M12.5 17C11.8 17 11.21 16.75 10.72 16.25C10.24 15.75 10 15.15 10 14.44C10 14.36 10.02 14.16 10.06 13.85L4.2 10.36C3.98 10.58 3.72 10.75 3.43 10.86C3.14 10.99 2.83 11.05 2.5 11.05C1.8 11.05 1.21 10.8 0.72 10.3C0.24 9.81 0 9.2 0 8.5C0 7.79 0.24 7.18 0.72 6.69C1.21 6.19 1.8 5.94 2.5 5.94C2.83 5.94 3.14 6 3.43 6.13C3.72 6.25 3.98 6.41 4.2 6.63L10.06 3.14C10.03 3.04 10.01 2.95 10.01 2.85C10 2.76 10 2.66 10 2.55C10 1.84 10.24 1.24 10.72 0.74C11.21 0.24 11.8 0 12.5 0C13.19 0 13.78 0.24 14.27 0.74C14.75 1.24 15 1.84 15 2.55C15 3.25 14.75 3.86 14.27 4.35C13.78 4.85 13.19 5.09 12.5 5.09C12.16 5.09 11.85 5.03 11.56 4.91C11.27 4.79 11.01 4.63 10.79 4.41L4.93 7.9C4.96 8 4.98 8.09 4.99 8.19C4.99 8.28 5 8.38 5 8.5C4.99 8.61 4.99 8.71 4.99 8.8C4.98 8.9 4.96 8.99 4.93 9.09L10.79 12.58C11.01 12.36 11.27 12.2 11.56 12.08C11.85 11.96 12.16 11.9 12.5 11.9C13.19 11.9 13.78 12.14 14.27 12.64C14.75 13.13 15 13.74 15 14.44C15 15.15 14.75 15.75 14.27 16.25C13.78 16.75 13.19 17 12.5 17Z" fill="#5E6D77" fill-opacity="1.000000" fill-rule="evenodd"/>
+                            </svg>
+                        </button> -->
+
                         <script src="https://yastatic.net/share2/share.js"></script>
                         <style media="screen">
                             .ya-share2__container_size_m .ya-share2__item_more.ya-share2__item_has-pretty-view .ya-share2__link_more.ya-share2__link_more-button-type_short {
                                 display: flex;
                                 border: 1px solid rgb(94, 109, 119);
                                 background: rgb(255, 255, 255);
+                            }
+                            .ya-share2__item_more.ya-share2__item_has-pretty-view .ya-share2__icon_more {
+                                background-image: url(data:image/svg+xml,%3Csvg%20width=%2716%27%20height=%2716%27%20fill=%27none%27%20xmlns=%27http://www.w3.org/2000/svg%27%3E%3Cpath%20d=%27M14.6%202.9a2.7%202.7%200%2001-4.554%201.963L5.303%207.28a2.702%202.702%200%20010%201.44l4.743%202.417a2.7%202.7%200%2011-.834%201.708l-5.05-2.575a2.7%202.7%200%20110-4.54l5.05-2.575A2.7%202.7%200%201114.6%202.9z%27%20fill=%27%235E6D77%27/%3E%3C/svg%3E);
                             }
                         </style>
                         <div class="ya-share2" data-curtain data-shape="round" data-limit="0"

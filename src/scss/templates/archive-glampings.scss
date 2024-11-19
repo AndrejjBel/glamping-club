@@ -194,6 +194,7 @@
     }
 
     &.card {
+        max-width: 1249px;
         height: fit-content;
 
         & .glamping-item {
@@ -1075,6 +1076,7 @@
     color: #161616b3;
     background: #F4F4F4;
     border-radius: 50%;
+    z-index: 8;
 
     &:after {
         font-size: 11px;

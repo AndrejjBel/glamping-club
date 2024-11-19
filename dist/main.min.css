@@ -1043,7 +1043,7 @@ strong, b {
   bottom: 0px;
   left: 0px;
   width: 100%;
-  z-index: 99;
+  z-index: 9;
   background: var(--white);
   border-top: 0.5px solid rgba(200, 200, 200, 0.5); }
   @media (max-width: 1023px) {
@@ -3968,6 +3968,7 @@ a.secondary {
       .glampings-items.list {
         display: none; } }
   .glampings-items.card {
+    max-width: 1249px;
     height: -moz-fit-content;
     height: fit-content; }
     .glampings-items.card .glamping-item {
@@ -4461,7 +4462,8 @@ a.secondary {
   height: 25px;
   color: #161616b3;
   background: #F4F4F4;
-  border-radius: 50%; }
+  border-radius: 50%;
+  z-index: 8; }
   .swiper-button-next:after, .swiper-button-prev:after {
     font-size: 11px;
     line-height: 100%; }
