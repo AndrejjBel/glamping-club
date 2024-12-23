@@ -31,16 +31,13 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'glamping-club' ); ?></a>
 
 <?php
-if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
+if (is_front_page()) {
+   get_template_part( 'template-parts/head-footer/header-new' );
+} elseif (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 	get_template_part( 'template-parts/head-footer/header-login' );
 } elseif (is_singular('glampings')) {
-	get_template_part( 'template-parts/head-footer/header-single-glemp' );
+	get_template_part( 'template-parts/head-footer/header-new' );
 } elseif (!is_page([PAGE_DASHBOARD])) {
 	get_template_part( 'template-parts/head-footer/header' );
-	// get_template_part( 'template-parts/head-footer/filtr-items' );
 }
-// get_template_part( 'template-parts/head-footer/filtr-items' );
-// if (is_post_type_archive('glampings')) {
-// 	get_template_part( 'template-parts/head-footer/filtr-items' );
-// }
 ?>

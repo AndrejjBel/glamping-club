@@ -230,9 +230,9 @@ function glamping_club_footer_copiright() {
 	$bloginfo_name = get_bloginfo('name');
 	if ($site_options) {
 		if ( array_key_exists('copiright_text', $site_options) ) {
-			echo '<p>' . $site_options['copiright_text'] . '</p>';
+			echo $site_options['copiright_text'];
 		} else {
-			echo '<p>Все права защищены © 2024 - ' . $bloginfo_name . '</p>';
+			echo 'Все права защищены © 2024 - ' . $bloginfo_name;
 		}
 	}
 }
@@ -245,8 +245,7 @@ function glamping_club_footer_emails() {
 				echo '<span><a href="mailto:' . $value . '">' . $value . '</a></span>';
 			}
 		} else {
-			echo '<span><a href="mailto:info@site.com">info@site.com</a></span>
-				<span><a href="mailto:info1@site.com">info1@site.com</a></span>';
+			echo '<span><a href="mailto:info@site.com">info@site.com</a></span>';
 		}
 	}
 }
@@ -259,8 +258,7 @@ function glamping_club_footer_phones() {
 				echo '<span><a href="tel:' . $value . '">' . $value . '</a></span>';
 			}
 		} else {
-			echo '<span><a href="tel:+8801838288389">+8801838288389</a></span>
-				<span><a href="tel:+8801941101915">+8801941101915</a></span>';
+			echo '<span><a href="tel:+8801838288389">+8801838288389</a></span>';
 		}
 	}
 }
@@ -273,4 +271,38 @@ function glamping_club_menu_admin() {
 		    <li><a href="' . wp_logout_url() . '" title="Выход">Выход</a></li>
 		</ul>';
 	}
+}
+
+function text_tags($text) {
+	$fin_text = '';
+	if (mb_substr_count($text, '{green}') && mb_substr_count($text, '{/green}')) {
+		$fin_text = str_replace(['{green}', '{/green}'], ['<span class="text-color-green">', '</span>'], $text);
+	}
+	return $fin_text;
+}
+
+function region_list() {
+	$terms = get_terms( [
+		'taxonomy'   => 'location',
+		'hide_empty' => false,
+	] );
+
+	if( $terms && ! is_wp_error( $terms ) ){
+		$type = 'region';
+		$items = '';
+		foreach( $terms as $term ){
+			$items .= '<li id="' . $term->term_id . '" onclick="optionsFiltrFrontAction(this, ' . $type . ')">' . $term->name . '</li>';
+		}
+		echo $items;
+	}
+}
+
+function type_options_list() {
+	$type_options = type_options();
+	$type = 'place';
+	$items = '';
+	foreach( $type_options as $option ){
+		$items .= '<li id="' . $option . '" onclick="optionsFiltrFrontAction(this, ' . $type . ')">' . $option . '</li>';
+	}
+	echo $items;
 }

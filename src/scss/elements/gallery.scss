@@ -32,7 +32,8 @@
     // }
 
     &__first {
-        flex-basis: 794px;
+        flex: 1;
+        // flex-basis: 794px;
         position: relative;
 
         & a {

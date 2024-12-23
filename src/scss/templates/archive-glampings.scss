@@ -226,6 +226,7 @@
 
             &__content {
                 flex-direction: column;
+                width: 100%;
                 // flex: none;
 
                 &__left {
@@ -797,6 +798,19 @@
         background: var(--color-bg-recomended);
         padding: 2px 6px;
         border-radius: 8px;
+        z-index: 9;
+    }
+
+    &__stocks {
+        position: absolute;
+        top: 150px;
+        left: 10px;
+        font-size: 12px;
+        font-weight: 500;
+        color: #fff;
+        background: rgb(241, 165, 57);
+        padding: 1px 6px;
+        border-radius: 5px;
         z-index: 9;
     }
 

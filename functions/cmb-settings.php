@@ -10,31 +10,37 @@ function glamping_club_register_main_options_metabox() {
 	) );
 
     $main_options->add_field( array(
-        'name'             => esc_html__( 'Цвет сайта', 'glamping-club' ),
-        'id'               => 'theme_color',
-        'type'             => 'select',
-        'default'          => 'theme-color-defolt',
-        'options'          => array(
-            'theme-color-defolt' => __( 'Синий', 'glamping-club' ),
-            'theme-color-green'   => __( 'Зеленый', 'glamping-club' )
-        ),
-    ) );
-
-    $main_options->add_field( array(
-		'name'    => esc_html__( 'Контакты - заголовок', 'glamping-club' ),
-		'desc'    => esc_html__( 'заголовок блока "Контакты"', 'glamping-club' ),
-		'id'      => 'contact_title',
-		'type'    => 'text',
-        'default' => 'Контакты'
+		'name' => esc_html__( 'Логотип', 'glamping-club' ),
+		'id'   => 'glamping_logo',
+		'type' => 'file',
+        'options' => array(
+            'url' => false,
+        )
 	) );
 
     $main_options->add_field( array(
-		'name'    => esc_html__( 'Адрес', 'glamping-club' ),
-		// 'desc'    => esc_html__( 'выбор основного цвета сайта', 'glamping-club' ),
-		'id'      => 'address',
-		'type'    => 'text',
-        'default' => '142055, Москва, ул.Красная, 150'
+		'name' => esc_html__( 'Логотип smail', 'glamping-club' ),
+		'id'   => 'glamping_logo_smail',
+		'type' => 'file',
+        'options' => array(
+            'url' => false,
+        )
 	) );
+
+    // $main_options->add_field( array(
+	// 	'name'    => esc_html__( 'Контакты - заголовок', 'glamping-club' ),
+	// 	'desc'    => esc_html__( 'заголовок блока "Контакты"', 'glamping-club' ),
+	// 	'id'      => 'contact_title',
+	// 	'type'    => 'text',
+    //     'default' => 'Контакты'
+	// ) );
+    //
+    // $main_options->add_field( array(
+	// 	'name'    => esc_html__( 'Адрес', 'glamping-club' ),
+	// 	'id'      => 'address',
+	// 	'type'    => 'text',
+    //     'default' => '142055, Москва, ул.Красная, 150'
+	// ) );
 
     $main_options->add_field( array(
 		'name'    => esc_html__( 'Почта для связи', 'glamping-club' ),
@@ -63,6 +69,13 @@ function glamping_club_register_main_options_metabox() {
 		'name'    => esc_html__( 'E-mail от которого отправлять письма пользователям', 'glamping-club' ),
 		'desc'    => esc_html__( 'например admin@site.ru', 'glamping-club' ),
 		'id'      => 'from_email',
+		'type'    => 'text'
+	) );
+
+    $main_options->add_field( array(
+		'name'    => esc_html__( 'E-mail куда отправлять письма от пользователей', 'glamping-club' ),
+		'desc'    => esc_html__( 'например admin@site.ru', 'glamping-club' ),
+		'id'      => 'contact_email',
 		'type'    => 'text'
 	) );
 

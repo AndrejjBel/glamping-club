@@ -1261,144 +1261,150 @@ function glampings_map_render($location=0) {
 	foreach ($glampings as $post) {
 		// setup_postdata( $post );
 
-		$meta_object = get_post_meta($post->ID, 'additionally_field')[0][0];
+		$meta_object_af = get_post_meta($post->ID, 'additionally_field');
+		$meta_object = [];
+
+		if ($meta_object_af) {
+			$meta_object = get_post_meta($post->ID, 'additionally_field')[0][0];
+		}
 		if (isset($meta_object['coordinates'])) {
 	        $coordinates = $meta_object['coordinates'];
-	    }
-		if (isset($meta_object['address'])) {
-	        $address = $meta_object['address'];
-	    }
-		$phone_glamping = '';
-		$whatsup_glamping = '';
-		if (isset($meta_object['phone_glamping'])) {
-			if ($meta_object['phone_glamping']) {
-				$phone_glamping = '<a href="tel:' . preg_replace('![^0-9]+!', '', $meta_object['phone_glamping']) . '" class="glamp-phone">
+
+			if (isset($meta_object['address'])) {
+		        $address = $meta_object['address'];
+		    }
+			$phone_glamping = '';
+			$whatsup_glamping = '';
+			if (isset($meta_object['phone_glamping'])) {
+				if ($meta_object['phone_glamping']) {
+					$phone_glamping = '<a href="tel:' . preg_replace('![^0-9]+!', '', $meta_object['phone_glamping']) . '" class="glamp-phone">
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+							<path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/>
+						</svg>
+					</a>';
+				}
+		    }
+			if (isset($meta_object['whatsup_glamping'])) {
+				if ($meta_object['whatsup_glamping']) {
+					$whatsup_glamping = '<a href="https://wa.me/' . preg_replace('![^0-9]+!', '', $meta_object['whatsup_glamping']) . '" class="glamp-wa">
+						<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+							<path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" fill="#25d366"></path>
+						</svg>
+					</a>';
+				}
+		    }
+			$title = get_the_title( $post->ID );
+			$url_link = get_permalink( $post->ID );
+			$link_title = '<a href="' . $url_link . '">' . $title . '</a>';
+			$thumbnail = get_the_post_thumbnail( $post->ID, [120, 120], ['class' => "attachment-map-image"] );
+			$thumbnail_pan = get_the_post_thumbnail( $post->ID, [60, 60], ['class' => "attachment-map-image-pan"] );
+			$statistics = glampings_reviews_statistic($post->ID);
+			// $count_rating = $statistics['count'];
+			// $average_rating = $statistics['average_rating'];
+			$rating = reviews_stars_items_average( $statistics['average_rating'], $statistics['count'], 1 );
+			// $rating = reviews_stars_items_average( 2.9, 4, 1 );
+			$media = array_unique(glamping_all_img($post->ID));
+			$media_urls = '';
+			$thumbnail_new = '';
+			if (count($media) > 0) {
+				$media_urls = '<div class="swiper balloonPan">';
+				$media_urls .= '<div class="swiper-wrapper">';
+				$mi = 0;
+		        foreach ( $media as $img ) {
+					// if ($mi <=2 ) {
+						$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
+						$media_urls .= '<div class="swiper-slide">';
+			            $media_urls .= '<img width="80" height="80" src="' . $url . '" class="attachment-map-image" alt="" decoding="async">';
+						$media_urls .= '</div>';
+						$mi++;
+					// }
+		    	}
+				$media_urls .= '</div>';
+				$media_urls .= '<div class="swiper-button-next"></div>';
+		    	$media_urls .= '<div class="swiper-button-prev"></div>';
+				$media_urls .= '</div>';
+
+				$thumbnail_new = '<img width="120" height="120" src="' . wp_get_attachment_image_url( $media[0], 'glamping-club-thumb' ) . '" class="attachment-map-image" alt="" decoding="async">';
+			}
+
+			$coord = explode(',', str_replace(" ", "", $coordinates));
+			// $coord = count($coord) > 1 ? [floatval($coord[0]), floatval($coord[1])] : [0.0, 0.0];
+			// $title = str_replace(["'", "\"", "«"], '', get_the_title( $post->ID ));
+			$balloonContentBody = '<div class="balloon-content-body">';
+			// $balloonContentBody .= '<div class="ymaps-2-1-79-balloon-content__header balloon-content-body__content__title">' . $title . '</div>';
+			$balloonContentBody .= '<div class="balloon-content-body__img">' . $thumbnail_new . '</div>';
+			$balloonContentBody .= '<div class="balloon-content-body__content">';
+			$balloonContentBody .= '<div class="balloon-content-body__content__title">' . $link_title . '</div>';
+			$balloonContentBody .= '<div class="balloon-content-body__content__rating">' . $rating . '</div>';
+			$balloonContentBody .= '<div class="balloon-content-body__content__price">от ' . $post->glamping_price . 'р.</div>';
+			$balloonContentBody .= '<div class="balloon-content-body__content__address">' . $address . '</div>';
+			$balloonContentBody .= '</div>';
+			$balloonContentBody .= '<div class="balloon-content-body__btns">';
+			$balloonContentBody .= '<div class="balloon-content-body__btns__fav-comp">';
+			// $balloonContentBody .= $phone_glamping;
+			// $balloonContentBody .= $whatsup_glamping;
+			// $balloonContentBody .= '<button id="add-favorites" data-postid="' . $post->ID . '" class="btn-add-fav" type="button" name="button" title="Добавить в избранное">
+			// 		<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+			// 			<path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8l0-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5l0 3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20-.1-.1s0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5l0 3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2l0-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/>
+			// 		</svg>
+			// 	</button>
+			// 	<button id="add-comparison" data-postid="' . $post->ID . '" class="btn-add-comp" type="button" name="button" title="Добавить к сравнению">
+			// 		<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+			// 			<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+			// 		</svg>
+			// 	</button>';
+			$balloonContentBody .= '</div></div></div>';
+
+			$balloonContentBodyPan = '<div class="balloon-content-body-pan">';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__img">';
+			// $balloonContentBodyPan .= '<a href="' . $url_link . '" class="balloon-content-body-pan__img__link"></a>';
+			// $balloonContentBodyPan .= '<div class="balloon-content-body-pan__img__count">';
+			// $balloonContentBodyPan .= count($media) . ' фото';
+			// $balloonContentBodyPan .= '</div>';
+			$balloonContentBodyPan .= $media_urls; //$thumbnail_pan;
+			$balloonContentBodyPan .= '</div>';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content">';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info">';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__title">' . $link_title . '</div>';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__rating">' . $rating . '</div>';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__price">от ' . $post->glamping_price . 'р.</div>';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__address">' . $address . '</div>';
+			$balloonContentBodyPan .= '</div>';
+			$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__buttons">';
+			$balloonContentBodyPan .= $phone_glamping;
+			$balloonContentBodyPan .= $whatsup_glamping;
+			$balloonContentBodyPan .= '<button id="add-favorites" data-postid="' . $post->ID . '" class="btn-add-fav" type="button" name="button" title="Добавить в избранное">
 					<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-						<path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/>
+						<path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8l0-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5l0 3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20-.1-.1s0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5l0 3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2l0-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/>
+						<path class="full" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"></path>
 					</svg>
-				</a>';
-			}
-	    }
-		if (isset($meta_object['whatsup_glamping'])) {
-			if ($meta_object['whatsup_glamping']) {
-				$whatsup_glamping = '<a href="https://wa.me/' . preg_replace('![^0-9]+!', '', $meta_object['whatsup_glamping']) . '" class="glamp-wa">
-					<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-						<path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" fill="#25d366"></path>
-					</svg>
-				</a>';
-			}
-	    }
-		$title = get_the_title( $post->ID );
-		$url_link = get_permalink( $post->ID );
-		$link_title = '<a href="' . $url_link . '">' . $title . '</a>';
-		$thumbnail = get_the_post_thumbnail( $post->ID, [120, 120], ['class' => "attachment-map-image"] );
-		$thumbnail_pan = get_the_post_thumbnail( $post->ID, [60, 60], ['class' => "attachment-map-image-pan"] );
-		$statistics = glampings_reviews_statistic($post->ID);
-		// $count_rating = $statistics['count'];
-		// $average_rating = $statistics['average_rating'];
-		$rating = reviews_stars_items_average( $statistics['average_rating'], $statistics['count'], 1 );
-		// $rating = reviews_stars_items_average( 2.9, 4, 1 );
-		$media = array_unique(glamping_all_img($post->ID));
-		$media_urls = '';
-		$thumbnail_new = '';
-		if (count($media) > 0) {
-			$media_urls = '<div class="swiper balloonPan">';
-			$media_urls .= '<div class="swiper-wrapper">';
-			$mi = 0;
-	        foreach ( $media as $img ) {
-				// if ($mi <=2 ) {
-					$url = wp_get_attachment_image_url( $img, 'glamping-club-thumb' );
-					$media_urls .= '<div class="swiper-slide">';
-		            $media_urls .= '<img width="80" height="80" src="' . $url . '" class="attachment-map-image" alt="" decoding="async">';
-					$media_urls .= '</div>';
-					$mi++;
-				// }
-	    	}
-			$media_urls .= '</div>';
-			$media_urls .= '<div class="swiper-button-next"></div>';
-	    	$media_urls .= '<div class="swiper-button-prev"></div>';
-			$media_urls .= '</div>';
-
-			$thumbnail_new = '<img width="120" height="120" src="' . wp_get_attachment_image_url( $media[0], 'glamping-club-thumb' ) . '" class="attachment-map-image" alt="" decoding="async">';
+				</button>';
+			// $balloonContentBodyPan .= '<button id="add-comparison" data-postid="' . $post->ID . '" class="btn-add-comp" type="button" name="button" title="Добавить к сравнению">
+			// 		<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+			// 			<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+			// 		</svg>
+			// 	</button>';
+			$balloonContentBodyPan .= '</div></div></div></div>';
+			$points [] = (object) array(
+				"type"		 => "Feature",
+				"id"		 => $post->ID,
+				"geometry"   => (object) array("type"=> "Point", "coordinates"=> $coord),
+				"properties" => (object) array(
+					"id"		 			=> $post->ID,
+					"price" 			=> $post->glamping_price,
+					// "balloonContentHeader"	=> $title,
+					"balloonContentBody"	=> $balloonContentBody,
+					"balloonContentBodyPan"	=> $balloonContentBodyPan,
+					// "balloonContentFooter"	=> '<a href="'.$link.'">Подробнее</a>',
+					"clusterCaption"		=> $title,
+					// "link" 					=> $link,
+					"hintContent"			=> '<span>' . get_the_title( $post->ID ) . '</span>',
+					"iconContent"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
+					"iconContentDef"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
+					"iconContentHover"			=> '<span id="' . $post->ID . '" class="glc-icon-content active">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
+				)
+			);
 		}
-
-		$coord = explode(',', str_replace(" ", "", $coordinates));
-		// $coord = count($coord) > 1 ? [floatval($coord[0]), floatval($coord[1])] : [0.0, 0.0];
-		// $title = str_replace(["'", "\"", "«"], '', get_the_title( $post->ID ));
-		$balloonContentBody = '<div class="balloon-content-body">';
-		// $balloonContentBody .= '<div class="ymaps-2-1-79-balloon-content__header balloon-content-body__content__title">' . $title . '</div>';
-		$balloonContentBody .= '<div class="balloon-content-body__img">' . $thumbnail_new . '</div>';
-		$balloonContentBody .= '<div class="balloon-content-body__content">';
-		$balloonContentBody .= '<div class="balloon-content-body__content__title">' . $link_title . '</div>';
-		$balloonContentBody .= '<div class="balloon-content-body__content__rating">' . $rating . '</div>';
-		$balloonContentBody .= '<div class="balloon-content-body__content__price">от ' . $post->glamping_price . 'р.</div>';
-		$balloonContentBody .= '<div class="balloon-content-body__content__address">' . $address . '</div>';
-		$balloonContentBody .= '</div>';
-		$balloonContentBody .= '<div class="balloon-content-body__btns">';
-		$balloonContentBody .= '<div class="balloon-content-body__btns__fav-comp">';
-		// $balloonContentBody .= $phone_glamping;
-		// $balloonContentBody .= $whatsup_glamping;
-		// $balloonContentBody .= '<button id="add-favorites" data-postid="' . $post->ID . '" class="btn-add-fav" type="button" name="button" title="Добавить в избранное">
-		// 		<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-		// 			<path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8l0-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5l0 3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20-.1-.1s0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5l0 3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2l0-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/>
-		// 		</svg>
-		// 	</button>
-		// 	<button id="add-comparison" data-postid="' . $post->ID . '" class="btn-add-comp" type="button" name="button" title="Добавить к сравнению">
-		// 		<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-		// 			<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
-		// 		</svg>
-		// 	</button>';
-		$balloonContentBody .= '</div></div></div>';
-
-		$balloonContentBodyPan = '<div class="balloon-content-body-pan">';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__img">';
-		// $balloonContentBodyPan .= '<a href="' . $url_link . '" class="balloon-content-body-pan__img__link"></a>';
-		// $balloonContentBodyPan .= '<div class="balloon-content-body-pan__img__count">';
-		// $balloonContentBodyPan .= count($media) . ' фото';
-		// $balloonContentBodyPan .= '</div>';
-		$balloonContentBodyPan .= $media_urls; //$thumbnail_pan;
-		$balloonContentBodyPan .= '</div>';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content">';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info">';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__title">' . $link_title . '</div>';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__rating">' . $rating . '</div>';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__price">от ' . $post->glamping_price . 'р.</div>';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__info__address">' . $address . '</div>';
-		$balloonContentBodyPan .= '</div>';
-		$balloonContentBodyPan .= '<div class="balloon-content-body-pan__content__buttons">';
-		$balloonContentBodyPan .= $phone_glamping;
-		$balloonContentBodyPan .= $whatsup_glamping;
-		$balloonContentBodyPan .= '<button id="add-favorites" data-postid="' . $post->ID . '" class="btn-add-fav" type="button" name="button" title="Добавить в избранное">
-				<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-					<path d="M225.8 468.2l-2.5-2.3L48.1 303.2C17.4 274.7 0 234.7 0 192.8l0-3.3c0-70.4 50-130.8 119.2-144C158.6 37.9 198.9 47 231 69.6c9 6.4 17.4 13.8 25 22.3c4.2-4.8 8.7-9.2 13.5-13.3c3.7-3.2 7.5-6.2 11.5-9c0 0 0 0 0 0C313.1 47 353.4 37.9 392.8 45.4C462 58.6 512 119.1 512 189.5l0 3.3c0 41.9-17.4 81.9-48.1 110.4L288.7 465.9l-2.5 2.3c-8.2 7.6-19 11.9-30.2 11.9s-22-4.2-30.2-11.9zM239.1 145c-.4-.3-.7-.7-1-1.1l-17.8-20-.1-.1s0 0 0 0c-23.1-25.9-58-37.7-92-31.2C81.6 101.5 48 142.1 48 189.5l0 3.3c0 28.5 11.9 55.8 32.8 75.2L256 430.7 431.2 268c20.9-19.4 32.8-46.7 32.8-75.2l0-3.3c0-47.3-33.6-88-80.1-96.9c-34-6.5-69 5.4-92 31.2c0 0 0 0-.1 .1s0 0-.1 .1l-17.8 20c-.3 .4-.7 .7-1 1.1c-4.5 4.5-10.6 7-16.9 7s-12.4-2.5-16.9-7z"/>
-					<path class="full" d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"></path>
-				</svg>
-			</button>';
-		// $balloonContentBodyPan .= '<button id="add-comparison" data-postid="' . $post->ID . '" class="btn-add-comp" type="button" name="button" title="Добавить к сравнению">
-		// 		<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-		// 			<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
-		// 		</svg>
-		// 	</button>';
-		$balloonContentBodyPan .= '</div></div></div></div>';
-		$points [] = (object) array(
-			"type"		 => "Feature",
-			"id"		 => $post->ID,
-			"geometry"   => (object) array("type"=> "Point", "coordinates"=> $coord),
-			"properties" => (object) array(
-				"id"		 			=> $post->ID,
-				"price" 			=> $post->glamping_price,
-				// "balloonContentHeader"	=> $title,
-				"balloonContentBody"	=> $balloonContentBody,
-				"balloonContentBodyPan"	=> $balloonContentBodyPan,
-				// "balloonContentFooter"	=> '<a href="'.$link.'">Подробнее</a>',
-				"clusterCaption"		=> $title,
-				// "link" 					=> $link,
-				"hintContent"			=> '<span>' . get_the_title( $post->ID ) . '</span>',
-				"iconContent"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
-				"iconContentDef"			=> '<span id="' . $post->ID . '" class="glc-icon-content">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
-				"iconContentHover"			=> '<span id="' . $post->ID . '" class="glc-icon-content active">' . number_format($post->glamping_price, 0, ',', ' '). 'р</span>',
-			)
-		);
 	}
 	wp_reset_postdata();
 
@@ -2003,4 +2009,321 @@ function term_glemp($post_id) {
         $term = '';
     }
 	return $term;
+}
+
+function glampings_recommendated_list() {
+    $args = [
+    	'post_type'   => 'glampings',
+    	'suppress_filters' => true,
+        'posts_per_page' => 8,
+    ];
+
+	// $args['meta_query'] = [
+	// 	[
+	// 		'key' => 'glamping_recommended',
+	// 		'value' => 'yes',
+	// 	]
+	// ];
+
+	$my_posts = get_posts($args);
+
+    foreach( $my_posts as $post_rec ){
+		$statistics = glampings_reviews_statistic($post_rec->ID);
+		$count_rating = $statistics['count'];
+		$average_rating = $statistics['average_rating'];
+		?>
+		<div id="post-<?php echo $post_rec->ID; ?>" class="glamping-item" title="<?php echo get_the_title($post_rec->ID); ?>">
+			<a href="<?php echo esc_url( get_permalink($post_rec->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
+			<?php if ($post_rec->glamping_recommended == 'yes') { ?>
+				<div class="glamping-item__recommended">Рекомендуем</div>
+			<?php } ?>
+			<div class="glamping-item__btns-fav-comp">
+				<button id="add-favorites" data-postid="<?php echo $post_rec->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" type="button" name="button" title="Добавить в избранное">
+					<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+						<path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+					</svg>
+				</button>
+				<button id="add-comparison" data-postid="<?php echo $post_rec->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-comp round-sup-red" type="button" name="button" title="Добавить к сравнению">
+					<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+						<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+					</svg>
+				</button>
+			</div>
+			<div class="glamping-item__thumbnail">
+				<?php glamping_club_gl_thumbnail_slider($post_rec->ID); ?>
+			</div>
+
+			<div class="glamping-item__content">
+				<div class="glamping-item__content__left">
+					<div class="glamping-item__content__title">
+						<?php echo get_the_title($post_rec->ID); ?>
+					</div>
+
+					<div class="glamping-item__content__rating">
+						<?php reviews_stars_items_average( $average_rating, $count_rating ); ?>
+					</div>
+
+					<div class="glamping-item__content__bottom">
+						<div class="glamping-item__content__bottom__type">
+							<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+		                        <path d="M394.3 3.745C401.1 9.425 401.9 19.52 396.3 26.29L308.9 130.4L532.8 397.2C540 405.8 544 416.7 544 428V464C544 490.5 522.5 512 496 512H80C53.49 512 32 490.5 32 464V428C32 416.7 35.98 405.8 43.23 397.2L267.1 130.4L179.7 26.29C174.1 19.52 174.9 9.425 181.7 3.745C188.5-1.936 198.6-1.054 204.3 5.715L287.1 105.5L371.7 5.715C377.4-1.054 387.5-1.936 394.3 3.745H394.3zM64 428V464C64 472.8 71.16 480 80 480H129.9L275.4 294.1C278.4 290.3 283.1 288 288 288C292.9 288 297.6 290.3 300.6 294.1L446.1 480H496C504.8 480 512 472.8 512 464V428C512 424.2 510.7 420.6 508.3 417.7L288 155.3L67.74 417.7C65.33 420.6 64 424.2 64 428zM170.6 480H405.4L288 329.1L170.6 480z"></path>
+		                    </svg>
+							<?php echo implode(', ', $post_rec->glamping_type); ?>
+						</div>
+						<div class="glamping-item__content__bottom__address">
+				            <a href="#map-container" title="На карте">
+				                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.87827 2 7.84344 2.84285 6.34315 4.34315C4.84285 5.84344 4 7.87827 4 10C4 13.0981 6.01574 16.1042 8.22595 18.4373C9.31061 19.5822 10.3987 20.5195 11.2167 21.1708C11.5211 21.4133 11.787 21.6152 12 21.7726C12.213 21.6152 12.4789 21.4133 12.7833 21.1708C13.6013 20.5195 14.6894 19.5822 15.774 18.4373C17.9843 16.1042 20 13.0981 20 10C20 7.87827 19.1571 5.84344 17.6569 4.34315C16.1566 2.84285 14.1217 2 12 2ZM12 23C11.4453 23.8321 11.445 23.8319 11.4448 23.8317L11.4419 23.8298L11.4352 23.8253L11.4123 23.8098C11.3928 23.7966 11.3651 23.7776 11.3296 23.753C11.2585 23.7038 11.1565 23.6321 11.0278 23.5392C10.7705 23.3534 10.4064 23.0822 9.97082 22.7354C9.10133 22.043 7.93939 21.0428 6.77405 19.8127C4.48426 17.3958 2 13.9019 2 10C2 7.34784 3.05357 4.8043 4.92893 2.92893C6.8043 1.05357 9.34784 0 12 0C14.6522 0 17.1957 1.05357 19.0711 2.92893C20.9464 4.8043 22 7.34784 22 10C22 13.9019 19.5157 17.3958 17.226 19.8127C16.0606 21.0428 14.8987 22.043 14.0292 22.7354C13.5936 23.0822 13.2295 23.3534 12.9722 23.5392C12.8435 23.6321 12.7415 23.7038 12.6704 23.753C12.6349 23.7776 12.6072 23.7966 12.5877 23.8098L12.5648 23.8253L12.5581 23.8298L12.556 23.8312C12.5557 23.8314 12.5547 23.8321 12 23ZM12 23L12.5547 23.8321C12.2188 24.056 11.7807 24.0556 11.4448 23.8317L12 23Z" fill="black"></path>
+				                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8ZM8 10C8 7.79086 9.79086 6 12 6C14.2091 6 16 7.79086 16 10C16 12.2091 14.2091 14 12 14C9.79086 14 8 12.2091 8 10Z" fill="black"></path>
+				                </svg>
+				                <?php echo get_additionally_meta('address'); ?>
+				            </a>
+				        </div>
+					</div>
+				</div>
+
+				<div class="glamping-item__content__right">
+					<div class="glamping-item__content__right__price">
+						<span class="price-number">От <?php echo number_format(round($post_rec->glamping_price, 1), 0, ',', ' '); ?> р.</span>
+						<span class="price-text">за 1 ночь</span>
+					</div>
+					<div class="glamping-item__content__right__btn">
+						<a href="<?php echo esc_url( get_permalink($post_rec->ID) ); ?>" class="primary golden nxl ntext w100 btnvib">Подробнее</a>
+					</div>
+				</div>
+			</div>
+		</div>
+        <?php
+    }
+    wp_reset_postdata();
+}
+
+function glampings_recommendated_list_slider() {
+	$args = [
+    	'post_type'   => 'glampings',
+    	'suppress_filters' => true,
+        'posts_per_page' => 8,
+    ];
+
+	// $args['meta_query'] = [
+	// 	[
+	// 		'key' => 'glamping_recommended',
+	// 		'value' => 'yes',
+	// 	]
+	// ];
+
+	$my_posts = get_posts($args);
+
+    foreach( $my_posts as $post_rel ){
+		$statistics = glampings_reviews_statistic($post_rel->ID);
+		$count_rating = $statistics['count'];
+		$average_rating = $statistics['average_rating'];
+        ?>
+		<div id="post-<?php echo $post_rel->ID; ?>" class="glamping-item swiper-slide" title="<?php echo get_the_title($post_rel->ID); ?>">
+			<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
+			<?php if ($post_rel->glamping_recommended == 'yes') { ?>
+				<div class="glamping-item__recommended">Рекомендуем</div>
+			<?php } ?>
+			<div class="glamping-item__btns-fav-comp">
+				<button id="add-favorites" data-postid="<?php echo $post_rel->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" type="button" name="button" title="Добавить в избранное">
+					<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+						<path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+					</svg>
+				</button>
+				<button id="add-comparison" data-postid="<?php echo $post_rel->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-comp round-sup-red" type="button" name="button" title="Добавить к сравнению">
+					<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+						<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+					</svg>
+				</button>
+			</div>
+			<div class="glamping-item__thumbnail">
+				<?php glamping_club_gl_thumbnail_slider($post_rel->ID); ?>
+			</div>
+
+			<div class="glamping-item__content">
+				<div class="glamping-item__content__left">
+					<div class="glamping-item__content__title">
+						<?php echo get_the_title($post_rel->ID); ?>
+					</div>
+
+					<div class="glamping-item__content__rating">
+						<?php reviews_stars_items_average( $average_rating, $count_rating ); ?>
+					</div>
+
+					<div class="glamping-item__content__bottom">
+						<div class="glamping-item__content__bottom__type">
+							<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+		                        <path d="M394.3 3.745C401.1 9.425 401.9 19.52 396.3 26.29L308.9 130.4L532.8 397.2C540 405.8 544 416.7 544 428V464C544 490.5 522.5 512 496 512H80C53.49 512 32 490.5 32 464V428C32 416.7 35.98 405.8 43.23 397.2L267.1 130.4L179.7 26.29C174.1 19.52 174.9 9.425 181.7 3.745C188.5-1.936 198.6-1.054 204.3 5.715L287.1 105.5L371.7 5.715C377.4-1.054 387.5-1.936 394.3 3.745H394.3zM64 428V464C64 472.8 71.16 480 80 480H129.9L275.4 294.1C278.4 290.3 283.1 288 288 288C292.9 288 297.6 290.3 300.6 294.1L446.1 480H496C504.8 480 512 472.8 512 464V428C512 424.2 510.7 420.6 508.3 417.7L288 155.3L67.74 417.7C65.33 420.6 64 424.2 64 428zM170.6 480H405.4L288 329.1L170.6 480z"></path>
+		                    </svg>
+							<?php echo implode(', ', $post_rel->glamping_type); ?>
+						</div>
+						<div class="glamping-item__content__bottom__address">
+				            <a href="#map-container" title="На карте">
+				                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.87827 2 7.84344 2.84285 6.34315 4.34315C4.84285 5.84344 4 7.87827 4 10C4 13.0981 6.01574 16.1042 8.22595 18.4373C9.31061 19.5822 10.3987 20.5195 11.2167 21.1708C11.5211 21.4133 11.787 21.6152 12 21.7726C12.213 21.6152 12.4789 21.4133 12.7833 21.1708C13.6013 20.5195 14.6894 19.5822 15.774 18.4373C17.9843 16.1042 20 13.0981 20 10C20 7.87827 19.1571 5.84344 17.6569 4.34315C16.1566 2.84285 14.1217 2 12 2ZM12 23C11.4453 23.8321 11.445 23.8319 11.4448 23.8317L11.4419 23.8298L11.4352 23.8253L11.4123 23.8098C11.3928 23.7966 11.3651 23.7776 11.3296 23.753C11.2585 23.7038 11.1565 23.6321 11.0278 23.5392C10.7705 23.3534 10.4064 23.0822 9.97082 22.7354C9.10133 22.043 7.93939 21.0428 6.77405 19.8127C4.48426 17.3958 2 13.9019 2 10C2 7.34784 3.05357 4.8043 4.92893 2.92893C6.8043 1.05357 9.34784 0 12 0C14.6522 0 17.1957 1.05357 19.0711 2.92893C20.9464 4.8043 22 7.34784 22 10C22 13.9019 19.5157 17.3958 17.226 19.8127C16.0606 21.0428 14.8987 22.043 14.0292 22.7354C13.5936 23.0822 13.2295 23.3534 12.9722 23.5392C12.8435 23.6321 12.7415 23.7038 12.6704 23.753C12.6349 23.7776 12.6072 23.7966 12.5877 23.8098L12.5648 23.8253L12.5581 23.8298L12.556 23.8312C12.5557 23.8314 12.5547 23.8321 12 23ZM12 23L12.5547 23.8321C12.2188 24.056 11.7807 24.0556 11.4448 23.8317L12 23Z" fill="black"></path>
+				                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8ZM8 10C8 7.79086 9.79086 6 12 6C14.2091 6 16 7.79086 16 10C16 12.2091 14.2091 14 12 14C9.79086 14 8 12.2091 8 10Z" fill="black"></path>
+				                </svg>
+				                <?php echo get_additionally_meta('address', $post_rel->ID); ?>
+				            </a>
+				        </div>
+					</div>
+				</div>
+
+				<div class="glamping-item__content__right">
+					<div class="glamping-item__content__right__price">
+						<span class="price-number">От <?php echo number_format(round($post_rel->glamping_price, 1), 0, ',', ' '); ?> р.</span>
+						<span class="price-text">за 1 ночь</span>
+					</div>
+					<div class="glamping-item__content__right__btn">
+						<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="primary golden nxl ntext w100 btnvib">Подробнее</a>
+					</div>
+				</div>
+			</div>
+		</div>
+        <?php
+    }
+    wp_reset_postdata();
+}
+
+function glampings_regions_slider() {
+	$content = '<div class="swiper-container-top">';
+	$content .= '<div class="swiper-wrapper">';
+	for ($n = 1; $n <= 18; $n++) {
+		$content .= '<div class="swiper-slide">';
+		$content .= '<img src="' . get_template_directory_uri() . '/src/img/regioni/Frame61-' . $n . '.jpg" alt="">';
+		$content .= '</div>';
+	}
+	$content .= '</div>';
+	$content .= '</div>';
+
+	$content .= '<div class="swiper-container-bottom">';
+	$content .= '<div class="swiper-wrapper">';
+	for ($n = 1; $n <= 55; $n++) {
+		$content .= '<div class="swiper-slide">';
+		$content .= '<img src="' . get_template_directory_uri() . '/src/img/regioni/Frame62-' . $n . '.jpg" alt="">';
+		$content .= '</div>';
+	}
+	$content .= '</div>';
+	$content .= '</div>';
+
+	echo $content;
+}
+
+function glampings_regions_slider_owl() {
+	$content = '<div id="splide-top" class="splide js-splide-slider">';
+	$content .= '<div class="splide__track">';
+	$content .= '<div class="splide__list">';
+	for ($n = 1; $n <= 18; $n++) {
+		$content .= '<div class="splide__slide">';
+		$content .= '<a href="#">';
+		$content .= '<img src="' . get_template_directory_uri() . '/src/img/regioni/Frame61-' . $n . '.jpg" alt="">';
+		$content .= '</a>';
+		$content .= '</div>';
+	}
+	$content .= '</div>';
+	$content .= '</div>';
+	$content .= '</div>';
+
+	$content .= '<div id="splide-bottom" class="splide js-splide-slider">';
+	$content .= '<div class="splide__track">';
+	$content .= '<div class="splide__list">';
+	for ($n = 1; $n <= 55; $n++) {
+		$content .= '<div class="splide__slide">';
+		$content .= '<a href="#">';
+		$content .= '<img src="' . get_template_directory_uri() . '/src/img/regioni/Frame62-' . $n . '.jpg" alt="">';
+		$content .= '</a>';
+		$content .= '</div>';
+	}
+	$content .= '</div>';
+	$content .= '</div>';
+	$content .= '</div>';
+
+	echo $content;
+}
+
+function glampings_hot_deals_list() {
+	$args = [
+    	'post_type'   => 'glampings',
+    	'suppress_filters' => true,
+        'posts_per_page' => 4,
+    ];
+
+	// $args['meta_query'] = [
+	// 	[
+	// 		'key' => 'stocks'
+	// 	]
+	// ];
+
+	$my_posts = get_posts($args);
+
+    foreach( $my_posts as $post_rec ){
+		$statistics = glampings_reviews_statistic($post_rec->ID);
+		$count_rating = $statistics['count'];
+		$average_rating = $statistics['average_rating'];
+		?>
+		<div id="post-<?php echo $post_rec->ID; ?>" class="glamping-item" title="<?php echo get_the_title($post_rec->ID); ?>">
+			<a href="<?php echo esc_url( get_permalink($post_rec->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
+			<?php if ($post_rec->glamping_recommended == 'yes') { ?>
+				<div class="glamping-item__recommended">Рекомендуем</div>
+			<?php } ?>
+			<div class="glamping-item__stocks">Скидка 15% на День рождения</div>
+			<div class="glamping-item__btns-fav-comp">
+				<button id="add-favorites" data-postid="<?php echo $post_rec->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" type="button" name="button" title="Добавить в избранное">
+					<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+						<path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+					</svg>
+				</button>
+				<button id="add-comparison" data-postid="<?php echo $post_rec->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-comp round-sup-red" type="button" name="button" title="Добавить к сравнению">
+					<svg class="rotate90" width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+						<path d="M448 64c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zm0 256c0 17.7-14.3 32-32 32H192c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32zM0 192c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 448c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/>
+					</svg>
+				</button>
+			</div>
+			<div class="glamping-item__thumbnail">
+				<?php glamping_club_gl_thumbnail_slider($post_rec->ID); ?>
+			</div>
+
+			<div class="glamping-item__content">
+				<div class="glamping-item__content__left">
+					<div class="glamping-item__content__title">
+						<?php echo get_the_title($post_rec->ID); ?>
+					</div>
+
+					<div class="glamping-item__content__rating">
+						<?php reviews_stars_items_average( $average_rating, $count_rating ); ?>
+					</div>
+
+					<div class="glamping-item__content__bottom">
+						<div class="glamping-item__content__bottom__type">
+							<svg width="10" height="10" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+		                        <path d="M394.3 3.745C401.1 9.425 401.9 19.52 396.3 26.29L308.9 130.4L532.8 397.2C540 405.8 544 416.7 544 428V464C544 490.5 522.5 512 496 512H80C53.49 512 32 490.5 32 464V428C32 416.7 35.98 405.8 43.23 397.2L267.1 130.4L179.7 26.29C174.1 19.52 174.9 9.425 181.7 3.745C188.5-1.936 198.6-1.054 204.3 5.715L287.1 105.5L371.7 5.715C377.4-1.054 387.5-1.936 394.3 3.745H394.3zM64 428V464C64 472.8 71.16 480 80 480H129.9L275.4 294.1C278.4 290.3 283.1 288 288 288C292.9 288 297.6 290.3 300.6 294.1L446.1 480H496C504.8 480 512 472.8 512 464V428C512 424.2 510.7 420.6 508.3 417.7L288 155.3L67.74 417.7C65.33 420.6 64 424.2 64 428zM170.6 480H405.4L288 329.1L170.6 480z"></path>
+		                    </svg>
+							<?php echo implode(', ', $post_rec->glamping_type); ?>
+						</div>
+						<div class="glamping-item__content__bottom__address">
+				            <a href="#map-container" title="На карте">
+				                <svg width="10" height="10" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+				                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C9.87827 2 7.84344 2.84285 6.34315 4.34315C4.84285 5.84344 4 7.87827 4 10C4 13.0981 6.01574 16.1042 8.22595 18.4373C9.31061 19.5822 10.3987 20.5195 11.2167 21.1708C11.5211 21.4133 11.787 21.6152 12 21.7726C12.213 21.6152 12.4789 21.4133 12.7833 21.1708C13.6013 20.5195 14.6894 19.5822 15.774 18.4373C17.9843 16.1042 20 13.0981 20 10C20 7.87827 19.1571 5.84344 17.6569 4.34315C16.1566 2.84285 14.1217 2 12 2ZM12 23C11.4453 23.8321 11.445 23.8319 11.4448 23.8317L11.4419 23.8298L11.4352 23.8253L11.4123 23.8098C11.3928 23.7966 11.3651 23.7776 11.3296 23.753C11.2585 23.7038 11.1565 23.6321 11.0278 23.5392C10.7705 23.3534 10.4064 23.0822 9.97082 22.7354C9.10133 22.043 7.93939 21.0428 6.77405 19.8127C4.48426 17.3958 2 13.9019 2 10C2 7.34784 3.05357 4.8043 4.92893 2.92893C6.8043 1.05357 9.34784 0 12 0C14.6522 0 17.1957 1.05357 19.0711 2.92893C20.9464 4.8043 22 7.34784 22 10C22 13.9019 19.5157 17.3958 17.226 19.8127C16.0606 21.0428 14.8987 22.043 14.0292 22.7354C13.5936 23.0822 13.2295 23.3534 12.9722 23.5392C12.8435 23.6321 12.7415 23.7038 12.6704 23.753C12.6349 23.7776 12.6072 23.7966 12.5877 23.8098L12.5648 23.8253L12.5581 23.8298L12.556 23.8312C12.5557 23.8314 12.5547 23.8321 12 23ZM12 23L12.5547 23.8321C12.2188 24.056 11.7807 24.0556 11.4448 23.8317L12 23Z" fill="black"></path>
+				                    <path fill-rule="evenodd" clip-rule="evenodd" d="M12 8C10.8954 8 10 8.89543 10 10C10 11.1046 10.8954 12 12 12C13.1046 12 14 11.1046 14 10C14 8.89543 13.1046 8 12 8ZM8 10C8 7.79086 9.79086 6 12 6C14.2091 6 16 7.79086 16 10C16 12.2091 14.2091 14 12 14C9.79086 14 8 12.2091 8 10Z" fill="black"></path>
+				                </svg>
+				                <?php echo get_additionally_meta('address'); ?>
+				            </a>
+				        </div>
+					</div>
+				</div>
+
+				<div class="glamping-item__content__right">
+					<div class="glamping-item__content__right__price">
+						<span class="price-number">От <?php echo number_format(round($post_rec->glamping_price, 1), 0, ',', ' '); ?> р.</span>
+						<span class="price-text">за 1 ночь</span>
+					</div>
+					<div class="glamping-item__content__right__btn">
+						<a href="<?php echo esc_url( get_permalink($post_rec->ID) ); ?>" class="primary golden nxl ntext w100 btnvib">Подробнее</a>
+					</div>
+				</div>
+			</div>
+		</div>
+        <?php
+    }
+    wp_reset_postdata();
 }

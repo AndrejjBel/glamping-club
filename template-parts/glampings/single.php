@@ -203,7 +203,7 @@ $count_content_symbol = mb_strlen(get_the_content());
 
     </div>
 
-    <!-- <button data-modal="map-modal" class="primary golden nxl ntext w-200 js-open-modal" type="button" name="button">Открыть карту</button> -->
+    <button data-modal="map-modal" class="primary golden nxl ntext w-200 js-open-modal" type="button" name="button">Открыть карту</button>
 
 </article><!-- #post-<?php the_ID(); ?> -->
 

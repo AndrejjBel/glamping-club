@@ -119,3 +119,48 @@ select:-webkit-autofill:focus {
     border: 1px solid #D7DCE3;
     padding: 0.5rem 1rem;
 }
+
+.field-group-checkbox {
+
+    input.input-checkbox {
+        display: none;
+    }
+
+    input.input-checkbox:checked + label span.check {
+        background: rgb(241, 165, 57);
+        border: none;
+    }
+
+    label {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        width: fit-content;
+        cursor: pointer;
+
+        span.check {
+            flex: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 25px;
+            height: 25px;
+            border: 1px solid rgb(192, 192, 192);
+            border-radius: 6px;
+
+            svg {
+                width: 16px;
+                height: 16px;
+            }
+
+        }
+
+        span.label {
+            color: rgb(22, 22, 22);
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 130%;
+            letter-spacing: -3%;
+        }
+    }
+}

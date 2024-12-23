@@ -3,7 +3,9 @@
 @import "./src/scss/base/base";
 @import "./src/scss/base/typography";
 @import "./src/scss/base/header";
+@import "./src/scss/base/header-new";
 @import "./src/scss/base/footer";
+@import "./src/scss/base/footer-new";
 @import "./src/scss/base/dashboard";
 
 // Elements
@@ -18,6 +20,7 @@
 @import "./src/scss/templates/archive-glampings";
 @import "./src/scss/templates/filtr";
 @import "./src/scss/templates/pages";
+@import "./src/scss/templates/front";
 
 // Popup
 @import "./src/scss/popup/popup";

@@ -5,6 +5,7 @@ function navScroll(elementId) {
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
         var currentScrollPos = window.pageYOffset;
+        // console.dir(currentScrollPos);
         if (prevScrollpos > currentScrollPos) {
             if (masthead) {
                 let headHeight = masthead.offsetHeight+20;

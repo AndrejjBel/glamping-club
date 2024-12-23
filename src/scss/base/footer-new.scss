@@ -1,0 +1,174 @@
+.gen-footer {
+    margin-top: auto;
+    border-radius: 10px 10px 0px 0px;
+    background: rgb(22, 22, 22);
+    padding-top: 60px;
+
+    &__top {
+        display: flex;
+        flex-direction: column;
+
+        &__nav {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            color: rgb(255, 255, 255);
+            font-size: 20px;
+            font-weight: 500;
+            line-height: 100%;
+            margin-bottom: 50px;
+
+            @media (max-width: 1023px) {
+                font-size: 14px;
+                margin-bottom: 40px;
+            }
+
+            @media (max-width: 767px) {
+                order: 2;
+                gap: 12px;
+                flex-direction: column;
+                align-items: center;
+                font-size: 16px;
+                font-weight: 500;
+                line-height: 100%;
+            }
+        }
+
+        &__contacs {
+            color: rgb(200, 200, 200);
+            font-size: 30px;
+            font-weight: 400;
+            line-height: 110%;
+            letter-spacing: -2%;
+            text-align: center;
+
+            @media (max-width: 1023px) {
+                font-size: 20px;
+            }
+
+            @media (max-width: 767px) {
+                order: 1;
+                margin-bottom: 30px;
+            }
+
+            &__item {
+
+                &.item-email {
+                    margin-bottom: 10px;
+                }
+
+                &.item-phone {
+                    margin-bottom: 20px;
+                }
+            }
+
+            & .contact-icons {
+                gap: 12px;
+                justify-content: center;
+
+                & a {
+                    width: 34px;
+                    height: 34px;
+
+                    @media (max-width: 1023px) {
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    &.wa svg {
+                        width: 15px;
+                        height: auto;
+                    }
+
+                    &.tlg svg {
+                        width: 17px;
+                        height: auto;
+
+                        @media (max-width: 1023px) {
+                            width: 17px;
+                            height: auto;
+                        }
+                    }
+                }
+            }
+        }
+
+        &__logo {
+            display: flex;
+            justify-content: center;
+            margin-top: 45px;
+            margin-bottom: 26px;
+
+            @media (max-width: 767px) {
+                order: 0;
+                margin-top: 0;
+                margin-bottom: 30px;
+            }
+
+            & img {
+                height: 66px;
+
+                @media (max-width: 1023px) {
+                    height: 46px;
+                    margin-top: 34px;
+                    margin-bottom: 20px;
+                }
+
+                @media (max-width: 767px) {
+                    margin-top: 0;
+                    margin-bottom: 0;
+                }
+            }
+        }
+
+        &__privacy {
+            display: none;
+
+            @media (max-width: 767px) {
+                display: flex;
+                justify-content: center;
+                order: 3;
+                color: rgb(200, 200, 200);
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 100%;
+                margin-top: 50px;
+                margin-bottom: 20px;
+            }
+        }
+    }
+
+    &__bottom {
+        color: rgb(200, 200, 200);
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 100%;
+        padding: 20px 0;
+        border-top: 1px solid #d9d9d91a;
+
+        & .bottom-wrap {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        &__copiright {
+            @media (max-width: 767px) {
+                width: 100%;
+                text-align: center;
+            }
+        }
+
+        &__privacy {
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
+
+        & a {
+            color: rgb(200, 200, 200);
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 100%;
+        }
+    }
+}

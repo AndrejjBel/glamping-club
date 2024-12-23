@@ -59,6 +59,7 @@ function glamping_club_main_scripts_old() {
     }
     $yand_zoom = get_glc_option('glc_options', 'yand_zoom');
     $bundle_obj = [
+        'homeUrl' => home_url( '/' ),
         'ajaxUrl' => admin_url( 'admin-ajax.php' ),
         'nonce' => wp_create_nonce('glamping_club'),
         'action' => 'glamping_club',
@@ -105,6 +106,12 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_style('slick', get_stylesheet_directory_uri() . '/assets/slick/slick.css',	array(),
         filemtime( get_stylesheet_directory() . '/assets/slick/slick.css' )
     );
+    wp_enqueue_style('splide', get_stylesheet_directory_uri() . '/assets/splide/splide.min.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/splide/splide.min.css' )
+    );
+    wp_enqueue_style('splide-default', get_stylesheet_directory_uri() . '/assets/splide/splide-default.min.css',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/splide/splide-default.min.css' )
+    );
     wp_enqueue_style('main', get_stylesheet_directory_uri() . '/dist/main.min.css',	array(),
         filemtime( get_stylesheet_directory() . '/dist/main.min.css' )
     );
@@ -140,10 +147,15 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_script('slick', get_stylesheet_directory_uri() . '/assets/slick/slick.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/slick/slick.min.js' ), [ 'strategy' => 'defer' ]
     );
-    // wp_enqueue_script('accordion', get_stylesheet_directory_uri() . '/assets/accordion/js/accordion.js',	array(),
-    //     filemtime( get_stylesheet_directory() . '/assets/accordion/js/accordion.js' ), [ 'strategy' => 'defer' ]
-    // );
-
+    wp_enqueue_script('scrollbar', get_stylesheet_directory_uri() . '/assets/scrollbar/smooth-scrollbar.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/scrollbar/smooth-scrollbar.js' ), [ 'strategy' => 'defer' ]
+    );
+    wp_enqueue_script('splide', get_stylesheet_directory_uri() . '/assets/splide/splide.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/splide/splide.min.js' ), [ 'strategy' => 'defer' ]
+    );
+    wp_enqueue_script('splide-auto-scroll', get_stylesheet_directory_uri() . '/assets/splide/splide-extension-auto-scroll.min.js',	array(),
+        filemtime( get_stylesheet_directory() . '/assets/splide/splide-extension-auto-scroll.min.js' ), [ 'strategy' => 'defer' ]
+    );
     wp_enqueue_script('swiped-events', get_stylesheet_directory_uri() . '/assets/swiped-events.min.js',	array(),
         filemtime( get_stylesheet_directory() . '/assets/swiped-events.min.js' ), [ 'strategy' => 'defer' ]
     );
@@ -185,6 +197,7 @@ require get_template_directory() . '/functions/cmb-post-meta-reviews.php';
 require get_template_directory() . '/functions/cmb-stocks-meta.php';
 require get_template_directory() . '/functions/cmb-stocks-front.php';
 require get_template_directory() . '/functions/cmb-glempedit.php';
+require get_template_directory() . '/functions/cmb-front-meta.php';
 require get_template_directory() . '/functions/glamping-add-edit.php';
 require get_template_directory() . '/functions/glampings-options.php';
 require get_template_directory() . '/functions/template-functions.php';
@@ -197,6 +210,7 @@ require get_template_directory() . '/functions/account/inc/shortcodes.php';
 require get_template_directory() . '/functions/admin/inc/functions-admin.php';
 
 require get_template_directory() . '/inc/breadcrumbs.php';
+require get_template_directory() . '/inc/functions-ajax.php';
 
 ## отключаем создание миниатюр файлов для указанных размеров
 add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
@@ -273,6 +287,90 @@ function delete_postmeta_before_delete_post( $postid ){
     clean_post_cache( $post_id );
 }
 
+## Добавляет миниатюры записи в таблицу записей в админке
+if(1){
+	add_action('init', 'add_post_thumbs_in_post_list_table', 20 );
+	function add_post_thumbs_in_post_list_table(){
+		// проверим какие записи поддерживают миниатюры
+		$supports = get_theme_support('post-thumbnails');
+
+		$ptype_names = array('post','glampings'); // указывает типы для которых нужна колонка отдельно
+
+		// Определяем типы записей автоматически
+		if( ! isset($ptype_names) ){
+			if( $supports === true ){
+				$ptype_names = get_post_types(array( 'public'=>true ), 'names');
+				$ptype_names = array_diff( $ptype_names, array('attachment') );
+			}
+			// для отдельных типов записей
+			elseif( is_array($supports) ){
+				$ptype_names = $supports[0];
+			}
+		}
+
+		// добавляем фильтры для всех найденных типов записей
+		foreach( $ptype_names as $ptype ){
+			add_filter( "manage_{$ptype}_posts_columns", 'add_thumb_column' );
+			add_action( "manage_{$ptype}_posts_custom_column", 'add_thumb_value', 10, 2 );
+		}
+	}
+
+	// добавим колонку
+	function add_thumb_column( $columns ){
+		// подправим ширину колонки через css
+		add_action('admin_notices', function(){
+			echo '
+			<style>
+				.column-thumbnail{ width:80px; text-align:center; }
+			</style>';
+		});
+
+		$num = 1; // после какой по счету колонки вставлять новые
+
+		$new_columns = array( 'thumbnail' => __('Thumbnail') );
+
+		return array_slice( $columns, 0, $num ) + $new_columns + array_slice( $columns, $num );
+	}
+
+	// заполним колонку
+	function add_thumb_value( $colname, $post_id ){
+		if( 'thumbnail' == $colname ){
+			$width  = $height = 45;
+
+			// миниатюра
+			if( $thumbnail_id = get_post_meta( $post_id, '_thumbnail_id', true ) ){
+				$thumb = wp_get_attachment_image( $thumbnail_id, array($width, $height), true );
+			}
+			// из галереи...
+			elseif( $attachments = get_children( array(
+				'post_parent'    => $post_id,
+				'post_mime_type' => 'image',
+				'post_type'      => 'attachment',
+				'numberposts'    => 1,
+				'order'          => 'DESC',
+			) ) ){
+				$attach = array_shift( $attachments );
+				$thumb = wp_get_attachment_image( $attach->ID, array($width, $height), true );
+			}
+
+			echo empty($thumb) ? ' ' : $thumb;
+		}
+	}
+}
+
+function random_number($length = 6) {
+    $arr = array(
+        'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
+        'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
+        '1', '2', '3', '4', '5', '6', '7', '8', '9', '0'
+    );
+    $res = '';
+    for ($i = 0; $i < $length; $i++) {
+        $res .= $arr[random_int(0, count($arr) - 1)];
+    }
+    return $res;
+}
+
 //Отправка в Телеграм
 define('TELEGRAM_TOKEN', '7361610914:AAFGZrr2JaYQEhBZxR6A2L3R1QEC_w7TnDE');
 // сюда нужно вписать ваш внутренний айдишник
@@ -290,6 +388,7 @@ function message_to_telegram($text, $chatid) {
             CURLOPT_TIMEOUT => 10,
             CURLOPT_POSTFIELDS => array(
                 'chat_id' => $chatid, // TELEGRAM_CHATID
+                'parse_mode' => 'HTML',
                 'text' => $text,
             ),
         )

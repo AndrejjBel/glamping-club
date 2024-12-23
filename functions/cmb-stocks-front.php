@@ -122,3 +122,51 @@ function set_to_stock_content($field_args, $field) {
     }
     return $content;
 }
+
+function hook_stocks_parent_glampings( $post_id, $updated, $cmb ) {
+	$post = get_post($post_id);
+	if ( $post->post_type == 'stocks' ) {
+		$args = array(
+	        'post_type' => 'stocks',
+	        'post_status' => 'publish',
+	        'posts_per_page' => -1,
+			'meta_query' => [ [
+				'key' => 'parent_glemp',
+				'value' => $post->parent_glemp,
+			] ],
+			'fields' => 'ids'
+	    );
+	    $stocks = get_posts( $args );
+
+		if (count($stocks)) {
+			update_post_meta( $post->parent_glemp, 'stocks', $stocks);
+		} else {
+			delete_post_meta( $post->parent_glemp, 'stocks' );
+		}
+	}
+}
+add_action( 'cmb2_save_post_fields_single_stocks', 'hook_stocks_parent_glampings', 10, 3 );
+
+function stocks_parent_glampings_add( $post_id ) {
+	$post = get_post($post_id);
+	if ( $post->post_type == 'stocks' ) {
+		$args = array(
+	        'post_type' => 'stocks',
+	        'post_status' => 'publish',
+	        'posts_per_page' => -1,
+			'meta_query' => [ [
+				'key' => 'parent_glemp',
+				'value' => $post->parent_glemp,
+			] ],
+			'fields' => 'ids'
+	    );
+	    $stocks = get_posts( $args );
+
+		if (count($stocks)) {
+			update_post_meta( $post->parent_glemp, 'stocks', $stocks);
+		} else {
+			delete_post_meta( $post->parent_glemp, 'stocks' );
+		}
+	}
+}
+add_action( 'save_post_stocks', 'stocks_parent_glampings_add' );

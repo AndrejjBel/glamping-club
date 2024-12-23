@@ -1,5 +1,10 @@
-localStorage.removeItem('glcRegion');
-localStorage.removeItem('glcType');
+// console.dir(document.referrer);
+if (document.referrer !== glamping_club_ajax.homeUrl) {
+    localStorage.removeItem('glcRegion');
+    localStorage.removeItem('glcType');
+}
+// localStorage.removeItem('glcRegion');
+// localStorage.removeItem('glcType');
 localStorage.removeItem('glcAllocation');
 localStorage.removeItem('glcWorking');
 localStorage.removeItem('glcNature');
@@ -1714,29 +1719,31 @@ const mapPointTest = (glAll) => {
         </div>`;
 
         let coord = [];
-        points.push(
-            {
-                id: item.id,
-                type: "Feature",
-                geometry: {
-                    type: "Point",
-                    coordinates: item.coordinates.split(', ')
-                },
-                properties: {
+        if (item.coordinates) {
+            points.push(
+                {
                     id: item.id,
-    				price: item.price,
-    				// balloonContentHeader: item.title,
-                    balloonContentBody: bcb, //`${img}<p class="ymaps-2-1-79-balloon-content__header">от ${item.price}р.</p> Адрес: ${item.adress}`,
-                    balloonContentBodyPan: bcbp,
-    				// balloonContentFooter: `<a href="${itemUrl}">Подробнее</a>`,
-                    // balloonContentFooter: '<a href=\"'+itemUrl+'\">Подробнее</a>',
-    				clusterCaption: item.title,
-    				link: item.url,
-                    hintContent: `<span>${item.title}</span>`,
-    				iconContent: `<span id="${item.id}" class="glc-icon-content">${item.price}р</span>`,
+                    type: "Feature",
+                    geometry: {
+                        type: "Point",
+                        coordinates: item.coordinates.split(', ')
+                    },
+                    properties: {
+                        id: item.id,
+        				price: item.price,
+        				// balloonContentHeader: item.title,
+                        balloonContentBody: bcb, //`${img}<p class="ymaps-2-1-79-balloon-content__header">от ${item.price}р.</p> Адрес: ${item.adress}`,
+                        balloonContentBodyPan: bcbp,
+        				// balloonContentFooter: `<a href="${itemUrl}">Подробнее</a>`,
+                        // balloonContentFooter: '<a href=\"'+itemUrl+'\">Подробнее</a>',
+        				clusterCaption: item.title,
+        				link: item.url,
+                        hintContent: `<span>${item.title}</span>`,
+        				iconContent: `<span id="${item.id}" class="glc-icon-content">${item.price}р</span>`,
+                    }
                 }
-            }
-        );
+            );
+        }
     });
     let geoData = {
         type: 'FeatureCollection',

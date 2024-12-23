@@ -49,28 +49,9 @@ body {
     padding-right: 0.5rem;
     padding-left: 0.5rem;
 
-    // @media (min-width: 577px) {
-    //     max-width: 540px;
-    // }
-
-    // @media (min-width: 768px) {
-    //     max-width: 100%;
-    //     padding: 0 20px;
-    // }
-    //
-    // @media (min-width: 1290px) {
-    //     max-width: 100%;
-    //     padding: 0 40px;
-    // }
-
     @media (min-width: 1290px) {
-        max-width: 1250px;
+        max-width: calc(1250px + 1rem);
     }
-
-    // @media (max-width: 576px) {
-    //     padding-right: 15px;
-    //     padding-left: 15px;
-    // }
 
     @media (max-width: 1330px) {
         max-width: 100%;
@@ -91,30 +72,6 @@ body {
 
 }
 
-// .container {
-//     max-width: 80%;
-//     width: 100%;
-//     margin: 0 auto;
-//
-//     @media (min-width: 2500px) {
-//         max-width: 70%;
-//     }
-//
-//     @media (max-width: 1349px) {
-//         max-width: 90%;
-//     }
-//
-//     @media (max-width: 991px) {
-//         max-width: 93%;
-//     }
-//
-//     @media (max-width: 576px) {
-//         max-width: 100%;
-//         width: auto;
-//         margin: 0 15px;
-//     }
-// }
-
 .container-ag {
     padding-right: 16px;
     padding-left: 16px;
@@ -130,18 +87,8 @@ body {
         width: 100%;
         margin: 0 auto;
 
-        &.breadcrumbs-wrap {
-
-            // & .breadcrumbs {
-            //     width: 1888px;
-            // }
-        }
+        &.breadcrumbs-wrap {}
     }
-
-    // @media (max-width: 576px) {
-    //     padding-right: 15px;
-    //     padding-left: 15px;
-    // }
 
     @media (max-width: 479px) {
         padding-right: 10px;
@@ -170,16 +117,7 @@ body {
             padding: 10px 0;
         }
 
-        & .container {
-            // @media (max-width: 1349px) {
-            //     max-width: 100%;
-            //     padding: 0 25px;
-            // }
-
-            // @media (max-width: 576px) {
-            //     padding: 0;
-            // }
-        }
+        & .container {}
     }
 
     &__footer {
@@ -327,7 +265,7 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 }
 
 .custom-scroll {
-	scrollbar-color: var(--Gray-200, #E4E7EC) var(--Gray-50, #F9FAFB); /* “slider color” “scrollbar color” */
+	scrollbar-color: rgb(70, 122, 60) var(--Gray-50, #F9FAFB); /* var(--Gray-200, #E4E7EC) “slider color” “scrollbar color” */
 	scrollbar-width: thin;
 
 	&::-webkit-scrollbar {
@@ -337,13 +275,17 @@ a, a:hover, a:focus, a:active, button, button:focus, input, select, textarea, .s
 	}
 
 	&::-webkit-scrollbar-thumb {
-		background-color: var(--Gray-200, #E4E7EC);
+		background-color: rgb(70, 122, 60); //var(--Gray-200, #E4E7EC) rgb(70, 122, 60)
 		border-radius: 8px;
 	}
 
 	&::-webkit-scrollbar-thumb:hover {
 		background-color: var(--Gray-300, #D0D5DD);
 	}
+
+    &::-webkit-scrollbar-track {
+      background: var(--Gray-50, #F9FAFB);
+    }
 }
 
 .scroll-no::-webkit-scrollbar {
