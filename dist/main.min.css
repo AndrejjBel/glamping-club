@@ -5887,6 +5887,7 @@ span.required {
         display: flex;
         flex-direction: column;
         gap: 14px;
+        max-width: 270px;
         padding: 10px 23px;
         cursor: pointer; }
         @media (max-width: 767px) {
@@ -5896,7 +5897,8 @@ span.required {
             padding: 10px 20px; } }
         .hero__filtr__item__container.container-btn {
           gap: 4px;
-          padding: 0; }
+          padding: 0;
+          max-width: 100%; }
       .hero__filtr__item.item-region {
         flex: 1;
         border-radius: 10px 0px 0px 10px; }
@@ -5929,7 +5931,10 @@ span.required {
           color: #161616;
           font-size: 14px;
           font-weight: 600;
-          line-height: 100%; }
+          line-height: 100%;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis; }
         .hero__filtr__item__title__icon {
           display: flex; }
       .hero__filtr__item__result {

@@ -1815,7 +1815,12 @@ function optionsFiltrFront(elemsClass) {
 optionsFiltrFront('.js-with-options');
 
 function optionsFiltrFrontAction(elem, type) {
+    let elems = elem.parentElement.children;
+    for (var item of elems) {
+        item.classList.remove('current');
+    }
     type.value = elem.innerText;
+    elem.classList.add('current');
     type.previousElementSibling.previousElementSibling.children[0].innerText = elem.innerText;
     elem.parentElement.parentElement.parentElement.classList.remove('active');
     elem.parentElement.parentElement.parentElement.parentElement.classList.remove('active');
