@@ -1746,6 +1746,9 @@ strong, b {
   border-radius: 10px 10px 0px 0px;
   background: #161616;
   padding-top: 60px; }
+  @media (max-width: 767px) {
+    .gen-footer {
+      padding-bottom: 60px; } }
   .gen-footer__top {
     display: flex;
     flex-direction: column; }
@@ -1865,6 +1868,66 @@ strong, b {
       font-size: 14px;
       font-weight: 400;
       line-height: 100%; }
+
+.footer-before {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  z-index: 9; }
+
+.footer-before-btns {
+  display: none;
+  gap: 12px;
+  justify-content: center;
+  box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+  background: white;
+  padding: 6px 0 7px; }
+  @media (max-width: 767px) {
+    .footer-before-btns {
+      display: flex; } }
+  .footer-before-btns a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none; }
+  .footer-before-btns .link-wrap-btns {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    background: #e7e7e7;
+    border-radius: 50%; }
+    .footer-before-btns .link-wrap-btns svg {
+      width: 15px;
+      height: 15px; }
+      .footer-before-btns .link-wrap-btns svg path {
+        fill: #5E6D77; }
+    .footer-before-btns .link-wrap-btns sup {
+      position: absolute;
+      top: 0;
+      right: -5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 12px;
+      height: 12px;
+      background: #F1A539;
+      color: #FFFFFF;
+      border-radius: 50%;
+      font-size: 10px;
+      font-weight: 400;
+      line-height: 100%;
+      letter-spacing: -6%; }
+  .footer-before-btns .text-btn {
+    display: flex;
+    color: #161616;
+    font-size: 10px;
+    font-weight: 400;
+    line-height: 100%;
+    letter-spacing: -6%;
+    margin-top: 3px; }
 
 .dashboard {
   position: relative;
@@ -6537,12 +6600,18 @@ span.required {
         left: 10px;
         font-size: 14px; } }
 
+.splide__track.top .splide__slide:first-child {
+  width: 504px; }
+
 .splide__track.top .splide__slide:nth-child(5n) {
   width: 504px; }
   @media (max-width: 544px) {
     .splide__track.top .splide__slide:nth-child(5n) {
       width: 300px;
       height: 120px; } }
+
+.splide__track.bottom .splide__slide:first-child {
+  width: 504px; }
 
 .splide__track.bottom .splide__slide:nth-child(4n) {
   width: 504px; }

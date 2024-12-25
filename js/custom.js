@@ -392,6 +392,34 @@ const addFavCom = () => {
 }
 // addFavCom();
 
+function addFavNew(elem) {
+    const supFavorites = document.querySelectorAll('#sup-favorites');
+    let glcFavCount = localCheng('glcFav', elem.dataset.postid);
+    supFavorites.forEach((item) => {
+        item.innerHTML = glcFavCount;
+    });
+    elem.classList.toggle('active');
+    if (elem.classList.contains('active')) {
+        elem.attributes.title.value = 'Удалить из избранного';
+    } else {
+        elem.attributes.title.value = 'Добавить в избранное';
+    }
+}
+
+function addCompNew(elem) {
+    const supComparison = document.querySelectorAll('#sup-comparison');
+    let glcComparCount = localCheng('glcCompar', elem.dataset.postid);
+    supComparison.forEach((item) => {
+        item.innerHTML = glcComparCount;
+    });
+    elem.classList.toggle('active');
+    if (elem.classList.contains('active')) {
+        elem.attributes.title.value = 'Удалить из сравнения';
+    } else {
+        elem.attributes.title.value = 'Добавить к сравнению';
+    }
+}
+
 // const deleteFavCom = () => {
 //     const favoritesBtns = document.querySelectorAll('#delete-favorites');
 //     const comparisonBtns = document.querySelectorAll('#delete-comparison');

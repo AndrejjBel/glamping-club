@@ -1064,6 +1064,10 @@
 .splide__track {
 
     &.top {
+        .splide__slide:first-child {
+            width: 504px;
+        }
+        
         .splide__slide:nth-child(5n) {
             width: 504px;
 
@@ -1075,6 +1079,10 @@
     }
 
     &.bottom {
+        .splide__slide:first-child {
+            width: 504px;
+        }
+
         .splide__slide:nth-child(4n) {
             width: 504px;
 
