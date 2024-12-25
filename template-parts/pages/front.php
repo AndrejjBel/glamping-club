@@ -331,28 +331,37 @@ $front_meta = (object)$post->front_page[0];
             <?php } else { ?>
                 <img src="<?php echo get_template_directory_uri();?>/src/img/comfortable-holiday.jpg" alt="">
             <?php } ?>
-
-
-
         </div>
 
         <div class="comfortable-holiday__content__text">
             <div class="comfortable-holiday__content__text__item">
                 <div class="comfortable-holiday__content__text__item__number">1</div>
                 <div class="comfortable-holiday__content__text__item__text">
-                    <?php echo $front_meta->end_text1; ?>
+                    <?php if ( in_array_r('end_text1', $front_meta) ) { ?>
+                        <?php echo $front_meta->end_text1; ?>
+                    <?php } else { ?>
+                        На нашем сайте более 500 глэмпингов по всейРоссии — от уютных домиков на берегу до стильных палаток в лесу и уникальных глэмпингов на воде. Глэмпинг сочетает в себе идеальное сочетание природногоуединенияи высококлассных удобств, таких как кровати, санузел, электричество, Wi-Fiи многое другое.
+                    <?php } ?>
                 </div>
             </div>
             <div class="comfortable-holiday__content__text__item">
                 <div class="comfortable-holiday__content__text__item__number">2</div>
                 <div class="comfortable-holiday__content__text__item__text">
-                    <?php echo $front_meta->end_text2; ?>
+                    <?php if ( in_array_r('end_text2', $front_meta) ) { ?>
+                        <?php echo $front_meta->end_text2; ?>
+                    <?php } else { ?>
+                        Наши глэмпинги расположены в самых живописных уголках России: от глэмпинга вгорах до экологичных глэмпингов в лесах и на побережьях. Независимо от того, ищетели вы глэмпинг для семьи, романтический глэмпинг или активный отдых на природе —у нас есть множество вариантов для любых предпочтений.
+                    <?php } ?>
                 </div>
             </div>
             <div class="comfortable-holiday__content__text__item">
                 <div class="comfortable-holiday__content__text__item__number">3</div>
                 <div class="comfortable-holiday__content__text__item__text">
-                    <?php echo $front_meta->end_text3; ?>
+                    <?php if ( in_array_r('end_text3', $front_meta) ) { ?>
+                        <?php echo $front_meta->end_text3; ?>
+                    <?php } else { ?>
+                        Наслаждайтесь комфортом и уникальной атмосферой глэмпинга в России: отдыхайте вдомиках на деревьях, сафари-тентах, или ретро-караванах. Забронироватьглэмпинг легко и быстро на нашем сайте — выбирайте идеальное место для отдыха на природе и проводите время вдали от городской суеты!
+                    <?php } ?>
                 </div>
             </div>
         </div>
