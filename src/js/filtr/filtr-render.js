@@ -1,31 +1,28 @@
 let glempsAll = JSON.parse(glamping_club_ajax.glAll);
-
-console.dir(document.referrer);
-if (document.referrer == glamping_club_ajax.homeUrl) {
+if (localStorage.getItem('glcRefFront') == 'front') {
     const glAll = JSON.parse(glamping_club_ajax.glAll);
+    const glampingsMap = document.querySelector('.glampings-map');
     let locVal = localStorage.getItem('glcRegion');
     let typeVal = localStorage.getItem('glcType');
     if (locVal && typeVal) {
         console.dir(glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal)));
         glempsAlls = glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal));
-        // chekAllFitrs();
         glempRender(glempsAlls);
+        glampingsMap.children[0].innerHTML = '';
         mapRender(mapPointTest(glempsAlls));
     } else if (locVal) {
         console.dir(glAll.filter((gl) => gl.location.includes(locVal)));
         glempsAlls = glAll.filter((gl) => gl.location.includes(locVal));
-        // chekAllFitrs();
         glempRender(glempsAlls);
+        glampingsMap.children[0].innerHTML = '';
         mapRender(mapPointTest(glempsAlls));
     } else if (typeVal) {
         console.dir(glAll.filter((gl) => gl.type.includes(typeVal)));
         glempsAlls = glAll.filter((gl) => gl.type.includes(typeVal));
-        // chekAllFitrs();
         glempRender(glempsAlls);
+        glampingsMap.children[0].innerHTML = '';
         mapRender(mapPointTest(glempsAlls));
     }
-    // localStorage.removeItem('glcRegion');
-    // localStorage.removeItem('glcType');
 } else {
     localStorage.removeItem('glcRegion');
     localStorage.removeItem('glcType');
@@ -1739,7 +1736,11 @@ function mapRender(geoData) {
 	}
     markersHover();
 }
-mapRender(JSON.parse(glamping_club_ajax.glAllMap));
+if (!localStorage.getItem('glcRefFront')) {
+    mapRender(JSON.parse(glamping_club_ajax.glAllMap));
+} else {
+    localStorage.removeItem('glcRefFront');
+}
 
 function mapPointTest(glAll) {
     // console.dir(glAll);

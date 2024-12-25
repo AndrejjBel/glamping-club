@@ -1834,6 +1834,7 @@ function searhFront() {
         if (glcRegion || glcType) {
             localStorage.setItem('glcRegion', glcRegion);
             localStorage.setItem('glcType', glcType);
+            localStorage.setItem('glcRefFront', 'front');
             window.location.href = '/glampings/';
         }
     });
