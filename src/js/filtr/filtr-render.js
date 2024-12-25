@@ -885,19 +885,17 @@ function itemsChange() {
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             let newgGempAll =  glempAll.filter(filtrOptionsChange);
+            let newgGempAllForFiltr =  glempAll.filter(filtrOptionsChange);
             sliderUpdatePrice(newgGempAll);
-            // sliderUpdatePriceNew(glcPrice);
             let sliderValueStart = priceSliderOption(glempAll);
-            // console.dir(sliderValueStart);
 
             let priceObj = [];
-            // let glcPrice = localStorage.getItem('glcPrice');
             if (glcPrice) {
                 priceObj = glcPrice.split(',');
-                // sliderUpdatePriceNew(glcPrice);
             }
 
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
+            newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number));
 
             let sortGl = Cookies.get('glcSort');
             if (sortGl) {
@@ -921,161 +919,161 @@ function itemsChange() {
             // console.dir(input.dataset.name);
             if (input.dataset.name == 'glcRegion') {
                 // locationsArchive(newgGempAll);
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
 
             if (input.dataset.name == 'glcType') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
 
                 // filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcAllocation') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
 
-                filtrTypeArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
                 // filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcWorking') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
                 // filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcNature') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
                 // filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcFacilGen') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
                 // filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcFacilChildren') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
                 // filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcEntertainment') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgnewgGempAllForFiltrGempAll);
                 } else {
                     locationsArchive(glemAll);
                 }
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
                 // filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcTerritory') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
                 // filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAll);
+                filtrSafetyArchive(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcSafety') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAll);
+                    locationsArchive(newgGempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAll);
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
                 // filtrSafetyArchive(newgGempAll);
             }
 
@@ -1274,6 +1272,110 @@ function filtrOptionsChange(item, index, arr) {
     }
 
     if ( regionIncl && typesIncl && allocationIncl && workingIncl && natureIncl && facilGenIncl && facilChildrenIncl && entertainmentIncl && territoryIncl && safetyIncl ) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function filtrOptionsChangeForFiltr(item, index, arr) {
+    const inputs = document.querySelectorAll('.glampings-filtr-items input');
+    // let region = [];
+    let types = [];
+    let allocation =[];
+    let working =[];
+    let nature =[];
+    let facilGen =[];
+    let facilChildren =[];
+    let entertainment =[];
+    let territory =[];
+    let safety =[];
+    inputs.forEach((input) => {
+        if (input.checked == true) {
+            // if (input.dataset.name == 'glcRegion') {
+            //     region.push(input.id);
+            // } else
+            if (input.dataset.name == 'glcType') {
+                types.push(input.id);
+            } else if (input.dataset.name == 'glcAllocation') {
+                allocation.push(input.id);
+            } else if (input.dataset.name == 'glcWorking') {
+                working.push(input.id);
+            } else if (input.dataset.name == 'glcNature') {
+                nature.push(input.id);
+            } else if (input.dataset.name == 'glcFacilGen') {
+                facilGen.push(input.id);
+            } else if (input.dataset.name == 'glcFacilChildren') {
+                facilChildren.push(input.id);
+            } else if (input.dataset.name == 'glcEntertainment') {
+                entertainment.push(input.id);
+            } else if (input.dataset.name == 'glcTerritory') {
+                territory.push(input.id);
+            } else if (input.dataset.name == 'glcSafety') {
+                safety.push(input.id);
+            }
+        }
+    });
+
+    // let regionIncl = 1;
+    // if (region.length) {
+    //     regionIncl = region.map(Number).includes(item.location_id);
+    // }
+
+    let typesIncl = 1;
+    if (types.length) {
+        typesIncl = types.some((element) => item.type.includes(element));
+    }
+
+    let allocationIncl = 1;
+    if (allocation.length) {
+        typesIncl = allocation.some((element) => item.allocation.includes(element));
+    }
+
+    let workingIncl = 1;
+    if (working.length) {
+        workingIncl = working.some((element) => item.working_mode_seasons.includes(element));
+
+        // workingIncl = working.some((element) => {
+        //     if (element == 'whole_year') {
+        //         item.working_mode.includes(element);
+        //     } else {
+        //         item.working_mode_seasons.includes(element);
+        //     }
+        // });
+    }
+
+    let natureIncl = 1;
+    if (nature.length) {
+        natureIncl = nature.some((element) => item.nature_around.includes(element));
+    }
+
+    let facilGenIncl = 1;
+    if (facilGen.length) {
+        facilGenIncl = facilGen.some((element) => item.facilities_general.includes(element));
+    }
+
+    let facilChildrenIncl = 1;
+    if (facilChildren.length) {
+        facilChildrenIncl = facilChildren.some((element) => item.facilities_children.includes(element));
+    }
+
+    let entertainmentIncl = 1;
+    if (entertainment.length) {
+        entertainmentIncl = entertainment.some((element) => item.entertainment.includes(element));
+    }
+
+    let territoryIncl = 1;
+    if (territory.length) {
+        territoryIncl = territory.some((element) => item.territory.includes(element));
+    }
+
+    let safetyIncl = 1;
+    if (safety.length) {
+        safetyIncl = safety.some((element) => item.safety.includes(element));
+    }
+
+    if ( typesIncl && allocationIncl && workingIncl && natureIncl && facilGenIncl && facilChildrenIncl && entertainmentIncl && territoryIncl && safetyIncl ) {
         return true;
     } else {
         return false;
