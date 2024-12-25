@@ -323,7 +323,13 @@ $front_meta = (object)$post->front_page[0];
 </section> -->
 
 <section class="comfortable-holiday container">
-    <div class="comfortable-holiday__title title-section"><?php echo $front_meta->end_title; ?></div>
+    <div class="comfortable-holiday__title title-section">
+        <?php if ( in_array_r('end_title', $front_meta) ) { ?>
+            <?php echo $front_meta->end_title; ?>
+        <?php } else { ?>
+            Ищете комфортный отдых на природе?
+        <?php } ?>
+    </div>
     <div class="comfortable-holiday__content">
         <div class="comfortable-holiday__content__img">
             <?php if ( in_array_r('end_img_id', $front_meta) ) { ?>
