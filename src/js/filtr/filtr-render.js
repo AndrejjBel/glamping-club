@@ -10,16 +10,19 @@ if (document.referrer == glamping_club_ajax.homeUrl) {
         glempsAll = glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal));
         // chekAllFitrs();
         glempRender(glempsAll);
+        mapRender(mapPointTest(glempsAll));
     } else if (locVal) {
         console.dir(glAll.filter((gl) => gl.location.includes(locVal)));
         glempsAll = glAll.filter((gl) => gl.location.includes(locVal));
         // chekAllFitrs();
         glempRender(glempsAll);
+        mapRender(mapPointTest(glempsAll));
     } else if (typeVal) {
         console.dir(glAll.filter((gl) => gl.type.includes(typeVal)));
         glempsAll = glAll.filter((gl) => gl.type.includes(typeVal));
         // chekAllFitrs();
         glempRender(glempsAll);
+        mapRender(mapPointTest(glempsAll));
     }
     // localStorage.removeItem('glcRegion');
     // localStorage.removeItem('glcType');
@@ -915,7 +918,6 @@ function itemsChange() {
             }
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
-            locationsArchive(newgGempAll);
             // console.dir(input.dataset.name);
             if (input.dataset.name == 'glcRegion') {
                 // locationsArchive(newgGempAll);
@@ -1634,9 +1636,9 @@ function mapRender(geoData) {
 	}
     markersHover();
 }
-mapRender(glempsAll);
+mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
-const mapPointTest = (glAll) => {
+function mapPointTest(glAll) {
     // console.dir(glAll);
     let points = [];
     glAll.forEach((item) => {
@@ -1779,7 +1781,7 @@ const mapPointTest = (glAll) => {
     // console.dir(geoData);
     return geoData;
 }
-mapPointTest(glempsAll);
+mapPointTest(JSON.parse(glamping_club_ajax.glAll));
 
 function refreshObjects(elementId) {
     objectManager.objects.each(object => {
