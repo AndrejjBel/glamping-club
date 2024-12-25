@@ -1502,8 +1502,6 @@ function accFor(acc, item) {
     });
 }
 
-console.dir(JSON.parse(glamping_club_ajax.glAll));
-
 function collapseViewsReviews() {
     const btns = document.querySelectorAll('.reviews-items__item-btn button');
     if (!btns.length) return;
@@ -1938,21 +1936,24 @@ function sliderRegionFront() {
         new Splide( slider, {
             type   : 'loop',
             drag   : 'free',
-            focus  : 'center',
+            // focus  : 'center',
             perPage: 5,
             gap: 4,
             pagination: false,
             arrows: false,
-            fixedWidth: 'auto',
-            fixedHeight: '200px',
+            // fixedWidth: 'auto',
+            // fixedHeight: '200px',
+            autoWidth: true,
+            autoHeight:  true,
             autoScroll: {
                 speed: 0.5,
+                pauseOnFocus: false
             },
-            breakpoints: {
-                479: {
-                    fixedHeight: '120px',
-                },
-            }
+            // breakpoints: {
+            //     479: {
+            //         fixedHeight: '120px',
+            //     },
+            // }
         }).mount(window.splide.Extensions);
     });
 }

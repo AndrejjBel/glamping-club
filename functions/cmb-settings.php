@@ -27,6 +27,18 @@ function glamping_club_register_main_options_metabox() {
         )
 	) );
 
+    $main_options->add_field( array(
+        'name'    => esc_html__( 'Сортировка регионов в слайдере на главной', 'glamping-club' ),
+        'id'      => 'order_regions_slider_front',
+        'type'    => 'radio_inline',
+        'options' => array(
+            'name' => __( 'По названию', 'glamping-club' ),
+            'count'   => __( 'По количеству глэмпингов', 'glamping-club' ),
+            'slug'     => __( 'По сссылке', 'glamping-club' ),
+        ),
+        'default' => 'name',
+    ) );
+
     // $main_options->add_field( array(
 	// 	'name'    => esc_html__( 'Контакты - заголовок', 'glamping-club' ),
 	// 	'desc'    => esc_html__( 'заголовок блока "Контакты"', 'glamping-club' ),

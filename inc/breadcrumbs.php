@@ -251,6 +251,9 @@ function breadcrumbs() {
 			echo get_post_format_string( get_post_format() );
 		} elseif ( is_tax() ) {
 			$post_type = get_post_type_object( get_post_type() );
+			if (is_tax('location')) {
+				$post_type = 'glampings';
+			}
 			$term_id = get_queried_object_id();
 			$term_link = get_term_link( $term_id );
             $status = 0;
@@ -294,7 +297,13 @@ function breadcrumbs() {
 					if ( $show_home_link && $show_current ) echo $sep;
 					if ( $show_current ) {
 						$position += 1;
-						echo sprintf( $link, get_post_type_archive_link( $post_type->name ), $post_type->label, $post_type->label, $position ) . $sep;
+						if (is_tax('location')) {
+							$post_type = 'glampings';
+							echo sprintf( $link, get_post_type_archive_link( 'glampings' ), 'Глэмпинги', 'Глэмпинги', $position ) . $sep;
+						} else {
+							echo sprintf( $link, get_post_type_archive_link( $post_type->name ), $post_type->label, $post_type->label, $position ) . $sep;
+						}
+
 						$position += 1;
 						// echo $before . sprintf( single_tag_title( '', false ) ) . $after;
 						echo sprintf( $span, sprintf( single_tag_title( '', false ) ), sprintf( single_tag_title( '', false ) ), $position, $term_link );

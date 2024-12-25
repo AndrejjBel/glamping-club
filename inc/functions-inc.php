@@ -211,6 +211,7 @@ require get_template_directory() . '/functions/admin/inc/functions-admin.php';
 
 require get_template_directory() . '/inc/breadcrumbs.php';
 require get_template_directory() . '/inc/functions-ajax.php';
+require_once get_template_directory() . '/functions/WP_Term_Image.php';
 
 ## отключаем создание миниатюр файлов для указанных размеров
 add_filter( 'intermediate_image_sizes', 'delete_intermediate_image_sizes' );
@@ -369,6 +370,13 @@ function random_number($length = 6) {
         $res .= $arr[random_int(0, count($arr) - 1)];
     }
     return $res;
+}
+
+add_action( 'admin_init', 'kama_wp_term_image' );
+function kama_wp_term_image(){
+	\Kama\WP_Term_Image::init( [
+		'taxonomies' => [ 'location' ],
+	] );
 }
 
 //Отправка в Телеграм

@@ -1,28 +1,7 @@
-let glempsAll = JSON.parse(glamping_club_ajax.glAll);
-
-console.dir(document.referrer);
-if (document.referrer == glamping_club_ajax.homeUrl) {
-    const glAll = JSON.parse(glamping_club_ajax.glAll);
-    let locVal = localStorage.getItem('glcRegion');
-    let typeVal = localStorage.getItem('glcType');
-    if (locVal && typeVal) {
-        console.dir(glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal)));
-        glempsAll = glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal));
-        // chekAllFitrs();
-        glempRender(glempsAll);
-    } else if (locVal) {
-        console.dir(glAll.filter((gl) => gl.location.includes(locVal)));
-        glempsAll = glAll.filter((gl) => gl.location.includes(locVal));
-        // chekAllFitrs();
-        glempRender(glempsAll);
-    } else if (typeVal) {
-        console.dir(glAll.filter((gl) => gl.type.includes(typeVal)));
-        glempsAll = glAll.filter((gl) => gl.type.includes(typeVal));
-        // chekAllFitrs();
-        glempRender(glempsAll);
-    }
-    // localStorage.removeItem('glcRegion');
-    // localStorage.removeItem('glcType');
+// console.dir(document.referrer);
+if (document.referrer !== glamping_club_ajax.homeUrl) {
+    localStorage.removeItem('glcRegion');
+    localStorage.removeItem('glcType');
 }
 // localStorage.removeItem('glcRegion');
 // localStorage.removeItem('glcType');
@@ -93,7 +72,7 @@ const locationsArchive = (glempAll) => {
         regionItem.style.display = 'none';
     }
 }
-locationsArchive(glempsAll);
+locationsArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrTypeArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.type');
@@ -144,7 +123,7 @@ const filtrTypeArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrTypeArchive(glempsAll);
+filtrTypeArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrAllocationArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.allocation');
@@ -197,7 +176,7 @@ const filtrAllocationArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrAllocationArchive(glempsAll);
+filtrAllocationArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrWorkingArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.working');
@@ -250,7 +229,7 @@ const filtrWorkingArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrWorkingArchive(glempsAll);
+filtrWorkingArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrNatureArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.nature');
@@ -303,7 +282,7 @@ const filtrNatureArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrNatureArchive(glempsAll);
+filtrNatureArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrFacilitiesGeneralArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.facilities_general');
@@ -356,7 +335,7 @@ const filtrFacilitiesGeneralArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrFacilitiesGeneralArchive(glempsAll);
+filtrFacilitiesGeneralArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrChildrenArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.children');
@@ -409,7 +388,7 @@ const filtrChildrenArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrChildrenArchive(glempsAll);
+filtrChildrenArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrErtainmentArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.entertainment');
@@ -462,7 +441,7 @@ const filtrErtainmentArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrErtainmentArchive(glempsAll);
+filtrErtainmentArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrTerritoryArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.territory');
@@ -515,7 +494,7 @@ const filtrTerritoryArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrTerritoryArchive(glempsAll);
+filtrTerritoryArchive(JSON.parse(glamping_club_ajax.glAll));
 
 const filtrSafetyArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.safety');
@@ -567,7 +546,7 @@ const filtrSafetyArchive = (glempAll) => {
         typeItem.style.display = 'none';
     }
 }
-filtrSafetyArchive(glempsAll);
+filtrSafetyArchive(JSON.parse(glamping_club_ajax.glAll));
 
 function sliderNumber(startMin, startMax, min, max) {
     const slider = document.getElementById('glc-slider');
@@ -602,8 +581,8 @@ function sliderNumber(startMin, startMax, min, max) {
         let sliderValue = slider.noUiSlider.get();
         console.dir(sliderValue.map(Number).map(elem => elem.toFixed()));
 
-        // let glempAll = JSON.parse(glamping_club_ajax.glAll);
-        let newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
+        let glempAll = JSON.parse(glamping_club_ajax.glAll);
+        let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
         glempRender(newgGempAll);
         localStorage.setItem('glcPrice', sliderValue.map(Number).map(elem => elem.toFixed()));
         if (handle == '0') {
@@ -637,7 +616,7 @@ function sliderNumber(startMin, startMax, min, max) {
         if (itemsVal(inputs, names) || sliderValueStartStr !== sliderValueStr) {
             locationsArchive(newgGempAll);
         } else {
-            locationsArchive(glempsAll);
+            locationsArchive(glempAll);
         }
         filtrTypeArchive(newgGempAll);
         filtrAllocationArchive(newgGempAll);
@@ -689,7 +668,7 @@ function chekAllFitrs() {
     }
     return countObj.length;
 }
-chekAllFitrs();
+// chekAllFitrs();
 
 function removeAllFitrs() {
     const btnFiltrClear = document.querySelectorAll('#all-filter-clear');
@@ -765,7 +744,7 @@ function priceSliderRender(arr) {
     return {priceMin: priceMin, priceMax: priceMax};
 }
 // priceSliderRender(JSON.parse(glamping_club_ajax.glAll));
-priceSliderRender(glempsAll);
+priceSliderRender(JSON.parse(glamping_club_ajax.glAll));
 
 function priceSliderOption(arr) {
     let pricesObj = [];
@@ -915,7 +894,6 @@ function itemsChange() {
             }
             glempRender(newgGempAll);
             checkLocalCheng(input, input.dataset.name, '');
-            locationsArchive(newgGempAll);
             // console.dir(input.dataset.name);
             if (input.dataset.name == 'glcRegion') {
                 // locationsArchive(newgGempAll);
@@ -1032,7 +1010,7 @@ function itemsChange() {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
                     locationsArchive(newgGempAll);
                 } else {
-                    locationsArchive(glemAll);
+                    locationsArchive(glempAll);
                 }
                 filtrTypeArchive(newgGempAll);
                 filtrAllocationArchive(newgGempAll);
@@ -1634,7 +1612,7 @@ function mapRender(geoData) {
 	}
     markersHover();
 }
-mapRender(glempsAll);
+mapRender(JSON.parse(glamping_club_ajax.glAllMap));
 
 const mapPointTest = (glAll) => {
     // console.dir(glAll);
@@ -1779,7 +1757,7 @@ const mapPointTest = (glAll) => {
     // console.dir(geoData);
     return geoData;
 }
-mapPointTest(glempsAll);
+mapPointTest(JSON.parse(glamping_club_ajax.glAll));
 
 function refreshObjects(elementId) {
     objectManager.objects.each(object => {
@@ -1896,11 +1874,11 @@ const listCardMap = () => {
                 glampingsItems.classList.add('list');
                 glampingsMap.classList.add('active');
                 glampingsMap.children[0].innerHTML = '';
-                // let glempAll = JSON.parse(glamping_club_ajax.glAll);
-                let newgGempAll =  glempsAll.filter(filtrOptionsChange);
+                let glempAll = JSON.parse(glamping_club_ajax.glAll);
+                let newgGempAll =  glempAll.filter(filtrOptionsChange);
                 let priceObj = [];
                 priceObj = sliderUpdatePrice(newgGempAll);
-                newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
+                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
                 mapRender(mapPointTest(newgGempAll));
             } else if (btn.id == 'mapClose') {
                 glampingsItems.classList.remove('list');
@@ -1932,11 +1910,11 @@ const listCardMapMobile = () => {
                 glampingsItems.classList.add('list');
                 glampingsMap.classList.add('active');
                 glampingsMap.children[0].innerHTML = '';
-                // let glempAll = JSON.parse(glamping_club_ajax.glAll);
-                let newgGempAll =  glempsAll.filter(filtrOptionsChange);
+                let glempAll = JSON.parse(glamping_club_ajax.glAll);
+                let newgGempAll =  glempAll.filter(filtrOptionsChange);
                 let priceObj = [];
                 priceObj = sliderUpdatePrice(newgGempAll);
-                newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
+                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
                 mapRender(mapPointTest(newgGempAll));
                 btnMap.id = 'mapVision'
                 btnMap.innerText = 'Список'
@@ -1989,8 +1967,8 @@ function sortGlempRender(sortGl) {
     if (glcPrice) {
         priceObj = glcPrice.split(',');
     }
-    // let glempAll = JSON.parse(glamping_club_ajax.glAll);
-    let newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
+    let glempAll = JSON.parse(glamping_club_ajax.glAll);
+    let newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
     // let sortGl = Cookies.get('glcSort');
     if (sortGl) {
         if (sortGl == 'new_items') {

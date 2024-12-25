@@ -139,7 +139,7 @@ $front_meta = (object)$post->front_page[0];
         <div class="regions-slider__content__blur left"></div>
         <div class="regions-slider__content__slider">
             <?php //glampings_regions_slider(); ?>
-            <?php glampings_regions_slider_owl(); ?>
+            <?php glampings_regions_slider_splide(); ?>
         </div>
         <div class="regions-slider__content__blur right"></div>
     </div>
@@ -348,5 +348,13 @@ $front_meta = (object)$post->front_page[0];
 
 <?php
 
-// $front_page = (object)$post->front_page[0];
-// var_dump($front_page->hero_title);
+// $terms = get_terms( [
+//     'taxonomy'   => 'location',
+//     'hide_empty' => false,
+// ] );
+//
+// echo ceil(count($terms)/2) . '<br>';
+// echo ceil(count($terms)/2)+1;
+// echo '<pre>';
+// var_dump($terms);
+// echo '</pre>';

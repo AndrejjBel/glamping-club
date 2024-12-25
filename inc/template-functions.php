@@ -2185,7 +2185,7 @@ function glampings_recommendated_list_slider() {
     wp_reset_postdata();
 }
 
-function glampings_regions_slider() {
+function glampings_regions_slider_swiper() {
 	$content = '<div class="swiper-container-top">';
 	$content .= '<div class="swiper-wrapper">';
 	for ($n = 1; $n <= 18; $n++) {
@@ -2209,30 +2209,62 @@ function glampings_regions_slider() {
 	echo $content;
 }
 
-function glampings_regions_slider_owl() {
+function glampings_regions_slider_splide() {
+	$site_options = get_option( 'glc_options' );
+	$orderby = 'name';
+	if ($site_options) {
+		if ( array_key_exists('order_regions_slider_front', $site_options) ) {
+			$orderby = $site_options['order_regions_slider_front'];
+		}
+	}
+	$terms = get_terms( [
+		'taxonomy'   => 'location',
+		'hide_empty' => false,
+		'orderby' => $orderby
+	] );
+
+	$end_top = ceil(count($terms)/2);
+	$start_bottom = ceil(count($terms)/2)+1;
+
 	$content = '<div id="splide-top" class="splide js-splide-slider">';
-	$content .= '<div class="splide__track">';
+	$content .= '<div class="splide__track top">';
 	$content .= '<div class="splide__list">';
-	for ($n = 1; $n <= 18; $n++) {
-		$content .= '<div class="splide__slide">';
-		$content .= '<a href="#">';
-		$content .= '<img src="' . get_template_directory_uri() . '/src/img/regioni/Frame61-' . $n . '.jpg" alt="">';
-		$content .= '</a>';
-		$content .= '</div>';
+	foreach( $terms as $key => $term ) {
+		$image_url = get_template_directory_uri() . '/src/img/regioni/top.jpeg';
+		$image_id = get_term_meta( $term->term_id, '_thumbnail_id', 1 );
+		if ($image_id) {
+			$image_url = wp_get_attachment_image_url( $image_id, 'full' );
+		}
+		if ($key <= $end_top) {
+			$content .= '<div class="splide__slide">';
+			$content .= '<a href="/location/' . $term->slug . '/">';
+			$content .= '<img src="' . $image_url . '" alt="">';
+			$content .= '<span class="region-name">' . $term->name . '</span>';
+			$content .= '</a>';
+			$content .= '</div>';
+		}
 	}
 	$content .= '</div>';
 	$content .= '</div>';
 	$content .= '</div>';
 
 	$content .= '<div id="splide-bottom" class="splide js-splide-slider">';
-	$content .= '<div class="splide__track">';
+	$content .= '<div class="splide__track bottom">';
 	$content .= '<div class="splide__list">';
-	for ($n = 1; $n <= 55; $n++) {
-		$content .= '<div class="splide__slide">';
-		$content .= '<a href="#">';
-		$content .= '<img src="' . get_template_directory_uri() . '/src/img/regioni/Frame62-' . $n . '.jpg" alt="">';
-		$content .= '</a>';
-		$content .= '</div>';
+	foreach( $terms as $key => $term ) {
+		$image_url = get_template_directory_uri() . '/src/img/regioni/bottom.jpeg';
+		$image_id = get_term_meta( $term->term_id, '_thumbnail_id', 1 );
+		if ($image_id) {
+			$image_url = wp_get_attachment_image_url( $image_id, 'full' );
+		}
+		if ($key >= $start_bottom) {
+			$content .= '<div class="splide__slide">';
+			$content .= '<a href="/location/' . $term->slug . '/">';
+			$content .= '<img src="' . $image_url . '" alt="">';
+			$content .= '<span class="region-name">' . $term->name . '</span>';
+			$content .= '</a>';
+			$content .= '</div>';
+		}
 	}
 	$content .= '</div>';
 	$content .= '</div>';
