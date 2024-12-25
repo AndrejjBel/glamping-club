@@ -28,19 +28,39 @@ function register_front_page_metabox() {
 		'type' => 'textarea_small'
 	) );
 
-	// $single_glampings->add_field( array(
-	// 	'name' => esc_html__( 'Фото', 'glamping-club' ),
-	// 	'id'   => 'reviews_media_gallery',
-	// 	'type' => 'file_list',
-	// 	'preview_size' => array( 100, 100 ),
-	// 	'options' => array(
-	// 		'url' => false,
-	// 	),
-	// 	// 'classes' => 'glc-form-reviews',
-	// 	'query_args' => array(
-	// 		'author' => get_current_user_id()
-	// 	),
-	// ) );
+	$front_page->add_group_field( $first_screen, array(
+		'name' => esc_html__( 'Заголовок последнего экрана', 'glamping-club' ),
+		'id' => 'end_title',
+		'type' => 'textarea_small'
+	) );
+
+	$front_page->add_group_field( $first_screen, array(
+		'name' => esc_html__( 'Картинка последнего экрана', 'glamping-club' ),
+		'id'   => 'end_img',
+		'type' => 'file',
+        'options' => array(
+            'url' => false, // Hide the text input for the url
+        ),
+		'preview_size' => array( 220, 220 )
+	) );
+
+	$front_page->add_group_field( $first_screen, array(
+		'name' => esc_html__( 'Текст 1 последнего экрана', 'glamping-club' ),
+		'id' => 'end_text1',
+		'type' => 'textarea_small'
+	) );
+
+	$front_page->add_group_field( $first_screen, array(
+		'name' => esc_html__( 'Текст 2 последнего экрана', 'glamping-club' ),
+		'id' => 'end_text2',
+		'type' => 'textarea_small'
+	) );
+
+	$front_page->add_group_field( $first_screen, array(
+		'name' => esc_html__( 'Текст 3 последнего экрана', 'glamping-club' ),
+		'id' => 'end_text3',
+		'type' => 'textarea_small'
+	) );
 }
 
 function ed_metabox_include_front_page( $display, $meta_box ) {

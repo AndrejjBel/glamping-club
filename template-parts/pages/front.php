@@ -323,24 +323,37 @@ $front_meta = (object)$post->front_page[0];
 </section> -->
 
 <section class="comfortable-holiday container">
-    <div class="comfortable-holiday__title title-section">Ищете комфортный отдых на природе?</div>
+    <div class="comfortable-holiday__title title-section"><?php echo $front_meta->end_title; ?></div>
     <div class="comfortable-holiday__content">
         <div class="comfortable-holiday__content__img">
-            <img src="<?php echo get_template_directory_uri();?>/src/img/comfortable-holiday.jpg" alt="">
+            <?php if ( in_array_r('end_img_id', $front_meta) ) { ?>
+                <img src="<?php echo wp_get_attachment_url( $front_meta->end_img_id ); ?>" alt="">
+            <?php } else { ?>
+                <img src="<?php echo get_template_directory_uri();?>/src/img/comfortable-holiday.jpg" alt="">
+            <?php } ?>
+
+
+
         </div>
 
         <div class="comfortable-holiday__content__text">
             <div class="comfortable-holiday__content__text__item">
                 <div class="comfortable-holiday__content__text__item__number">1</div>
-                <div class="comfortable-holiday__content__text__item__text">На нашем сайте более 500 глэмпингов по всейРоссии — от уютных домиков на берегу до стильных палаток в лесу и уникальных глэмпингов на воде. Глэмпинг сочетает в себе идеальное сочетание природногоуединенияи высококлассных удобств, таких как кровати, санузел, электричество, Wi-Fiи многое другое.</div>
+                <div class="comfortable-holiday__content__text__item__text">
+                    <?php echo $front_meta->end_text1; ?>
+                </div>
             </div>
             <div class="comfortable-holiday__content__text__item">
                 <div class="comfortable-holiday__content__text__item__number">2</div>
-                <div class="comfortable-holiday__content__text__item__text">На нашем сайте более 500 глэмпингов по всейРоссии — от уютных домиков на берегу до стильных палаток в лесу и уникальных глэмпингов на воде. Глэмпинг сочетает в себе идеальное сочетание природногоуединенияи высококлассных удобств, таких как кровати, санузел, электричество, Wi-Fiи многое другое.</div>
+                <div class="comfortable-holiday__content__text__item__text">
+                    <?php echo $front_meta->end_text2; ?>
+                </div>
             </div>
             <div class="comfortable-holiday__content__text__item">
                 <div class="comfortable-holiday__content__text__item__number">3</div>
-                <div class="comfortable-holiday__content__text__item__text">На нашем сайте более 500 глэмпингов по всейРоссии — от уютных домиков на берегу до стильных палаток в лесу и уникальных глэмпингов на воде. Глэмпинг сочетает в себе идеальное сочетание природногоуединенияи высококлассных удобств, таких как кровати, санузел, электричество, Wi-Fiи многое другое.</div>
+                <div class="comfortable-holiday__content__text__item__text">
+                    <?php echo $front_meta->end_text3; ?>
+                </div>
             </div>
         </div>
     </div>

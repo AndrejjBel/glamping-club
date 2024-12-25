@@ -379,6 +379,15 @@ function kama_wp_term_image(){
 	] );
 }
 
+function in_array_r($needle, $haystack, $strict = false) {
+	foreach ($haystack as $item) {
+		if (($strict ? $item === $needle : $item == $needle) || (is_array($item) && in_array_r($needle, $item, $strict))) {
+			return true;
+		}
+	}
+	return false;
+}
+
 //Отправка в Телеграм
 define('TELEGRAM_TOKEN', '7361610914:AAFGZrr2JaYQEhBZxR6A2L3R1QEC_w7TnDE');
 // сюда нужно вписать ваш внутренний айдишник
