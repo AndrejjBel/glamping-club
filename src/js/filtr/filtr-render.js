@@ -7,40 +7,41 @@ if (document.referrer == glamping_club_ajax.homeUrl) {
     let typeVal = localStorage.getItem('glcType');
     if (locVal && typeVal) {
         console.dir(glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal)));
-        glempsAll = glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal));
+        glempsAlls = glAll.filter((gl) => gl.location.includes(locVal)).filter((gl) => gl.type.includes(typeVal));
         // chekAllFitrs();
-        glempRender(glempsAll);
-        mapRender(mapPointTest(glempsAll));
+        glempRender(glempsAlls);
+        mapRender(mapPointTest(glempsAlls));
     } else if (locVal) {
         console.dir(glAll.filter((gl) => gl.location.includes(locVal)));
-        glempsAll = glAll.filter((gl) => gl.location.includes(locVal));
+        glempsAlls = glAll.filter((gl) => gl.location.includes(locVal));
         // chekAllFitrs();
-        glempRender(glempsAll);
-        mapRender(mapPointTest(glempsAll));
+        glempRender(glempsAlls);
+        mapRender(mapPointTest(glempsAlls));
     } else if (typeVal) {
         console.dir(glAll.filter((gl) => gl.type.includes(typeVal)));
-        glempsAll = glAll.filter((gl) => gl.type.includes(typeVal));
+        glempsAlls = glAll.filter((gl) => gl.type.includes(typeVal));
         // chekAllFitrs();
-        glempRender(glempsAll);
-        mapRender(mapPointTest(glempsAll));
+        glempRender(glempsAlls);
+        mapRender(mapPointTest(glempsAlls));
     }
     // localStorage.removeItem('glcRegion');
     // localStorage.removeItem('glcType');
+} else {
+    localStorage.removeItem('glcRegion');
+    localStorage.removeItem('glcType');
+    localStorage.removeItem('glcAllocation');
+    localStorage.removeItem('glcWorking');
+    localStorage.removeItem('glcNature');
+    localStorage.removeItem('glcFacilGen');
+    localStorage.removeItem('glcFacilChildren');
+    localStorage.removeItem('glcEntertainment');
+    localStorage.removeItem('glcTerritory');
+    localStorage.removeItem('glcSafety');
+    localStorage.removeItem('glcPrice');
+    localStorage.removeItem('glcPriceSt');
+    localStorage.removeItem('glcPriceMin');
+    localStorage.removeItem('glcPriceMax');
 }
-// localStorage.removeItem('glcRegion');
-// localStorage.removeItem('glcType');
-localStorage.removeItem('glcAllocation');
-localStorage.removeItem('glcWorking');
-localStorage.removeItem('glcNature');
-localStorage.removeItem('glcFacilGen');
-localStorage.removeItem('glcFacilChildren');
-localStorage.removeItem('glcEntertainment');
-localStorage.removeItem('glcTerritory');
-localStorage.removeItem('glcSafety');
-localStorage.removeItem('glcPrice');
-localStorage.removeItem('glcPriceSt');
-localStorage.removeItem('glcPriceMin');
-localStorage.removeItem('glcPriceMax');
 
 const locationsArchive = (glempAll) => {
     const regionItem = document.querySelector('.filtr-item.region');
