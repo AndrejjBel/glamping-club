@@ -335,11 +335,11 @@ $front_meta = (object)$post->front_page[0];
                 <div class="comfortable-holiday__content__text__item__text">На нашем сайте более 500 глэмпингов по всейРоссии — от уютных домиков на берегу до стильных палаток в лесу и уникальных глэмпингов на воде. Глэмпинг сочетает в себе идеальное сочетание природногоуединенияи высококлассных удобств, таких как кровати, санузел, электричество, Wi-Fiи многое другое.</div>
             </div>
             <div class="comfortable-holiday__content__text__item">
-                <div class="comfortable-holiday__content__text__item__number">1</div>
+                <div class="comfortable-holiday__content__text__item__number">2</div>
                 <div class="comfortable-holiday__content__text__item__text">На нашем сайте более 500 глэмпингов по всейРоссии — от уютных домиков на берегу до стильных палаток в лесу и уникальных глэмпингов на воде. Глэмпинг сочетает в себе идеальное сочетание природногоуединенияи высококлассных удобств, таких как кровати, санузел, электричество, Wi-Fiи многое другое.</div>
             </div>
             <div class="comfortable-holiday__content__text__item">
-                <div class="comfortable-holiday__content__text__item__number">1</div>
+                <div class="comfortable-holiday__content__text__item__number">3</div>
                 <div class="comfortable-holiday__content__text__item__text">На нашем сайте более 500 глэмпингов по всейРоссии — от уютных домиков на берегу до стильных палаток в лесу и уникальных глэмпингов на воде. Глэмпинг сочетает в себе идеальное сочетание природногоуединенияи высококлассных удобств, таких как кровати, санузел, электричество, Wi-Fiи многое другое.</div>
             </div>
         </div>
