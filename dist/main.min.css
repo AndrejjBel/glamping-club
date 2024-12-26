@@ -6519,10 +6519,10 @@ span.required {
       padding: 10px 0; } }
   .regions-slider__content__blur {
     position: absolute;
-    top: 0;
+    top: -20%;
     z-index: 9;
     width: calc((100% - 1200px) / 2);
-    height: 100%; }
+    height: 140%; }
     @media (max-width: 1390px) {
       .regions-slider__content__blur {
         width: 14rem; } }
@@ -6593,10 +6593,10 @@ span.required {
         padding: 10px 0; } }
     .direction__content__blur {
       position: absolute;
-      top: 0;
+      top: -20%;
       z-index: 9;
       width: calc((100% - 1200px) / 2);
-      height: 100%; }
+      height: 140%; }
       @media (max-width: 1390px) {
         .direction__content__blur {
           width: 14rem; } }
