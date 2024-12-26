@@ -317,13 +317,138 @@ $front_meta = (object)$post->front_page[0];
     </div>
 </section>
 
-<!-- <section class="direction container">
-    <div class="direction__title title-section">Выберите своё идеально место, тысячи направлений по всей стране</div>
-    <div class="direction__content"></div>
-</section> -->
+<section class="direction">
+    <div class="direction__title title-section container">Выберите своё идеально место, тысячи направлений по всей стране</div>
+    <div class="direction__content">
+        <div class="direction__content__blur left"></div>
+        <div class="direction__content__slider">
+            <div id="splide-top" class="splide spl-direction-top js-splide-slider">
+                <div class="splide__track direction-top">
+                    <div class="splide__list">
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide width-wide">
+                            <div class="slider-text">Хвойный лес</div>
+                            <div class="slider-img width-wide-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/hvoj-les.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide width-wide">
+                            <div class="slider-text">Хвойный лес</div>
+                            <div class="slider-img width-wide-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/hvoj-les.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide width-wide">
+                            <div class="slider-text">Хвойный лес</div>
+                            <div class="slider-img width-wide-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/hvoj-les.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="splide-bottom" class="splide spl-direction-bottom js-splide-slider">
+                <div class="splide__track direction-bottom">
+                    <div class="splide__list">
+                        <div class="splide__slide width-wide">
+                            <div class="slider-text">Хвойный лес</div>
+                            <div class="slider-img width-wide-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/hvoj-les.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide width-wide">
+                            <div class="slider-text">Хвойный лес</div>
+                            <div class="slider-img width-wide-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/hvoj-les.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide width-wide">
+                            <div class="slider-text">Хвойный лес</div>
+                            <div class="slider-img width-wide-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/hvoj-les.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                        <div class="splide__slide">
+                            <div class="slider-text">Баня</div>
+                            <div class="slider-img">
+                                <img src="<?php echo get_template_directory_uri();?>/src/img/type/banja.jpg" alt="">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="direction__content__blur right"></div>
+    </div>
+</section>
 
 <section class="comfortable-holiday container">
-    <div class="comfortable-holiday__title title-section">
+    <div class="comfortable-holiday__title title-section for-decstop">
         <?php if ( in_array_r('end_title', $front_meta) ) { ?>
             <?php echo $front_meta->end_title; ?>
         <?php } else { ?>
@@ -332,6 +457,13 @@ $front_meta = (object)$post->front_page[0];
     </div>
     <div class="comfortable-holiday__content">
         <div class="comfortable-holiday__content__img">
+            <div class="comfortable-holiday__title title-section for-mobile">
+                <?php if ( in_array_r('end_title', $front_meta) ) { ?>
+                    <?php echo $front_meta->end_title; ?>
+                <?php } else { ?>
+                    Ищете комфортный отдых на природе?
+                <?php } ?>
+            </div>
             <?php if ( in_array_r('end_img_id', $front_meta) ) { ?>
                 <img src="<?php echo wp_get_attachment_url( $front_meta->end_img_id ); ?>" alt="">
             <?php } else { ?>

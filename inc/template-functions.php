@@ -2226,7 +2226,7 @@ function glampings_regions_slider_splide() {
 	$end_top = ceil(count($terms)/2);
 	$start_bottom = ceil(count($terms)/2)+1;
 
-	$content = '<div id="splide-top" class="splide js-splide-slider">';
+	$content = '<div id="splide-top" class="splide spl-top js-splide-slider">';
 	$content .= '<div class="splide__track top">';
 	$content .= '<div class="splide__list">';
 	foreach( $terms as $key => $term ) {
@@ -2248,7 +2248,7 @@ function glampings_regions_slider_splide() {
 	$content .= '</div>';
 	$content .= '</div>';
 
-	$content .= '<div id="splide-bottom" class="splide js-splide-slider">';
+	$content .= '<div id="splide-bottom" class="splide spl-bottom js-splide-slider">';
 	$content .= '<div class="splide__track bottom">';
 	$content .= '<div class="splide__list">';
 	foreach( $terms as $key => $term ) {

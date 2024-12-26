@@ -835,6 +835,21 @@
             max-width: 100%;
             padding-bottom: 30px;
         }
+
+        &.for-mobile {
+            display: none;
+
+            @media (max-width: 767px) {
+                display: block;
+                padding-top: 22px;
+            }
+        }
+
+        &.for-decstop {
+            @media (max-width: 767px) {
+                display: none;
+            }
+        }
     }
 
     &__content {
@@ -960,7 +975,7 @@
                 background-image: url('../img/blur-left.png');
                 background-repeat: no-repeat;
                 background-position: right;
-                background-size: auto;
+                background-size: cover;
 
                 @media (max-width: 767px) {
                     background-image: none;
@@ -973,7 +988,7 @@
                 background-image: url('../img/blur-right.png');
                 background-repeat: no-repeat;
                 background-position: left;
-                background-size: auto;
+                background-size: cover;
 
                 @media (max-width: 767px) {
                     background-image: none;
@@ -1010,6 +1025,142 @@
 
                 &:hover img {
                     transform: scale(1.1);
+                }
+            }
+        }
+    }
+}
+
+.direction {
+    padding-top: 60px;
+    // padding-bottom: 60px;
+
+    &__title {
+        max-width: 710px;
+        padding-bottom: 40px;
+
+        @media (max-width: 479px) {
+            padding-bottom: 30px;
+        }
+    }
+
+    &__content {
+        position: relative;
+        display: flex;
+        height: auto;
+        padding: 15px 0;
+        overflow: hidden;
+
+        @media (max-width: 479px) {
+            padding: 10px 0;
+        }
+
+        &__blur {
+            position: absolute;
+            top: 0;
+            z-index: 9;
+            width: calc((100% - 1200px) / 2);
+            height: 100%;
+
+            @media (max-width: 1390px) {
+                width: 14rem;
+            }
+
+            @media (max-width: 767px) {
+                width: 20px;
+            }
+
+            @media (max-width: 479px) {
+                width: 10px;
+            }
+
+            &.left {
+                left: 0;
+                background-image: url('../img/blur-left.png');
+                background-repeat: no-repeat;
+                background-position: right;
+                background-size: cover;
+
+                @media (max-width: 767px) {
+                    background-image: none;
+                    background: #FFFFFF;
+                }
+            }
+
+            &.right {
+                right: 0;
+                background-image: url('../img/blur-right.png');
+                background-repeat: no-repeat;
+                background-position: left;
+                background-size: cover;
+
+                @media (max-width: 767px) {
+                    background-image: none;
+                    background: #FFFFFF;
+                }
+            }
+        }
+
+        &__slider {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            width: 100%;
+
+            & .splide__track {
+                padding-top: 2px;
+                padding-bottom: 2px;
+            }
+
+            & .splide__slide {
+                display: flex;
+                gap: 8px;
+                align-items: center;
+                justify-content: space-between;
+                height: 100%;
+                width: 148px;
+                border-radius: 10px;
+                box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+                padding: 10px 20px;
+                overflow: hidden;
+                cursor: pointer;
+
+                &:hover img {
+                    transform: scale(1.1);
+                }
+
+                &.width-wide {
+                    width: 300px;
+                }
+
+                & .slider-text {
+                    flex: 1;
+                    color: rgb(0, 0, 0);
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 100%;
+                    letter-spacing: 0%;
+                    text-align: center;
+                }
+
+                & .slider-img {
+                    flex: none;
+                    width: 60px;
+                    height: 60px;
+                    border-radius: 10px;
+                    overflow: hidden;
+
+                    &.width-wide-img {
+                        width: 150px;
+                    }
+
+                    & img {
+                        transition: 0.3s;
+                    }
+
+                    // &:hover img {
+                    //     transform: scale(1.1);
+                    // }
                 }
             }
         }
@@ -1064,16 +1215,16 @@
 .splide__track {
 
     &.top {
+
         .splide__slide:first-child {
             width: 504px;
         }
-        
-        .splide__slide:nth-child(5n) {
+
+        .splide__slide:nth-child(6n) {
             width: 504px;
 
             @media (max-width: 544px) {
                 width: 300px;
-                height: 120px;
             }
         }
     }
@@ -1088,7 +1239,6 @@
 
             @media (max-width: 544px) {
                 width: 300px;
-                height: 120px;
             }
         }
     }

@@ -1965,27 +1965,56 @@ function sliderRegionFront() {
         new Splide( slider, {
             type   : 'loop',
             drag   : 'free',
-            // focus  : 'center',
             perPage: 5,
             gap: 4,
             pagination: false,
             arrows: false,
-            // fixedWidth: 'auto',
-            // fixedHeight: '200px',
             autoWidth: true,
             autoHeight:  true,
             autoScroll: {
                 speed: 0.5,
                 pauseOnFocus: false
-            },
-            // breakpoints: {
-            //     479: {
-            //         fixedHeight: '120px',
-            //     },
-            // }
-        }).mount(window.splide.Extensions);
+            }
+        }).mount(window.splide.Extensions); // window.splide.Extensions
     });
 }
 sliderRegionFront();
+
+// const sliderTop = document.querySelector('.spl-top');
+// new Splide( sliderTop, {
+//     type   : 'loop',
+//     drag   : 'free',
+//     perPage: 5,
+//     gap: 4,
+//     pagination: false,
+//     arrows: false,
+//     autoWidth: true,
+//     autoHeight:  true,
+//     autoScroll: {
+//         speed: 0.5,
+//         pauseOnFocus: false
+//     }
+// }).mount(window.splide.Extensions);
+//
+// const sliderBottom = document.querySelector('.spl-bottom');
+// const splideBot = new Splide( sliderBottom, {
+//     type   : 'loop',
+//     drag   : 'free',
+//     perPage: 5,
+//     gap: 4,
+//     pagination: false,
+//     arrows: false,
+//     autoWidth: true,
+//     autoHeight:  true,
+//     autoScroll: {
+//         speed: 0.5,
+//         pauseOnFocus: false
+//     }
+// }).mount(window.splide.Extensions);
+//
+// setTimeout(function(){
+//     const { autoScroll } = splideBot.Components;
+//     autoScroll.pause();
+// }, 3000);
 
 Cookies.set('mediaQuery', window.innerWidth);
