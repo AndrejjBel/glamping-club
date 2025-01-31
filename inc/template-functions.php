@@ -1191,7 +1191,7 @@ function filtr_cookie_value($name='') {
 function template_cookie_value() {
 	$no_map = '';
 	$gwrap_scroll = ' my-scrollbar-gc';
-	$glcf_scroll = '';
+	$glcf_scroll = ' height-auto';
 	$card_list = ' list';
 	$map = ' active';
 	$btn_vision = ' active';
@@ -1201,7 +1201,7 @@ function template_cookie_value() {
 		if ($_COOKIE["glcTemp"] == 'mapClose') {
 			$no_map = ' no-map';
 			$gwrap_scroll = '';
-			$glcf_scroll = ' height-auto';
+			$glcf_scroll = '';
 			$card_list = ' card';
 			$map = '';
 			$btn_vision = '';

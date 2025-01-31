@@ -83,6 +83,7 @@ if (!empty($_COOKIE['glcSort'])) {
 	$args['order'] = 'DESC';
 }
 query_posts($args);
+$description = term_description();
 ?>
 <style media="screen">
 .archive-glampings .scrollbar-thumb {
@@ -170,7 +171,12 @@ query_posts($args);
 					else :
 						get_template_part( 'template-parts/content', 'none' );
 					endif;
+					if ($description) {
 					?>
+						<div class="term-description">
+							<?php echo $description;?>
+						</div>
+					<?php } ?>
 				</div>
 			</div>
 		</div>

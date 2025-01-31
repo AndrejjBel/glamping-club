@@ -2005,16 +2005,19 @@ function filtrHidden(map) {
 
             const filtr = document.querySelector('.glampings-filtr');
             const btnHidden = document.querySelector('.glampings-filtr-hidden');
+            // filtr.classList.toggle('my-scrollbar');
             filtr.classList.toggle('visible-hidden');
             btnHidden.classList.toggle('visible-hidden');
 
             // let elemWidth = document.querySelector('.glampings-map.active').clientWidth; //-270
             if (document.querySelector('.glampings-filtr').classList.contains('visible-hidden')) {
+                filtr.style.height = 'auto';
                 let mapWidth = mainWidth-960;
                 document.querySelector('.glampings-map__content').style.width = mainWidth+'px';
                 map.container.getElement().style.width = mapWidth+'px';
                 map.container.fitToViewport();
             } else {
+                filtr.style.height = 0;
                 let mapWidth = glMap+270;
                 document.querySelector('.glampings-map__content').style.width = mapWidth+'px'; //elemWidth+'px';
                 map.container.getElement().style.width = mapWidth+'px';

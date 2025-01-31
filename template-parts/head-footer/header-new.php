@@ -1,4 +1,12 @@
-<header id="masthead" class="gen-header<?php echo (is_post_type_archive('glampings'))? ' header-archive-glampings': '';?>">
+<?php
+$style = '';
+$container = 'container';
+if (is_post_type_archive('glampings') || is_tax('location')) {
+    $style = ' header-archive-glampings';
+    $container = 'container-ag';
+}
+?>
+<header id="masthead" class="gen-header<?php echo $style;?>">
     <div class="gen-header__top">
         <div class="gen-header__top__logo">
             <?php if ( is_front_page() ) : ?>
@@ -79,7 +87,7 @@
 <?php
     if ( !is_front_page() && function_exists( 'breadcrumbs' )  ) {
 ?>
-<div class="<?php echo (is_post_type_archive('glampings'))? 'container-ag': 'container';?> breadcrumbs-wrap">
+<div class="<?php echo $container;?> breadcrumbs-wrap">
 <?php
         breadcrumbs();
     //}

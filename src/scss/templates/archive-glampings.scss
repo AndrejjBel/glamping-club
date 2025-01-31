@@ -390,6 +390,14 @@
     }
 }
 
+.term-description {
+    margin-bottom: 50px;
+
+    @media (max-width: 767px) {
+        margin-bottom: 40px;
+    }
+}
+
 .related-list-swrapper {
     align-items: stretch;
 }

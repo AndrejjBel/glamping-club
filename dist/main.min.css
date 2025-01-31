@@ -4633,6 +4633,12 @@ a.secondary {
           .glampings-items.card .glamping-item__content__right__btn.btn-delete {
             z-index: 4; }
 
+.term-description {
+  margin-bottom: 50px; }
+  @media (max-width: 767px) {
+    .term-description {
+      margin-bottom: 40px; } }
+
 .related-list-swrapper {
   align-items: stretch; }
 
