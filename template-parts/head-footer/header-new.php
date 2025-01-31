@@ -1,4 +1,4 @@
-<header id="genhead" class="gen-header">
+<header id="masthead" class="gen-header<?php echo (is_post_type_archive('glampings'))? ' header-archive-glampings': '';?>">
     <div class="gen-header__top">
         <div class="gen-header__top__logo">
             <?php if ( is_front_page() ) : ?>
@@ -12,7 +12,7 @@
             <?php endif; ?>
         </div>
 
-        <form role="search" method="get" class="gen-header__top__search" action="<?php echo home_url( '/' ); ?>">
+        <form role="search" method="get" class="gen-header__top__search<?php echo (is_post_type_archive('glampings'))? ' top-search-archive-glampings': '';?>" action="<?php echo home_url( '/' ); ?>">
             <input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Поиск', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Поиск', 'label' ) ?>" />
             <button type="submit" name="button" class="gen-header__top__search__search-btn">
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -78,9 +78,8 @@
 
 <?php
     if ( !is_front_page() && function_exists( 'breadcrumbs' )  ) {
-
 ?>
-<div class="container breadcrumbs-wrap">
+<div class="<?php echo (is_post_type_archive('glampings'))? 'container-ag': 'container';?> breadcrumbs-wrap">
 <?php
         breadcrumbs();
     //}

@@ -40,3 +40,7 @@ if (is_page([PAGE_DASHBOARD, 'favorites', 'compare'])) {
 }
 get_sidebar();
 get_footer();
+
+// echo '<pre>';
+// var_dump($array);
+// echo '</pre>';

@@ -1,4 +1,14 @@
 let glempsAll = JSON.parse(glamping_club_ajax.glAll);
+
+const agc = (glAll) => {
+    const allGlCount = document.querySelectorAll('.all-gl-count');
+    if (!allGlCount.length) return;
+    allGlCount.forEach((item, i) => {
+        item.innerText = glAll.length;
+    });
+}
+agc(glempsAll);
+
 if (localStorage.getItem('glcRefFront') == 'front') {
     const glAll = JSON.parse(glamping_club_ajax.glAll);
     const glampingsMap = document.querySelector('.glampings-map');
@@ -38,6 +48,9 @@ if (localStorage.getItem('glcRefFront') == 'front') {
     localStorage.removeItem('glcPriceSt');
     localStorage.removeItem('glcPriceMin');
     localStorage.removeItem('glcPriceMax');
+    localStorage.removeItem('glcStocks');
+    localStorage.removeItem('glcRecom');
+    localStorage.removeItem('filtrHidden');
 }
 
 const locationsArchive = (glempAll) => {
@@ -95,6 +108,56 @@ const locationsArchive = (glempAll) => {
     }
 }
 locationsArchive(glempsAll);
+
+const filtrStocks = (glempAll) => {
+    const stocksItem = document.querySelector('.filtr-item.stocks');
+    if (!stocksItem) return;
+    const stocksItemCount = document.querySelector('.filtr-item.stocks span.count');
+    let stocksCount = 0;
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            if (item.stocks) {
+                stocksCount++;
+            }
+        });
+    } else {
+        if (glempAll[0].stocks) {
+            stocksCount++;
+        }
+    }
+    stocksItemCount.innerText = stocksCount;
+    if (stocksCount) {
+        stocksItem.classList.add('activate');
+    } else {
+        stocksItem.classList.remove('activate');
+    }
+}
+filtrStocks(glempsAll);
+
+const filtrRecommended = (glempAll) => {
+    const recommendedItem = document.querySelector('.filtr-item.recommended');
+    if (!recommendedItem) return;
+    const recommendedItemCount = document.querySelector('.filtr-item.recommended span.count');
+    let recommendedCount = 0;
+    if ( glempAll.length > 1 ) {
+        glempAll.forEach((item) => {
+            if (item.recommended == 'yes') {
+                recommendedCount++;
+            }
+        });
+    } else {
+        if (glempAll[0].recommended == 'yes') {
+            recommendedCount++;
+        }
+    }
+    recommendedItemCount.innerText = recommendedCount;
+    if (recommendedCount) {
+        recommendedItem.classList.add('activate');
+    } else {
+        recommendedItem.classList.remove('activate');
+    }
+}
+filtrRecommended(glempsAll);
 
 const filtrTypeArchive = (glempAll) => {
     const typeItem = document.querySelector('.filtr-item.type');
@@ -591,9 +654,10 @@ function sliderNumber(startMin, startMax, min, max) {
     localStorage.setItem('glcPriceSt', sliderValueStart.map(Number));
     // console.dir(sliderValueStart);
     slider.noUiSlider.on('update', function () {
+        let numbFmt = new Intl.NumberFormat('ru-RU');
         let sliderValue = slider.noUiSlider.get();
-        minPriceInput.value = Math.ceil(sliderValue[0]);
-        maxPriceInput.value = Math.ceil(sliderValue[1]);
+        minPriceInput.value = numbFmt.format(Math.ceil(sliderValue[0]))+' руб.';
+        maxPriceInput.value = numbFmt.format(Math.ceil(sliderValue[1]))+' руб.';
     });
     slider.noUiSlider.on('end', function (values, handle) {
         console.dir(handle);
@@ -631,7 +695,9 @@ function sliderNumber(startMin, startMax, min, max) {
             'glcFacilChildren',
             'glcEntertainment',
             'glcTerritory',
-            'glcSafety'
+            'glcSafety',
+            'glcStocks',
+            'glcRecom'
         ];
         let inputs = document.querySelectorAll('.glampings-filtr-items input');
 
@@ -649,6 +715,8 @@ function sliderNumber(startMin, startMax, min, max) {
         filtrErtainmentArchive(newgGempAll);
         filtrTerritoryArchive(newgGempAll);
         filtrSafetyArchive(newgGempAll);
+        filtrRecommended(newgGempAll);
+        filtrStocks(newgGempAll);
 
         glampingsMap.children[0].innerHTML = '';
         mapRender(mapPointTest(newgGempAll));
@@ -656,9 +724,9 @@ function sliderNumber(startMin, startMax, min, max) {
         // console.dir(slider.parentElement.previousElementSibling.previousElementSibling.children[1]);
 
         if (isArraysEqual(sliderValueStart, sliderValue)) {
-            slider.parentElement.previousElementSibling.previousElementSibling.children[1].innerHTML = '';
+            slider.parentElement.previousElementSibling.children[1].innerHTML = '';
         } else {
-            slider.parentElement.previousElementSibling.previousElementSibling.children[1].innerHTML = icon;
+            slider.parentElement.previousElementSibling.children[1].innerHTML = icon;
         }
         chekAllFitrs();
     });
@@ -678,14 +746,20 @@ function chekAllFitrs() {
         if (item.innerHTML) {
             countObj.push(item.innerHTML);
         }
+        if (document.querySelector('input[name="stocks"]').checked) {
+            countObj.push('stocks');
+        }
+        if (document.querySelector('input[name="recommended"]').checked) {
+            countObj.push('recommended');
+        }
     });
     if (countObj.length) {
         btnFiltrClear.forEach((btn) => {
-            btn.classList.add('activate');
+            btn.classList.add('active');
         });
     } else {
         btnFiltrClear.forEach((btn) => {
-            btn.classList.remove('activate');
+            btn.classList.remove('active');
         });
     }
     return countObj.length;
@@ -714,6 +788,8 @@ function removeAllFitrs() {
             localStorage.removeItem('glcPriceMin');
             localStorage.removeItem('glcPriceMax');
             // localStorage.removeItem('glcPrice');
+            localStorage.removeItem('glcStocks');
+            localStorage.removeItem('glcRecom');
 
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
             localStorage.setItem('glcPrice', priceSliderOption(glempAll));
@@ -728,16 +804,22 @@ function removeAllFitrs() {
             filtrErtainmentArchive(glempAll);
             filtrTerritoryArchive(glempAll);
             filtrSafetyArchive(glempAll);
+            filtrRecommended(glempAll);
+            filtrStocks(glempAll);
+
+            document.querySelector('input[name="stocks"]').checked = false;
+            document.querySelector('input[name="recommended"]').checked = false;
 
             glempRender(glempAll);
             glampingsMap.children[0].innerHTML = '';
             mapRender(mapPointTest(glempAll));
+            agc(glempAll);
 
             sliderUpdatePrice(glempAll);
             priceCount.innerHTML = '';
 
             btnFiltrClear.forEach((btn) => {
-                btn.classList.remove('activate');
+                btn.classList.remove('active');
             });
 
             // btnFiltrClear.classList.remove('activate');
@@ -868,6 +950,9 @@ function itemsChange() {
         let glcPrice = localStorage.getItem('glcPrice');
         let glcPriceSt = localStorage.getItem('glcPriceSt');
 
+        let glcStocks = localStorage.getItem('glcStocks');
+        let glcRecom = localStorage.getItem('glcRecom');
+
         const names = [
             'glcType',
             'glcAllocation',
@@ -877,7 +962,9 @@ function itemsChange() {
             'glcFacilChildren',
             'glcEntertainment',
             'glcTerritory',
-            'glcSafety'
+            'glcSafety',
+            'glcStocks',
+            'glcRecom'
         ];
 
         if (input) {
@@ -892,8 +979,27 @@ function itemsChange() {
                 priceObj = glcPrice.split(',');
             }
 
+            // .filter(elem => elem.stocks != '')
+
             newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
             newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number));
+
+            if (document.querySelector('input[name="stocks"]').checked) {
+                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '');
+                newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '');
+            }
+            if (document.querySelector('input[name="recommended"]').checked) {
+                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.recommended == 'yes');
+                newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.recommended == 'yes');
+            }
+
+            if (document.querySelector('input[name="stocks"]').checked && document.querySelector('input[name="recommended"]').checked) {
+                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '').filter(elem => elem.recommended == 'yes');
+                newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '').filter(elem => elem.recommended == 'yes');
+            }
+
+            // console.dir(newgGempAll);
+            // console.dir(newgGempAllForFiltr);
 
             let sortGl = Cookies.get('glcSort');
             if (sortGl) {
@@ -913,8 +1019,45 @@ function itemsChange() {
                 // }
             }
             glempRender(newgGempAll);
+
             checkLocalCheng(input, input.dataset.name, '');
-            // console.dir(input.dataset.name);
+
+            if (input.dataset.name == 'glcStocks') {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
+                    locationsArchive(newgGempAllForFiltr);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+            }
+
+            if (input.dataset.name == 'glcRecom') {
+                if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
+                    locationsArchive(newgGempAllForFiltr);
+                } else {
+                    locationsArchive(glempAll);
+                }
+                filtrTypeArchive(newgGempAllForFiltr);
+                filtrAllocationArchive(newgGempAllForFiltr);
+                filtrWorkingArchive(newgGempAllForFiltr);
+                filtrNatureArchive(newgGempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
+                filtrChildrenArchive(newgGempAllForFiltr);
+                filtrErtainmentArchive(newgGempAllForFiltr);
+                filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrSafetyArchive(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
+            }
+
             if (input.dataset.name == 'glcRegion') {
                 // locationsArchive(newgGempAll);
                 filtrTypeArchive(newgGempAllForFiltr);
@@ -926,6 +1069,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
 
             if (input.dataset.name == 'glcType') {
@@ -944,6 +1089,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcAllocation') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -961,6 +1108,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcWorking') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -977,6 +1126,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcNature') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -993,6 +1144,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcFacilGen') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -1009,6 +1162,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcFacilChildren') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -1025,6 +1180,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcEntertainment') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -1041,6 +1198,8 @@ function itemsChange() {
                 // filtrErtainmentArchive(newgGempAll);
                 filtrTerritoryArchive(newgGempAllForFiltr);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcTerritory') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -1057,6 +1216,8 @@ function itemsChange() {
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 // filtrTerritoryArchive(newgGempAll);
                 filtrSafetyArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
             }
             if (input.dataset.name == 'glcSafety') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
@@ -1072,15 +1233,18 @@ function itemsChange() {
                 filtrChildrenArchive(newgGempAllForFiltr);
                 filtrErtainmentArchive(newgGempAllForFiltr);
                 filtrTerritoryArchive(newgGempAllForFiltr);
+                filtrRecommended(newgGempAllForFiltr);
+                filtrStocks(newgGempAllForFiltr);
                 // filtrSafetyArchive(newgGempAll);
             }
 
             glampingsMap.children[0].innerHTML = '';
             mapRender(mapPointTest(newgGempAll));
+            agc(newgGempAll);
 
             chekAllFitrs();
 
-            console.dir(itemsVal(inputs, names));
+            // console.dir(itemsVal(inputs, names));
         }
     });
 }
@@ -1103,6 +1267,7 @@ function itemsVal(inputs, names) {
 }
 
 function checkLocalCheng(item, lsName, filtrItemCount) {
+    let count = item.closest('div.filtr-item').children[0].children[1];
     let ls_obj = [];
     let ls_obj_new = [];
     if ( localStorage.getItem(lsName) ) {
@@ -1142,15 +1307,28 @@ function checkLocalCheng(item, lsName, filtrItemCount) {
         if (lsf.includes(',')) {
             ls_objf = lsf.split(',');
             if (ls_objf.length == 0) {
-                item.parentElement.parentElement.previousElementSibling.children[1].innerText = '';
+                if (count) {
+                    count.innerText = '';
+                }
+                // item.parentElement.parentElement.previousElementSibling.children[1].innerText = '';
             } else {
-                item.parentElement.parentElement.previousElementSibling.children[1].innerText = ls_objf.length;
+                if (count) {
+                    count.innerText = ls_objf.length;
+                }
+                // count.innerText = ls_objf.length;
+                // item.parentElement.parentElement.previousElementSibling.children[1].innerText = ls_objf.length;
             }
         } else {
-            item.parentElement.parentElement.previousElementSibling.children[1].innerText = 1;
+            if (count) {
+                count.innerText = 1;
+            }
+            // item.parentElement.parentElement.previousElementSibling.children[1].innerText = 1;
         }
     } else {
-        item.parentElement.parentElement.previousElementSibling.children[1].innerText = '';
+        if (count) {
+            count.innerText = '';
+        }
+        // item.parentElement.parentElement.previousElementSibling.children[1].innerText = '';
     }
 }
 
@@ -1174,6 +1352,127 @@ function countFiltrItem(name, countSelector) {
 }
 
 function filtrOptionsChange(item, index, arr) {
+    const inputs = document.querySelectorAll('.glampings-filtr-items input');
+    let region = [];
+    let types = [];
+    let allocation = [];
+    let working = [];
+    let nature = [];
+    let facilGen = [];
+    let facilChildren = [];
+    let entertainment = [];
+    let territory = [];
+    let safety = [];
+    let stocks = 0;
+    inputs.forEach((input) => {
+        if (input.checked == true) {
+            if (input.dataset.name == 'glcRegion') {
+                region.push(input.id);
+            } else if (input.dataset.name == 'glcType') {
+                types.push(input.id);
+            } else if (input.dataset.name == 'glcAllocation') {
+                allocation.push(input.id);
+            } else if (input.dataset.name == 'glcWorking') {
+                working.push(input.id);
+            } else if (input.dataset.name == 'glcNature') {
+                nature.push(input.id);
+            } else if (input.dataset.name == 'glcFacilGen') {
+                facilGen.push(input.id);
+            } else if (input.dataset.name == 'glcFacilChildren') {
+                facilChildren.push(input.id);
+            } else if (input.dataset.name == 'glcEntertainment') {
+                entertainment.push(input.id);
+            } else if (input.dataset.name == 'glcTerritory') {
+                territory.push(input.id);
+            } else if (input.dataset.name == 'glcSafety') {
+                safety.push(input.id);
+            } else if (input.dataset.name == 'glcStocks') {
+                stocks = 1;
+            }
+        }
+    });
+
+    let regionIncl = 1;
+    if (region.length) {
+        regionIncl = region.map(Number).includes(item.location_id);
+    }
+
+    let typesIncl = 1;
+    if (types.length) {
+        typesIncl = types.some((element) => item.type.includes(element));
+    }
+
+    let allocationIncl = 1;
+    if (allocation.length) {
+        typesIncl = allocation.some((element) => item.allocation.includes(element));
+    }
+
+    let workingIncl = 1;
+    if (working.length) {
+        workingIncl = working.some((element) => item.working_mode_seasons.includes(element));
+
+        // workingIncl = working.some((element) => {
+        //     if (element == 'whole_year') {
+        //         item.working_mode.includes(element);
+        //     } else {
+        //         item.working_mode_seasons.includes(element);
+        //     }
+        // });
+    }
+
+    let natureIncl = 1;
+    if (nature.length) {
+        natureIncl = nature.some((element) => item.nature_around.includes(element));
+    }
+
+    let facilGenIncl = 1;
+    if (facilGen.length) {
+        facilGenIncl = facilGen.some((element) => item.facilities_general.includes(element));
+    }
+
+    let facilChildrenIncl = 1;
+    if (facilChildren.length) {
+        facilChildrenIncl = facilChildren.some((element) => item.facilities_children.includes(element));
+    }
+
+    let entertainmentIncl = 1;
+    if (entertainment.length) {
+        entertainmentIncl = entertainment.some((element) => item.entertainment.includes(element));
+    }
+
+    let territoryIncl = 1;
+    if (territory.length) {
+        territoryIncl = territory.some((element) => item.territory.includes(element));
+    }
+
+    let safetyIncl = 1;
+    if (safety.length) {
+        safetyIncl = safety.some((element) => item.safety.includes(element));
+    }
+
+    // let stocksIncl = 1; // glcStocks
+    // if (stocks) {
+    //     stocksIncl = stocks.some((element) => !item.stocks.includes(''));
+    // }
+
+    if ( regionIncl &&
+        typesIncl &&
+        allocationIncl &&
+        workingIncl &&
+        natureIncl &&
+        facilGenIncl &&
+        facilChildrenIncl &&
+        entertainmentIncl &&
+        territoryIncl &&
+        safetyIncl)
+    {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function filtrOptionsChangeForFiltr(item, index, arr) {
     const inputs = document.querySelectorAll('.glampings-filtr-items input');
     let region = [];
     let types = [];
@@ -1276,112 +1575,14 @@ function filtrOptionsChange(item, index, arr) {
     }
 }
 
-function filtrOptionsChangeForFiltr(item, index, arr) {
-    const inputs = document.querySelectorAll('.glampings-filtr-items input');
-    // let region = [];
-    let types = [];
-    let allocation =[];
-    let working =[];
-    let nature =[];
-    let facilGen =[];
-    let facilChildren =[];
-    let entertainment =[];
-    let territory =[];
-    let safety =[];
-    inputs.forEach((input) => {
-        if (input.checked == true) {
-            // if (input.dataset.name == 'glcRegion') {
-            //     region.push(input.id);
-            // } else
-            if (input.dataset.name == 'glcType') {
-                types.push(input.id);
-            } else if (input.dataset.name == 'glcAllocation') {
-                allocation.push(input.id);
-            } else if (input.dataset.name == 'glcWorking') {
-                working.push(input.id);
-            } else if (input.dataset.name == 'glcNature') {
-                nature.push(input.id);
-            } else if (input.dataset.name == 'glcFacilGen') {
-                facilGen.push(input.id);
-            } else if (input.dataset.name == 'glcFacilChildren') {
-                facilChildren.push(input.id);
-            } else if (input.dataset.name == 'glcEntertainment') {
-                entertainment.push(input.id);
-            } else if (input.dataset.name == 'glcTerritory') {
-                territory.push(input.id);
-            } else if (input.dataset.name == 'glcSafety') {
-                safety.push(input.id);
-            }
-        }
-    });
-
-    // let regionIncl = 1;
-    // if (region.length) {
-    //     regionIncl = region.map(Number).includes(item.location_id);
-    // }
-
-    let typesIncl = 1;
-    if (types.length) {
-        typesIncl = types.some((element) => item.type.includes(element));
-    }
-
-    let allocationIncl = 1;
-    if (allocation.length) {
-        typesIncl = allocation.some((element) => item.allocation.includes(element));
-    }
-
-    let workingIncl = 1;
-    if (working.length) {
-        workingIncl = working.some((element) => item.working_mode_seasons.includes(element));
-
-        // workingIncl = working.some((element) => {
-        //     if (element == 'whole_year') {
-        //         item.working_mode.includes(element);
-        //     } else {
-        //         item.working_mode_seasons.includes(element);
-        //     }
-        // });
-    }
-
-    let natureIncl = 1;
-    if (nature.length) {
-        natureIncl = nature.some((element) => item.nature_around.includes(element));
-    }
-
-    let facilGenIncl = 1;
-    if (facilGen.length) {
-        facilGenIncl = facilGen.some((element) => item.facilities_general.includes(element));
-    }
-
-    let facilChildrenIncl = 1;
-    if (facilChildren.length) {
-        facilChildrenIncl = facilChildren.some((element) => item.facilities_children.includes(element));
-    }
-
-    let entertainmentIncl = 1;
-    if (entertainment.length) {
-        entertainmentIncl = entertainment.some((element) => item.entertainment.includes(element));
-    }
-
-    let territoryIncl = 1;
-    if (territory.length) {
-        territoryIncl = territory.some((element) => item.territory.includes(element));
-    }
-
-    let safetyIncl = 1;
-    if (safety.length) {
-        safetyIncl = safety.some((element) => item.safety.includes(element));
-    }
-
-    if ( typesIncl && allocationIncl && workingIncl && natureIncl && facilGenIncl && facilChildrenIncl && entertainmentIncl && territoryIncl && safetyIncl ) {
-        return true;
-    } else {
-        return false;
+function priceRange(item) {
+    if (Number(item.price) >= this[0] && Number(item.price) <= this[1]) {
+        return item;
     }
 }
 
-function priceRange(item) {
-    if (Number(item.price) >= this[0] && Number(item.price) <= this[1]) {
+function stocks(item) {
+    if (item.stocks != '') {
         return item;
     }
 }
@@ -1395,8 +1596,14 @@ function glempRender(glemps) {
         let recommended = glemp.recommended;
         let recRend = ``;
         if (recommended == 'yes') {
-            recRend = `<div class="glamping-item__recommended">Рекомендуем</div>`;
+            recRend = `<div class="glamping-item__sr__item recommended">Рекомендуем</div>`;
         }
+        let stocks = glemp.stocks_title;
+        let stocksRend = ``;
+        if (stocks) {
+            stocksRend = `<div class="glamping-item__sr__item stocks">${glemp.stocks_title}</div>`;
+        }
+
         let price = currFormat(glemp.price);
         let type = glemp.type.join(', ');
         let clFav = '';
@@ -1422,7 +1629,10 @@ function glempRender(glemps) {
             "beforeEnd",
             `<div id="post-${glemp.id}" class="glamping-item" title="${glemp.title}">
             	<a href="${glemp.url}" class="glamping-item__url" rel="bookmark"></a>
+                <div class="glamping-item__sr">
                 ${recRend}
+                ${stocksRend}
+                </div>
                 <div class="glamping-item__btns-fav-comp">
             		<button id="add-favorites" data-postid="${glemp.id}" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red${clFav}" type="button" name="button" title="${titleFav}">
             			<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -1579,14 +1789,15 @@ function sliderInit() {
     });
 
 }
-sliderInit();
-
+// sliderInit();
+// var map;
 function mapRender(geoData) {
     const archiveGlampings = document.querySelector('#archive-glampings');
     if (!archiveGlampings) return;
     ymaps.ready(init);
+    var map;
 	function init() {
-        var map;
+        // var map;
 		var geoJson = geoData; //JSON.parse(glamping_club_ajax.glAllMap);
 		var zoomNum = (glamping_club_ajax.yand_zoom) ? Number(glamping_club_ajax.yand_zoom) : 12;
 		map = new ymaps.Map('mapYandex',
@@ -1733,6 +1944,48 @@ function mapRender(geoData) {
                 map.balloon.close();
             }
         });
+
+        // const btns = document.querySelectorAll('.js-btn-filtr');
+        // btns.forEach((btn) => {
+        //     btn.addEventListener('click', (e)=> {
+        //         let mainWidth = document.querySelector('.archive-glampings').clientWidth; //-690
+        //         let glLeft = document.querySelector('.archive-glampings__left').clientWidth;
+        //         let glMap = document.querySelector('.glampings-map').clientWidth;
+        //         console.dir(mainWidth);
+        //         console.dir(glLeft);
+        //         console.dir(glMap);
+        //
+        //         const filtr = document.querySelector('.glampings-filtr');
+        //         const btnHidden = document.querySelector('.glampings-filtr-hidden');
+        //         filtr.classList.toggle('visible-hidden');
+        //         let elemWidth = document.querySelector('.glampings-map.active').clientWidth; //-270
+        //         if (filtr.classList.contains('visible-hidden')) {
+        //             let mapWidth = mainWidth-960;
+        //             btnHidden.classList.add('visible-hidden');
+        //             // document.querySelector('.archive-glampings__left').style.width = 'auto';
+        //             // document.querySelector('.glampings-map').style.maxWidth = '100%';
+        //             // document.querySelector('.glampings-map__content').style.width = mapWidth+'px';
+        //             // elemWidth = document.querySelector('.glampings-map.active').clientWidth;
+        //             console.dir(mapWidth);
+        //             map.container.getElement().style.width = mapWidth+'px';
+        //             map.container.fitToViewport();
+        //         } else {
+        //             let mapWidth = glMap+270;
+        //             btnHidden.classList.remove('visible-hidden');
+        //             // document.querySelector('.glampings-map').style.maxWidth = '';
+        //             // document.querySelector('.archive-glampings__left').style.width = '';
+        //             document.querySelector('.glampings-map__content').style.width = mapWidth+'px'; //elemWidth+'px';
+        //             console.dir(elemWidth);
+        //             map.container.getElement().style.width = mapWidth+'px';
+        //             map.container.fitToViewport();
+        //         }
+        //     });
+        // });
+
+        if (!localStorage.getItem('filtrHidden')) {
+            filtrHidden(map);
+            localStorage.setItem('filtrHidden', 'yes');
+        }
 	}
     markersHover();
 }
@@ -1741,6 +1994,37 @@ if (!localStorage.getItem('glcRefFront')) {
 } else {
     localStorage.removeItem('glcRefFront');
 }
+
+function filtrHidden(map) {
+    const btns = document.querySelectorAll('.js-btn-filtr');
+    btns.forEach((btn) => {
+        btn.addEventListener('click', (e)=> {
+            let mainWidth = document.querySelector('.archive-glampings').clientWidth; //-690
+            let glLeft = document.querySelector('.archive-glampings__left').clientWidth;
+            let glMap = document.querySelector('.glampings-map').clientWidth;
+
+            const filtr = document.querySelector('.glampings-filtr');
+            const btnHidden = document.querySelector('.glampings-filtr-hidden');
+            filtr.classList.toggle('visible-hidden');
+            btnHidden.classList.toggle('visible-hidden');
+
+            // let elemWidth = document.querySelector('.glampings-map.active').clientWidth; //-270
+            if (document.querySelector('.glampings-filtr').classList.contains('visible-hidden')) {
+                let mapWidth = mainWidth-960;
+                document.querySelector('.glampings-map__content').style.width = mainWidth+'px';
+                map.container.getElement().style.width = mapWidth+'px';
+                map.container.fitToViewport();
+            } else {
+                let mapWidth = glMap+270;
+                document.querySelector('.glampings-map__content').style.width = mapWidth+'px'; //elemWidth+'px';
+                map.container.getElement().style.width = mapWidth+'px';
+                map.container.fitToViewport();
+            }
+        });
+    });
+    isRun = true;
+}
+// filtrHidden();
 
 function mapPointTest(glAll) {
     // console.dir(glAll);
@@ -1984,43 +2268,60 @@ function num_word(value, words){
 }
 
 const listCardMap = () => {
-    const btnMap = document.querySelector('.js-btn-map');
-    if (!btnMap) return;
+    const btnMap = document.querySelectorAll('.js-btn-map button');
+    if (!btnMap.length) return;
+    const archiveGlampings = document.querySelector('#archive-glampings');
+    const glWrap = document.querySelector('.glampings-wrap');
     const glampingsItems = document.querySelector('#archive-glampings .glampings-items');
     const glampingsMap = document.querySelector('.glampings-map');
     const archGlampingsLeft = document.querySelector('.archive-glampings__left');
+    const archGlampingsLeftGlamp = document.querySelector('.archive-glampings__left__glampings');
     const glcfScroll = document.querySelector('.glcf-scroll');
-    const btns = btnMap.querySelectorAll('button');
-    btns.forEach((btn) => {
+
+    btnMap.forEach((btn) => {
         btn.addEventListener('click', (e) => {
-            btnMapChange(btns);
+            btnMapChange(btnMap);
             btn.classList.add('active');
             if (btn.id == 'mapVision') {
+                archiveGlampings.classList.remove('no-map');
                 archGlampingsLeft.classList.remove('no-map');
-                glcfScroll.classList.remove('height-auto');
-                glampingsItems.classList.remove('card');
-                glampingsItems.classList.add('list');
+                glampingsItems.classList.remove('no-map');
+                archGlampingsLeftGlamp.classList.remove('no-map');
+                glWrap.classList.add('my-scrollbar-gc');
                 glampingsMap.classList.add('active');
                 glampingsMap.children[0].innerHTML = '';
-                // let glempAll = JSON.parse(glamping_club_ajax.glAll);
                 let newgGempAll =  glempsAll.filter(filtrOptionsChange);
                 let priceObj = [];
                 priceObj = sliderUpdatePrice(newgGempAll);
                 newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
                 mapRender(mapPointTest(newgGempAll));
+                newScrollbarGlCard();
             } else if (btn.id == 'mapClose') {
-                glampingsItems.classList.remove('list');
-                glampingsItems.classList.add('card');
-                glampingsMap.classList.remove('active');
+                newScrollbarGlCard().destroy();
+                archiveGlampings.classList.add('no-map');
                 archGlampingsLeft.classList.add('no-map');
-                glcfScroll.classList.add('height-auto');
+                glampingsItems.classList.add('no-map');
+                archGlampingsLeftGlamp.classList.add('no-map');
+                glWrap.classList.add('no-map');
+                glWrap.classList.remove('my-scrollbar-gc');
+                glampingsMap.classList.remove('active');
             }
             Cookies.set('glcTemp', btn.id);
         });
-        // console.dir(btn);
     });
 }
 listCardMap();
+
+function newScrollbarGlCard() {
+    const Scrollbar = window.Scrollbar;
+    const elem = document.querySelector('.my-scrollbar-gc');
+    if (!elem) return;
+    const sgc = Scrollbar.init(elem, {
+        alwaysShowTracks: true
+    });
+    return sgc;
+}
+newScrollbarGlCard();
 
 const listCardMapMobile = () => {
     const btnMap = document.querySelector('.js-btn-map-mobile');
@@ -2076,14 +2377,19 @@ function sortGlemp() {
     let filtrOptions = sortGlemp.querySelectorAll('.filtr-option');
     filtrOptions.forEach((elem) => {
         elem.addEventListener('click', (e) => {
-            elem.parentElement.previousElementSibling.children[0].innerText = e.target.innerText;
+            if (elem.classList.contains('sort-option')) {
+                elem.parentElement.previousElementSibling.innerText = e.target.innerText;
+            } else {
+                elem.parentElement.previousElementSibling.children[0].innerText = e.target.innerText;
+            }
+
             optionsChecked(filtrOptions);
             elem.children[1].classList.add('active');
             let sortGl = elem.dataset.value;
             Cookies.set('glcSort', sortGl);
             sortGlempRender(sortGl);
             sortGlemp.classList.remove('active');
-            sortGlemp.previousElementSibling.children[1].classList.remove('active');
+            sortGlemp.previousElementSibling.previousElementSibling.children[1].classList.remove('active');
         });
     });
 }

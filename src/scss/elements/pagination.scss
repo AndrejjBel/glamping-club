@@ -1,0 +1,38 @@
+.pagination {
+    display: flex;
+    justify-content: center;
+    margin: 40px 0;
+}
+
+.nav-links {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+
+    & a, span {
+        color: rgb(94, 109, 119);
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 100%;
+        letter-spacing: 0%;
+    }
+
+    & a svg {
+        width: 7px;
+        height: 12px;
+    }
+
+    & span.current {
+        color: rgb(241, 165, 57);
+    }
+
+    & span.dots {}
+
+    & a.prev {
+        margin-right: 4px;
+    }
+
+    & a.next {
+        margin-left: 4px;
+    }
+}

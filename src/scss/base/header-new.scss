@@ -9,6 +9,22 @@
     transition: all linear .3s;
     z-index: 11;
 
+    &.header-archive-glampings {
+        max-width: 1840px;
+
+        @media (max-width: 1919px) {
+            max-width: calc(100% - 80px);
+        }
+
+        @media (max-width: 767px) {
+            max-width: calc(100% - 40px);
+        }
+
+        @media (max-width: 479px) {
+            max-width: calc(100% - 20px);
+        }
+    }
+
     @media (max-width: 1330px) {
         margin: 0 40px;
         width: auto;
@@ -103,6 +119,26 @@
             padding: 0 22px 0 20px;
             border-radius: 10px;
             background: rgb(255, 255, 255);
+
+            &.top-search-archive-glampings {
+                @media (min-width: 1440px) {
+                    max-width: 600px;
+                }
+
+                @media (min-width: 1500px) {
+                    margin-left: 235px;
+                }
+
+                @media (min-width: 1920px) {
+                    max-width: 600px;
+                    margin-left: 360px;
+                }
+
+            }
+
+            @media (min-width: 1500px) {
+                margin-left: 180px;
+            }
 
             @media (max-width: 1330px) {
                 max-width: 28.8vw;
@@ -238,6 +274,10 @@
 
             @media (max-width: 767px) {
                 display: none;
+            }
+
+            @media (min-width: 1439px) {
+                margin-left: 90px;
             }
         }
 

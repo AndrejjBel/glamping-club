@@ -370,7 +370,12 @@ button.secondary{
 	border-radius: 8px;
 	color: var(--Primary-700, #3033D1);
     border: 1px solid var(--Primary-50, #EEF4FF);
-    background: var(--Primary-50, #EEF4FF);
+    background: #F4F4F4; //var(--Primary-50, #EEF4FF);
+
+    &.color-text {
+        border: none;
+        color: var(--text-color, #161616);
+    }
 
     &.fs12 {
         font-size: 12px;
@@ -401,18 +406,18 @@ button.secondary{
     }
 
     &.active {
-        border: 1px solid var(--Primary-100, #E0EAFF);
-        background: var(--Primary-100, #E0EAFF);
+        // border: 1px solid var(--Primary-100, #E0EAFF);
+        background: #EBEBEB; //var(--Primary-100, #E0EAFF);
         pointer-events: none;
     }
 
     &:hover {
-        border: 1px solid var(--Primary-100, #E0EAFF);
-        background: var(--Primary-100, #E0EAFF);
+        // border: 1px solid var(--Primary-100, #E0EAFF);
+        background: #EBEBEB; //var(--Primary-100, #E0EAFF);
     }
 
     &:focus {
-        box-shadow: 0px 0px 0px 4px #E0EAFF, 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+        // box-shadow: 0px 0px 0px 4px #E0EAFF, 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
     }
 
     &:disabled {
@@ -640,6 +645,27 @@ a.btn-back-to-home {
     gap: 10px;
 
     @media (max-width: 1023px) {
+        display: none;
+    }
+
+    &.btn-group-map {
+        gap: 0;
+        border-radius: 8px;
+        overflow: hidden;
+
+        & button {
+            border-radius: 0;
+            padding: 8px 0;
+        }
+    }
+}
+
+.btn-group-mobile {
+    display: flex;
+    gap: 10px;
+    width: 160px;
+
+    @media (min-width: 1200px) {
         display: none;
     }
 

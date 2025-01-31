@@ -31,13 +31,22 @@
 	<a class="skip-link screen-reader-text" href="#primary"><?php esc_html_e( 'Skip to content', 'glamping-club' ); ?></a>
 
 <?php
-if (is_front_page()) {
-   get_template_part( 'template-parts/head-footer/header-new' );
-} elseif (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
+if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 	get_template_part( 'template-parts/head-footer/header-login' );
-} elseif (is_singular('glampings')) {
+} elseif (is_page([PAGE_DASHBOARD])) {
+
+} else {
 	get_template_part( 'template-parts/head-footer/header-new' );
-} elseif (!is_page([PAGE_DASHBOARD])) {
-	get_template_part( 'template-parts/head-footer/header' );
 }
+
+
+// if (is_front_page()) {
+//    get_template_part( 'template-parts/head-footer/header-new' );
+// } elseif (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
+// 	get_template_part( 'template-parts/head-footer/header-login' );
+// } elseif (is_singular('glampings')) {
+// 	get_template_part( 'template-parts/head-footer/header-new' );
+// } elseif (!is_page([PAGE_DASHBOARD])) {
+// 	get_template_part( 'template-parts/head-footer/header' );
+// }
 ?>

@@ -81,3 +81,17 @@ function fill_stocks_column( $colname, $post_id ) {
 		echo '<a href="' . $link . '">' . $title . '</a>';
 	}
 }
+
+// add_action( 'save_post_stocks', 'save_post_stocks_action', 10, 3 );
+function save_post_stocks_action( $post_id, $post, $update ){
+	$parent_glemp = $post->parent_glemp;
+	$parent_glemp_meta = get_post($parent_glemp);
+	if ($parent_glemp_meta->glamping_stocks) {
+		$glamping_stocks = $parent_glemp_meta->glamping_stocks;
+		array_push($glamping_stocks, $post_id);
+	} else {
+		$glamping_stocks = [];
+		array_push($glamping_stocks, $post_id);
+	}
+	update_post_meta( $parent_glemp, 'glamping_stocks', $glamping_stocks );
+}

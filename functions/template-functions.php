@@ -306,3 +306,22 @@ function type_options_list() {
 	}
 	echo $items;
 }
+
+function stocks_title($stocks, $html=0) {
+	$content = '';
+	if ($stocks) {
+		$titles = [];
+		foreach ($stocks as $key => $stock) {
+			$titles[] = get_the_title($stock);
+		}
+		if ($html) {
+			$content .= '<span class="stock-title">' . $titles[0] . '</span>';
+			if (count($titles) > 1) {
+				$content .= '<span class="stock-count"> +' . count($titles)-1 . '</span>';
+			}
+		} else {
+			$content .= ['titles' => $titles, 'count' => count($titles)];
+		}
+	}
+	return $content;
+}

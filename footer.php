@@ -14,9 +14,6 @@ if (is_page([PAGE_LOGIN, PAGE_REGISTRATION, PAGE_FORGOT_PASSWORD])) {
 } elseif (is_page([PAGE_DASHBOARD])) {
 	// get_template_part( 'template-parts/dashboard/footer-dashboard' );
 	// get_template_part( 'template-parts/head-footer/nav-mobile' );
-} elseif (is_post_type_archive('glampings')) {
-	get_template_part( 'template-parts/head-footer/footer-new' );
-	get_template_part( 'template-parts/head-footer/aside-header' );
 } else {
 	get_template_part( 'template-parts/head-footer/footer-new' );
 	get_template_part( 'template-parts/head-footer/aside-header' );

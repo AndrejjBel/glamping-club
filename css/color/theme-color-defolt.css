@@ -48,7 +48,8 @@
     --color-border-white: #FFFFFF;
     --color-border: #e8e8e8;
     --color-sidebar-border: #e8e8e8;
-    --color-border-input: #b9b9b9;
+    /* --color-border-input: #b9b9b9; */
+    --color-border-input: rgb(221, 221, 221);
 
     --link-color: #1921B1;
     --link-color-hover: #4D54D8;

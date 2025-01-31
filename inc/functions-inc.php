@@ -388,6 +388,36 @@ function in_array_r($needle, $haystack, $strict = false) {
 	return false;
 }
 
+add_filter('navigation_markup_template', 'my_navigation_template', 10, 2 );
+function my_navigation_template( $template, $class ){
+	return '
+	<nav class="navigation %1$s" role="navigation">
+		<div class="nav-links">%3$s</div>
+	</nav>
+	';
+}
+
+function posts_pagination_site($end_size=1, $mid_size=2) {
+    $icon_prev = '<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 1L2 7L9 13" stroke="#5E6D77" stroke-width="1.5"/>
+    </svg>';
+    $icon_next = '<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 13L8 7L1 1" stroke="#5E6D77" stroke-width="1.5"/>
+    </svg>';
+    $args = array(
+        'show_all'           => false, // показаны все страницы участвующие в пагинации
+        'end_size'           => 1,     // количество страниц на концах
+        'mid_size'           => 2,     // количество страниц вокруг текущей
+        'prev_next'          => true,  // выводить ли боковые ссылки "предыдущая/следующая страница".
+        'prev_text'          => $icon_prev,
+        'next_text'          => $icon_next,
+        'add_args'           => false, // Массив аргументов (переменных запроса), которые нужно добавить к ссылкам.
+        'add_fragment'       => '',     // Текст который добавиться ко всем ссылкам.
+        'class'              => 'pagination',  // class="" для nav элемента. С WP 5.5
+    );
+    return get_the_posts_pagination($args);
+}
+
 //Отправка в Телеграм
 define('TELEGRAM_TOKEN', '7361610914:AAFGZrr2JaYQEhBZxR6A2L3R1QEC_w7TnDE');
 // сюда нужно вписать ваш внутренний айдишник

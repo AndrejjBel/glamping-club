@@ -1002,9 +1002,10 @@ function reviews_stars_items_average( $average_rating, $count_otziv, $type=0 ) {
 
 		$empty_stars--;
 	}
+	$rating_html = ($rating)? number_format(round($rating, 1), 1, '.', ' ') : 0;
 	$content .= '</div>
 	<div class="rating-count">
-		<div class="rating-count__rating">' . number_format(round($rating, 1), 1, '.', ' ') . '</div>
+		<div class="rating-count__rating">' . $rating_html . '</div>
 		<div class="rating-count__otziv"> / ' . num_word($count_otziv, array('отзыв', 'отзыва', 'отзывов')) . '</div>
 	</div>';
 
@@ -1189,14 +1190,17 @@ function filtr_cookie_value($name='') {
 
 function template_cookie_value() {
 	$no_map = '';
+	$gwrap_scroll = ' my-scrollbar-gc';
 	$glcf_scroll = '';
 	$card_list = ' list';
 	$map = ' active';
 	$btn_vision = ' active';
 	$btn_close = '';
+	$mediaQuery = '';
 	if ( !empty( $_COOKIE["glcTemp"] ) ) {
 		if ($_COOKIE["glcTemp"] == 'mapClose') {
 			$no_map = ' no-map';
+			$gwrap_scroll = '';
 			$glcf_scroll = ' height-auto';
 			$card_list = ' card';
 			$map = '';
@@ -1207,7 +1211,20 @@ function template_cookie_value() {
 		// 	// code...
 		// }
 	}
-	return ['no_map' => $no_map, 'glcf_scroll' => $glcf_scroll, 'card_list' => $card_list, 'map' => $map, 'btn_vision' => $btn_vision, 'btn_close' => $btn_close];
+
+	if ( !empty( $_COOKIE["mediaQuery"] ) ) {
+		$mediaQuery = $_COOKIE["mediaQuery"];
+	}
+	return [
+			'no_map' => $no_map,
+			'gwrap_scroll' => $gwrap_scroll,
+			'glcf_scroll' => $glcf_scroll,
+			'card_list' => $card_list,
+			'map' => $map,
+			'btn_vision' => $btn_vision,
+			'btn_close' => $btn_close,
+			'mediaQuery' => $mediaQuery
+		];
 }
 
 function options_name($name) {
@@ -1852,9 +1869,14 @@ function glampings_related_list($post_id) {
         ?>
 		<div id="post-<?php echo $post_rel->ID; ?>" class="glamping-item swiper-slide" title="<?php echo get_the_title($post_rel->ID); ?>">
 			<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
-			<?php if ($post_rel->glamping_recommended == 'yes') { ?>
-				<div class="glamping-item__recommended">Рекомендуем</div>
-			<?php } ?>
+			<div class="glamping-item__sr">
+				<?php if ($post_rel->glamping_recommended == 'yes') { ?>
+					<div class="glamping-item__sr__item recommended">Рекомендуем</div>
+				<?php } ?>
+				<?php if ($post_rel->stocks) { ?>
+					<div class="glamping-item__sr__item stocks"><?php echo stocks_title($post_rel->stocks, 1);?></div>
+				<?php } ?>
+			</div>
 			<div class="glamping-item__btns-fav-comp">
 				<button id="add-favorites" data-postid="<?php echo $post_rel->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" type="button" name="button" title="Добавить в избранное">
 					<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -2018,13 +2040,6 @@ function glampings_recommendated_list() {
         'posts_per_page' => 8,
     ];
 
-	// $args['meta_query'] = [
-	// 	[
-	// 		'key' => 'glamping_recommended',
-	// 		'value' => 'yes',
-	// 	]
-	// ];
-
 	$my_posts = get_posts($args);
 
     foreach( $my_posts as $post_rec ){
@@ -2034,9 +2049,14 @@ function glampings_recommendated_list() {
 		?>
 		<div id="post-<?php echo $post_rec->ID; ?>" class="glamping-item" title="<?php echo get_the_title($post_rec->ID); ?>">
 			<a href="<?php echo esc_url( get_permalink($post_rec->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
-			<?php if ($post_rec->glamping_recommended == 'yes') { ?>
-				<div class="glamping-item__recommended">Рекомендуем</div>
-			<?php } ?>
+			<div class="glamping-item__sr">
+				<?php if ($post_rec->glamping_recommended == 'yes') { ?>
+					<div class="glamping-item__sr__item recommended">Рекомендуем</div>
+				<?php } ?>
+				<?php if ($post_rec->stocks) { ?>
+					<div class="glamping-item__sr__item stocks"><?php echo stocks_title($post_rec->stocks, 1);?></div>
+				<?php } ?>
+			</div>
 			<div class="glamping-item__btns-fav-comp">
 				<button id="add-favorites" data-postid="<?php echo $post_rec->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" type="button" name="button" title="Добавить в избранное">
 					<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -2105,13 +2125,6 @@ function glampings_recommendated_list_slider() {
         'posts_per_page' => 8,
     ];
 
-	// $args['meta_query'] = [
-	// 	[
-	// 		'key' => 'glamping_recommended',
-	// 		'value' => 'yes',
-	// 	]
-	// ];
-
 	$my_posts = get_posts($args);
 
     foreach( $my_posts as $post_rel ){
@@ -2121,9 +2134,14 @@ function glampings_recommendated_list_slider() {
         ?>
 		<div id="post-<?php echo $post_rel->ID; ?>" class="glamping-item swiper-slide" title="<?php echo get_the_title($post_rel->ID); ?>">
 			<a href="<?php echo esc_url( get_permalink($post_rel->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
-			<?php if ($post_rel->glamping_recommended == 'yes') { ?>
-				<div class="glamping-item__recommended">Рекомендуем</div>
-			<?php } ?>
+			<div class="glamping-item__sr">
+				<?php if ($post_rel->glamping_recommended == 'yes') { ?>
+					<div class="glamping-item__sr__item recommended">Рекомендуем</div>
+				<?php } ?>
+				<?php if ($post_rel->stocks) { ?>
+					<div class="glamping-item__sr__item stocks"><?php echo stocks_title($post_rel->stocks, 1);?></div>
+				<?php } ?>
+			</div>
 			<div class="glamping-item__btns-fav-comp">
 				<button id="add-favorites" data-postid="<?php echo $post_rel->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" onclick="addFavNew(this)" title="Добавить в избранное">
 					<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
@@ -2280,12 +2298,6 @@ function glampings_hot_deals_list() {
         'posts_per_page' => 4,
     ];
 
-	// $args['meta_query'] = [
-	// 	[
-	// 		'key' => 'stocks'
-	// 	]
-	// ];
-
 	$my_posts = get_posts($args);
 
     foreach( $my_posts as $post_rec ){
@@ -2295,10 +2307,14 @@ function glampings_hot_deals_list() {
 		?>
 		<div id="post-<?php echo $post_rec->ID; ?>" class="glamping-item" title="<?php echo get_the_title($post_rec->ID); ?>">
 			<a href="<?php echo esc_url( get_permalink($post_rec->ID) ); ?>" class="glamping-item__url" rel="bookmark"></a>
-			<?php if ($post_rec->glamping_recommended == 'yes') { ?>
-				<div class="glamping-item__recommended">Рекомендуем</div>
-			<?php } ?>
-			<div class="glamping-item__stocks">Скидка 15% на День рождения</div>
+			<div class="glamping-item__sr">
+				<?php if ($post_rec->glamping_recommended == 'yes') { ?>
+					<div class="glamping-item__sr__item recommended">Рекомендуем</div>
+				<?php } ?>
+				<?php if ($post_rec->stocks) { ?>
+					<div class="glamping-item__sr__item stocks"><?php echo stocks_title($post_rec->stocks, 1);?></div>
+				<?php } ?>
+			</div>
 			<div class="glamping-item__btns-fav-comp">
 				<button id="add-favorites" data-postid="<?php echo $post_rec->ID; ?>" class="glamping-item__btns-fav-comp__btn-add-fav round-sup-red" onclick="addFavNew(this)" title="Добавить в избранное">
 					<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
