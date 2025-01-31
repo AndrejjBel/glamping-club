@@ -4,10 +4,11 @@ function navScroll(elementId) {
     const btnFiltrVisionMobile = document.getElementById('btn-filtr-vision-mobile');
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
+        let headHeight = '';
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
             if (masthead) {
-                let headHeight = masthead.offsetHeight+20;
+                headHeight = masthead.offsetHeight+20;
                 masthead.style.top = "0";
                 if (currentScrollPos == 0) {
                     masthead.style.top = "";

@@ -1789,7 +1789,7 @@ function sliderInit() {
     });
 
 }
-// sliderInit();
+sliderInit();
 // var map;
 function mapRender(geoData) {
     const archiveGlampings = document.querySelector('#archive-glampings');
