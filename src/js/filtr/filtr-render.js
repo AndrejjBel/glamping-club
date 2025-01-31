@@ -2288,6 +2288,7 @@ const listCardMap = () => {
                 glampingsItems.classList.remove('no-map');
                 archGlampingsLeftGlamp.classList.remove('no-map');
                 glWrap.classList.add('my-scrollbar-gc');
+                glWrap.classList.remove('no-map');
                 glampingsMap.classList.add('active');
                 glampingsMap.children[0].innerHTML = '';
                 let newgGempAll =  glempsAll.filter(filtrOptionsChange);

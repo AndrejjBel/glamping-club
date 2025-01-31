@@ -4516,7 +4516,8 @@ a.secondary {
         left: 284px; } }
   @media (max-width: 1439px) {
     .glampings-filtr {
-      margin-left: -270px; } }
+      margin-left: -270px;
+      height: 0; } }
   @media (max-width: 1199px) {
     .glampings-filtr {
       margin-left: -323px; } }
@@ -4524,7 +4525,11 @@ a.secondary {
     .glampings-filtr {
       margin-left: -302px; } }
   .glampings-filtr.visible-hidden {
-    margin-left: 0; }
+    margin-left: 0;
+    height: auto; }
+
+.height-auto {
+  height: auto; }
 
 .glampings-filtr-hidden {
   display: none;
