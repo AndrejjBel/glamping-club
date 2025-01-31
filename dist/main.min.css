@@ -4410,11 +4410,17 @@ a.secondary {
           display: none; } }
     .archive-glampings__left__glampings {
       width: 590px; }
+      @media (max-width: 1199px) {
+        .archive-glampings__left__glampings {
+          display: none; } }
       @media (max-width: 767px) {
         .archive-glampings__left__glampings {
           width: 100%; } }
       .archive-glampings__left__glampings.no-map {
         flex: 1; }
+        @media (max-width: 1199px) {
+          .archive-glampings__left__glampings.no-map {
+            display: block; } }
     .archive-glampings__left.no-map {
       width: 100%; }
       @media (max-width: 767px) {

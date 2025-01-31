@@ -48,6 +48,10 @@
         &__glampings {
             width: 590px;
 
+            @media (max-width: 1199px) {
+                display: none;
+            }
+
             @media (max-width: 767px) {
                 width: 100%;
             }
@@ -56,6 +60,10 @@
                 flex: 1;
                 // width: 100%;
                 // width: calc(100% - 270px);
+
+                @media (max-width: 1199px) {
+                    display: block;
+                }
             }
         }
 
