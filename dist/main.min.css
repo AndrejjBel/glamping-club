@@ -4412,9 +4412,7 @@ a.secondary {
       width: 590px; }
       @media (max-width: 1199px) {
         .archive-glampings__left__glampings {
-          display: none; } }
-      @media (max-width: 767px) {
-        .archive-glampings__left__glampings {
+          display: none;
           width: 100%; } }
       .archive-glampings__left__glampings.no-map {
         flex: 1; }
@@ -4433,7 +4431,8 @@ a.secondary {
       .archive-glampings__left {
         display: none; }
         .archive-glampings__left.no-map {
-          display: flex; } }
+          display: flex;
+          flex-direction: column; } }
   .archive-glampings .rating-count {
     font-size: 12px; }
   .archive-glampings__btn-map-mobile {
@@ -4489,8 +4488,7 @@ a.secondary {
   gap: 16px;
   width: 250px;
   flex: none;
-  background: var(--chalk);
-  transition: all 0.3s; }
+  background: var(--chalk); }
   @media (max-width: 1199px) {
     .glampings-filtr {
       display: none;
@@ -4498,7 +4496,7 @@ a.secondary {
       opacity: 0;
       max-width: 303px;
       width: 100%;
-      padding: 16px; }
+      padding: 0; }
       .glampings-filtr.active {
         position: fixed;
         top: 0;
@@ -4508,6 +4506,7 @@ a.secondary {
         opacity: 1;
         z-index: 999;
         margin-left: 0;
+        padding: 16px;
         height: 100vh; } }
   .glampings-filtr button.close-filtr {
     position: fixed;
@@ -4517,9 +4516,6 @@ a.secondary {
     @media (max-width: 1199px) {
       .glampings-filtr button.close-filtr {
         display: block; } }
-    @media (max-width: 334px) {
-      .glampings-filtr button.close-filtr {
-        left: 284px; } }
   @media (max-width: 1439px) {
     .glampings-filtr {
       margin-left: -270px;
@@ -4529,7 +4525,7 @@ a.secondary {
       margin-left: -323px; } }
   @media (max-width: 339px) {
     .glampings-filtr {
-      margin-left: -302px; } }
+      margin-left: -303px; } }
   .glampings-filtr.visible-hidden {
     margin-left: 0;
     height: auto; }
