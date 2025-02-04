@@ -1175,14 +1175,14 @@ function glamping_club_gl_thumbnail_slider($post_id) {
 }
 
 function filtr_cookie_value($name='') {
-	$title = 'Рекомендованные';
+	$title = 'Новинки';
 	$class = '';
 	if ( !empty( $_COOKIE["glcSort"] ) ) {
 		if ($_COOKIE["glcSort"] == $name) {
 			$class = 'active';
 		}
 		$title = options_name($_COOKIE["glcSort"]);
-	} elseif ($name == 'recommended') {
+	} elseif ($name == 'new_items') {
 		$class = 'active';
 	}
 	return ['title' => $title, 'class' => $class];
@@ -1262,6 +1262,7 @@ function glampings_map_render($location=0) {
 	// global $post;
 	$args = [
 		'posts_per_page' => -1,
+		'nopaging'  => true,
 		'post_type' => 'glampings'
 	];
 	if( $location ) {

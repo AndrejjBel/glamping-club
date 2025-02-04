@@ -39,6 +39,20 @@ function glamping_club_register_main_options_metabox() {
         'default' => 'name',
     ) );
 
+    $main_options->add_field( array(
+		'name'    => esc_html__( 'Количество Глэмпингов на страницах катлога и регионов общее', 'glamping-club' ),
+		'desc'    => esc_html__( 'общее количество', 'glamping-club' ),
+		'id'      => 'posts_per_page_all',
+		'type'    => 'text'
+	) );
+
+    $main_options->add_field( array(
+		'name'    => esc_html__( 'Количество Глэмпингов на страницах катлога и регионов для экранов более 1649px', 'glamping-club' ),
+		'desc'    => esc_html__( 'для экранов более 1649px', 'glamping-club' ),
+		'id'      => 'posts_per_page_full',
+		'type'    => 'text'
+	) );
+
     // $main_options->add_field( array(
 	// 	'name'    => esc_html__( 'Контакты - заголовок', 'glamping-club' ),
 	// 	'desc'    => esc_html__( 'заголовок блока "Контакты"', 'glamping-club' ),

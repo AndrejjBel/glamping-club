@@ -57,6 +57,8 @@ function glamping_club_main_scripts_old() {
         $glempings = get_option('glampings_obj_'.$category->term_id);
         $glempings_map = glampings_map_render($category->term_id);
     }
+    $posts_per_page_all = get_glc_option('glc_options', 'posts_per_page_all');
+    $posts_per_page_full = get_glc_option('glc_options', 'posts_per_page_full');
     $yand_zoom = get_glc_option('glc_options', 'yand_zoom');
     $bundle_obj = [
         'homeUrl' => home_url( '/' ),
@@ -65,6 +67,8 @@ function glamping_club_main_scripts_old() {
         'action' => 'glamping_club',
         'user_id' => $user_ID,
         'marker' => bin2hex('current_user-' . $user_ID),
+        'glc_per_page_all' => ($posts_per_page_all)? $posts_per_page_all : '12',
+        'glc_per_page_full' => ($posts_per_page_full)? $posts_per_page_full : '15',
         'yand_zoom' => $yand_zoom,
         'glAll' => $glempings,
         'glAllMap' => $glempings_map
@@ -165,9 +169,9 @@ function glamping_club_main_scripts_old() {
     wp_enqueue_script('custom', get_stylesheet_directory_uri() . '/js/custom.js',	array('jquery', 'swiper'),
         filemtime( get_stylesheet_directory() . '/js/custom.js' ), [ 'strategy' => 'defer' ]
     );
-    // wp_enqueue_script('test', get_stylesheet_directory_uri() . '/js/test.js',	array('jquery', 'swiper'),
-    //     filemtime( get_stylesheet_directory() . '/js/test.js' ), [ 'strategy' => 'defer' ]
-    // );
+    wp_enqueue_script('test', get_stylesheet_directory_uri() . '/js/test.js',	array('jquery', 'swiper'),
+        filemtime( get_stylesheet_directory() . '/js/test.js' ), [ 'strategy' => 'defer' ]
+    );
 
     wp_add_inline_script( 'bundle', 'const glamping_club_ajax = ' . wp_json_encode( $bundle_obj ), 'before' );
 }
@@ -416,6 +420,20 @@ function posts_pagination_site($end_size=1, $mid_size=2) {
         'class'              => 'pagination',  // class="" для nav элемента. С WP 5.5
     );
     return get_the_posts_pagination($args);
+}
+
+add_action( 'pre_get_posts', 'glampings_pagesize', 1 );
+function glampings_pagesize( $query ) {
+	// Выходим, если это админ-панель или не основной запрос.
+	if( is_admin() ) //  || ! $query->is_main_query()
+		return;
+	$glc_per_page = get_glc_option('glc_options', 'posts_per_page_all');
+	if( $glc_per_page && $query->is_post_type_archive('glampings') ){
+		$query->set( 'posts_per_page', $glc_per_page );
+	}
+    if( $glc_per_page && $query->is_tax('location') ){
+		$query->set( 'posts_per_page', $glc_per_page );
+	}
 }
 
 //Отправка в Телеграм

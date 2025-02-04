@@ -2017,45 +2017,6 @@ function sliderRegionFront() {
 }
 sliderRegionFront();
 
-// const sliderTop = document.querySelector('.spl-top');
-// new Splide( sliderTop, {
-//     type   : 'loop',
-//     drag   : 'free',
-//     perPage: 5,
-//     gap: 4,
-//     pagination: false,
-//     arrows: false,
-//     autoWidth: true,
-//     autoHeight:  true,
-//     autoScroll: {
-//         speed: 0.5,
-//         pauseOnFocus: false
-//     }
-// }).mount(window.splide.Extensions);
-//
-// const sliderBottom = document.querySelector('.spl-bottom');
-// const splideBot = new Splide( sliderBottom, {
-//     type   : 'loop',
-//     drag   : 'free',
-//     perPage: 5,
-//     gap: 4,
-//     pagination: false,
-//     arrows: false,
-//     autoWidth: true,
-//     autoHeight:  true,
-//     autoScroll: {
-//         speed: 0.5,
-//         pauseOnFocus: false
-//     }
-// }).mount(window.splide.Extensions);
-//
-// setTimeout(function(){
-//     const { autoScroll } = splideBot.Components;
-//     autoScroll.pause();
-// }, 3000);
-
 Cookies.set('mediaQuery', window.innerWidth);
-
-console.dir(glamping_club_ajax);
 
 console.dir(JSON.parse(glamping_club_ajax.glAll));

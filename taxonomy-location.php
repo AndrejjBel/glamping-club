@@ -34,7 +34,6 @@ if ( !empty( $_COOKIE["mediaQuery"] ) ) {
 if (!empty($_COOKIE['glcSort'])) {
 	if ($_COOKIE['glcSort'] == 'new_items') {
 		$args['orderby'] = 'date';
-		// $args['meta_key'] = 'glamping_recommended';
 		$args['order'] = 'DESC';
 	} elseif ($_COOKIE['glcSort'] == 'rating') {
 		// $args['orderby'] = 'meta_value_num';
@@ -73,13 +72,11 @@ if (!empty($_COOKIE['glcSort'])) {
 		$args['meta_key'] = 'glamping_price';
 		$args['order'] = 'ASC';
 	} else {
-		$args['orderby'] = 'meta_value date';
-		$args['meta_key'] = 'glamping_recommended';
+		$args['orderby'] = 'date';
 		$args['order'] = 'DESC';
 	}
 } else {
-	$args['orderby'] = 'meta_value date';
-	$args['meta_key'] = 'glamping_recommended';
+	$args['orderby'] = 'date';
 	$args['order'] = 'DESC';
 }
 query_posts($args);
@@ -168,6 +165,9 @@ $description = term_description();
 						<?php
 						// the_posts_navigation();
 						echo posts_pagination_site();
+						echo '<nav class="navigation filtr-pagination" role="navigation">
+							<div class="nav-links"></div>
+							</nav>';
 					else :
 						get_template_part( 'template-parts/content', 'none' );
 					endif;

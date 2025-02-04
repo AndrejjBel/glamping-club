@@ -1,4 +1,220 @@
+var Pagination = {
+    code: '',
+    Extend: function(data) {
+        data = data || {};
+        Pagination.size = data.size || 150;
+        Pagination.page = data.page || 1;
+        Pagination.step = data.step || 3;
+        Pagination.globj = data.globj || [];
+        Pagination.perPage = data.perPage || 12;
+    },
+    Add: function(s, f) {
+        for (var i = s; i < f; i++) {
+            Pagination.code += '<a>' + i + '</a>';
+        }
+    },
+    Last: function() {
+        Pagination.code += '<i>...</i><a>' + Pagination.size + '</a>';
+    },
+    First: function() {
+        Pagination.code += '<a>1</a><i>...</i>';
+    },
+    Click: function() {
+        Pagination.page = +this.innerHTML;
+        Pagination.Start();
+        if (Pagination.page == 1) {
+            document.querySelector('.filtr-pagination a.prev').style.display = '';
+        } else {
+            document.querySelector('.filtr-pagination a.prev').style.display = 'block';
+        }
+        if (Pagination.page == Pagination.size) {
+            document.querySelector('.filtr-pagination a.next').style.display = 'none';
+        } else {
+            document.querySelector('.filtr-pagination a.next').style.display = '';
+        }
+        let glempAllPagin = Pagination.globj.slice((Pagination.page-1)*Pagination.perPage, Pagination.perPage*Pagination.page);
+        glempRender(glempAllPagin);
+    },
+    Prev: function() {
+        Pagination.page--;
+        if (Pagination.page < 1) {
+            Pagination.page = 1;
+        }
+        Pagination.Start();
+        if (Pagination.page == 1) {
+            document.querySelector('.filtr-pagination a.prev').style.display = '';
+        } else {
+            document.querySelector('.filtr-pagination a.prev').style.display = 'block';
+        }
+        if (Pagination.page == Pagination.size) {
+            document.querySelector('.filtr-pagination a.next').style.display = 'none';
+        } else {
+            document.querySelector('.filtr-pagination a.next').style.display = '';
+        }
+        let glempAllPagin = Pagination.globj.slice((Pagination.page-1)*Pagination.perPage, Pagination.perPage*Pagination.page);
+        glempRender(glempAllPagin);
+    },
+    Next: function() {
+        Pagination.page++;
+        if (Pagination.page > Pagination.size) {
+            Pagination.page = Pagination.size;
+        }
+        Pagination.Start();
+        if (Pagination.page == 1) {
+            document.querySelector('.filtr-pagination a.prev').style.display = '';
+        } else {
+            document.querySelector('.filtr-pagination a.prev').style.display = 'block';
+        }
+        if (Pagination.page == Pagination.size) {
+            document.querySelector('.filtr-pagination a.next').style.display = 'none';
+        } else {
+            document.querySelector('.filtr-pagination a.next').style.display = '';
+        }
+        let glempAllPagin = Pagination.globj.slice((Pagination.page-1)*Pagination.perPage, Pagination.perPage*Pagination.page);
+        glempRender(glempAllPagin);
+    },
+    Bind: function() {
+        var a = Pagination.e.getElementsByTagName('a');
+        for (var i = 0; i < a.length; i++) {
+            if (+a[i].innerHTML === Pagination.page) a[i].className = 'current';
+            a[i].addEventListener('click', Pagination.Click, false);
+        }
+    },
+    Finish: function() {
+        Pagination.e.innerHTML = Pagination.code;
+        Pagination.code = '';
+        Pagination.Bind();
+    },
+    Start: function() {
+        if (Pagination.size < Pagination.step * 2 + 6) {
+            Pagination.Add(1, Pagination.size + 1);
+        }
+        else if (Pagination.page < Pagination.step * 2 + 1) {
+            Pagination.Add(1, Pagination.step * 2 + 4);
+            Pagination.Last();
+        }
+        else if (Pagination.page > Pagination.size - Pagination.step * 2) {
+            Pagination.First();
+            Pagination.Add(Pagination.size - Pagination.step * 2 - 2, Pagination.size + 1);
+        }
+        else {
+            Pagination.First();
+            Pagination.Add(Pagination.page - Pagination.step, Pagination.page + Pagination.step + 1);
+            Pagination.Last();
+        }
+        Pagination.Finish();
+    },
+    Buttons: function(e) {
+        var nav = e.getElementsByTagName('a');
+        nav[0].addEventListener('click', Pagination.Prev, false);
+        nav[1].addEventListener('click', Pagination.Next, false);
+    },
+    Create: function(e) {
+        let icon_prev = `<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9 1L2 7L9 13" stroke="#5E6D77" stroke-width="1.5"/>
+        </svg>`;
+        let icon_next = `<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 13L8 7L1 1" stroke="#5E6D77" stroke-width="1.5"/>
+        </svg>`;
+
+        var html = [
+            '<a class="prev">'+icon_prev+'</a>', // previous button
+            '<span class="links"></span>',  // pagination container
+            '<a class="next">'+icon_next+'</a>'  // next button
+        ];
+
+        e.innerHTML = html.join('');
+        Pagination.e = e.getElementsByTagName('span')[0];
+        Pagination.Buttons(e);
+    },
+    Init: function(e, data) {
+        if (e) {
+            Pagination.Extend(data);
+            Pagination.Create(e);
+            Pagination.Start();
+        }
+    }
+};
+
 let glempsAll = JSON.parse(glamping_club_ajax.glAll);
+
+const glIt = document.querySelector('.glampings-items');
+
+if (glIt.classList.contains('no-map')) {
+    if (window.innerWidth > 1649) {
+        let perPageFullSt = Number(glamping_club_ajax.glc_per_page_full);
+        let glempAllPagin = glempsAll.slice(0, perPageFullSt);
+        glempRender(glempAllPagin);
+        let pagesAbs = glempsAll.length/perPageFullSt;
+        let pages = Math.ceil(pagesAbs);
+        const navLinks = document.querySelector('.filtr-pagination .nav-links');
+        if (pages > 1) {
+            document.querySelector('.pagination').style.display = 'none';
+            document.querySelector('.filtr-pagination').style.display = 'flex';
+        } else {
+            document.querySelector('.pagination').style.display = 'none';
+            document.querySelector('.filtr-pagination').style.display = '';
+        }
+
+        Pagination.Init(navLinks, {
+            size: pages, // pages size
+            page: 1,  // selected page
+            step: 1,   // pages before and after current
+            globj: glempsAll,
+            perPage: perPageFullSt
+        });
+    }
+}
+
+window.addEventListener('resize', () => {
+    if (glIt.classList.contains('no-map')) {
+        if (window.innerWidth > 1649) {
+            let perPageFullSt = Number(glamping_club_ajax.glc_per_page_full);
+            let glempAllPagin = glempsAll.slice(0, perPageFullSt);
+            glempRender(glempAllPagin);
+            let pagesAbs = glempsAll.length/perPageFullSt;
+            let pages = Math.ceil(pagesAbs);
+            const navLinks = document.querySelector('.filtr-pagination .nav-links');
+            if (pages > 1) {
+                document.querySelector('.pagination').style.display = 'none';
+                document.querySelector('.filtr-pagination').style.display = 'flex';
+            } else {
+                document.querySelector('.pagination').style.display = 'none';
+                document.querySelector('.filtr-pagination').style.display = '';
+            }
+
+            Pagination.Init(navLinks, {
+                size: pages, // pages size
+                page: 1,  // selected page
+                step: 1,   // pages before and after current
+                globj: glempsAll,
+                perPage: perPageFullSt
+            });
+        } else {
+            let perPageAllSt = Number(glamping_club_ajax.glc_per_page_all);
+            let glempAllPagin = glempsAll.slice(0, perPageAllSt);
+            glempRender(glempAllPagin);
+            let pagesAbs = glempsAll.length/perPageAllSt;
+            let pages = Math.ceil(pagesAbs);
+            const navLinks = document.querySelector('.filtr-pagination .nav-links');
+            if (pages > 1) {
+                document.querySelector('.pagination').style.display = 'none';
+                document.querySelector('.filtr-pagination').style.display = 'flex';
+            } else {
+                document.querySelector('.pagination').style.display = 'none';
+                document.querySelector('.filtr-pagination').style.display = '';
+            }
+
+            Pagination.Init(navLinks, {
+                size: pages, // pages size
+                page: 1,  // selected page
+                step: 1,   // pages before and after current
+                globj: glempsAll,
+                perPage: perPageAllSt
+            });
+        }
+    }
+});
 
 const agc = (glAll) => {
     const allGlCount = document.querySelectorAll('.all-gl-count');
@@ -668,8 +884,8 @@ function sliderNumber(startMin, startMax, min, max) {
         console.dir(sliderValue.map(Number).map(elem => elem.toFixed()));
 
         // let glempAll = JSON.parse(glamping_club_ajax.glAll);
-        let newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
-        glempRender(newgGempAll);
+        let newgGlempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, sliderValue);
+        glempRender(newgGlempAll);
         localStorage.setItem('glcPrice', sliderValue.map(Number).map(elem => elem.toFixed()));
         if (handle == '0') {
             localStorage.setItem('glcPriceMin', Math.ceil(sliderValue[0]));
@@ -702,24 +918,24 @@ function sliderNumber(startMin, startMax, min, max) {
         let inputs = document.querySelectorAll('.glampings-filtr-items input');
 
         if (itemsVal(inputs, names) || sliderValueStartStr !== sliderValueStr) {
-            locationsArchive(newgGempAll);
+            locationsArchive(newgGlempAll);
         } else {
             locationsArchive(glempsAll);
         }
-        filtrTypeArchive(newgGempAll);
-        filtrAllocationArchive(newgGempAll);
-        filtrWorkingArchive(newgGempAll);
-        filtrNatureArchive(newgGempAll);
-        filtrFacilitiesGeneralArchive(newgGempAll);
-        filtrChildrenArchive(newgGempAll);
-        filtrErtainmentArchive(newgGempAll);
-        filtrTerritoryArchive(newgGempAll);
-        filtrSafetyArchive(newgGempAll);
-        filtrRecommended(newgGempAll);
-        filtrStocks(newgGempAll);
+        filtrTypeArchive(newgGlempAll);
+        filtrAllocationArchive(newgGlempAll);
+        filtrWorkingArchive(newgGlempAll);
+        filtrNatureArchive(newgGlempAll);
+        filtrFacilitiesGeneralArchive(newgGlempAll);
+        filtrChildrenArchive(newgGlempAll);
+        filtrErtainmentArchive(newgGlempAll);
+        filtrTerritoryArchive(newgGlempAll);
+        filtrSafetyArchive(newgGlempAll);
+        filtrRecommended(newgGlempAll);
+        filtrStocks(newgGlempAll);
 
         glampingsMap.children[0].innerHTML = '';
-        mapRender(mapPointTest(newgGempAll));
+        mapRender(mapPointTest(newgGlempAll));
 
         // console.dir(slider.parentElement.previousElementSibling.previousElementSibling.children[1]);
 
@@ -969,9 +1185,9 @@ function itemsChange() {
 
         if (input) {
             let glempAll = JSON.parse(glamping_club_ajax.glAll);
-            let newgGempAll =  glempAll.filter(filtrOptionsChange);
-            let newgGempAllForFiltr =  glempAll.filter(filtrOptionsChange);
-            sliderUpdatePrice(newgGempAll);
+            let newgGlempAll =  glempAll.filter(filtrOptionsChange);
+            let newgGlempAllForFiltr =  glempAll.filter(filtrOptionsChange);
+            sliderUpdatePrice(newgGlempAll);
             let sliderValueStart = priceSliderOption(glempAll);
 
             let priceObj = [];
@@ -981,266 +1197,291 @@ function itemsChange() {
 
             // .filter(elem => elem.stocks != '')
 
-            newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
-            newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number));
+            newgGlempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
+            newgGlempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number));
 
             if (document.querySelector('input[name="stocks"]').checked) {
-                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '');
-                newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '');
+                newgGlempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '');
+                newgGlempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '');
             }
             if (document.querySelector('input[name="recommended"]').checked) {
-                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.recommended == 'yes');
-                newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.recommended == 'yes');
+                newgGlempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.recommended == 'yes');
+                newgGlempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.recommended == 'yes');
             }
 
             if (document.querySelector('input[name="stocks"]').checked && document.querySelector('input[name="recommended"]').checked) {
-                newgGempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '').filter(elem => elem.recommended == 'yes');
-                newgGempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '').filter(elem => elem.recommended == 'yes');
+                newgGlempAll =  glempAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '').filter(elem => elem.recommended == 'yes');
+                newgGlempAllForFiltr =  glempAll.filter(filtrOptionsChangeForFiltr).filter(priceRange, priceObj.map(Number)).filter(elem => elem.stocks != '').filter(elem => elem.recommended == 'yes');
             }
 
-            // console.dir(newgGempAll);
-            // console.dir(newgGempAllForFiltr);
+            // console.dir(newgGlempAll);
+            // console.dir(newgGlempAllForFiltr);
 
             let sortGl = Cookies.get('glcSort');
             if (sortGl) {
                 if (sortGl == 'new_items') {
-                    newgGempAll.sort((x, y) => y.post_date - x.post_date);
+                    newgGlempAll.sort((x, y) => y.post_date - x.post_date);
                 } else if (sortGl == 'recommended') {
-                    newgGempAll.sort((x, y) => y.recommended - x.recommended);
+                    newgGlempAll.sort((x, y) => y.recommended - x.recommended);
                 } else if (sortGl == 'max_price') {
-                    newgGempAll.sort((x, y) => y.price - x.price);
+                    newgGlempAll.sort((x, y) => y.price - x.price);
                 } else if (sortGl == 'min_price') {
-                    newgGempAll.sort((x, y) => x.price - y.price);
+                    newgGlempAll.sort((x, y) => x.price - y.price);
                 }
                 // else if (sortGl == 'popular') {
-                //     newgGempAll.sort((x, y) => y.views - x.views);
+                //     newgGlempAll.sort((x, y) => y.views - x.views);
                 // } else if (sortGl == 'rating') {
-                //     newgGempAll.sort((x, y) => y.review_rating - x.review_rating || y.review_count - x.review_count);
+                //     newgGlempAll.sort((x, y) => y.review_rating - x.review_rating || y.review_count - x.review_count);
                 // }
             }
-            glempRender(newgGempAll);
+            const perPageAll = Number(glamping_club_ajax.glc_per_page_all);
+            const perPageFull = Number(glamping_club_ajax.glc_per_page_full);
+            let perPage = perPageAll;
+            if (window.innerWidth > 1649) {
+                perPage = perPageFull;
+            }
+            let glempAllPagin = newgGlempAll.slice(0, perPage);
+            glempRender(glempAllPagin);
+            let pagesAbs = newgGlempAll.length/perPage;
+            let pages = Math.ceil(pagesAbs);
+            const navLinks = document.querySelector('.filtr-pagination .nav-links');
+            if (pages > 1) {
+                document.querySelector('.pagination').style.display = 'none';
+                document.querySelector('.filtr-pagination').style.display = 'flex';
+            } else {
+                document.querySelector('.pagination').style.display = 'none';
+                document.querySelector('.filtr-pagination').style.display = '';
+            }
+
+            Pagination.Init(navLinks, {
+                size: pages, // pages size
+                page: 1,  // selected page
+                step: 1,   // pages before and after current
+                globj: newgGlempAll,
+                perPage: perPage
+            });
 
             checkLocalCheng(input, input.dataset.name, '');
 
             if (input.dataset.name == 'glcStocks') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
             }
 
             if (input.dataset.name == 'glcRecom') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
 
             if (input.dataset.name == 'glcRegion') {
-                // locationsArchive(newgGempAll);
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                // locationsArchive(newgGlempAll);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
 
             if (input.dataset.name == 'glcType') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
 
-                // filtrTypeArchive(newgGempAll);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                // filtrTypeArchive(newgGlempAll);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcAllocation') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
 
-                filtrTypeArchive(newgGempAllForFiltr);
-                // filtrAllocationArchive(newgGempAll);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                // filtrAllocationArchive(newgGlempAll);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcWorking') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                // filtrWorkingArchive(newgGempAll);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                // filtrWorkingArchive(newgGlempAll);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcNature') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                // filtrNatureArchive(newgGempAll);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                // filtrNatureArchive(newgGlempAll);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcFacilGen') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                // filtrFacilitiesGeneralArchive(newgGempAll);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                // filtrFacilitiesGeneralArchive(newgGlempAll);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcFacilChildren') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                // filtrChildrenArchive(newgGempAll);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                // filtrChildrenArchive(newgGlempAll);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcEntertainment') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgnewgGempAllForFiltrGempAll);
+                    locationsArchive(newgnewgGlempAllForFiltrGempAll);
                 } else {
                     locationsArchive(glemAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                // filtrErtainmentArchive(newgGempAll);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                // filtrErtainmentArchive(newgGlempAll);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcTerritory') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                // filtrTerritoryArchive(newgGempAll);
-                filtrSafetyArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                // filtrTerritoryArchive(newgGlempAll);
+                filtrSafetyArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
             }
             if (input.dataset.name == 'glcSafety') {
                 if (itemsVal(inputs, names) || glcPrice !== glcPriceSt) {
-                    locationsArchive(newgGempAllForFiltr);
+                    locationsArchive(newgGlempAllForFiltr);
                 } else {
                     locationsArchive(glempAll);
                 }
-                filtrTypeArchive(newgGempAllForFiltr);
-                filtrAllocationArchive(newgGempAllForFiltr);
-                filtrWorkingArchive(newgGempAllForFiltr);
-                filtrNatureArchive(newgGempAllForFiltr);
-                filtrFacilitiesGeneralArchive(newgGempAllForFiltr);
-                filtrChildrenArchive(newgGempAllForFiltr);
-                filtrErtainmentArchive(newgGempAllForFiltr);
-                filtrTerritoryArchive(newgGempAllForFiltr);
-                filtrRecommended(newgGempAllForFiltr);
-                filtrStocks(newgGempAllForFiltr);
-                // filtrSafetyArchive(newgGempAll);
+                filtrTypeArchive(newgGlempAllForFiltr);
+                filtrAllocationArchive(newgGlempAllForFiltr);
+                filtrWorkingArchive(newgGlempAllForFiltr);
+                filtrNatureArchive(newgGlempAllForFiltr);
+                filtrFacilitiesGeneralArchive(newgGlempAllForFiltr);
+                filtrChildrenArchive(newgGlempAllForFiltr);
+                filtrErtainmentArchive(newgGlempAllForFiltr);
+                filtrTerritoryArchive(newgGlempAllForFiltr);
+                filtrRecommended(newgGlempAllForFiltr);
+                filtrStocks(newgGlempAllForFiltr);
+                // filtrSafetyArchive(newgGlempAll);
             }
 
             glampingsMap.children[0].innerHTML = '';
-            mapRender(mapPointTest(newgGempAll));
-            agc(newgGempAll);
+            mapRender(mapPointTest(newgGlempAll));
+            agc(newgGlempAll);
 
             chekAllFitrs();
 
@@ -2294,11 +2535,11 @@ const listCardMap = () => {
                 glWrap.classList.remove('no-map');
                 glampingsMap.classList.add('active');
                 glampingsMap.children[0].innerHTML = '';
-                let newgGempAll =  glempsAll.filter(filtrOptionsChange);
+                let newgGlempAll =  glempsAll.filter(filtrOptionsChange);
                 let priceObj = [];
-                priceObj = sliderUpdatePrice(newgGempAll);
-                newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
-                mapRender(mapPointTest(newgGempAll));
+                priceObj = sliderUpdatePrice(newgGlempAll);
+                newgGlempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
+                mapRender(mapPointTest(newgGlempAll));
                 newScrollbarGlCard();
             } else if (btn.id == 'mapClose') {
                 newScrollbarGlCard().destroy();
@@ -2344,11 +2585,11 @@ const listCardMapMobile = () => {
                 glampingsMap.classList.add('active');
                 glampingsMap.children[0].innerHTML = '';
                 // let glempAll = JSON.parse(glamping_club_ajax.glAll);
-                let newgGempAll =  glempsAll.filter(filtrOptionsChange);
+                let newgGlempAll =  glempsAll.filter(filtrOptionsChange);
                 let priceObj = [];
-                priceObj = sliderUpdatePrice(newgGempAll);
-                newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
-                mapRender(mapPointTest(newgGempAll));
+                priceObj = sliderUpdatePrice(newgGlempAll);
+                newgGlempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj);
+                mapRender(mapPointTest(newgGlempAll));
                 btnMap.id = 'mapVision'
                 btnMap.innerText = 'Список'
                 Cookies.set('glcTemp', btnMap.id);
@@ -2406,25 +2647,25 @@ function sortGlempRender(sortGl) {
         priceObj = glcPrice.split(',');
     }
     // let glempAll = JSON.parse(glamping_club_ajax.glAll);
-    let newgGempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
+    let newgGlempAll =  glempsAll.filter(filtrOptionsChange).filter(priceRange, priceObj.map(Number));
     // let sortGl = Cookies.get('glcSort');
     if (sortGl) {
         if (sortGl == 'new_items') {
-            newgGempAll.sort((x, y) => y.post_date - x.post_date);
+            newgGlempAll.sort((x, y) => y.post_date - x.post_date);
         } else if (sortGl == 'recommended') {
-            newgGempAll.sort((x, y) => y.recommended - x.recommended);
+            newgGlempAll.sort((x, y) => y.recommended - x.recommended);
         } else if (sortGl == 'max_price') {
-            newgGempAll.sort((x, y) => y.price - x.price);
+            newgGlempAll.sort((x, y) => y.price - x.price);
         } else if (sortGl == 'min_price') {
-            newgGempAll.sort((x, y) => x.price - y.price);
+            newgGlempAll.sort((x, y) => x.price - y.price);
         }
         // else if (sortGl == 'popular') {
-        //     newgGempAll.sort((x, y) => y.views - x.views);
+        //     newgGlempAll.sort((x, y) => y.views - x.views);
         // } else if (sortGl == 'rating') {
-        //     newgGempAll.sort((x, y) => y.review_rating - x.review_rating || y.review_count - x.review_count);
+        //     newgGlempAll.sort((x, y) => y.review_rating - x.review_rating || y.review_count - x.review_count);
         // }
     }
-    glempRender(newgGempAll);
+    glempRender(newgGlempAll);
 }
 
 function optionsChecked(options) {
@@ -2635,4 +2876,102 @@ function mapFavComAction(addFavorites, addFavoritesBtnSingle, supFavorites, btnT
     } else {
         addFavoritesBtnSingle.attributes.title.value = 'Добавить в избранное';
     }
+}
+
+function paginateGlemp(glempAll) {
+    const navLinks = document.querySelector('.pagination.filtr-pagination .nav-links');
+    const perPage = glamping_club_ajax.glc_per_page.split('/').map(Number);
+    // let pages = glempAll.length/perPage[0];
+    let pages = glempAll.length/1;
+    let pagesCount = Math.ceil(pages);
+    console.dir(perPage);
+    console.dir(pages);
+    console.dir(pagesCount);
+
+    navLinks.innerHTML = '';
+
+    let pagContent = ``;
+
+    for (var i = 0; i < pagesCount; i++) {
+        if (i == 0) {
+            pagContent += `<span aria-current="page" class="page-numbers current">1</span>`;
+        } else {
+            if (pagesCount > 6 && i == 3) {
+                pagContent += `<span class="page-numbers dots">…</span>`;
+            }
+            pagContent += `<a class="page-numbers" href="http://glamping${window.location.pathname}page/${i+1}/" datapage="${i+1}">${i+1}</a>`;
+        }
+    }
+    pagContent += `<a class="next page-numbers" href="http://glamping${window.location.pathname}page/2/" datapage="2">
+        <svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M1 13L8 7L1 1" stroke="#5E6D77" stroke-width="1.5"></path>
+        </svg>
+    </a>`;
+
+    navLinks.innerHTML = pagContent;
+}
+// paginateGlemp(glempsAll);
+
+function createPagination(pages, page) {
+    const nav = document.querySelector('.pagination.filtr-pagination .nav-links');
+    console.dir(pages);
+    let str = '';
+    let active;
+    let pageCutLow = page - 1;
+    let pageCutHigh = page + 1;
+    let icon_prev = `<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M9 1L2 7L9 13" stroke="#5E6D77" stroke-width="1.5"/>
+    </svg>`;
+    let icon_next = `<svg width="10" height="14" viewBox="0 0 10 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M1 13L8 7L1 1" stroke="#5E6D77" stroke-width="1.5"/>
+    </svg>`;
+    if (page > 1) {
+        str += '<a onclick="createPagination('+pages+', '+(page-1)+')">'+icon_prev+'</a>';
+    }
+    if (pages < 6) {
+        for (let p = 1; p <= pages; p++) {
+            active = page == p ? "current" : "no";
+            str += '<a class="page-numbers '+active+'" onclick="createPagination('+pages+', '+p+')">'+ p +'</a>';
+        }
+    }
+    else {
+        if (page > 2) {
+            str += '<a class="page-numbers" onclick="createPagination('+pages+', 1)">1</a>';
+            if (page > 3) {
+                str += '<a class="page-numbers" onclick="createPagination('+pages+','+(page-2)+')">...</a>';
+            }
+        }
+        if (page === 1) {
+            pageCutHigh += 2;
+        } else if (page === 2) {
+            pageCutHigh += 1;
+        }
+        if (page === pages) {
+            pageCutLow -= 2;
+        } else if (page === pages-1) {
+            pageCutLow -= 1;
+        }
+        for (let p = pageCutLow; p <= pageCutHigh; p++) {
+            if (p === 0) {
+                p += 1;
+            }
+            if (p > pages) {
+                continue
+            }
+            active = page == p ? "current" : "no";
+            str += '<a class="page-numbers '+active+'" onclick="createPagination('+pages+', '+p+')">'+ p +'</a>';
+        }
+        if (page < pages-1) {
+            if (page < pages-2) {
+                str += '<a class="page-numbers" onclick="createPagination('+pages+','+(page+2)+')">...</a>';
+            }
+            str += '<a class="page-numbers" onclick="createPagination('+pages+', '+pages+')">'+pages+'</a>';
+        }
+    }
+    if (page < pages) {
+        str += '<a class="page-numbers" onclick="createPagination('+pages+', '+(page+1)+')">'+icon_next+'</a>';
+    }
+    str += '';
+    nav.innerHTML = str;
+    return str;
 }

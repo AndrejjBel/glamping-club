@@ -1,7 +1,7 @@
 .pagination {
     display: flex;
     justify-content: center;
-    margin: 40px 0;
+    margin-bottom: 40px;
 }
 
 .nav-links {
@@ -26,6 +26,11 @@
         color: rgb(241, 165, 57);
     }
 
+    & a.current {
+        color: rgb(241, 165, 57);
+        pointer-events: none;
+    }
+
     & span.dots {}
 
     & a.prev {
@@ -35,4 +40,19 @@
     & a.next {
         margin-left: 4px;
     }
+
+    & span.links {
+        display: flex;
+        gap: 16px;
+    }
+}
+
+.filtr-pagination {
+    display: none;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+
+.filtr-pagination a.prev {
+    display: none;
 }

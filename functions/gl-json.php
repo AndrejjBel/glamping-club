@@ -4,9 +4,9 @@ function glamping_club_result_render($location=0) {
         'post_type' => 'glampings',
         'post_status' => 'publish',
         'posts_per_page' => -1,
-        // 'nopaging'  => true,
-        'orderby' => 'meta_value date', //meta_value_num, title
-        'meta_key' => 'glamping_recommended',
+        'nopaging'  => true,
+        'orderby' => 'date', //meta_value_num, title
+        // 'meta_key' => 'glamping_recommended',
         'order' => 'DESC',
     );
 

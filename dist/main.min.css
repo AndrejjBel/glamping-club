@@ -3135,7 +3135,7 @@ a.secondary {
 .pagination {
   display: flex;
   justify-content: center;
-  margin: 40px 0; }
+  margin-bottom: 40px; }
 
 .nav-links {
   display: flex;
@@ -3152,10 +3152,24 @@ a.secondary {
     height: 12px; }
   .nav-links span.current {
     color: #f1a539; }
+  .nav-links a.current {
+    color: #f1a539;
+    pointer-events: none; }
   .nav-links a.prev {
     margin-right: 4px; }
   .nav-links a.next {
     margin-left: 4px; }
+  .nav-links span.links {
+    display: flex;
+    gap: 16px; }
+
+.filtr-pagination {
+  display: none;
+  justify-content: center;
+  margin-bottom: 40px; }
+
+.filtr-pagination a.prev {
+  display: none; }
 
 .single-glampings-main {
   display: flex;
@@ -4579,7 +4593,8 @@ a.secondary {
 .glampings-items {
   display: flex;
   gap: 16px;
-  flex-wrap: wrap; }
+  flex-wrap: wrap;
+  margin-bottom: 40px; }
   .glampings-items.related-list {
     position: relative;
     width: 100%;

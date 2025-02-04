@@ -12,6 +12,15 @@ get_header();
 global $query_string;
 parse_str($query_string, $args);
 
+$glc_per_page = get_glc_option('glc_options', 'posts_per_page_all');
+
+// $width = "<script>document.write(window.innerWidth);</script>";
+// if ((int)$width > 1649) {
+// 	$args['posts_per_page'] = 5;
+// }
+
+// $args['posts_per_page'] = $glc_per_page_arr[0];
+
 $btn_map_mobile_id = 'mapVision';
 $btn_map_mobile_text = 'Список';
 if (!empty($_COOKIE['glcTemp'])) {
@@ -34,7 +43,6 @@ if ( !empty( $_COOKIE["mediaQuery"] ) ) {
 if (!empty($_COOKIE['glcSort'])) {
 	if ($_COOKIE['glcSort'] == 'new_items') {
 		$args['orderby'] = 'date';
-		// $args['meta_key'] = 'glamping_recommended';
 		$args['order'] = 'DESC';
 	} elseif ($_COOKIE['glcSort'] == 'rating') {
 		// $args['orderby'] = 'meta_value_num';
@@ -73,13 +81,11 @@ if (!empty($_COOKIE['glcSort'])) {
 		$args['meta_key'] = 'glamping_price';
 		$args['order'] = 'ASC';
 	} else {
-		$args['orderby'] = 'meta_value date';
-		$args['meta_key'] = 'glamping_recommended';
+		$args['orderby'] = 'date';
 		$args['order'] = 'DESC';
 	}
 } else {
-	$args['orderby'] = 'meta_value date';
-	$args['meta_key'] = 'glamping_recommended';
+	$args['orderby'] = 'date';
 	$args['order'] = 'DESC';
 }
 query_posts($args);
@@ -167,7 +173,6 @@ query_posts($args);
 					</div>
 					<div class="glampings-wrap-count">Найдено: <span class="all-gl-count"></span> глэмпингов</div>
 				</div>
-
 				<div class="glampings-wrap<?php echo template_cookie_value()['no_map'] . template_cookie_value()['gwrap_scroll']; ?>">
 					<?php if ( have_posts() ) : ?>
 					<div class="glampings-items card<?php echo template_cookie_value()['no_map']; ?>">
@@ -182,6 +187,9 @@ query_posts($args);
 						<?php
 						// the_posts_navigation();
 						echo posts_pagination_site();
+						echo '<nav class="navigation filtr-pagination" role="navigation">
+							<div class="nav-links"></div>
+							</nav>';
 					else :
 						get_template_part( 'template-parts/content', 'none' );
 					endif;
@@ -203,5 +211,5 @@ query_posts($args);
 get_footer();
 
 // echo '<pre>';
-// var_dump(glampings_map_render());
+// var_dump($glc_per_page);
 // echo '</pre>';
