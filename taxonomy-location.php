@@ -94,6 +94,11 @@ $description = term_description();
 .archive-glampings .scrollbar-track-y {
 	width: 5px;
 }
+@media (max-width: 1199px) {
+    .glampings-filtr {
+        display: none;
+    }
+}
 </style>
 
 	<div id="btn-filtr-vision-mobile" class="btn-filtr-vision-mobile-wrap">

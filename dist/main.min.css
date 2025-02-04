@@ -4446,7 +4446,8 @@ a.secondary {
         display: none; }
         .archive-glampings__left.no-map {
           display: flex;
-          flex-direction: column; } }
+          flex-direction: column;
+          gap: 0; } }
   .archive-glampings .rating-count {
     font-size: 12px; }
   .archive-glampings__btn-map-mobile {
