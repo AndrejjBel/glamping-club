@@ -149,10 +149,14 @@ if (glIt.classList.contains('no-map')) {
         let pages = Math.ceil(pagesAbs);
         const navLinks = document.querySelector('.filtr-pagination .nav-links');
         if (pages > 1) {
-            document.querySelector('.pagination').style.display = 'none';
+            if (document.querySelector('.pagination')) {
+                document.querySelector('.pagination').style.display = 'none';
+            }
             document.querySelector('.filtr-pagination').style.display = 'flex';
         } else {
-            document.querySelector('.pagination').style.display = 'none';
+            if (document.querySelector('.pagination')) {
+                document.querySelector('.pagination').style.display = 'none';
+            }
             document.querySelector('.filtr-pagination').style.display = '';
         }
 
