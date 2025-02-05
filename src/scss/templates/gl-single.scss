@@ -1738,6 +1738,8 @@ article.type-glampings {
             font-size: 14px;
             font-weight: 400;
             line-height: 150%;
+            margin-top: 29px;
+            margin-bottom: 26px;
 
             @media (max-width: 649px) {
                 font-size: 13px;
@@ -1776,6 +1778,7 @@ article.type-glampings {
 
             &.active {
                 display: block;
+                margin-top: 27px;
             }
         }
     }

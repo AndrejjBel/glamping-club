@@ -4282,7 +4282,9 @@ a.secondary {
       -webkit-box-orient: vertical;
       font-size: 14px;
       font-weight: 400;
-      line-height: 150%; }
+      line-height: 150%;
+      margin-top: 29px;
+      margin-bottom: 26px; }
       @media (max-width: 649px) {
         .wtd-item__text__text {
           font-size: 13px; } }
@@ -4308,7 +4310,8 @@ a.secondary {
         .wtd-item__text button.link {
           margin-top: 20px; } }
       .wtd-item__text button.link.active {
-        display: block; }
+        display: block;
+        margin-top: 27px; }
 
 .stocks__items {
   display: flex;
