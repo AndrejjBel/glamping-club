@@ -1,8 +1,10 @@
 <?php
 $style = '';
+$style_search = '';
 $container = 'container';
 if (is_post_type_archive('glampings') || is_tax('location')) {
     $style = ' header-archive-glampings';
+    $style_search = ' top-search-archive-glampings';
     $container = 'container-ag';
 }
 ?>
@@ -20,7 +22,7 @@ if (is_post_type_archive('glampings') || is_tax('location')) {
             <?php endif; ?>
         </div>
 
-        <form role="search" method="get" class="gen-header__top__search<?php echo (is_post_type_archive('glampings'))? ' top-search-archive-glampings': '';?>" action="<?php echo home_url( '/' ); ?>">
+        <form role="search" method="get" class="gen-header__top__search<?php echo $style_search;?>" action="<?php echo home_url( '/' ); ?>">
             <input type="search" class="search-field" placeholder="<?php echo esc_attr_x( 'Поиск', 'placeholder' ) ?>" value="<?php echo get_search_query() ?>" name="s" title="<?php echo esc_attr_x( 'Поиск', 'label' ) ?>" />
             <button type="submit" name="button" class="gen-header__top__search__search-btn">
                 <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
