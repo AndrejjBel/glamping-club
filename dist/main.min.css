@@ -4267,7 +4267,9 @@ a.secondary {
     .wtd-item__text__title {
       font-size: 18px;
       font-weight: 600;
-      line-height: 135%; }
+      line-height: 135%;
+      margin-top: 29px;
+      margin-bottom: 26px; }
       @media (max-width: 1329px) {
         .wtd-item__text__title {
           font-size: 16px; } }
@@ -4282,9 +4284,7 @@ a.secondary {
       -webkit-box-orient: vertical;
       font-size: 14px;
       font-weight: 400;
-      line-height: 150%;
-      margin-top: 29px;
-      margin-bottom: 26px; }
+      line-height: 150%; }
       @media (max-width: 649px) {
         .wtd-item__text__text {
           font-size: 13px; } }
@@ -4311,7 +4311,7 @@ a.secondary {
           margin-top: 20px; } }
       .wtd-item__text button.link.active {
         display: block;
-        margin-top: 27px; }
+        margin-top: auto; }
 
 .stocks__items {
   display: flex;
