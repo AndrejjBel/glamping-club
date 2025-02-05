@@ -410,6 +410,10 @@
     @media (max-width: 767px) {
         margin-bottom: 40px;
     }
+
+    & p {
+        font-size: 14px;
+    }
 }
 
 .related-list-swrapper {
@@ -523,7 +527,11 @@
         &__title {
             font-size: 120%;
             font-weight: 700;
-            color: var(--color-primary);
+            color: rgb(70, 122, 60);
+
+            &:hover {
+                color: rgb(70, 122, 60);
+            }
         }
 
         &__price {
@@ -747,7 +755,7 @@
             &__title {
                 font-size: 120%;
                 font-weight: 700;
-                color: var(--color-primary);
+                color: rgb(70, 122, 60);
             }
 
             &__rating {
@@ -1315,9 +1323,9 @@
     height: 24px;
     background: #FFFFFF; //var(--color-svg-form);
     border-radius: 12px;
-    border: 1px solid var(--color-primary);
+    border: 1px solid rgb(70, 122, 60);
     font-weight: 600;
-    color: var(--color-primary);
+    color: rgb(70, 122, 60);
 
     &:before {
     	content: "";
@@ -1325,28 +1333,28 @@
     	position: absolute;
      	top: 100%;
     	left: 50%;
-    	border-top-color: var(--color-primary); //var(--color-svg-form);
+    	border-top-color: rgb(70, 122, 60);
     	border-width: 4px;
     	margin-left: -4px;
     }
 
     &.active {
-        background: var(--color-primary);
+        background: rgb(70, 122, 60);
         color: #fff;
         z-index: 99;
 
         &:before {
-        	border-top-color: var(--color-primary);
+        	border-top-color: rgb(70, 122, 60);
         }
     }
 
     &.focus {
-        background: var(--color-primary);
+        background: rgb(70, 122, 60);
         color: #fff;
         z-index: 99;
 
         &:before {
-        	border-top-color: var(--color-primary);
+        	border-top-color: rgb(70, 122, 60);
         }
     }
 }
@@ -1363,7 +1371,7 @@
 // }
 
 .glamping-item:hover  .glc-icon-content {
-    background: var(--color-primary);
+    background: rgb(70, 122, 60);
     color: #fff;
 }
 

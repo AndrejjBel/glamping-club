@@ -122,7 +122,7 @@
 
             &.top-search-archive-glampings {
                 @media (min-width: 1440px) {
-                    max-width: 600px;
+                    max-width: 500px;
                 }
 
                 @media (min-width: 1500px) {
@@ -216,7 +216,8 @@
         &__btns {
             display: flex;
             gap: 12px;
-            margin-left: 113px;
+            // margin-left: 113px;
+            margin-left: auto;
 
             @media (max-width: 1330px) {
                 margin-left: 9vw;

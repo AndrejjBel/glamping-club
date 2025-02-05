@@ -1372,7 +1372,7 @@ strong, b {
       background: white; }
       @media (min-width: 1440px) {
         .gen-header__top__search.top-search-archive-glampings {
-          max-width: 600px; } }
+          max-width: 500px; } }
       @media (min-width: 1500px) {
         .gen-header__top__search.top-search-archive-glampings {
           margin-left: 235px; } }
@@ -1437,7 +1437,7 @@ strong, b {
     .gen-header__top__btns {
       display: flex;
       gap: 12px;
-      margin-left: 113px; }
+      margin-left: auto; }
       @media (max-width: 1330px) {
         .gen-header__top__btns {
           margin-left: 9vw; } }
@@ -4659,6 +4659,8 @@ a.secondary {
   @media (max-width: 767px) {
     .term-description {
       margin-bottom: 40px; } }
+  .term-description p {
+    font-size: 14px; }
 
 .related-list-swrapper {
   align-items: stretch; }
@@ -4734,7 +4736,9 @@ a.secondary {
     .balloon-content-body__content__title {
       font-size: 120%;
       font-weight: 700;
-      color: var(--color-primary); }
+      color: #467a3c; }
+      .balloon-content-body__content__title:hover {
+        color: #467a3c; }
     .balloon-content-body__content__price {
       font-size: 120%;
       font-weight: 700; }
@@ -4852,7 +4856,7 @@ a.secondary {
       .balloon-content-body-pan__content__info__title {
         font-size: 120%;
         font-weight: 700;
-        color: var(--color-primary); }
+        color: #467a3c; }
       .balloon-content-body-pan__content__info__rating {
         display: flex;
         gap: 4px; }
@@ -5168,33 +5172,33 @@ a.secondary {
   height: 24px;
   background: #FFFFFF;
   border-radius: 12px;
-  border: 1px solid var(--color-primary);
+  border: 1px solid #467a3c;
   font-weight: 600;
-  color: var(--color-primary); }
+  color: #467a3c; }
   .glc-icon-content:before {
     content: "";
     border: solid transparent;
     position: absolute;
     top: 100%;
     left: 50%;
-    border-top-color: var(--color-primary);
+    border-top-color: #467a3c;
     border-width: 4px;
     margin-left: -4px; }
   .glc-icon-content.active {
-    background: var(--color-primary);
+    background: #467a3c;
     color: #fff;
     z-index: 99; }
     .glc-icon-content.active:before {
-      border-top-color: var(--color-primary); }
+      border-top-color: #467a3c; }
   .glc-icon-content.focus {
-    background: var(--color-primary);
+    background: #467a3c;
     color: #fff;
     z-index: 99; }
     .glc-icon-content.focus:before {
-      border-top-color: var(--color-primary); }
+      border-top-color: #467a3c; }
 
 .glamping-item:hover .glc-icon-content {
-  background: var(--color-primary);
+  background: #467a3c;
   color: #fff; }
 
 .swiper {
