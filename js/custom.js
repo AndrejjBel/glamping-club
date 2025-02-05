@@ -2020,3 +2020,5 @@ sliderRegionFront();
 Cookies.set('mediaQuery', window.innerWidth);
 
 console.dir(JSON.parse(glamping_club_ajax.glAll));
+
+console.dir(Scrollbar.getAll());

@@ -12,6 +12,25 @@ const filtrOptionsVision = () => {
 
             if (item.children[1])  item.children[1].classList.toggle('active');
             if (item.children[2])  item.children[2].classList.toggle('active');
+
+            if (item.nextElementSibling.classList.contains('active')) {
+                setTimeout(function(){
+                    Scrollbar.getAll()[0].scrollIntoView(item.nextElementSibling, {
+                        offsetLeft: 34,
+                        offsetBottom: 60,
+                        alignToTop: false,
+                        // onlyScrollIfNeeded: true,
+                    });
+                }, 400);
+                setTimeout(function(){
+                    Scrollbar.getAll()[1].scrollIntoView(item.nextElementSibling, {
+                        offsetLeft: 34,
+                        offsetBottom: 60,
+                        alignToTop: false,
+                        // onlyScrollIfNeeded: true,
+                    });
+                }, 400);
+            }
         });
     });
 
