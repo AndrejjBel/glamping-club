@@ -2017,8 +2017,33 @@ function sliderRegionFront() {
 }
 sliderRegionFront();
 
+const btnFullScr = () => {
+    const btn = document.querySelector('#fullscreen');
+    if (btn) {
+        setTimeout(function(){
+            btn.classList.add('vis');
+        }, 600);
+    }
+}
+btnFullScr();
+
+function toggleFullScreen(elem) {
+    const map = document.querySelector('.glampings-map');
+    if (!document.fullscreenElement) {
+        if (map.requestFullscreen) {
+            map.requestFullscreen();
+            elem.style.backgroundColor = '#ffeba0';
+        }
+    } else {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+            elem.style.backgroundColor = '';
+        }
+    }
+}
+
 Cookies.set('mediaQuery', window.innerWidth);
 
-console.dir(JSON.parse(glamping_club_ajax.glAll));
-
-console.dir(Scrollbar.getAll());
+// console.dir(JSON.parse(glamping_club_ajax.glAll));
+//
+// console.dir(Scrollbar.getAll());

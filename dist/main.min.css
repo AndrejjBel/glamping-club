@@ -4685,6 +4685,7 @@ a.secondary {
     opacity: .4; }
 
 .glampings-map {
+  position: relative;
   display: none;
   max-width: calc(100% - 860px);
   width: 100%;
@@ -4715,6 +4716,27 @@ a.secondary {
         border-radius: 0; }
       .glampings-map__content .ymaps-2-1-79-balloon .ymaps-2-1-79-balloon__layout {
         border-radius: 12px; }
+  .glampings-map__btn-fc {
+    position: absolute;
+    top: 50px;
+    right: 10px;
+    display: flex;
+    align-items: center;
+    width: 28px;
+    height: 25px;
+    padding: 5px;
+    background: #fff;
+    box-shadow: 0 1px 2px 1px rgba(0, 0, 0, 0.15), 0 2px 5px -3px rgba(0, 0, 0, 0.15);
+    border-radius: 3px;
+    z-index: 99;
+    visibility: hidden;
+    opacity: 0; }
+    .glampings-map__btn-fc.vis {
+      visibility: visible;
+      opacity: 1; }
+    @media (max-width: 767px) {
+      .glampings-map__btn-fc {
+        display: none; } }
 
 .balloon-content-body {
   display: flex;

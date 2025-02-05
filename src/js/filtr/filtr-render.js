@@ -2121,10 +2121,10 @@ function mapRender(geoData) {
             {
                 center: [54.9924, 73.3686],
                 zoom: zoomNum,
-                controls: ['zoomControl',  'fullscreenControl']
+                controls: ['zoomControl'] // 'fullscreenControl'
             },
             {
-                suppressMapOpenBlock: true,
+                // suppressMapOpenBlock: true,
                 balloonPanelMaxMapArea: 390000,
                 // balloonPanelMaxMapArea: Infinity
                 // balloonMaxWidth: 270
