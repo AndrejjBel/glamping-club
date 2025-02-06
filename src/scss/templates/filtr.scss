@@ -193,6 +193,7 @@
     }
 
     &__value {
+        display: none;
         color: rgb(22, 22, 22);
         font-size: 14px;
         font-weight: 500;
@@ -254,15 +255,22 @@
     cursor: pointer;
     transition: all 0.4s;
 
-    &:hover {
-        background: var(--color-option-hover);
-    }
+    // &:hover {
+    //     background: var(--color-option-hover);
+    // }
 
     & svg {
         display: none;
 
         &.active {
             display: block;
+        }
+    }
+
+    &.sort-option {
+        &:nth-last-child(n+2) {
+            margin-bottom: 6px;
+            border-bottom: 1px solid rgb(240, 240, 240);
         }
     }
 }
@@ -326,10 +334,10 @@ ul.item-options-checkbox {
             top: 0;
             left: 0;
 
-            // &:checked ~ label .checkmark.fcheckbox {
-            //     border: 1px solid var(--color-primary);
-            //     background: var(--color-primary);
-            // }
+            &:checked ~ label .checkmark.fcheckbox {
+                border: 1px solid rgba(70, 122, 60, 1);
+                background: rgba(70, 122, 60, 1);
+            }
 
             // &:checked ~ label span {
             //     color: var(--link-color);
@@ -341,7 +349,7 @@ ul.item-options-checkbox {
                 visibility: visible;
 
                 & path {
-                    fill: #161616;
+                    fill: #FFFFFF;
                 }
             }
         }

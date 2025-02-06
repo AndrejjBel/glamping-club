@@ -2469,6 +2469,20 @@ button.secondary {
   color: var(--Primary-700, #3033D1);
   border: 1px solid var(--Primary-50, #EEF4FF);
   background: #F4F4F4; }
+  button.secondary.green {
+    color: #161616;
+    border: 1px solid #467a3c;
+    background: #FFFFFF; }
+    button.secondary.green:hover {
+      color: #FFFFFF;
+      border: 1px solid rgba(70, 122, 60, 0.9);
+      background: rgba(70, 122, 60, 0.9); }
+    button.secondary.green:focus {
+      box-shadow: none; }
+    button.secondary.green.active {
+      color: #FFFFFF;
+      border: 1px solid #467a3c;
+      background: #467a3c; }
   button.secondary.color-text {
     border: none;
     color: var(--text-color, #161616); }
@@ -2641,11 +2655,14 @@ a.btn-back-to-home {
       display: none; } }
   .btn-group.btn-group-map {
     gap: 0;
-    border-radius: 8px;
     overflow: hidden; }
     .btn-group.btn-group-map button {
       border-radius: 0;
       padding: 8px 0; }
+      .btn-group.btn-group-map button.map-close {
+        border-radius: 5px 0 0 5px; }
+      .btn-group.btn-group-map button.map-vision {
+        border-radius: 0 5px 5px 0; }
 
 .btn-group-mobile {
   display: flex;
@@ -5410,6 +5427,7 @@ a.secondary {
         .filtr-item__title__count svg path {
           fill: #f1a539; }
   .filtr-item__value {
+    display: none;
     color: #161616;
     font-size: 14px;
     font-weight: 500;
@@ -5453,12 +5471,13 @@ a.secondary {
   padding: 8px 12px;
   cursor: pointer;
   transition: all 0.4s; }
-  .filtr-option:hover {
-    background: var(--color-option-hover); }
   .filtr-option svg {
     display: none; }
     .filtr-option svg.active {
       display: block; }
+  .filtr-option.sort-option:nth-last-child(n+2) {
+    margin-bottom: 6px;
+    border-bottom: 1px solid #f0f0f0; }
 
 ul.item-options-checkbox {
   list-style: none;
@@ -5498,12 +5517,15 @@ ul.item-options-checkbox {
       height: 100%;
       top: 0;
       left: 0; }
+      ul.item-options-checkbox li input:checked ~ label .checkmark.fcheckbox {
+        border: 1px solid #467a3c;
+        background: #467a3c; }
       ul.item-options-checkbox li input:checked ~ label .checkmark svg {
         display: block;
         opacity: 1;
         visibility: visible; }
         ul.item-options-checkbox li input:checked ~ label .checkmark svg path {
-          fill: #161616; }
+          fill: #FFFFFF; }
     ul.item-options-checkbox li label {
       width: 100%;
       display: flex;

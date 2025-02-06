@@ -11,8 +11,8 @@ $taxonomy_id = $taxonomy_obj->term_id;
 <div class="glampings-filtr-items">
     <div class="filtr-item btn-map">
         <div class="filtr-item__options btn-group btn-group-map js-btn-map">
-            <button id="mapClose" class="secondary color-text fs12 w100 map-close<?php echo template_cookie_value()['btn_close']; ?>" type="button" name="button">Список</button>
-            <button id="mapVision" class="secondary color-text fs12 w100 map-vision<?php echo template_cookie_value()['btn_vision']; ?>" type="button" name="button">Карта</button>
+            <button id="mapClose" class="secondary green fs12 w100 map-close<?php echo template_cookie_value()['btn_close']; ?>" type="button" name="button">Список</button>
+            <button id="mapVision" class="secondary green fs12 w100 map-vision<?php echo template_cookie_value()['btn_vision']; ?>" type="button" name="button">Карта</button>
         </div>
     </div>
 
@@ -29,7 +29,7 @@ $taxonomy_id = $taxonomy_obj->term_id;
             <div class="filtr-option sort-option" data-value="new_items">
                 <div class="filtr-option__text">Новинки</div>
                 <svg class="<?php echo filtr_cookie_value('new_items')['class']; ?>" xmlns="http://www.w3.org/2000/svg" width="16" height="11" fill="none" viewBox="0 0 16 11" data-test="checked-option">
-                    <path fill="#000" fill-rule="evenodd" d="M15.707.293a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L6 8.586 14.293.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"></path>
+                    <path fill="rgba(70, 122, 60, 1)" fill-rule="evenodd" d="M15.707.293a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L6 8.586 14.293.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"></path>
                 </svg>
             </div>
             <!-- <div class="filtr-option sort-option" data-value="recommended">
@@ -41,13 +41,13 @@ $taxonomy_id = $taxonomy_obj->term_id;
             <div class="filtr-option sort-option" data-value="min_price">
                 <div class="filtr-option__text">Сначала дешевые</div>
                 <svg class="<?php echo filtr_cookie_value('min_price')['class']; ?>" xmlns="http://www.w3.org/2000/svg" width="16" height="11" fill="none" viewBox="0 0 16 11" data-test="checked-option">
-                    <path fill="#000" fill-rule="evenodd" d="M15.707.293a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L6 8.586 14.293.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"></path>
+                    <path fill="rgba(70, 122, 60, 1)" fill-rule="evenodd" d="M15.707.293a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L6 8.586 14.293.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"></path>
                 </svg>
             </div>
             <div class="filtr-option sort-option" data-value="max_price">
                 <div class="filtr-option__text">Сначала дорогие</div>
                 <svg class="<?php echo filtr_cookie_value('max_price')['class']; ?>" xmlns="http://www.w3.org/2000/svg" width="16" height="11" fill="none" viewBox="0 0 16 11" data-test="checked-option">
-                    <path fill="#000" fill-rule="evenodd" d="M15.707.293a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L6 8.586 14.293.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"></path>
+                    <path fill="rgba(70, 122, 60, 1)" fill-rule="evenodd" d="M15.707.293a1 1 0 0 1 0 1.414l-9 9a1 1 0 0 1-1.414 0l-5-5a1 1 0 0 1 1.414-1.414L6 8.586 14.293.293a1 1 0 0 1 1.414 0" clip-rule="evenodd"></path>
                 </svg>
             </div>
         </div>

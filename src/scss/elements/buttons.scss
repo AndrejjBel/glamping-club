@@ -372,6 +372,28 @@ button.secondary{
     border: 1px solid var(--Primary-50, #EEF4FF);
     background: #F4F4F4; //var(--Primary-50, #EEF4FF);
 
+    &.green {
+        color: rgba(22, 22, 22, 1);
+        border: 1px solid rgba(70, 122, 60, 1);
+    	background: #FFFFFF;
+
+        &:hover {
+            color: #FFFFFF;
+            border: 1px solid rgba(70, 122, 60, 0.9);
+            background: rgba(70, 122, 60, 0.9);
+        }
+
+        &:focus {
+            box-shadow: none;
+        }
+
+        &.active {
+            color: #FFFFFF;
+            border: 1px solid rgba(70, 122, 60, 1);
+            background: rgba(70, 122, 60, 1);
+        }
+    }
+
     &.color-text {
         border: none;
         color: var(--text-color, #161616);
@@ -650,12 +672,20 @@ a.btn-back-to-home {
 
     &.btn-group-map {
         gap: 0;
-        border-radius: 8px;
+        // border-radius: 8px;
         overflow: hidden;
 
         & button {
             border-radius: 0;
             padding: 8px 0;
+
+            &.map-close {
+                border-radius: 5px 0 0 5px;
+            }
+
+            &.map-vision {
+                border-radius: 0 5px 5px 0;
+            }
         }
     }
 }

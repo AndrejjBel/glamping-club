@@ -315,9 +315,10 @@ function stocks_title($stocks, $html=0) {
 			$titles[] = get_the_title($stock);
 		}
 		if ($html) {
-			$content .= '<span class="stock-title">' . $titles[0] . '</span>';
 			if (count($titles) > 1) {
-				$content .= '<span class="stock-count"> +' . count($titles)-1 . '</span>';
+				$content .= '<span class="stock-count">' . num_word(count($titles), array(' акция', ' акции', ' акций')) . '</span>';
+			} else {
+				$content .= '<span class="stock-title">' . $titles[0] . '</span>';
 			}
 		} else {
 			$content .= ['titles' => $titles, 'count' => count($titles)];
