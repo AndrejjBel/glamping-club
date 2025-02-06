@@ -186,6 +186,7 @@ $description = term_description();
 			</div>
 		</div>
 		<div class="glampings-map<?php echo template_cookie_value()['map']; ?>">
+			<div id="mapYandex" class="glampings-map__content"></div>
 			<button id="fullscreen" class="glampings-map__btn-fc" type="button" name="button" onclick="toggleFullScreen(this)">
 				<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-maximize-2">
 					<polyline points="15 3 21 3 21 9"></polyline>
@@ -194,7 +195,6 @@ $description = term_description();
 					<line x1="3" y1="21" x2="10" y2="14"></line>
 				</svg>
 			</button>
-			<div id="mapYandex" class="glampings-map__content"></div>
 		</div>
 		<!-- <div class="archive-glampings__btn-map-mobile">
 			<button id="<?php //echo $btn_map_mobile_id; ?>" class="primary lsm js-btn-map-mobile" type="button" name="button">
