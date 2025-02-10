@@ -171,60 +171,62 @@ if (glIt.classList.contains('no-map')) {
 }
 
 window.addEventListener('resize', () => {
-    if (!document.querySelector('.glampings-filtr-btns__item.btn-clear').classList.contains('active')) {
-        if (glIt.classList.contains('no-map')) {
-            if (window.innerWidth > 1649) {
-                let perPageFullSt = Number(glamping_club_ajax.glc_per_page_full);
-                let glempAllPagin = glempsAll.slice(0, perPageFullSt);
-                glempRender(glempAllPagin);
-                let pagesAbs = glempsAll.length/perPageFullSt;
-                let pages = Math.ceil(pagesAbs);
-                const navLinks = document.querySelector('.filtr-pagination .nav-links');
-                if (pages > 1) {
-                    if (document.querySelector('.pagination')) {
-                        document.querySelector('.pagination').style.display = 'none';
+    if (document.querySelector('.glampings-filtr-btns__item.btn-clear')) {
+        if (!document.querySelector('.glampings-filtr-btns__item.btn-clear').classList.contains('active')) {
+            if (glIt.classList.contains('no-map')) {
+                if (window.innerWidth > 1649) {
+                    let perPageFullSt = Number(glamping_club_ajax.glc_per_page_full);
+                    let glempAllPagin = glempsAll.slice(0, perPageFullSt);
+                    glempRender(glempAllPagin);
+                    let pagesAbs = glempsAll.length/perPageFullSt;
+                    let pages = Math.ceil(pagesAbs);
+                    const navLinks = document.querySelector('.filtr-pagination .nav-links');
+                    if (pages > 1) {
+                        if (document.querySelector('.pagination')) {
+                            document.querySelector('.pagination').style.display = 'none';
+                        }
+                        document.querySelector('.filtr-pagination').style.display = 'flex';
+                    } else {
+                        if (document.querySelector('.pagination')) {
+                            document.querySelector('.pagination').style.display = 'none';
+                        }
+                        document.querySelector('.filtr-pagination').style.display = '';
                     }
-                    document.querySelector('.filtr-pagination').style.display = 'flex';
-                } else {
-                    if (document.querySelector('.pagination')) {
-                        document.querySelector('.pagination').style.display = 'none';
-                    }
-                    document.querySelector('.filtr-pagination').style.display = '';
-                }
 
-                Pagination.Init(navLinks, {
-                    size: pages, // pages size
-                    page: 1,  // selected page
-                    step: 1,   // pages before and after current
-                    globj: glempsAll,
-                    perPage: perPageFullSt
-                });
-            } else {
-                let perPageAllSt = Number(glamping_club_ajax.glc_per_page_all);
-                let glempAllPagin = glempsAll.slice(0, perPageAllSt);
-                glempRender(glempAllPagin);
-                let pagesAbs = glempsAll.length/perPageAllSt;
-                let pages = Math.ceil(pagesAbs);
-                const navLinks = document.querySelector('.filtr-pagination .nav-links');
-                if (pages > 1) {
-                    if (document.querySelector('.pagination')) {
-                        document.querySelector('.pagination').style.display = 'none';
-                    }
-                    document.querySelector('.filtr-pagination').style.display = 'flex';
+                    Pagination.Init(navLinks, {
+                        size: pages, // pages size
+                        page: 1,  // selected page
+                        step: 1,   // pages before and after current
+                        globj: glempsAll,
+                        perPage: perPageFullSt
+                    });
                 } else {
-                    if (document.querySelector('.pagination')) {
-                        document.querySelector('.pagination').style.display = 'none';
+                    let perPageAllSt = Number(glamping_club_ajax.glc_per_page_all);
+                    let glempAllPagin = glempsAll.slice(0, perPageAllSt);
+                    glempRender(glempAllPagin);
+                    let pagesAbs = glempsAll.length/perPageAllSt;
+                    let pages = Math.ceil(pagesAbs);
+                    const navLinks = document.querySelector('.filtr-pagination .nav-links');
+                    if (pages > 1) {
+                        if (document.querySelector('.pagination')) {
+                            document.querySelector('.pagination').style.display = 'none';
+                        }
+                        document.querySelector('.filtr-pagination').style.display = 'flex';
+                    } else {
+                        if (document.querySelector('.pagination')) {
+                            document.querySelector('.pagination').style.display = 'none';
+                        }
+                        document.querySelector('.filtr-pagination').style.display = '';
                     }
-                    document.querySelector('.filtr-pagination').style.display = '';
-                }
 
-                Pagination.Init(navLinks, {
-                    size: pages, // pages size
-                    page: 1,  // selected page
-                    step: 1,   // pages before and after current
-                    globj: glempsAll,
-                    perPage: perPageAllSt
-                });
+                    Pagination.Init(navLinks, {
+                        size: pages, // pages size
+                        page: 1,  // selected page
+                        step: 1,   // pages before and after current
+                        globj: glempsAll,
+                        perPage: perPageAllSt
+                    });
+                }
             }
         }
     }
