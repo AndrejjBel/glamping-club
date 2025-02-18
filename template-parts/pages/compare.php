@@ -13,6 +13,10 @@ if ( !empty( $_COOKIE["glcCompar"] ) ) {
             compares_render($_COOKIE["glcCompar"], 'compare');
             ?>
         </div>
+
+        <div class="compare-wrap-mobile">
+            <?php get_template_part( 'template-parts/pages/compare-mobile' ); ?>
+        </div>
     </article><!-- #post-<?php the_ID(); ?> -->
 
 </main><!-- #main -->

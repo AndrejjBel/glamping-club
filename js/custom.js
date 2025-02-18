@@ -1138,90 +1138,132 @@ relListSwiper('.relListSwiper');
 function slickSlider() {
     jQuery(document).ready( function($){
         const iconBtnNext = `<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path d="M85.14 475.8c-3.438-3.141-5.156-7.438-5.156-11.75c0-3.891 1.406-7.781 4.25-10.86l181.1-197.1L84.23 58.86c-6-6.5-5.625-16.64 .9062-22.61c6.5-6 16.59-5.594 22.59 .8906l192 208c5.688 6.156 5.688 15.56 0 21.72l-192 208C101.7 481.3 91.64 481.8 85.14 475.8z"/>
+        <path d="M85.14 475.8c-3.438-3.141-5.156-7.438-5.156-11.75c0-3.891 1.406-7.781 4.25-10.86l181.1-197.1L84.23 58.86c-6-6.5-5.625-16.64 .9062-22.61c6.5-6 16.59-5.594 22.59 .8906l192 208c5.688 6.156 5.688 15.56 0 21.72l-192 208C101.7 481.3 91.64 481.8 85.14 475.8z"/>
         </svg>`;
         const iconBtnPrev = `<svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512">
-            <path d="M234.8 36.25c3.438 3.141 5.156 7.438 5.156 11.75c0 3.891-1.406 7.781-4.25 10.86L53.77 256l181.1 197.1c6 6.5 5.625 16.64-.9062 22.61c-6.5 6-16.59 5.594-22.59-.8906l-192-208c-5.688-6.156-5.688-15.56 0-21.72l192-208C218.2 30.66 228.3 30.25 234.8 36.25z"/>
+        <path d="M234.8 36.25c3.438 3.141 5.156 7.438 5.156 11.75c0 3.891-1.406 7.781-4.25 10.86L53.77 256l181.1 197.1c6 6.5 5.625 16.64-.9062 22.61c-6.5 6-16.59 5.594-22.59-.8906l-192-208c-5.688-6.156-5.688-15.56 0-21.72l192-208C218.2 30.66 228.3 30.25 234.8 36.25z"/>
         </svg>`;
         $('.mySlick1').slick({
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          asNavFor: '.mySlick2',
-          infinite: false,
-          speed: 200,
-          adaptiveHeight: true,
-          appendArrows: '.slider-compare-navigation',
-          prevArrow: '<button type="button" class="slick-prev">'+iconBtnPrev+'</button>',
-          nextArrow: '<button type="button" class="slick-next">'+iconBtnNext+'</button>',
-          responsive: [
-              {
-                  breakpoint: 1349,
-                  settings: {
-                      slidesToShow: 4,
-                      slidesToScroll: 1
-                  }
-              },
-              {
-                  breakpoint: 1024,
-                  settings: {
-                      slidesToShow: 3,
-                      slidesToScroll: 1
-                  }
-              },
-              {
-                  breakpoint: 767,
-                  settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1
-                  }
-              },
-              {
-                  breakpoint: 480,
-                  settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1
-                  }
-              }
-          ]
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.mySlick2',
+            infinite: false,
+            speed: 200,
+            adaptiveHeight: true,
+            appendArrows: '.slider-compare-navigation',
+            prevArrow: '<button type="button" class="slick-prev">'+iconBtnPrev+'</button>',
+            nextArrow: '<button type="button" class="slick-next">'+iconBtnNext+'</button>',
+            responsive: [
+                // {
+                //     breakpoint: 5000,
+                //     settings: {
+                //         slidesToShow: 5,
+                //         slidesToScroll: 1
+                //     }
+                // },
+                {
+                    breakpoint: 1349,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        variableWidth: false
+                    }
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        variableWidth: true,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 560,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        variableWidth: false,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        variableWidth: false,
+                        arrows: false
+                    }
+                }
+            ]
         });
 
         $('.mySlick2').slick({
-          slidesToShow: 5,
-          slidesToScroll: 1,
-          asNavFor: '.mySlick1',
-          infinite: false,
-          speed: 200,
-          arrows: false,
-          responsive: [
-              {
-                  breakpoint: 1349,
-                  settings: {
-                      slidesToShow: 4,
-                      slidesToScroll: 1
-                  }
-              },
-              {
-                  breakpoint: 1024,
-                  settings: {
-                      slidesToShow: 3,
-                      slidesToScroll: 1
-                  }
-              },
-              {
-                  breakpoint: 767,
-                  settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1
-                  }
-              },
-              {
-                  breakpoint: 480,
-                  settings: {
-                      slidesToShow: 2,
-                      slidesToScroll: 1
-                  }
-              }
-          ]
+            slidesToShow: 5,
+            slidesToScroll: 1,
+            asNavFor: '.mySlick1',
+            infinite: false,
+            speed: 200,
+            arrows: false,
+            responsive: [
+                // {
+                //     breakpoint: 5000,
+                //     settings: {
+                //         slidesToShow: 5,
+                //         slidesToScroll: 1
+                //     }
+                // },
+                {
+                    breakpoint: 1349,
+                    settings: {
+                        slidesToShow: 4,
+                        slidesToScroll: 1
+                    }
+                },
+                {
+                    breakpoint: 1024,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        variableWidth: false
+                    }
+                },
+                {
+                    breakpoint: 767,
+                    settings: {
+                        slidesToShow: 3,
+                        slidesToScroll: 1,
+                        variableWidth: true,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 560,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        variableWidth: false,
+                        arrows: false
+                    }
+                },
+                {
+                    breakpoint: 480,
+                    settings: {
+                        slidesToShow: 2,
+                        slidesToScroll: 1,
+                        variableWidth: false,
+                        arrows: false
+                    }
+                }
+            ]
         });
 
         // $(".mySlick1").each(function() {
@@ -1497,17 +1539,10 @@ const deleteFavCom = () => {
         comparisonBtns.forEach((btn) => {
             btn.addEventListener('click', (e) => {
                 let glcComparCount = localChengC('glcCompar', btn.dataset.postid);
-                btn.parentElement.parentElement.parentElement.parentElement.remove();
-                document.querySelector('#post-info-'+btn.parentElement.parentElement.parentElement.parentElement.dataset.info).remove();
-                // jQuery(document).ready( function($){
-                //     $('.mySlick1').slick('slickRemove', 6);
-                //     $('.mySlick2').slick('slickRemove', 6);
-                // });
                 supComparison.forEach((item) => {
                     item.innerHTML = glcComparCount;
                 });
                 location.reload();
-                // slickSlider();
             });
         });
     }
@@ -2039,6 +2074,301 @@ function toggleFullScreen(elem) {
             document.exitFullscreen();
             elem.style.backgroundColor = '';
         }
+    }
+}
+
+function compareMobileStep() {
+    const compareMobileNav = document.querySelector('.compare-wrap-mobile__nav');
+    if (!compareMobileNav) return;
+    const btns = compareMobileNav.querySelectorAll('button');
+    let gc = Cookies.get('glcCompar');
+    let gcObj = [];
+    if (gc) {
+        gcObj = gc.split(',');
+    }
+    let glAll = JSON.parse(glamping_club_ajax.glAll);
+    console.dir(glAll);
+    btns.forEach((btn) => {
+        btn.addEventListener('click', (e) => {
+            let dir = btn.id.split('-')[1];
+            let pos = btn.id.split('-')[2];
+            let sc = document.querySelector('.step-current-'+pos);
+            let scn = Number(sc.innerText);
+            let scpn = '';
+            if (pos == 'left') {
+                scpn = document.querySelector('.step-current-right').innerText;
+            }
+            if (pos == 'right') {
+                scpn = document.querySelector('.step-current-left').innerText;
+            }
+            if (dir == 'next') {
+                if (scn == Number(btn.dataset.stepAll)) {
+                    if (+scpn == 1) {
+                        sc.innerText = 2;
+                    } else {
+                        sc.innerText = 1;
+                    }
+                } else {
+                    if (+scpn == scn+1) {
+                        if (+scpn == Number(btn.dataset.stepAll)) {
+                            sc.innerText = 1;
+                        } else {
+                            sc.innerText = scn+2;
+                        }
+                    } else {
+                        sc.innerText = scn+1;
+                    }
+                }
+            } else if (dir == 'prev') {
+                if (scn == 1) {
+                    if (+scpn == Number(btn.dataset.stepAll)) {
+                        sc.innerText = Number(btn.dataset.stepAll)-1;
+                    } else {
+                        sc.innerText = Number(btn.dataset.stepAll);
+                    }
+                } else {
+                    if (+scpn == scn-1) {
+                        if (+scpn == 1) {
+                            sc.innerText = Number(btn.dataset.stepAll)-1;
+                        } else {
+                            sc.innerText = scn-2;
+                        }
+                    } else {
+                        sc.innerText = scn-1;
+                    }
+                }
+            }
+            let curGl = glAll.filter(gl => gl.id == gcObj[Number(sc.innerText)-1])[0];
+            // console.dir(glAll);
+
+            compareMobileStepRender(pos, curGl)
+        });
+    });
+
+}
+compareMobileStep();
+
+function compareMobileStepRender(pos, obj) {
+    let wrap = document.querySelector('.glemps-item-'+pos);
+    compareGlempTopRender(obj, wrap);
+    let rating = reviews_stars( obj.average_rating, obj.count_rating );
+    let recommended = (obj.recommended == 'yes')? '+' : '&mdash;';
+    let stocksRend = '&mdash;';
+    if (obj.stocks) {
+        if (obj.stocks.length > 1) {
+            stocksRend = num_wordn(obj.stocks.length, ['Акция', 'Акции', 'Акций']);
+        } else {
+            stocksRend = obj.stocks_title;
+        }
+    }
+    let parkingRend = '&mdash;';
+    if (obj.gfg.includes('Парковка - бесплатно')) {
+        parkingRend = '<span class="compare-item__section__info__text-green">Бесплатно</span>';
+    } else if (obj.gfg.includes('Парковка - платно')) {
+        parkingRend = '<span class="compare-item__section__info__text-red">Платно</span>';
+    }
+    let animalsRend = '&mdash;';
+    if (obj.gfg.includes('Можно с животными - бесплатно')) {
+        paranimalsRendkingRend = '<span class="compare-item__section__info__text-green">Бесплатно</span>';
+    } else if (obj.gfg.includes('Можно с животными - платно')) {
+        animalsRend = '<span class="compare-item__section__info__text-red">Платно</span>';
+    }
+
+    document.querySelector('.rating-'+pos).innerHTML = rating;
+    document.querySelector('.recommended-'+pos).innerHTML = recommended;
+    document.querySelector('.stocks-'+pos).innerHTML = stocksRend;
+    document.querySelector('.address-'+pos).innerHTML = (obj.adress)? obj.adress : '&mdash;';
+    document.querySelector('.type-'+pos).innerHTML = (obj.type)? obj.type.join(', ') : '&mdash;';
+    document.querySelector('.allocation-'+pos).innerHTML = (obj.allocation)? obj.allocation.join(', ') : '&mdash;';
+    document.querySelector('.nature-'+pos).innerHTML = (obj.nature_around)? obj.nature_around.join(', ') : '&mdash;';
+    document.querySelector('.wifi-'+pos).innerHTML = (obj.gfg.includes('Wi-Fi'))? '+' : '&mdash;';
+    document.querySelector('.parking-'+pos).innerHTML = parkingRend;
+    document.querySelector('.animals-'+pos).innerHTML = animalsRend;
+    document.querySelector('.kitchen-'+pos).innerHTML = (obj.facilities_kitchen)? obj.facilities_kitchen.join(', ') : '&mdash;';
+    document.querySelector('.bathroom-'+pos).innerHTML = (obj.facilities_bathroom)? obj.facilities_bathroom.join(', ') : '&mdash;';
+    document.querySelector('.nutrition-'+pos).innerHTML = (obj.glamping_nutrition)? obj.glamping_nutrition.join(', ') : '&mdash;';
+    document.querySelector('.children-'+pos).innerHTML = (obj.facilities_children)? obj.facilities_children.join(', ') : '&mdash;';
+    document.querySelector('.territory-'+pos).innerHTML = (obj.territory)? obj.territory.join(', ') : '&mdash;';
+    document.querySelector('.safety-'+pos).innerHTML = (obj.safety)? obj.safety.join(', ') : '&mdash;';
+    document.querySelector('.entertainment-'+pos).innerHTML = (obj.entertainment)? obj.entertainment.join(', ') : '&mdash;';
+}
+
+function reviews_stars( average_rating, count_otziv ) {
+	let rating = +average_rating;
+	let star_full = `<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="var(--reviews-color)" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>`;
+	let star_aver = `<svg width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-primary" fill="var(--reviews-color)" d="M288 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.995 275.8 .0131 287.1-.0391L288 439.8zM433.2 512C432.1 512.1 431 512.1 429.9 512H433.2z"/>
+	<path class="fa-secondary" fill="#d7dbe3" d="M146.3 512C145.3 512.1 144.2 512.1 143.1 512H146.3zM288 439.8V-.0387L288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.1 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L288 439.8z"/>
+	</svg>`;
+	let star_half = `<svg class="star-full" width="18" height="18" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+	<path class="fa-secondary" fill="#d7dbe3" d="M381.2 150.3L524.9 171.5C536.8 173.2 546.8 181.6 550.6 193.1C554.4 204.7 551.3 217.3 542.7 225.9L438.5 328.1L463.1 474.7C465.1 486.7 460.2 498.9 450.2 506C440.3 513.1 427.2 514 416.5 508.3L288.1 439.8L159.8 508.3C149 514 135.9 513.1 126 506C116.1 498.9 111.1 486.7 113.2 474.7L137.8 328.1L33.58 225.9C24.97 217.3 21.91 204.7 25.69 193.1C29.46 181.6 39.43 173.2 51.42 171.5L195 150.3L259.4 17.97C264.7 6.954 275.9-.0391 288.1-.0391C300.4-.0391 311.6 6.954 316.9 17.97L381.2 150.3z"/>
+	</svg>`;
+
+	let content = `<div class="rating-stars">`;
+
+	//$full_stars = $doc_meta->rating/$doc_meta->raitcol;
+	let empty_stars = Math.floor( 5 - average_rating );
+	while ( average_rating > 0 ) {
+		if ( average_rating > 0 && average_rating - 1 >= 0 ) {
+			content += star_full;
+		}
+		if ( average_rating > 0 && average_rating - 1 < 0 ) {
+			content += star_aver;
+		}
+		average_rating--;
+	}
+	while ( empty_stars > 0 ) {
+		content += star_half;
+
+		empty_stars--;
+	}
+	content += `</div>`;
+	content += `<div class="rating-count">
+		<div class="rating-count__rating">`;
+	content += rating; //.toFixed(1);
+	content += `</div>
+        <div class="rating-count__otziv">`;
+
+	content += `<span> / `;
+    content += count_otziv+' '+num_wordn(+count_otziv, ['отзыв', 'отзыва', 'отзывов']);
+    content += `</span>`;
+	content += `</div>
+	    </div>`;
+    return content;
+}
+
+function num_wordn(value, words){
+	value = Math.abs(value) % 100;
+	var num = value % 10;
+	if(value > 10 && value < 20) return words[2];
+	if(num > 1 && num < 5) return words[1];
+	if(num == 1) return words[0];
+	return words[2];
+    // num_word(value, ['товар', 'товара', 'товаров']);
+}
+
+function compareGlempTopRender(glemp, wrap) {
+    let glcFav = favoritesRenderFiltrn('glcFav');
+
+    let price = currFormatn(glemp.price);
+    let type = glemp.type.join(', ');
+    let clFav = '';
+    let titleFav = 'Добавить в избранное';
+    if (glcFav.includes(glemp.id)) {
+        clFav = ' active';
+        titleFav = 'Удалить из избранного';
+    }
+    let slider = ``;
+    glemp.media_urls.forEach((item) => {
+        slider += `<div class="swiper-slide"><img src="${item}" alt="" loading="lazy" /></div>`;
+    });
+
+    let rend = `<div id="post-${glemp.id}" class="glamping-item compare" title="${glemp.title}" data-info="${glemp.id}">
+        <a href="${glemp.url}" class="glamping-item__url" rel="bookmark"></a>
+        <div class="glamping-item__btns-fav-comp">
+            <button id="add-favorites" data-postid="${glemp.id}" class="round-sup-red${clFav}" type="button" name="button" onclick="favStepAction(this)" title="${titleFav}">
+                <svg width="40" height="40" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path d="M0 190.9V185.1C0 115.2 50.52 55.58 119.4 44.1C164.1 36.51 211.4 51.37 244 84.02L256 96L267.1 84.02C300.6 51.37 347 36.51 392.6 44.1C461.5 55.58 512 115.2 512 185.1V190.9C512 232.4 494.8 272.1 464.4 300.4L283.7 469.1C276.2 476.1 266.3 480 256 480C245.7 480 235.8 476.1 228.3 469.1L47.59 300.4C17.23 272.1 .0003 232.4 .0003 190.9L0 190.9z"/>
+                </svg>
+            </button>
+            <button id="delete-comparison" data-postid="${glemp.id}" class="round-sup-red compare" type="button" name="button" onclick="compDelStep(this)" title="Удалить из избранного">
+                <svg width="20" height="20" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                    <path d="M135.2 17.7C140.6 6.8 151.7 0 163.8 0H284.2c12.1 0 23.2 6.8 28.6 17.7L320 32h96c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 96 0 81.7 0 64S14.3 32 32 32h96l7.2-14.3zM32 128H416V448c0 35.3-28.7 64-64 64H96c-35.3 0-64-28.7-64-64V128zm96 64c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16zm96 0c-8.8 0-16 7.2-16 16V432c0 8.8 7.2 16 16 16s16-7.2 16-16V208c0-8.8-7.2-16-16-16z"/>
+                </svg>
+            </button>
+        </div>
+        <div class="glamping-item__thumbnail compare">
+            <div id="slider-post-${glemp.id}" class="swiper slider-post-${glemp.id}">
+            <div class="swiper-wrapper">
+            ${slider}
+            </div>
+            <div class="swiper-button-next"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-pagination"></div>
+            </div>
+        </div>
+
+        <div class="glamping-item__content compare">
+            <div class="glamping-item__content__left">
+                <div class="glamping-item__content__title compare">${glemp.title}</div>
+            </div>
+
+            <div class="glamping-item__content__right compare">
+                <div class="glamping-item__content__right__price">
+                    <span class="price-number compare">От ${price} ₽</span>
+                    <span class="price-text">за 1 ночь</span>
+                </div>
+            </div>
+        </div>
+    </div>`;
+
+    wrap.innerHTML = rend;
+
+    sliderCompareInit();
+}
+
+function sliderCompareInit() {
+    const sliders = document.querySelectorAll('.glamping-item.compare');
+    if (!sliders.length) return;
+    sliders.forEach((item) => {
+        let sl = '.slider-'+item.id;
+        sliderCompareMobile(sl);
+    });
+
+}
+
+function sliderCompareMobile(elem) {
+    const mySl = new Swiper(elem, {
+        loop: true,
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+    });
+}
+
+function favoritesRenderFiltrn(name) {
+    const glcFav = Cookies.get(name);
+    let glcFav_obj = [];
+    if (glcFav) {
+        glcFav_obj = glcFav.split(',').map(Number);
+    }
+    return glcFav_obj;
+}
+
+function currFormatn(num) {
+    let nf = Intl.NumberFormat(
+        'ru-RU',
+        {
+            minimumFractionDigits:0,
+            maximumFractionDigits:0
+        }
+    ).format(num);
+    return nf;
+}
+
+function compDelStep(elem) {
+    localChengC('glcCompar', elem.dataset.postid);
+    location.reload();
+}
+
+function favStepAction(elem) {
+    const supFavorites = document.querySelectorAll('#sup-favorites');
+    let glcFavCount = localChengC('glcFav', elem.dataset.postid);
+    supFavorites.forEach((item) => {
+        item.innerHTML = glcFavCount;
+    });
+    elem.classList.toggle('active');
+    if (elem.classList.contains('active')) {
+        elem.attributes.title.value = 'Удалить из избранного';
+    } else {
+        elem.attributes.title.value = 'Добавить в избранное';
     }
 }
 

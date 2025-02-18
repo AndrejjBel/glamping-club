@@ -49,6 +49,7 @@ function glamping_club_result_render($location=0) {
         if ($post->working_mode == 'whole_year') {
             $working_mode_seasons = ['Весь год', 'январь','февраль','март','апрель','май','июнь','июль','август','сентябрь','октябрь','ноябрь','декабрь'];
         }
+        $gfg = $post->glamping_facilities_general;
         $glampings[] = [
             'id' => $post->ID,
             'post_date' => $post_date,
@@ -64,6 +65,9 @@ function glamping_club_result_render($location=0) {
             'nature_around' => $post->glamping_nature_around,
             'facilities_general' => paid_free($post->glamping_facilities_general), //$post->glamping_facilities_general,
             'facilities_children' => paid_free($post->facilities_options_children), //$post->facilities_options_children,
+            'facilities_kitchen' => paid_free($post->facilities_general_kitchen),
+            'facilities_bathroom' => paid_free($post->facilities_general_bathroom),
+            'glamping_nutrition' => paid_free($post->glamping_nutrition),
             'entertainment' => paid_free($post->glamping_entertainment), //$post->glamping_entertainment,
             'territory' => paid_free($post->glamping_territory), //$post->glamping_territory,
             'safety' => paid_free($post->facilities_options_safety), //$post->facilities_options_safety,
@@ -79,7 +83,8 @@ function glamping_club_result_render($location=0) {
             'phone' => $phone,
             'whatsup' => $whatsup,
             'count_rating' => $count_rating,
-            'average_rating' => $average_rating
+            'average_rating' => $average_rating,
+            'gfg' => $gfg
         ];
     }
     wp_reset_postdata();

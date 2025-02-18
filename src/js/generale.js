@@ -2,6 +2,7 @@ function navScroll(elementId) {
     const masthead = document.getElementById(elementId);
     const asideContent = document.getElementById('aside-content');
     const btnFiltrVisionMobile = document.getElementById('btn-filtr-vision-mobile');
+    const compareMobileTop = document.querySelector('.compare-wrap-mobile__top');
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
         let headHeight = '';
@@ -22,6 +23,10 @@ function navScroll(elementId) {
             if (btnFiltrVisionMobile) {
                 btnFiltrVisionMobile.style.top = '';
             }
+
+            if (compareMobileTop) {
+                compareMobileTop.style.top = (headHeight-20)+"px";
+            }
         } else {
             if (masthead) {
                 if (prevScrollpos > masthead.offsetHeight) { //clientHeight
@@ -33,6 +38,9 @@ function navScroll(elementId) {
             }
             if (btnFiltrVisionMobile) {
                 btnFiltrVisionMobile.style.top = '0';
+            }
+            if (compareMobileTop) {
+                compareMobileTop.style.top = '0';
             }
         }
         prevScrollpos = currentScrollPos;
