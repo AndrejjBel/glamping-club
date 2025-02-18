@@ -5023,8 +5023,8 @@ a.secondary {
           display: inline-block; }
   .glamping-item__btns-fav-comp {
     position: absolute;
-    top: 15px;
-    right: 15px;
+    top: 10px;
+    right: 10px;
     z-index: 9;
     display: flex;
     gap: 8px; }
@@ -5058,9 +5058,6 @@ a.secondary {
       @media (max-width: 576px) {
         .glamping-item__thumbnail.compare {
           height: 140px; } }
-      @media (max-width: 439px) {
-        .glamping-item__thumbnail.compare {
-          height: 120px; } }
     .glamping-item__thumbnail img {
       position: absolute;
       top: 0px;

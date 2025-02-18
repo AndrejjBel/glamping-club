@@ -1030,8 +1030,8 @@
 
     &__btns-fav-comp {
         position: absolute;
-        top: 15px;
-        right: 15px;
+        top: 10px;
+        right: 10px;
         z-index: 9;
         display: flex;
         gap: 8px;
@@ -1086,9 +1086,9 @@
                 height: 140px;
             }
 
-            @media (max-width: 439px) {
-                height: 120px;
-            }
+            // @media (max-width: 439px) {
+            //     height: 120px;
+            // }
         }
 
         & img {
