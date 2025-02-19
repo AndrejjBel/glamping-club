@@ -2372,6 +2372,45 @@ function favStepAction(elem) {
     }
 }
 
+function buttonsFavChangeSingle() {
+    const singleGlampings = document.querySelector('.single-glampings');
+    if (!singleGlampings) return;
+    const supFavorites = document.querySelectorAll('#sup-favorites');
+    const supСomparison = document.querySelectorAll('#sup-comparison');
+    singleGlampings.addEventListener('click', function(event) {
+        let btns = singleGlampings.querySelectorAll('button');
+        let btn = event.target.closest('button');
+        if (btn) {
+            if (btn.id == 'add-favorites') {
+                let glcFavCount = localCheng('glcFav', btn.dataset.postid);
+                supFavorites.forEach((item) => {
+                    item.innerHTML = glcFavCount;
+                });
+                btn.classList.toggle('active');
+                if (btn.classList.contains('active')) {
+                    btn.attributes.title.value = 'Удалить из избранного';
+                } else {
+                    btn.attributes.title.value = 'Добавить в избранное';
+                }
+            }
+
+            if (btn.id == 'add-comparison') {
+                let glcComparCount = localCheng('glcCompar', btn.dataset.postid);
+                supСomparison.forEach((item) => {
+                    item.innerHTML = glcComparCount;
+                });
+                btn.classList.toggle('active');
+                if (btn.classList.contains('active')) {
+                    btn.attributes.title.value = 'Удалить из сравнения';
+                } else {
+                    btn.attributes.title.value = 'Добавить к сравнению';
+                }
+            }
+        }
+    });
+}
+buttonsFavChangeSingle();
+
 Cookies.set('mediaQuery', window.innerWidth);
 
 // console.dir(JSON.parse(glamping_club_ajax.glAll));
