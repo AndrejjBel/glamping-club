@@ -1737,6 +1737,9 @@ const countImgRev = () => {
             if (+elNone > 0) {
                 item.children[2].children[0].lastElementChild.children[1].innerText = elNone;
                 item.children[2].children[0].lastElementChild.classList.add('active');
+            } else {
+                item.children[2].children[0].lastElementChild.children[1].innerText = elNone;
+                item.children[2].children[0].lastElementChild.classList.remove('active');
             }
         }
     });
