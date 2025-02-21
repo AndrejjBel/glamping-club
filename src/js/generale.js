@@ -36,7 +36,12 @@ function navScroll(elementId) {
             }
 
             if (compareSliderTop) {
-                compareSliderTop.style.top = (headHeight+40)+"px";
+                if (wiw > 767) {
+                    compareSliderTop.style.top = (headHeight+40)+"px";
+                } else {
+                    compareSliderTop.style.top = (headHeight-20)+"px";
+                }
+                // compareSliderTop.style.top = (headHeight+40)+"px";
             }
         } else {
             if (masthead) {
