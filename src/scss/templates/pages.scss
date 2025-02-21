@@ -1,5 +1,5 @@
 .compares-main {
-    margin-top: 10px;
+    // margin-top: 10px;
     margin-bottom: 40px;
 
     @media (max-width: 767px) {
@@ -24,7 +24,7 @@
 }
 
 .compare-wrap {
-    margin-top: 40px;
+    margin-top: 30px;
 
     @media (max-width: 767px) {
         margin-top: 30px;
@@ -518,13 +518,14 @@
 }
 
 .slider-compare-navigation {
-    position: absolute;
-    width: 100%;
-    top: 46%;
-    left: 0;
+    // position: absolute;
+    // width: 100%;
+    // top: 46%;
+    // left: 0;
     display: flex;
-    justify-content: space-between;
-    padding: 0 10px;
+    gap: 10px;
+    // justify-content: space-between;
+    // padding: 0 10px;
 
     & button {
         display: flex;
@@ -534,14 +535,15 @@
         height: 40px;
         border-radius: 50%;
         background: #FFFFFF;
-        border: 1px solid var(--text-color-label);
+        border: 1px solid rgb(217, 217, 217);
+        // border: 1px solid var(--text-color-label);
 
         & svg {
-            fill: var(--text-color-label);
+            fill: rgb(143, 143, 143); //var(--text-color-label);
         }
 
         &:hover {
-            background: var(--link-color-hover);
+            background: #467A3C;
             border: 1px solid var(--link-color-hover);
 
             & svg {
@@ -550,13 +552,13 @@
         }
 
         &.slick-disabled {
-            visibility: hidden;
-            opacity: 0;
+            // visibility: hidden;
+            // opacity: 0;
             pointer-events: none;
-            border: 1px solid var(--text-color-file-help);
+            border: 1px solid rgb(217, 217, 217); //var(--text-color-file-help);
 
             & svg {
-                fill: var(--text-color-file-help);
+                fill: rgb(143, 143, 143); //var(--text-color-file-help);
             }
         }
     }
@@ -568,12 +570,17 @@
 
 .slider-top {
     position: sticky;
-    top: 0;
+    top: 63px;
     background: #FFFFFF;
     // position: relative;
     margin-bottom: 5px;
     z-index: 9;
     overflow: hidden;
+    transition: all linear .3s;
+
+    @media (max-width: 767px) {
+        top: 0;
+    }
 }
 
 .slick {

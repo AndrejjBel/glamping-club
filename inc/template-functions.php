@@ -1095,6 +1095,7 @@ function compares_render($posts, $type, $posts_per_page=-1) {
 		'post_type' => 'glampings',
 		'include' => $posts
 		] );
+	// echo '<div class="slider-compare-navigation"></div>';
 	echo '<div class="slider-top">';
 	echo '<div class="slick mySlick1">';
 	foreach ($posts_arr as $post) {
@@ -1103,7 +1104,7 @@ function compares_render($posts, $type, $posts_per_page=-1) {
 		// get_template_part( 'template-parts/pages/excerpt', 'compare-next' );
 	}
 	echo '</div>';
-	echo '<div class="slider-compare-navigation"></div>';
+	// echo '<div class="slider-compare-navigation"></div>';
 	echo '</div>';
 	echo '<div class="slider-bottom">';
 	echo get_template_part( 'template-parts/pages/excerpt', 'compare-left' );

@@ -1154,13 +1154,6 @@ function slickSlider() {
             prevArrow: '<button type="button" class="slick-prev">'+iconBtnPrev+'</button>',
             nextArrow: '<button type="button" class="slick-next">'+iconBtnNext+'</button>',
             responsive: [
-                // {
-                //     breakpoint: 5000,
-                //     settings: {
-                //         slidesToShow: 5,
-                //         slidesToScroll: 1
-                //     }
-                // },
                 {
                     breakpoint: 1349,
                     settings: {
@@ -1214,13 +1207,6 @@ function slickSlider() {
             speed: 200,
             arrows: false,
             responsive: [
-                // {
-                //     breakpoint: 5000,
-                //     settings: {
-                //         slidesToShow: 5,
-                //         slidesToScroll: 1
-                //     }
-                // },
                 {
                     breakpoint: 1349,
                     settings: {

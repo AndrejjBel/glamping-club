@@ -271,7 +271,7 @@ body {
       max-width: 100%;
       padding-right: 40px;
       padding-left: 40px; } }
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     .container {
       max-width: 100%;
       padding-right: 20px;
@@ -5615,7 +5615,6 @@ ul.item-options-checkbox {
     display: none; }
 
 .compares-main {
-  margin-top: 10px;
   margin-bottom: 40px; }
   @media (max-width: 767px) {
     .compares-main {
@@ -5629,7 +5628,7 @@ ul.item-options-checkbox {
         font-size: 20px; } }
 
 .compare-wrap {
-  margin-top: 40px; }
+  margin-top: 30px; }
   @media (max-width: 767px) {
     .compare-wrap {
       margin-top: 30px; } }
@@ -5986,13 +5985,8 @@ ul.item-options-checkbox {
     letter-spacing: 0; }
 
 .slider-compare-navigation {
-  position: absolute;
-  width: 100%;
-  top: 46%;
-  left: 0;
   display: flex;
-  justify-content: space-between;
-  padding: 0 10px; }
+  gap: 10px; }
   .slider-compare-navigation button {
     display: flex;
     align-items: center;
@@ -6001,29 +5995,31 @@ ul.item-options-checkbox {
     height: 40px;
     border-radius: 50%;
     background: #FFFFFF;
-    border: 1px solid var(--text-color-label); }
+    border: 1px solid #d9d9d9; }
     .slider-compare-navigation button svg {
-      fill: var(--text-color-label); }
+      fill: #8f8f8f; }
     .slider-compare-navigation button:hover {
-      background: var(--link-color-hover);
+      background: #467A3C;
       border: 1px solid var(--link-color-hover); }
       .slider-compare-navigation button:hover svg {
         fill: #FFFFFF; }
     .slider-compare-navigation button.slick-disabled {
-      visibility: hidden;
-      opacity: 0;
       pointer-events: none;
-      border: 1px solid var(--text-color-file-help); }
+      border: 1px solid #d9d9d9; }
       .slider-compare-navigation button.slick-disabled svg {
-        fill: var(--text-color-file-help); }
+        fill: #8f8f8f; }
 
 .slider-top {
   position: sticky;
-  top: 0;
+  top: 63px;
   background: #FFFFFF;
   margin-bottom: 5px;
   z-index: 9;
-  overflow: hidden; }
+  overflow: hidden;
+  transition: all linear .3s; }
+  @media (max-width: 767px) {
+    .slider-top {
+      top: 0; } }
 
 .slick {
   overflow: hidden; }

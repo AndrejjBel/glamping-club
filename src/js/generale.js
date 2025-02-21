@@ -3,8 +3,11 @@ function navScroll(elementId) {
     const asideContent = document.getElementById('aside-content');
     const btnFiltrVisionMobile = document.getElementById('btn-filtr-vision-mobile');
     const compareMobileTop = document.querySelector('.compare-wrap-mobile__top');
+    const compareHeader = document.querySelector('.compares-main .entry-header');
+    const compareSliderTop = document.querySelector('.compares-main .slider-top');
     var prevScrollpos = window.pageYOffset;
     window.onscroll = function() {
+        let wiw = window.innerWidth;
         let headHeight = '';
         var currentScrollPos = window.pageYOffset;
         if (prevScrollpos > currentScrollPos) {
@@ -27,6 +30,14 @@ function navScroll(elementId) {
             if (compareMobileTop) {
                 compareMobileTop.style.top = (headHeight-20)+"px";
             }
+
+            if (compareHeader) {
+                compareHeader.style.top = (headHeight-20)+"px";
+            }
+
+            if (compareSliderTop) {
+                compareSliderTop.style.top = (headHeight+40)+"px";
+            }
         } else {
             if (masthead) {
                 if (prevScrollpos > masthead.offsetHeight) { //clientHeight
@@ -41,6 +52,17 @@ function navScroll(elementId) {
             }
             if (compareMobileTop) {
                 compareMobileTop.style.top = '0';
+            }
+
+            if (compareHeader) {
+                compareHeader.style.top = '0';
+            }
+            if (compareSliderTop) {
+                if (wiw > 767) {
+                    compareSliderTop.style.top = '60px';
+                } else {
+                    compareSliderTop.style.top = '0';
+                }
             }
         }
         prevScrollpos = currentScrollPos;
